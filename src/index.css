@@ -1,3 +1,18 @@
+/* ------ colors ------ */
+
+:root {
+  --white: #ffffff;
+  --gray01: #F9F9F9;
+  --gray02: #C2C2C2;
+  --gray03: #9A9A9A;
+  --dark: #242424;
+  --blue: #00AFD9;
+  --violet01: #2E3487;
+  --violet02: #171A44;
+}
+
+/* ------ colors ------ */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,7 +21,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: 180px auto 30px;
+  grid-template-columns: 200px auto 30px;
   grid-template-rows: 50px auto 50px;
   grid-template-areas:
     "sidebar topbar topbar"
@@ -14,41 +29,215 @@
     "sidebar footer footer";
 
   width: 100%;
-  height: 100vh;
+  /*height: 100vh;*/
 
   border: brown solid;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #F9F9F9;
+  background-color: var(--gray01);
 }
 
 .topbar {
   grid-area: topbar;
-  background: orange;
+  display: grid;
+  grid-template: 100% / 300px auto 200px;
 }
+
+/*.main {*/
+/*  grid-area: main;*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(auto-fit, minmax(180px, 180px));*/
+/*  grid-template-rows: repeat(auto-fit, minmax(180px, 180px));*/
+/*  grid-auto-flow: column;*/
+/*  column-gap: 10px;*/
+/*  row-gap: 10px;*/
+
+/*  padding: 10px;*/
+
+/*  background: cornflowerblue;*/
+/*}*/
 
 .main {
   grid-area: main;
-  background: cornflowerblue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 10px;
 }
 
 .sidebar {
+  position: fixed;
   grid-area: sidebar;
-  background: aqua;
   padding: 20px 20px 50px 20px;
+  border-right: var(--gray02) solid 1px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .footer {
   grid-area: footer;
-  background: blueviolet;
+  text-align: center;
+  border-top: var(--gray02) solid 1px;
 }
 /* ----- Smaller elements ------ */
 
-.element {
-  background: bisque;
+/* ------ Btn ------ */
+
+.btn {
+  font-family: inherit;
+  font-weight: bold;
 }
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+  color: var(--blue);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.element {
+  /*height: 180px;*/
+  height: 370px;
+  width: 180px;
+  margin: 5px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 6px 0 #C2C2C2;
+}
+
+.table {
+  height: 370px;
+  width: 560px;
+  margin: 5px;
+  background: white;
+  border-radius: 5px;
+
+  display: grid;
+  grid: 40px auto / auto 100px;
+  grid-template-areas:
+    "title edit"
+    "content stats";
+}
+
+.topbar-buttons {
+  border-bottom: var(--gray02) solid 1px;
+}
+
+.topbar-add {
+  font-weight: normal;
+  background: none;
+  border: none;
+  margin: 30px 10px 0 10px;
+}
+
+.topbar-alert {
+  font-family: "Segoe UI Regular", "Segoe UI", serif;
+  color: var(--blue);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.topbar-restore {
+  font-weight: normal;
+  background: none;
+  border: none;
+  margin-top: 30px
+}
+
+.sidebar-logo {
+  margin: 10px 0 30px 0;
+  width: 150px;
+}
+
+.logout {
+  margin-top: 80px;
+}
+
+.sidebar-btn {
+  font-family: "Segoe UI Regular", "Segoe UI", serif;
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--gray02);
+  padding: 20px 0 10px 5px;
+  /*margin: 5px;*/
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 15px;
+}
+
+.gear {
+  width: 15px;
+  margin: 0 5px 0 5px;
+}
+
+.edit {
+  justify-self: end;
+  grid-area: edit;
+  margin: 5px;
+}
+
+.element-head {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin: 7px 10px;
+}
+
+.element-side-bgd {
+  grid-row: 1 / 3;
+  grid-column: 2 / 3;
+  background-image: linear-gradient(#2E3487, #171A44);
+  border-radius: 5px;
+}
+
+.element-type {
+  font-family: "Segoe UI Regular", "Segoe UI", serif;
+  color: var(--dark);
+  font-size: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.element-title {
+  font-family: "Segoe UI Regular", "Segoe UI", serif;
+  margin-left: 10px;
+  color: var(--violet01)
+}
+
+.element-stats {
+  grid-area: stats;
+  font-size: 16px;
+}
+
+.stats-simple {
+  color: var(--violet01);
+  text-align: right;
+}
+
+.stats-complex {
+  color: var(--gray01);
+  text-align: center;
+}
+
+.stats-title {
+  font-family: "Segoe UI Regular", "Segoe UI", sans-serif;
+  font-size: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--gray01);
+}
+
