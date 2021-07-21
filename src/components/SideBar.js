@@ -4,7 +4,7 @@ import LogoutButton from "./LogoutButton";
 import {Link} from "react-router-dom";
 
 
-const SideBar = () => {
+const SideBar = ({ location }) => {
     const onClick = () => {
         console.log("kliknięto ")
     }
@@ -14,22 +14,22 @@ const SideBar = () => {
             <img src={logo_iot} alt="IoT Solution logo" className="sidebar-logo"/>
 
             <Link to="/">
-                <MenuButton text="Pulpit" onClick={onClick}/>
+                <MenuButton text="Pulpit" path="/"/>
             </Link>
             <Link to="/alerts">
-                <MenuButton text="Alerty" onClick={onClick}/>
+                <MenuButton text="Alerty"  path="/alerts"/>
             </Link>
             <Link to="/sensors">
-                <MenuButton text="Czujniki" onClick={onClick}/>
+                <MenuButton text="Czujniki"  path="/sensors"/>
             </Link>
             <Link to="/sensor-groups">
-                <MenuButton text="Grupy" onClick={onClick}/>
+                <MenuButton text="Grupy" path="/sensor-groups"/>
             </Link>
             <Link to="/team">
-                <MenuButton text="Zespół" onClick={onClick}/>
+                <MenuButton text="Zespół" path="/team"/>
             </Link>
             <Link to="/contact">
-                <MenuButton text="Kontakt" onClick={onClick}/>
+                <MenuButton text="Kontakt" path="/contact"/>
             </Link>
 
             <LogoutButton text="Wyloguj" onClick={onClick}/>

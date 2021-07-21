@@ -1,49 +1,35 @@
 import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
-import BodySection from "./components/MainSection";
-import TopBar from "./components/TopBar";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import {BrowserRouter, Route, Switch, Link} from "react-router-dom";
+import PopAlerts from "./components/PopAlerts";
 import Homepage from "./components/views/Homepage";
 import Alerts from "./components/views/Alerts";
 import Sensors from "./components/views/Sensors";
 import SensorGroups from "./components/views/SensorGroups";
 import Team from "./components/views/Team";
 import Contact from "./components/views/Contact";
+import {Notifications} from "react-push-notification";
+import React from "react";
 
 
 function App() {
-  return (
-      <BrowserRouter>
-          <div className="container">
+    return (
+        <BrowserRouter>
+            <div className="container">
+                <SideBar/>
+                <Notifications/>
 
-              <SideBar />
+                <Route path="/" exact component={Homepage}/>
+                <Route path="/alerts" component={Alerts}/>
+                <Route path="/sensors" component={Sensors}/>
+                <Route path="/sensor-groups" component={SensorGroups}/>
+                <Route path="/team" component={Team}/>
+                <Route path="/contact" component={Contact}/>
 
-              <Route path="/" exact>
-                  <Homepage/>
-              </Route>
-              <Route path="/alerts" exact>
-                  <Alerts/>
-              </Route>
-              <Route path="/sensors" exact>
-                  <Sensors/>
-              </Route>
-              <Route path="/sensor-groups" exact>
-                  <SensorGroups/>
-              </Route>
-              <Route path="/team" exact>
-                  <Team/>
-              </Route>
-              <Route path="/contact" exact>
-                  <Contact/>
-              </Route>
-              {/*<Route path="/logout" exact>*/}
-              {/*    <Logout/>*/}
-              {/*</Route>*/}
-
-              <Footer/>
-          </div>
-      </BrowserRouter>
-  );
+                <Footer/>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
