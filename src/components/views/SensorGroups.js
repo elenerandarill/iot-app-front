@@ -3,10 +3,9 @@ import BodySection from "../MainSection";
 
 const SensorGroups = () => {
     return(
-        <>
-            <TopBar/>
-            <BodySection className="body-container"/>
-        </>
+        <div className="main">
+            Groups page
+        </div>
     )
 }
 

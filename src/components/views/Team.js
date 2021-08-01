@@ -3,10 +3,9 @@ import BodySection from "../MainSection";
 
 const Team = () => {
     return(
-        <>
-            <TopBar/>
-            <BodySection className="body-container"/>
-        </>
+        <div className="main">
+            Zespół
+        </div>
     )
 }
 

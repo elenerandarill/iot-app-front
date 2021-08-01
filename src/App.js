@@ -10,6 +10,7 @@ import Team from "./components/views/Team";
 import Contact from "./components/views/Contact";
 import {Notifications} from "react-push-notification";
 import React from "react";
+import TopBar from "./components/TopBar";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <div className="container">
                 <SideBar/>
                 <Notifications/>
+                <TopBar/>
 
                 <Route path="/" exact component={Homepage}/>
                 <Route path="/alerts" component={Alerts}/>
