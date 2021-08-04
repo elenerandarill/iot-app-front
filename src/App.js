@@ -11,25 +11,27 @@ import Contact from "./components/views/Contact";
 import {Notifications} from "react-push-notification";
 import React from "react";
 import TopBar from "./components/TopBar";
+import Login from "./components/views/Login";
+import UserViews from "./components/views/UserViews";
+import Register from "./components/views/Register";
 
 
 function App() {
     return (
         <BrowserRouter>
-            <div className="container">
-                <SideBar/>
-                <Notifications/>
-                <TopBar/>
+            <Switch>
+                <Route path="/login" exact component={Login}/>
+                <Route path="/register" exact component={Register}/>
 
-                <Route path="/" exact component={Homepage}/>
-                <Route path="/alerts" component={Alerts}/>
-                <Route path="/sensors" component={Sensors}/>
-                <Route path="/sensor-groups" component={SensorGroups}/>
-                <Route path="/team" component={Team}/>
-                <Route path="/contact" component={Contact}/>
-
-                <Footer/>
-            </div>
+                <UserViews>
+                        <Route path="/" exact component={Homepage}/>
+                        <Route path="/alerts" component={Alerts}/>
+                        <Route path="/sensors" component={Sensors}/>
+                        <Route path="/sensor-groups" component={SensorGroups}/>
+                        <Route path="/team" component={Team}/>
+                        <Route path="/contact" component={Contact}/>
+                </UserViews>
+            </Switch>
         </BrowserRouter>
     );
 }

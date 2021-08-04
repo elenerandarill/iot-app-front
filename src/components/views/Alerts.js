@@ -23,7 +23,7 @@ const Alerts = () => {
                         {newAlerts.length === 0
                         ? <div>Brak nowych alertów.</div>
                         : newAlerts.map((a) =>
-                            <div className="alert-msg alert-new">
+                            <div key={a.id} className="alert-msg alert-new">
                                 <p>{a.date} /
                                     <b> czujnik: {a.sensor}</b>
                                     / {a.msg}
@@ -37,7 +37,7 @@ const Alerts = () => {
                     <p className="btn btn-purple btn-section">historia alertów</p>
                     <div className="white-space white-contact">
                         {oldAlerts.map((a) =>
-                            <div className="alert-msg alert-old">
+                            <div key={a.id} className="alert-msg alert-old">
                                 <p>{a.date} /
                                     <b> czujnik: {a.sensor}</b>
                                     / {a.msg}
@@ -50,27 +50,27 @@ const Alerts = () => {
                 {/* ------------------------------- details for the new alert */}
                 <div className="alert-open alert-new-open">
                     <div className="white-space white-separated">
-                        <p className="alert-details-window">
+                        <div className="alert-details-window">
                             <b>2021.10.13</b>
                             <p>czujnik: "moj-sad-011"</p>
                             <br/>
                             Stan baterii 15/100, ostatni raport otrzymano o 9:00
                             <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
                             <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {/* details for the old alert */}
                 <div className="alert-open alert-old-open">
                     <div className="white-space white-separated">
-                        <p className="alert-details-window">
+                        <div className="alert-details-window">
                             <b>2021.10.13</b>
                             <p>czujnik: "moj-sad-011"</p>
                             <br/>
                             Stan baterii 15/100, ostatni raport otrzymano o 9:00
                             <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
                             <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </p>
+                        </div>
                     </div>
                 </div>
 
