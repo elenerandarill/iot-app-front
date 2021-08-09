@@ -1,6 +1,8 @@
-import { useState } from "react";
+import axios from "axios";
+import {useState} from "react";
+import {Link} from "react-router-dom";
 
-const Login = ({ onAdd }) => {
+const Login = ({onAdd}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
 
@@ -14,39 +16,55 @@ const Login = ({ onAdd }) => {
             return
         }
         // jesli wpisano...
-        onAdd({ email, password })
+        // onAdd({ email, password })
 
         // wyzerowanie wartosci pol
         setEmail("")
         setPassword("")
+
+        // wyslanie POST
+        axios.post('/cgi-bin/dezd', {
+            email: email,
+            password: password
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     return (
         <div className="overlay-bgd">
-            <h2>Strona Logowania</h2>
-            <form onSubmit={onSubmit} className="">
-                <label>email</label>
-                <input
-                    type="email"
-                    placeholder="login"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <label>password</label>
-                <input
-                    type="email"
-                    placeholder="hasło"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="submit"
-                    value="Zaloguj"
-                />
-            </form>
-            <div>Nie pamiętasz hasła?</div>
-            <div>Nie posiadasz konta?</div>
-            <div>Zarejestruj się!</div>
+            <div className="login-area">
+                <h2>Strona Logowania</h2>
+                <form onSubmit={onSubmit} className="white-space white-separated centered width-700">
+                    <input
+                        type="email"
+                        placeholder="login"
+                        className="input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="hasło"
+                        className="input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        type="submit"
+                        value="Zaloguj"
+                        className="btn btn-purple btn-func mrg-tb"
+                    />
+                    <div>Nie pamiętasz hasła?</div>
+                </form>
+                <div className="mrg-tb text-center">Nie posiadasz konta? <br/>
+                    <Link to="/register">Zarejestruj się!</Link>
+                </div>
+            </div>
         </div>
     )
 }

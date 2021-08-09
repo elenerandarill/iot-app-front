@@ -33,6 +33,18 @@ const SideBar = ({ location }) => {
             </Link>
 
             <LogoutButton text="Wyloguj" onClick={onClick}/>
+            <br/>
+            Tymczasowe skróty:
+            <Link to="/login">
+                <MenuButton text="Logowanie" path="/login"/>
+            </Link>
+            <Link to="/register">
+                <MenuButton text="Rejestracja" path="/register"/>
+            </Link>
+            <Link to="/test">
+                <MenuButton text="Test Requesta" path="/text"/>
+            </Link>
+
         </div>
     )
 }

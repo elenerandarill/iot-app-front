@@ -21,46 +21,52 @@ const Sensors = () => {
                 <div className="alerts-new">
                     <p className="btn-purple btn-section">czujniki nieprzypisane (0)</p>
                     <div className="white-space white-contact">
-                        {sensors.map(s =>
-                            <div className="sensor-container">
-                                <div className="sensor">{s.sn}</div>
-                            </div>
+                        <div className="object-container">
+                        {/* tylko nowe sensory */}
+                        {sensors.filter(s => s.groups.length === 0).map(s =>
+                            <div key={s.id} className="object obj-free">{s.name? s.name : s.sn}</div>
                         )}
+                        </div>
                     </div>
                 </div>
 
                 <div className="alerts-old">
-                    <p className="btn btn-purple btn-section">wszystkie czujniki</p>
+                    <p className="btn-purple btn-section">wszystkie czujniki</p>
                     <div className="white-space white-contact">
                         <SearchBox/>
-                        <div>Tutaj beda czujniki i szukajka do nich.</div>
+                        <div className="object-container">
+                            {/* tylko przypisane sensory */}
+                            {sensors.filter(s => s.groups.length > 0).map(s =>
+                                <div key={s.id} className="object obj-owned">{s.name? s.name : s.sn}</div>
+                            )}
+                        </div>
                     </div>
                 </div>
 
                 {/* ------------------------------- details for the picked new sensor */}
                 <div className="alert-open alert-new-open">
                     <div className="white-space white-separated">
-                        <p className="alert-details-window">
+                        <div className="info-window">
                             <b>2021.10.13</b>
-                            <p>czujnik: "moj-sad-011"</p>
+                            <div>czujnik: "moj-sad-011"</div>
                             <br/>
                             Stan baterii 15/100, ostatni raport otrzymano o 9:00
                             <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
                             <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {/* details for the picked old sensor */}
                 <div className="alert-open alert-old-open">
                     <div className="white-space white-separated">
-                        <p className="alert-details-window">
+                        <div className="info-window">
                             <b>2021.10.13</b>
-                            <p>czujnik: "moj-sad-011"</p>
+                            <div>czujnik: "moj-sad-011"</div>
                             <br/>
                             Stan baterii 15/100, ostatni raport otrzymano o 9:00
                             <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
                             <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

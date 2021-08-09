@@ -1,22 +1,92 @@
+import axios from "axios";
+import {useState} from "react";
+import {Link} from "react-router-dom";
 
-const Register = () => {
+const Register = ({onAdd}) => {
+    const [fname, setFname] = useState("");
+    const [mname, setMname] = useState("");
+    const [lname, setLname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("")
+
+    const onSubmit = (e) => {
+        // powstrzyma form przed automatycznym wyslaniem, zeby mozna bylo zrobic walidacje
+        e.preventDefault()
+
+        // jesli nie wpisano nic w email
+        if (!email) {
+            alert("Podaj email")
+            return
+        }
+        // jesli wpisano...
+        onAdd({ fname, mname, lname, email, password })
+
+        // wyslanie POST
+        axios.post('/cgi-bin/dezd', {
+            fname: fname,
+            mname: mname,
+            lname: lname,
+            email: email,
+            password: password
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     return (
         <div className="overlay-bgd">
-            <h2>Rejestracja</h2>
-            <form onSubmit="" className="">
-                <label>email</label>
-                <input
-                    type="email"
-                />
-                <label>imię i nazwisko</label>
-                <input
-                    type="name"
-                />
-                <input
-                    type="submit"
-                    value="Zarejestruj"
-                />
-            </form>
+            <div className="login-area">
+                <h2>Strona Rejestracji</h2>
+                <form onSubmit={onSubmit} className="white-space white-separated centered width-700">
+                    <input
+                        type="text"
+                        placeholder="imię"
+                        className="input"
+                        value={fname}
+                        onChange={(e) => setFname(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="drugie imię*"
+                        className="input"
+                        value={mname}
+                        onChange={(e) => setMname(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="nazwisko"
+                        className="input"
+                        value={lname}
+                        onChange={(e) => setLname(e.target.value)}
+                    />
+                    <input
+                        type="email"
+                        placeholder="login"
+                        className="input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="hasło"
+                        className="input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <input
+                        type="submit"
+                        value="Zaloguj"
+                        className="btn btn-purple btn-func mrg-tb"
+                    />
+                </form>
+                <div className="mrg-tb text-center">Masz już konto? <br/>
+                    <Link to="/register">Zaloguj się!</Link>
+                </div>
+            </div>
         </div>
     )
 }

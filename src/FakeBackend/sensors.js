@@ -1,31 +1,91 @@
 const sensors = [
     {
-        element: "simple",
-        elemType: "",
-        datatype: "sensor",
-        title: "moj-sad-001",
+        id: "1",
+        object: "sensor",
+        name: "moj-sad-001",
         sn: "123asd456",
+        battery: "15%",
         groups: ["moj-sad"],
-        stats: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
-        content: "wykresik/tabelka"
+        measurements: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
+        GPS: "21.5624, 32.1234",
+        notes: "jakas tam notatka"
     },
     {
-        element: "simple",
-        elemType: "",
-        datatype: "sensor",
-        title: "moj-sad-002",
-        sn: "123qwe456",
+        id: "2",
+        object: "sensor",
+        name: "moj-sad-002",
+        sn: "456asd456",
+        battery: "50%",
+        groups: ["moj-sad", "szklarnia"],
+        measurements: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
+        GPS: "20.5624, 28.1234",
+        notes: "jakas tam notatka"
+    },
+    {
+        id: "3",
+        object: "sensor",
+        name: "",
+        sn: "111asd111",
+        battery: "90%",
         groups: [],
-        stats: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
-        content: "wykresik/tabelka"
+        measurements: {},
+        GPS: "20.5624, 28.1234",
+        notes: "jakas tam notatka"
     },
     {
-        element: "complex",
-        elemType: "chart",
-        datatype: "group",
-        title: "szklarnia",
-        stats: { temp: "16", avTemp: "17", humid: "35%", wind: "10"},
-        content: "wykresik/tabelka"
+        id: "4",
+        object: "sensor",
+        name: "",
+        sn: "222asd111",
+        battery: "95%",
+        groups: [],
+        measurements: {},
+        GPS: "20.5624, 28.1234",
+        notes: "jakas tam notatka"
+    },
+    {
+        id: "5",
+        object: "sensor",
+        name: "szklarnia001",
+        sn: "asdfghjkl",
+        battery: "15%",
+        groups: ["moj-sad"],
+        measurements: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
+        GPS: "21.5624, 32.1234",
+        notes: "jakas tam notatka"
+    },
+    {
+        id: "6",
+        object: "sensor",
+        name: "szklarnia002",
+        sn: "zxcvbnm",
+        battery: "50%",
+        groups: ["moj-sad", "szklarnia"],
+        measurements: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
+        GPS: "20.5624, 28.1234",
+        notes: "jakas tam notatka"
+    },
+    {
+        id: "7",
+        object: "sensor",
+        name: "",
+        sn: "qwertyuiop",
+        battery: "90%",
+        groups: [],
+        measurements: {},
+        GPS: "20.5624, 28.1234",
+        notes: "jakas tam notatka"
+    },
+    {
+        id: "8",
+        object: "sensor",
+        name: "",
+        sn: "qwerthjkl",
+        battery: "95%",
+        groups: [],
+        measurements: {},
+        GPS: "20.5624, 28.1234",
+        notes: "jakas tam notatka"
     },
 ]
 

@@ -130,12 +130,13 @@ body {
 }
 
 .btn-func {
+  border-radius: 5px;
   text-transform: lowercase;
 }
 
 .btn-section {
   color: white;
-  width: 100%;
+  /*width: 100%;*/
   text-transform: uppercase;
 }
 
@@ -149,6 +150,10 @@ body {
 
 .mrg-tb {
   margin: 15px 0;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .element {
@@ -182,7 +187,6 @@ body {
 }
 
 .white-separated {
-  min-width: 220px;
   border-radius: 5px;
   margin: 5px;
 }
@@ -240,13 +244,12 @@ body {
 .insert-button {
   display: flex;
   align-items: center;
-  border-radius: 5px;
   margin: 8px 5px 10px 5px;
 }
 
 .main-split {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: auto auto;
   grid-template-rows: auto auto;
   justify-self: center;
   grid-template-areas:
@@ -255,7 +258,7 @@ body {
 }
 
 .alerts-new {
-  min-width: 370px;
+  /*min-width: 370px;*/
   max-width: 800px;
   padding: 5px;
   grid-area: new;
@@ -284,11 +287,10 @@ body {
   grid-area: old-open;
 }
 
-.alert-details-window {
+.info-window {
+  min-width: 200px;
   display: flex;
   flex-direction: column;
-  justify-items: center;
-  align-items: center;
   text-align: center;
   line-height: 28px;
 }
@@ -442,24 +444,55 @@ body {
 .sensors-new {
   min-width: 500px;
   max-width: 800px;
-  padding: 5px;
   grid-area: new;
   /*background: cornflowerblue;*/
 }
 
-.sensor-container {
+.object-container {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: center;
+  text-align: center;
 }
 
-.sensor {
-  background: var(--gray01);
+.object {
   border-radius: 5px;
-  padding: 20px 40px;
+  min-width: 180px;
+  min-height: 80px;
   margin: 5px;
-  text-align: center;
+  font-weight: bolder;
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 29px;
+  /*background: var(--gray01);*/
+  padding: 5px;
+}
+
+.alerts {
+  min-height: 0;
+  margin-bottom: 10px;
+}
+
+.obj-free {
+  color: var(--violet01);
+  border: var(--violet01) solid 1px;
+}
+
+.obj-owned {
+  border: var(--gray03) solid 1px;
+}
+
+.object:hover {
+  cursor: pointer;
+  color: var(--blue);
+  border: var(--blue) solid 1px;
+}
+.object:active {
+  color: var(--blue);
+  border: var(--blue) solid 1px;
 }
 
 .overlay-bgd {
@@ -472,3 +505,25 @@ body {
   display: grid;
   grid-template: 1fr 2fr 1fr / 1fr 2fr 1fr;
 }
+
+.login-area {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Test --- */
+.test-btn {
+  width: 300px;
+  height: 150px;
+  font-size: 60px;
+}
+.test-area {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  text-align: center;
+}
+/* ---- Test --- */

@@ -1,19 +1,19 @@
 const sensorGroups = [
     {
-        datatype: "group",
-        title: "szklarnia",
+        object: "group",
+        name: "szklarnia",
         id: "1",
         sensors: ["szklarnia-001", "szklarnia-002", "szklarnia-003"],
-        stats: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
-        content: "wykresik/tabelka"
+        stats: { avTemp: "22", avHumid: "55%", avWind: "14"},
+        extraContent: "wykresik/tabelka"
     },
     {
-        datatype: "group",
-        title: "sad jabłonie",
+        object: "group",
+        name: "sad jabłonie",
         id: "2",
         sensors: ["jabłonie-001", "jabłonie-002", "jabłonie-003", "jabłonie-004"],
-        stats: { temp: "24", avTemp: "22", humid: "55%", wind: "14"},
-        content: "wykresik/tabelka"
+        stats: { avTemp: "18", avHumid: "45%", avWind: "15"},
+        extraContent: "wykresik/tabelka"
     },
 ]
 
