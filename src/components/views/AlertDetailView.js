@@ -6,7 +6,7 @@ const AlertDetailView = ({ a, onCloseClick }) => {
 
     return(
         <div className=" ">
-            <div className="white-space no-contact detail-view">
+            <div className="white-space bgd-gray no-contact top-contact-mrg detail-view">
                 {/*<i className="fas fa-times fa-lg icon paint-violet"  onClick={onClick}></i>*/}
                 <ActionIcon onClick={onCloseClick} action="close" descr="close" height={15}/>
                 <div className="obj-details">

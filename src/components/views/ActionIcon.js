@@ -20,8 +20,8 @@ const ActionIcon = ({ action, descr, height, onClick }) => {
 
     return(
         <div className="icon-container" onClick={onClick}>
-            <img src={icontype[0]} alt={descr} className="btn icon-overlay" style={styling}/>
-            <img src={icontype[1]} alt={descr} className="btn " style={styling}/>
+            <img src={icontype[1]} alt={descr} className="btn icon-overlay" style={styling}/>
+            <img src={icontype[0]} alt={descr} className="btn " style={styling}/>
         </div>
         )
 }

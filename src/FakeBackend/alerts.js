@@ -1,4 +1,4 @@
-export const alerts = [
+const alerts = [
     {
         id: "6",
         new: "yes",
@@ -43,7 +43,7 @@ export const alerts = [
         new: "no",
         time: "13:30",
         date: "2021.08.18",
-        name: "moj-sad-012",
+        name: "moj-ulubiony-czujnik-ktory-jest-za-rogiem",
         datatype: "sensor",
         msg: "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
     },
@@ -114,3 +114,4 @@ export const alerts = [
         msg: "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
     }
 ]
+export default alerts;

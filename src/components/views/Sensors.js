@@ -18,8 +18,8 @@ const Sensors = () => {
             </div>
 
             <div className="content-split">
-                <div className="alerts-list">
-                    <p className="btn-purple btn-section">czujniki nieprzypisane (0)</p>
+                <div>
+                    <p className="btn-purple btn-section">czujniki nieprzypisane</p>
                     <div className="white-space top-contact">
                         <div className="object-container">
                         {/* tylko nowe sensory */}
@@ -30,7 +30,22 @@ const Sensors = () => {
                     </div>
                 </div>
 
-                <div className="alerts-old">
+                {/* ------------------------------- details for the picked new sensor */}
+                <div>
+                    <div className="white-space no-contact">
+                        <div className="obj-details">
+                            <b>2021.10.13</b>
+                            <div>czujnik: "moj-sad-011"</div>
+                            <br/>
+                            Stan baterii 15/100, ostatni raport otrzymano o 9:00
+                            <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div>
                     <p className="btn-purple btn-section">wszystkie czujniki</p>
                     <div className="white-space top-contact">
                         <SearchBox/>
@@ -43,32 +58,7 @@ const Sensors = () => {
                     </div>
                 </div>
 
-                {/* ------------------------------- details for the picked new sensor */}
-                <div className="alert-open alert-new-open">
-                    <div className="white-space no-contact">
-                        <div className="obj-details">
-                            <b>2021.10.13</b>
-                            <div>czujnik: "moj-sad-011"</div>
-                            <br/>
-                            Stan baterii 15/100, ostatni raport otrzymano o 9:00
-                            <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
-                            <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </div>
-                    </div>
-                </div>
-                {/* details for the picked old sensor */}
-                <div className="alert-open alert-old-open">
-                    <div className="white-space no-contact">
-                        <div className="obj-details">
-                            <b>2021.10.13</b>
-                            <div>czujnik: "moj-sad-011"</div>
-                            <br/>
-                            Stan baterii 15/100, ostatni raport otrzymano o 9:00
-                            <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
-                            <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     )}
