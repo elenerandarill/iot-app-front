@@ -45,7 +45,7 @@ const SensorGroups = () => {
                 {/* ------------------------------- details for the picked new sensor */}
                 <div className="alert-open alert-new-open">
                     <div className="white-space white-separated">
-                        <div className="info-window">
+                        <div className="obj-details">
                             <b>nazwa grupy</b>
                             <div>id grupy</div>
                             <br/>

@@ -24,16 +24,29 @@ const Alerts = () => {
             <div className="main-split">
                 {/* Lista alertow nowych */}
                 <div className="alerts-new">
-                    <div className="btn-purple btn-section">nowe alerty (0)</div>
+                    <div className="btn-purple btn-section">Twoje alerty</div>
                     <div className="white-space white-contact">
+                        <div className="btn btn-small txt-right mrg-r">
+                            oznacz wszystkie jako przeczytane
+                        </div>
                         {newAlerts.length === 0
                         ? <div>Brak nowych alertów.</div>
-                        : <ListAlerts list={newAlerts} onClick={(a) => setShowDetails(a)}/>
+                        : <ListAlerts
+                                list={newAlerts}
+                                showDetails={showDetails}
+                                onClick={(a) => setShowDetails(a)}
+                            />
                         }
                     </div>
                 </div>
 
-                {showDetails && <AlertDetailView a={showDetails}/>}
+                {showDetails && <AlertDetailView
+                    a={showDetails}
+                    onClick={() => setShowDetails(undefined)}
+                />}
+
+
+
 
                 <div className="alerts-old">
                     <div className="btn btn-purple btn-section">historia alertów</div>
@@ -53,20 +66,6 @@ const Alerts = () => {
                 {/*<i className="fas fa-check fa-lg"></i>*/}
                 {/* ------------------------------- details for the new alert */}
 
-
-                {/* details for the old alert */}
-                <div className="alert-open alert-old-open">
-                    <div className="white-space white-separated">
-                        <div className="info-window">
-                            <b>2021.10.13</b>
-                            <p>czujnik: "moj-sad-011"</p>
-                            <br/>
-                            Stan baterii 15/100, ostatni raport otrzymano o 9:00
-                            <div className="btn mrg-tb">zobacz&nbsp;czujnik</div>
-                            <img src={done} alt="mark as read" className="btn action-icon mrg-0"/>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>

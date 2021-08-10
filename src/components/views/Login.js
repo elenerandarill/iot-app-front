@@ -61,7 +61,7 @@ const Login = ({onAdd}) => {
                     />
                     <div>Nie pamiętasz hasła?</div>
                 </form>
-                <div className="mrg-tb text-center">Nie posiadasz konta? <br/>
+                <div className="mrg-tb txt-center">Nie posiadasz konta? <br/>
                     <Link to="/register">Zarejestruj się!</Link>
                 </div>
             </div>

@@ -83,7 +83,7 @@ const Register = ({onAdd}) => {
                         className="btn btn-purple btn-func mrg-tb"
                     />
                 </form>
-                <div className="mrg-tb text-center">Masz już konto? <br/>
+                <div className="mrg-tb txt-center">Masz już konto? <br/>
                     <Link to="/register">Zaloguj się!</Link>
                 </div>
             </div>

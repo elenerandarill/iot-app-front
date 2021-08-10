@@ -46,7 +46,7 @@ const Sensors = () => {
                 {/* ------------------------------- details for the picked new sensor */}
                 <div className="alert-open alert-new-open">
                     <div className="white-space white-separated">
-                        <div className="info-window">
+                        <div className="obj-details">
                             <b>2021.10.13</b>
                             <div>czujnik: "moj-sad-011"</div>
                             <br/>
@@ -59,7 +59,7 @@ const Sensors = () => {
                 {/* details for the picked old sensor */}
                 <div className="alert-open alert-old-open">
                     <div className="white-space white-separated">
-                        <div className="info-window">
+                        <div className="obj-details">
                             <b>2021.10.13</b>
                             <div>czujnik: "moj-sad-011"</div>
                             <br/>

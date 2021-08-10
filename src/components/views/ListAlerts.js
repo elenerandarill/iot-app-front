@@ -1,17 +1,16 @@
 // import AlertDetailView from "./AlertDetailView";
 
-const ListAlerts = ({ list, onClick }) => {
+const ListAlerts = ({ list, onClick, showDetails }) => {
 
     return(
         list.map((a) =>
             <div
                 key={a.id}
-                className="object obj-free alerts"
+                className={"shadow object alerts " + (showDetails && showDetails.id === a.id ? "obj-active" : "")}
                 onClick={() => onClick(a)}
-                // onClick={onClick}
             >
-                <div>
-                    {a.time}, {a.date} |
+                <div>{a.time} / {a.date}</div>
+                <div className="txt-semibold mrg-l">
                     {a.datatype === "sensor"? "czujnik:" : "grupa:"}&nbsp;{a.name}
                 </div>
             </div>
