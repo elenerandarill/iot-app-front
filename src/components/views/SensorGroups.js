@@ -18,10 +18,10 @@ const SensorGroups = () => {
                 </button>
             </div>
 
-            <div className="main-split">
-                <div className="alerts-new">
+            <div className="content-split">
+                <div className="alerts-list">
                     <p className="btn-purple btn-section">grupy czujników (0)</p>
-                    <div className="white-space white-contact">
+                    <div className="white-space top-contact">
                         <div className="object-container">
                             {/* tylko nowe sensory */}
                             {sensorGroups.map(sg =>
@@ -33,7 +33,7 @@ const SensorGroups = () => {
 
                 <div className="alerts-old">
                     <p className="btn-purple btn-section">czujniki wybranej grupy</p>
-                    <div className="white-space white-contact">
+                    <div className="white-space top-contact">
                         <SearchBox/>
                         <div className="object-container">
                             jak ktos zaznaczy grupę powyżej<br/>
@@ -44,7 +44,7 @@ const SensorGroups = () => {
 
                 {/* ------------------------------- details for the picked new sensor */}
                 <div className="alert-open alert-new-open">
-                    <div className="white-space white-separated">
+                    <div className="white-space no-contact">
                         <div className="obj-details">
                             <b>nazwa grupy</b>
                             <div>id grupy</div>

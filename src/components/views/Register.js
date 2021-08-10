@@ -41,7 +41,7 @@ const Register = ({onAdd}) => {
         <div className="overlay-bgd">
             <div className="login-area">
                 <h2>Strona Rejestracji</h2>
-                <form onSubmit={onSubmit} className="white-space white-separated centered width-700">
+                <form onSubmit={onSubmit} className="white-space no-contact centered width-700">
                     <input
                         type="text"
                         placeholder="imię"

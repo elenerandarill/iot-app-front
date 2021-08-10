@@ -39,7 +39,7 @@ const Login = ({onAdd}) => {
         <div className="overlay-bgd">
             <div className="login-area">
                 <h2>Strona Logowania</h2>
-                <form onSubmit={onSubmit} className="white-space white-separated centered width-700">
+                <form onSubmit={onSubmit} className="white-space no-contact centered width-700">
                     <input
                         type="email"
                         placeholder="login"

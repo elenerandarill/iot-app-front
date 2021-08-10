@@ -23,11 +23,17 @@
 .paint-dark {
   color: var(--dark);
 }
+/* ------ colors ------ */
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--gray01);
 }
 
 .container {
@@ -41,11 +47,6 @@
 
   width: 100%;
   /*height: 100vh;*/
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--gray01);
 }
 
 .topbar {
@@ -72,10 +73,23 @@ body {
 }
 
 .main-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   grid-area: content;
+  display: flex;
+  justify-content: center;
+}
+
+.content-alerts {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: auto 80% auto;
+  grid-template-areas: "mrg list mrg2";
+}
+
+.content-split {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-self: center;
+  grid-template-areas: "list details";
 }
 
 .sidebar {
@@ -169,6 +183,11 @@ body {
   margin: 15px 0;
 }
 
+.mrg-lr {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
 .item-center {
   margin: auto;
 }
@@ -226,18 +245,15 @@ body {
   box-shadow: 0 0 4px 0 var(--gray02);
 }
 
-.white-separated {
+.no-contact {
   border-radius: 5px;
   margin: 5px;
 }
 
-.white-contact {
+.top-contact {
   border-radius: 0 0 5px 5px;
 }
 
-.white-connected {
-  margin: 0 5px 5px 5px;
-}
 
 .centered {
   display: flex;
@@ -257,25 +273,8 @@ body {
   min-width: 500px;
 }
 
-.contact-way {
-  font-family: "Segoe UI Semibold", sans-serif;
-  font-size: 18px;
-  color: var(--dark);
-  margin-bottom: 10px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.contact-details {
-  font-family: "Segoe UI Semibold", sans-serif;
-  font-size: 18px;
-  color: var(--violet01);
-  margin-bottom: 40px;
-  text-align: center;
-  text-decoration: none;
-}
-
 .main-func-buttons {
+  grid-area: buttons;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,43 +286,10 @@ body {
   margin: 8px 5px 10px 5px;
 }
 
-.main-split {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  justify-self: center;
-  grid-template-areas:
-          "new new-open"
-          "old old-open";
-}
-
-.alerts-new {
-  /*min-width: 370px;*/
-  max-width: 900px;
-  padding: 5px;
-  grid-area: new;
-}
-
-.alerts-old {
-  min-width: 370px;
+.alerts-list {
   max-width: 800px;
   padding: 5px;
-  grid-area: old;
-  /*background: pink;*/
-}
-
-.alert-open{
-  margin-top: 33px;
-  align-self: center;
-  justify-self: flex-start;
-}
-
-.alert-new-open {
-  grid-area: new-open;
-}
-
-.alert-old-open {
-  grid-area: old-open;
+  grid-area: list;
 }
 
 .icon {
@@ -337,7 +303,7 @@ body {
 
 .obj-details {
   min-width: 200px;
-  max-width: 400px;
+  /*max-width: 400px;*/
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -374,16 +340,9 @@ body {
 }
 
 .icon-container {
-  position: relative;
   display: flex;
-  align-items: center;
-  height: auto;
-  width: auto;
+  justify-content: flex-end;
 }
-
-/*.action-icon {*/
-/*  height: 30px;*/
-/*}*/
 
 .icon-overlay {
   position: absolute;
@@ -394,10 +353,11 @@ body {
   cursor: pointer;
   opacity: 1;
 }
-
+/*********************************************/
 .icon-container:active {
-  transform: scale(0.95);
+  /*transform: scale(0.95);*/
 }
+/*********************************************/
 
 .topbar-alert {
   font-family: "Segoe UI Regular", "Segoe UI", serif;
@@ -529,6 +489,10 @@ body {
   margin-bottom: 10px;
 }
 
+.alert-txt {
+  margin: 0 15px;
+}
+
 .obj-free {
   color: var(--violet01);
   border: var(--violet01) solid 1px;
@@ -567,6 +531,25 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+
+.contact-way {
+  font-family: "Segoe UI Semibold", sans-serif;
+  font-size: 18px;
+  color: var(--dark);
+  margin-bottom: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.contact-details {
+  font-family: "Segoe UI Semibold", sans-serif;
+  font-size: 18px;
+  color: var(--violet01);
+  margin-bottom: 40px;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* ---- Test --- */

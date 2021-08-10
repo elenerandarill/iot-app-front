@@ -6,6 +6,7 @@ import close from "../../media/close.svg";
 import close2 from "../../media/close2.svg";
 
 const ActionIcon = ({ action, descr, height, onClick }) => {
+
     let icontype = [];
 
     if (action === "done")

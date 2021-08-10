@@ -17,10 +17,10 @@ const Sensors = () => {
                 </button>
             </div>
 
-            <div className="main-split">
-                <div className="alerts-new">
+            <div className="content-split">
+                <div className="alerts-list">
                     <p className="btn-purple btn-section">czujniki nieprzypisane (0)</p>
-                    <div className="white-space white-contact">
+                    <div className="white-space top-contact">
                         <div className="object-container">
                         {/* tylko nowe sensory */}
                         {sensors.filter(s => s.groups.length === 0).map(s =>
@@ -32,7 +32,7 @@ const Sensors = () => {
 
                 <div className="alerts-old">
                     <p className="btn-purple btn-section">wszystkie czujniki</p>
-                    <div className="white-space white-contact">
+                    <div className="white-space top-contact">
                         <SearchBox/>
                         <div className="object-container">
                             {/* tylko przypisane sensory */}
@@ -45,7 +45,7 @@ const Sensors = () => {
 
                 {/* ------------------------------- details for the picked new sensor */}
                 <div className="alert-open alert-new-open">
-                    <div className="white-space white-separated">
+                    <div className="white-space no-contact">
                         <div className="obj-details">
                             <b>2021.10.13</b>
                             <div>czujnik: "moj-sad-011"</div>
@@ -58,7 +58,7 @@ const Sensors = () => {
                 </div>
                 {/* details for the picked old sensor */}
                 <div className="alert-open alert-old-open">
-                    <div className="white-space white-separated">
+                    <div className="white-space no-contact">
                         <div className="obj-details">
                             <b>2021.10.13</b>
                             <div>czujnik: "moj-sad-011"</div>

@@ -2,7 +2,7 @@ const Contact = () => {
     return (
         <div className="main">
             <div className="main-content">
-                <div className="white-space white-separated centered width-700">
+                <div className="white-space no-contact centered width-700">
                     <div className="contact-way">
                         email
                     </div>
