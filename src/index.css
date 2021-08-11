@@ -75,6 +75,7 @@ body {
 .main-content {
   grid-area: content;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -132,6 +133,10 @@ body {
   font-size: 14px;
   margin-bottom: 5px;
   text-transform: lowercase;
+}
+
+.btn-small:hover {
+  color: var(--blue);
 }
 
 .btn:focus {
@@ -201,6 +206,20 @@ body {
 
 .item-center {
   margin: auto;
+}
+
+.pad-bot-15px {
+  padding-bottom: 15px;
+}
+
+.fx-column {
+  display: flex;
+  flex-direction: column;
+}
+.fx-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .position-end {
@@ -364,7 +383,7 @@ body {
   text-rendering: auto;
   text-align: center;
   background: none;
-  padding: 8px 10px;
+  padding: 8px 10px 0 10px;
   margin: 5px 0 15px 0;
   border: none;
   border-bottom: 1px var(--gray02) solid;
@@ -509,7 +528,7 @@ body {
   text-decoration: none;
   color: var(--dark);
   line-height: 29px;
-  padding: 5px;
+  padding: 5px 15px;
   border-radius: 5px;
   border: white solid 1px;
   display: flex;

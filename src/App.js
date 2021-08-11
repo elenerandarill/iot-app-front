@@ -12,6 +12,7 @@ import Login from "./components/views/Login";
 import UserViews from "./components/views/UserViews";
 import Register from "./components/views/Register";
 import SensorDetails from "./components/views/SensorDetails";
+import GroupDetails from "./components/views/GroupDetails";
 import Test from "./components/views/Test";
 
 
@@ -28,7 +29,8 @@ function App() {
                         <Route path="/alerts" component={Alerts}/>
                         <Route path="/sensors" exact component={Sensors}/>
                         <Route path="/sensors/:id" component={SensorDetails}/>
-                        <Route path="/sensor-groups" component={SensorGroups}/>
+                        <Route path="/sensor-groups" exact component={SensorGroups}/>
+                        <Route path="/sensor-groups/:id" component={GroupDetails}/>
                         <Route path="/team" component={Team}/>
                         <Route path="/contact" component={Contact}/>
                 </UserViews>
