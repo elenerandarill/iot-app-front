@@ -1,16 +1,12 @@
-import done from "../../media/done.svg";
-import del from "../../media/delete.svg";
-import ActionIcon from "./ActionIcon";
 import ListAlerts from "./ListAlerts";
 import alerts from "../../FakeBackend/alerts";
 import plus from "../../media/plus.svg";
-import AlertDetailView from "./AlertDetailView";
 import {useState} from "react";
 import SearchBox from "../SearchBox";
 
 
 const Alerts = () => {
-    const[showDetails, setShowDetails] = useState(undefined)
+    const [showDetails, setShowDetails] = useState(undefined)
 
     return (
         <div className="main">
@@ -22,27 +18,25 @@ const Alerts = () => {
             </div>
 
             <div className="content-alerts">
-
-                <div className="flex-center">
-                    <div className="flex-center-lr"/>
-                    <div className="flex-centered alerts-list">
-                        <div className="btn-purple btn-section">Twoje alerty</div>
-                        <div className="white-space top-contact">
-                            <SearchBox/>
-                            <div className="btn btn-small txt-right mrg-r mrg-b">
-                                oznacz wszystkie jako przeczytane
-                            </div>
-                            {alerts.length === 0
-                                ? <div>Brak nowych alertów.</div>
-                                : <ListAlerts
-                                    list={alerts}
-                                    showDetails={showDetails}
-                                    onSelect={(a) => setShowDetails(a)}
-                                />
-                            }
-                        </div>
+                <div className="content-srodek">
+                    <div className="btn-purple btn-section">
+                        Twoje alerty
                     </div>
-                    <div className="flex-center-lr"/>
+                    <div className="white-space top-contact">
+                        <div className="position-cent"><SearchBox/></div>
+
+                        <div className="btn btn-small txt-right mrg-r mrg-b">
+                            oznacz wszystkie jako przeczytane
+                        </div>
+                        {alerts.length === 0
+                            ? <div>Brak nowych alertów.</div>
+                            : <ListAlerts
+                                list={alerts}
+                                showDetails={showDetails}
+                                onSelect={(a) => setShowDetails(a)}
+                            />
+                        }
+                    </div>
                 </div>
 
                 {/*<i className="fas fa-times fa-lg" style={{color: "red"}}></i>*/}

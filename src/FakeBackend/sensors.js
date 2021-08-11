@@ -13,7 +13,7 @@ const sensors = [
     {
         id: "2",
         object: "sensor",
-        name: "moj-sad-002",
+        name: "moj-ulubiony-czujnik-ktory-jest-za-rogiem",
         sn: "456asd456",
         battery: "50%",
         groups: ["moj-sad", "szklarnia"],

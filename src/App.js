@@ -11,6 +11,7 @@ import React from "react";
 import Login from "./components/views/Login";
 import UserViews from "./components/views/UserViews";
 import Register from "./components/views/Register";
+import SensorDetails from "./components/views/SensorDetails";
 import Test from "./components/views/Test";
 
 
@@ -25,7 +26,8 @@ function App() {
                 <UserViews>
                         <Route path="/" exact component={Homepage}/>
                         <Route path="/alerts" component={Alerts}/>
-                        <Route path="/sensors" component={Sensors}/>
+                        <Route path="/sensors" exact component={Sensors}/>
+                        <Route path="/sensors/:id" component={SensorDetails}/>
                         <Route path="/sensor-groups" component={SensorGroups}/>
                         <Route path="/team" component={Team}/>
                         <Route path="/contact" component={Contact}/>

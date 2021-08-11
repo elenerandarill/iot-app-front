@@ -3,7 +3,7 @@ import React from 'react';
 
 const SearchBox = ({value, onChange}) => {
     return (
-        <div className="mrg-lr">
+        <div className="position-cent">
             <input
                 type="text"
                 name="query"

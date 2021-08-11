@@ -81,8 +81,13 @@ body {
 .content-alerts {
   grid-area: content;
   display: grid;
-  grid-template-columns: auto 80% auto;
+  grid-template-columns: auto auto auto;
   grid-template-areas: "mrg list mrg2";
+}
+
+.content-srodek {
+  grid-area: list;
+  width: 100%;
 }
 
 .content-split {
@@ -160,6 +165,7 @@ body {
 .btn-func {
   border-radius: 5px;
   text-transform: lowercase;
+  text-decoration: none;
 }
 
 .btn-section {
@@ -200,6 +206,12 @@ body {
 .position-end {
   align-self: flex-end;
 }
+.position-cent {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .position-start {
   align-self: flex-end;
 }
@@ -214,6 +226,10 @@ body {
 
 .txt-semibold {
   font-family: "Segoe UI Semibold", sans-serif;
+}
+
+.txt-violet{
+  color: var(--violet01);
 }
 
 .element {
@@ -245,6 +261,7 @@ body {
 }
 
 .white-space {
+  justify-self: stretch;
   padding: 15px 30px;
   background: white;
   box-shadow: 0 0 4px 0 var(--gray02);
@@ -299,22 +316,6 @@ body {
   margin: 8px 5px 10px 5px;
 }
 
-.flex-center {
-  grid-area: list;
-  padding: 5px;
-
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-centered {
-  flex: 100 1 auto;
-}
-
-.flex-center-lr {
-  flex: 1 1 auto;
-}
-
 .alerts-list {
   min-width: 400px;
   max-width: 800px;
@@ -352,13 +353,16 @@ body {
   margin-bottom: 15px;
 }
 
-.alert-new{
-  color: var(--violet01);
+.Link {
+  text-decoration: none;
 }
 
+
 .input {
+  max-width: 700px;
   font-size: 16px;
   text-rendering: auto;
+  text-align: center;
   background: none;
   padding: 8px 10px;
   margin: 5px 0 15px 0;
@@ -497,21 +501,22 @@ body {
   text-align: center;
 }
 
+
 .object {
   min-width: 180px;
   min-height: 80px;
   margin: 5px;
+  text-decoration: none;
   color: var(--dark);
+  line-height: 29px;
+  padding: 5px;
   border-radius: 5px;
   border: white solid 1px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  line-height: 29px;
-  padding: 5px;
 }
-
 .alerts {
   min-height: 0;
   margin-bottom: 10px;
@@ -522,8 +527,8 @@ body {
 }
 
 .obj-free {
+  font-family: "Segoe UI Semibold", sans-serif;
   color: var(--violet01);
-  border: var(--violet01) solid 1px;
 }
 
 .obj-owned {

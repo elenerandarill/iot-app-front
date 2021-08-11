@@ -1,4 +1,3 @@
-import done from "../../media/done.svg";
 import ActionIcon from "./ActionIcon";
 
 const AlertDetailView = ({ a, onCloseClick }) => {
