@@ -1,21 +1,21 @@
+import people from "../../FakeBackend/people";
 import {Link} from "react-router-dom";
-import sensorGroups from "../../FakeBackend/sensorGroups";
 import remove from "../../media/remove.svg";
 
-const GroupDetails = (props) => {
+const TeamMemberDetails = (props) => {
     const id = props.match.params.id;
 
-    const getGroup = (id) => {
+    const getPerson = (id) => {
         // zwraca liste!
-        return sensorGroups.filter(s => s.id === id)[0]
+        return people.filter(s => s.id === id)[0]
     }
 
-    const group = getGroup(id);
+    const person = getPerson(id);
 
-    return(
+    return (
         <div className="main">
             <div className="main-func-buttons">
-                <Link to="/sensor-groups">
+                <Link to="/team">
                     <button className="btn btn-purple btn-func insert-button">
                         powrót do listy
                     </button>
@@ -25,22 +25,21 @@ const GroupDetails = (props) => {
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="btn-purple btn-section">
-                        {group.name}
+                        {person.fullname}
                     </div>
                     <div className="white-space top-contact">
 
                         <div className="shadow object">
-                            <div>NAZWA</div>
+                            <div>IMIĘ I NAZWISKO</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
                                     name="name"
                                     className="input"
-                                    placeholder={group.name}
+                                    placeholder={person.fullname}
                                 />
                             </div>
                         </div>
-
                         <div className="shadow object">
                             <div>NOTATKA</div>
                             <div className="position-cent">
@@ -48,34 +47,32 @@ const GroupDetails = (props) => {
                                     type="text"
                                     name="notes"
                                     className="input"
-                                    placeholder={group.notes === "" ? "Tu wpisz notatkę." : group.notes}
+                                    placeholder={person.notes === "" ? "Tu wpisz notatkę." : person.notes}
                                 />
                             </div>
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">CZUJNIKI ({group.sensors.length})</div>
+                            <div className="mrg-tb">DOSTĘP DO GRUP</div>
                             <div className="position-cent">
                                 <div className="object-container txt-violet txt-semibold">
 
-                                    {group.sensors.length === 0
-                                        ? <div className="centered">nie ma jeszcze żadnych czujników</div>
-                                        : group.sensors.map(sensor =>
-                                            <div key={sensor.toString()} className="assigned shadow">
-                                                <div className="assigned-txt-half pointer">{sensor}</div>
+                                    {person.groups.length === 0
+                                        ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                        : person.groups.map(sg =>
+                                            <div key={sg.valueOf()} className="assigned shadow">
+                                                <div className="assigned-txt-half pointer">{sg}</div>
                                                 <div className="assigned-rem-half">
                                                     <img src={remove} className="i-remove pointer"/>
                                                 </div>
-                                            </div>)
-                                    }
+                                            </div>)}
                                 </div>
                             </div>
                         </div>
-
                         <div className="shadow no-contact fx-between paint-gray01">
-                            <div className="btn btn-small txt-center mrg-tb">dodaj czujnik</div>
-                            <div className="btn btn-small txt-center mrg-tb">wyczyść grupę</div>
-                            <div className="btn btn-small txt-center mrg-tb">usuń grupę</div>
+                            <div className="btn btn-small txt-center mrg-tb">dodaj grupę</div>
+                            <div className="btn btn-small txt-center mrg-tb">wyczyść grupy</div>
+                            <div className="btn btn-small txt-center mrg-tb">usuń osobę</div>
                         </div>
 
                     </div>
@@ -85,4 +82,4 @@ const GroupDetails = (props) => {
     )
 }
 
-export default GroupDetails;
+export default TeamMemberDetails;

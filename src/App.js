@@ -13,6 +13,7 @@ import UserViews from "./components/views/UserViews";
 import Register from "./components/views/Register";
 import SensorDetails from "./components/views/SensorDetails";
 import GroupDetails from "./components/views/GroupDetails";
+import TeamMemberDetails from "./components/views/TeamMemberDetails";
 import Test from "./components/views/Test";
 
 
@@ -31,7 +32,8 @@ function App() {
                         <Route path="/sensors/:id" component={SensorDetails}/>
                         <Route path="/sensor-groups" exact component={SensorGroups}/>
                         <Route path="/sensor-groups/:id" component={GroupDetails}/>
-                        <Route path="/team" component={Team}/>
+                        <Route path="/team" exact component={Team}/>
+                        <Route path="/team/:id" component={TeamMemberDetails}/>
                         <Route path="/contact" component={Contact}/>
                 </UserViews>
             </Switch>

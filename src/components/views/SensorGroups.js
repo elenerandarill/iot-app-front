@@ -15,12 +15,12 @@ const SensorGroups = () => {
                 </button>
             </div>
 
-            <div className="content-alerts">
+            <div className="content-3x">
                 <div className="content-srodek">
 
                     <div className="btn-purple btn-section">Grupy czujników</div>
                     <div className="white-space top-contact">
-                        <SearchBox/>
+                        <div className="centered"><SearchBox/></div>
                         <div className="object-container">
                             {sensorGroups.map(sg =>
                                 <Link key={sg.id}

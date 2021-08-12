@@ -18,7 +18,7 @@ const Sensors = () => {
                 </button>
             </div>
 
-            <div className="content-alerts">
+            <div className="content-3x">
                 <div className="content-srodek">
 
                     <div className="btn-purple btn-section">Twoje czujniki</div>

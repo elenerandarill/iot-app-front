@@ -1,7 +1,7 @@
 const Contact = () => {
     return (
         <div className="main">
-            <div className="content-alerts">
+            <div className="content-3x">
                 <div className="content-srodek">
                 <div className="white-space no-contact centered">
                     <div className="contact-way">

@@ -9,8 +9,8 @@ const SearchBox = ({value, onChange}) => {
                 name="query"
                 className="input"
                 placeholder="Szukaj"
-                value={value}
-                onChange={e => onChange(e.currentTarget.value)}
+                // value={value}
+                // onChange={e => onChange(e.currentTarget.value)}
             />
         </div>
     );

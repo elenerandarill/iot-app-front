@@ -14,15 +14,22 @@
 
 /* ------ colors ------ */
 
-.paint-gray03 {
+.txt-gray03 {
   color: var(--gray03);
 }
-.paint-violet {
+.txt-violet {
   color: var(--violet01);
 }
-.paint-dark {
+.txt-dark {
   color: var(--dark);
 }
+.paint-violet01 {
+  background: var(--violet01);
+}
+.paint-gray01 {
+  background: var(--gray01);
+}
+
 /* ------ colors ------ */
 
 * {
@@ -79,7 +86,7 @@ body {
   justify-content: center;
 }
 
-.content-alerts {
+.content-3x {
   grid-area: content;
   display: grid;
   grid-template-columns: auto auto auto;
@@ -228,6 +235,7 @@ body {
 .position-cent {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -379,6 +387,7 @@ body {
 
 .input {
   max-width: 700px;
+  width: 100%;
   font-size: 16px;
   text-rendering: auto;
   text-align: center;
@@ -387,7 +396,6 @@ body {
   margin: 5px 0 15px 0;
   border: none;
   border-bottom: 1px var(--gray02) solid;
-  width: 100%;
 }
 
 .icon-container {
@@ -520,22 +528,75 @@ body {
   text-align: center;
 }
 
-
 .object {
   min-width: 180px;
   min-height: 80px;
   margin: 5px;
+  padding: 5px 15px;
   text-decoration: none;
   color: var(--dark);
   line-height: 29px;
-  padding: 5px 15px;
   border-radius: 5px;
   border: white solid 1px;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.assigned-grid {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-areas: "objname obj-remove";
+}
+
+.assigned {
+  display: flex;
+  margin: 5px 0 5px 5px;
+  border: white solid 1px;
+  border-radius: 5px;
+}
+
+.assigned-txt-half {
+  min-width: 150px;
+  min-height: 80px;
+  text-decoration: none;
+  line-height: 29px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.assigned-txt-half:hover{
+  color: var(--blue);
+  border: var(--blue) solid 1px;
+}
+
+.assigned-rem-half {
+  width:50px;
+  height: auto;
+  text-decoration: none;
+  justify-self: center;
+  border-radius: 0 5px 5px 0;
+  border: white solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.i-remove {
+ height: 20px;
+}
+.i-remove:hover{
+  transform: scale(0.90);
+}
+
 .alerts {
   min-height: 0;
   margin-bottom: 10px;
