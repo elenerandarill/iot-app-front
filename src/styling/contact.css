@@ -1,0 +1,23 @@
+
+.contact-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "email" "phone" "c-details";
+    /*column-gap: 10px;*/
+    row-gap: 30px;
+}
+
+.contact-way {
+    font-family: "Segoe UI Semibold", sans-serif;
+    font-size: 18px;
+    color: var(--dark);
+    line-height: 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.contact-details {
+    color: var(--water);
+    text-transform: none;
+}

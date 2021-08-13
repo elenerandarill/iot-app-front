@@ -1,0 +1,72 @@
+/* ---- margins and positioning ---- */
+.mrg-0 {
+    margin: 0;
+}
+
+.mrg-r {
+    margin-right: 15px;
+}
+
+.mrg-l {
+    margin-left: 15px;
+}
+
+.mrg-b {
+    margin-bottom: 15px;
+}
+
+.mrg-tb {
+    margin: 15px 0;
+}
+
+.mrg-lr {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.item-center {
+    margin: auto;
+}
+
+.pad-bot-15px {
+    padding-bottom: 15px;
+}
+
+.fx-column {
+    display: flex;
+    flex-direction: column;
+}
+.fx-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.rowed {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.position-end {
+    align-self: flex-end;
+}
+
+.position-start {
+    align-self: flex-start;
+}
+
+.position-cent {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+

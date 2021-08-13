@@ -1,11 +1,11 @@
-import ActionIcon from "./ActionIcon";
+import ActionIcon from "../ActionIcon";
 
 const AlertDetailView = ({ a, onCloseClick }) => {
     console.log("Wywolano")
 
     return(
         <div className=" ">
-            <div className="white-space bgd-gray no-contact top-contact-mrg detail-view">
+            <div className="white-space bgd-gray no-contact top-contact-mrg">
                 {/*<i className="fas fa-times fa-lg icon paint-violet"  onClick={onClick}></i>*/}
                 <ActionIcon onClick={onCloseClick} action="close" descr="close" height={15}/>
                 <div className="obj-details">

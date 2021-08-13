@@ -1,28 +1,17 @@
 import Element from "../Element";
 import Table from "../Table";
 import plus from "../../media/plus.svg";
+import ButtonFunc from "../ButtonFunc";
 
 const Homepage = () => {
     return(
         <div className="main">
 
-            <div className="main-func-buttons">
-                <button className="btn btn-purple btn-func insert-button">
-                    <img src={plus} className="icon-plus" alt="dodaj wartość"/>
-                    <p>wartość</p>
-                </button>
-                <button className="btn btn-purple btn-func insert-button">
-                    <img src={plus} className="icon-plus" alt="dodaj tabelę"/>
-                    <p>tabela</p>
-                </button>
-                <button className="btn btn-purple btn-func insert-button">
-                    <img src={plus} className="icon-plus" alt="dodaj wykres"/>
-                    <p>wykres</p>
-                </button>
-                <button className="btn btn-purple btn-func insert-button">
-                    <img src={plus} className="icon-plus" alt="dodaj mapę"/>
-                    <p>mapa</p>
-                </button>
+            <div className="buttons-container">
+                <ButtonFunc text={"wartość"} add="yes"/>
+                <ButtonFunc text={"tabela"} add="yes"/>
+                <ButtonFunc text={"wykres"} add="yes"/>
+                <ButtonFunc text={"mapa"} add="yes"/>
             </div>
 
             <div className="main-content">

@@ -1,6 +1,7 @@
 import people from "../../FakeBackend/people";
 import {Link} from "react-router-dom";
 import remove from "../../media/remove.svg";
+import ButtonFunc from "../ButtonFunc";
 
 const TeamMemberDetails = (props) => {
     const id = props.match.params.id;
@@ -14,17 +15,15 @@ const TeamMemberDetails = (props) => {
 
     return (
         <div className="main">
-            <div className="main-func-buttons">
+            <div className="buttons-container">
                 <Link to="/team">
-                    <button className="btn btn-purple btn-func insert-button">
-                        powrót do listy
-                    </button>
+                    <ButtonFunc text={"powrót do listy"}/>
                 </Link>
             </div>
 
             <div className="content-3x">
                 <div className="content-srodek">
-                    <div className="btn-purple btn-section">
+                    <div className="headline-color">
                         {person.fullname}
                     </div>
                     <div className="white-space top-contact">

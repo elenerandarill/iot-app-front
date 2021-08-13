@@ -1,7 +1,7 @@
 const LogoutButton = ({ text, onClick }) => {
     return (
         <button
-            className="btn sidebar-btn logout"
+            className="btn menu-btn logout"
             onClick={onClick}
         >
             {text}

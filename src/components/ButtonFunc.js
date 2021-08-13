@@ -1,10 +1,10 @@
-const ButtonFunc = ({ text, onClick }) => {
+import plus from "../media/plus.svg";
+
+const ButtonFunc = ({ text, add }) => {
     return (
-        <button
-            className="btn-func"
-            onClick={onClick}
-        >
-            {text}
+        <button className="btn btn-color insert-button">
+            {add === "yes" && <img src={plus} className="icon-plus" alt="dodaj wartość"/>}
+            <p>{text}</p>
         </button>
     )
 }

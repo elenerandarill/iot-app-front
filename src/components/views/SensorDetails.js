@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import sensors from "../../FakeBackend/sensors";
 import remove from "../../media/remove.svg";
+import ButtonFunc from "../ButtonFunc";
 
 const SensorDetails = (props) => {
     const id = props.match.params.id;
@@ -14,17 +15,15 @@ const SensorDetails = (props) => {
 
     return (
         <div className="main">
-            <div className="main-func-buttons">
+            <div className="buttons-container">
                 <Link to="/sensors">
-                    <button className="btn btn-purple btn-func insert-button">
-                        powrót do listy
-                    </button>
+                    <ButtonFunc text={"powrót do listy"}/>
                 </Link>
             </div>
 
             <div className="content-3x">
                 <div className="content-srodek">
-                    <div className="btn-purple btn-section">
+                    <div className="headline-color">
                         {sensor.name === "" ? sensor.sn : sensor.name}
                     </div>
                     <div className="white-space top-contact">
@@ -62,7 +61,7 @@ const SensorDetails = (props) => {
                         <div className="shadow no-contact centered pad-bot-15px">
                             <div className="mrg-tb">BATERIA</div>
                             <div className="position-cent">
-                                <div className="txt-violet txt-semibold">{sensor.battery}</div>
+                                <div className="txt-violet txt-semibold">{sensor.battery}%</div>
                             </div>
                         </div>
 
@@ -70,6 +69,46 @@ const SensorDetails = (props) => {
                             <div>GPS</div>
                             <div className="position-cent">
                                 <div className="txt-violet txt-semibold">{sensor.GPS}</div>
+                            </div>
+                        </div>
+
+                        <div className="shadow no-contact centered pad-bot-15px">
+                            <div className="mrg-tb">OSTATNI POMIAR</div>
+                            <div className="position-cent">
+                                <div className="txt-violet txt-semibold object-container">
+
+                                    {Object.entries(sensor.measurements).map(([key, value]) =>
+                                        <div className="mrg-tb mrg-lr">
+                                            {key === "temperature" && "temperatura"}
+                                            {key === "humidity" && "wilg. powietrza"}
+                                            {key === "moisture" && "wild. podłoża"}
+                                            {key === "pressure" && "ciśnienie"}
+                                            {key === "illumination" && "oświetlenie"}
+                                            {key === "CO2" && "CO2"}
+                                            {key === "EC" && "EC (przew. elektrolitów)"}
+                                            {key === "tVOC" && "tVOC (LZO)"}
+                                            {key === "activity" && "aktywność"}
+                                            {key === "distance" && "dystans"}
+                                            {key === "water_level" && "poziom wody"}
+                                            {key === "water_leak" && "wyciek"}
+                                            {key === "door" && "drzwi"}
+                                            :<br/>
+                                            <h2>{value}
+                                                {key === "temperature" && " °C"}
+                                                {key === "humidity" && " %RH"}
+                                                {key === "moisture" && " %RH"}
+                                                {key === "pressure" && " kPa"}
+                                                {key === "illumination" && " lux"}
+                                                {key === "CO2" && " ppm"}
+                                                {key === "EC" && " µs/cm"}
+                                                {key === "tVOC" && " ppb"}
+                                                {key === "distance" && " mm"}
+                                                {key === "water_level" && " cm"}
+                                            </h2>
+                                        </div>
+                                    )}
+
+                                </div>
                             </div>
                         </div>
 

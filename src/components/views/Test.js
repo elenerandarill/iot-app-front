@@ -30,7 +30,7 @@ const Test = () => {
         <div className="overlay-bgd">
             <div className="test-area">
             <h2>Wysłanie testowego requesta</h2><br/>
-            <button onClick={onSubmit} className="btn btn-purple btn-func test-btn">
+            <button onClick={onSubmit} className="btn btn-color headline-color test-btn">
                 Klik!
             </button>
         </div>

@@ -3,6 +3,7 @@ import plus from "../../media/plus.svg";
 import sensors from "../../FakeBackend/sensors";
 import SearchBox from "../SearchBox";
 import dot from "../../media/dot.svg";
+import ButtonFunc from "../ButtonFunc";
 
 const Sensors = () => {
     const unsignedSensors = (list) => {
@@ -11,17 +12,14 @@ const Sensors = () => {
 
     return (
         <div className="main">
-            <div className="main-func-buttons">
-                <button className="btn btn-purple btn-func insert-button">
-                    <img src={plus} className="icon-plus" alt="dodaj wartość"/>
-                    <p>zakup czujniki</p>
-                </button>
+            <div className="buttons-container">
+                <ButtonFunc text={"zakup czujniki"} add="yes"/>
             </div>
 
             <div className="content-3x">
                 <div className="content-srodek">
 
-                    <div className="btn-purple btn-section">Twoje czujniki</div>
+                    <div className="headline-color">Twoje czujniki</div>
                     <div className="white-space top-contact">
                         <SearchBox/>
                         <div className="object-container">

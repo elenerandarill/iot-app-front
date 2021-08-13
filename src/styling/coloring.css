@@ -1,0 +1,21 @@
+
+.txt-right {
+    text-align: right;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-semibold {
+    font-family: "Segoe UI Semibold", sans-serif;
+}
+
+.txt-violet{
+    color: var(--violet01);
+}
+
+
+.bgd-gray {
+    background: var(--gray01);
+}

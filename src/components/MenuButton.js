@@ -8,7 +8,7 @@ const MenuButton = ({ text, path }) => {
 
     return (
         <button
-            className={usePathname() === path ? "btn sidebar-btn active" : "btn sidebar-btn inactive"}
+            className={usePathname() === path ? "btn menu-btn menu-active" : "btn menu-btn menu-inactive"}
         >
             {text}
         </button>

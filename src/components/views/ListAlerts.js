@@ -15,7 +15,7 @@ const ListAlerts = ({ list, onSelect, showDetails }) => {
                         : <div className="mrg-r"> </div>}
 
                     <div className="alert-txt">{a.date} / {a.time}</div>
-                    <div className="txt-semibold alert-txt">
+                    <div className="txt-semibold alert-txt txt-violet">
                         {a.datatype === "sensor" ? "czujnik:" : "grupa:"}&nbsp;{a.name}
                     </div>
 

@@ -3,22 +3,20 @@ import sensorGroups from "../../FakeBackend/sensorGroups";
 import SearchBox from "../SearchBox";
 import { Link } from "react-router-dom";
 import dot from "../../media/dot.svg";
+import ButtonFunc from "../ButtonFunc";
 
 const SensorGroups = () => {
 
     return(
         <div className="main">
-            <div className="main-func-buttons">
-                <button className="btn btn-purple btn-func insert-button">
-                    <img src={plus} className="icon-plus" alt="dodaj wartość"/>
-                    <p>nowa grupa</p>
-                </button>
+            <div className="buttons-container">
+                <ButtonFunc text={"nowa grupa"} add="yes"/>
             </div>
 
             <div className="content-3x">
                 <div className="content-srodek">
 
-                    <div className="btn-purple btn-section">Grupy czujników</div>
+                    <div className="headline-color btn-section">Grupy czujników</div>
                     <div className="white-space top-contact">
                         <div className="centered"><SearchBox/></div>
                         <div className="object-container">

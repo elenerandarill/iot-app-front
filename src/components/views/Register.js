@@ -80,7 +80,7 @@ const Register = ({onAdd}) => {
                     <input
                         type="submit"
                         value="Zaloguj"
-                        className="btn btn-purple btn-func mrg-tb"
+                        className="btn btn-color headline-color mrg-tb"
                     />
                 </form>
                 <div className="mrg-tb txt-center">Masz już konto? <br/>
