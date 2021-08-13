@@ -195,6 +195,14 @@ body {
   text-align: center;
 }
 
+.head-txt {
+  color: var(--darkblue);
+  font-family: "Segoe UI Semibold", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 3px 0 5px 0;
+}
+
 .element {
   /*height: 180px;*/
   height: 370px;
@@ -234,7 +242,9 @@ body {
 
 .no-contact {
   border-radius: 5px;
+  padding: 5px 15px;
   margin: 5px;
+  line-height: 29px;
 }
 
 .top-contact {
@@ -438,35 +448,6 @@ body {
   margin: 5px 0 5px 5px;
   border: white solid 1px;
   border-radius: 5px;
-}
-
-.assigned-txt-half {
-  min-width: 150px;
-  min-height: 80px;
-  text-decoration: none;
-  line-height: 29px;
-  padding: 5px 15px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.assigned-txt-half:hover{
-  color: var(--blue);
-  border: var(--blue) solid 1px;
-}
-
-.assigned-rem-half {
-  width:50px;
-  height: auto;
-  text-decoration: none;
-  justify-self: center;
-  border-radius: 0 5px 5px 0;
-  /*border: white solid 1px;*/
-  border-left: var(--gray01) solid 1px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .i-remove {

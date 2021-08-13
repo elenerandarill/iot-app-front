@@ -1,17 +1,14 @@
 import {Link} from "react-router-dom";
 import sensors from "../../FakeBackend/sensors";
-import remove from "../../media/remove.svg";
+import ListGroups from "../ListGroups";
+// import remove from "../../media/remove.svg";
 import ButtonFunc from "../ButtonFunc";
 
 const SensorDetails = (props) => {
+
     const id = props.match.params.id;
 
-    const getSensor = (id) => {
-        // zwraca liste!
-        return sensors.filter(s => s.id === id)[0]
-    }
-
-    const sensor = getSensor(id);
+    const sensor = sensors.filter(s => s.id === id)[0];
 
     return (
         <div className="main">
@@ -29,7 +26,7 @@ const SensorDetails = (props) => {
                     <div className="white-space top-contact">
 
                         <div className="shadow object">
-                            <div>NAZWA</div>
+                            <div className="head-txt">NAZWA</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
@@ -40,7 +37,7 @@ const SensorDetails = (props) => {
                             </div>
                         </div>
                         <div className="shadow object">
-                            <div>NOTATKA</div>
+                            <div className="head-txt">NOTATKA</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
@@ -52,59 +49,50 @@ const SensorDetails = (props) => {
                         </div>
 
                         <div className="shadow object">
-                            <div>NUMER SERYJNY</div>
+                            <div className="head-txt">NUMER SERYJNY</div>
                             <div className="position-cent">
-                                <div className="txt-violet txt-semibold">{sensor.sn}</div>
+                                <div className="txt-water txt-semibold">{sensor.sn}</div>
                             </div>
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">BATERIA</div>
+                            <div className="mrg-tb head-txt">BATERIA</div>
                             <div className="position-cent">
-                                <div className="txt-violet txt-semibold">{sensor.battery}%</div>
+                                <div className="txt-water txt-semibold">{sensor.battery}%</div>
                             </div>
                         </div>
 
                         <div className="shadow object">
-                            <div>GPS</div>
+                            <div className="head-txt">GPS</div>
                             <div className="position-cent">
-                                <div className="txt-violet txt-semibold">{sensor.GPS}</div>
+                                <div className="txt-water txt-semibold">{sensor.GPS}</div>
                             </div>
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">OSTATNI POMIAR</div>
+                            <div className="mrg-tb head-txt">OSTATNI POMIAR</div>
                             <div className="position-cent">
                                 <div className="txt-violet txt-semibold object-container">
 
                                     {Object.entries(sensor.measurements).map(([key, value]) =>
-                                        <div className="mrg-tb mrg-lr">
-                                            {key === "temperature" && "temperatura"}
-                                            {key === "humidity" && "wilg. powietrza"}
-                                            {key === "moisture" && "wild. podłoża"}
-                                            {key === "pressure" && "ciśnienie"}
-                                            {key === "illumination" && "oświetlenie"}
-                                            {key === "CO2" && "CO2"}
-                                            {key === "EC" && "EC (przew. elektrolitów)"}
-                                            {key === "tVOC" && "tVOC (LZO)"}
-                                            {key === "activity" && "aktywność"}
-                                            {key === "distance" && "dystans"}
-                                            {key === "water_level" && "poziom wody"}
-                                            {key === "water_leak" && "wyciek"}
-                                            {key === "door" && "drzwi"}
-                                            :<br/>
-                                            <h2>{value}
-                                                {key === "temperature" && " °C"}
-                                                {key === "humidity" && " %RH"}
-                                                {key === "moisture" && " %RH"}
-                                                {key === "pressure" && " kPa"}
-                                                {key === "illumination" && " lux"}
-                                                {key === "CO2" && " ppm"}
-                                                {key === "EC" && " µs/cm"}
-                                                {key === "tVOC" && " ppb"}
-                                                {key === "distance" && " mm"}
-                                                {key === "water_level" && " cm"}
-                                            </h2>
+                                        <div key={key.toString()} className="mrg-tb mrg-lr">
+                                            <div className="txt-water">
+                                                {key === "temperature" && "temperatura | °C"}
+                                                {key === "humidity" && "wilg. powietrza | %RH"}
+                                                {key === "moisture" && "wild. podłoża | %RH"}
+                                                {key === "pressure" && "ciśnienie | kPa"}
+                                                {key === "illumination" && "oświetlenie | lux"}
+                                                {key === "CO2" && <span>CO<sub>2</sub> |ppm</span>}
+                                                {key === "EC" && "EC-przew. elektrolitów | µs/cm"}
+                                                {key === "tVOC" && "tVOC (LZO) | ppb"}
+                                                {key === "activity" && "aktywność"}
+                                                {key === "distance" && "dystans | mm"}
+                                                {key === "water_level" && "poziom wody | cm"}
+                                                {key === "water_leak" && "wyciek"}
+                                                {key === "door" && "drzwi"}
+
+                                            </div>
+                                            <h1>{value}</h1>
                                         </div>
                                     )}
 
@@ -113,19 +101,13 @@ const SensorDetails = (props) => {
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">PRZYPISANY DO GRUP</div>
+                            <div className="mrg-tb head-txt">PRZYPISANY DO GRUP</div>
                             <div className="position-cent">
                                 <div className="object-container txt-violet txt-semibold">
 
                                     {sensor.groups.length === 0
                                         ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                        : sensor.groups.map(sg =>
-                                            <div key={sg.valueOf()} className="assigned shadow">
-                                                <div className="assigned-txt-half pointer">{sg}</div>
-                                                <div className="assigned-rem-half">
-                                                    <img src={remove} className="i-remove pointer"/>
-                                                </div>
-                                            </div>)}
+                                        : <ListGroups sensor={sensor}/>}
                                 </div>
                             </div>
                         </div>

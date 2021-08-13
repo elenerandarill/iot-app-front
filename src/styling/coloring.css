@@ -15,6 +15,10 @@
     color: var(--violet01);
 }
 
+.txt-water{
+    color: var(--water);
+}
+
 
 .bgd-gray {
     background: var(--gray01);

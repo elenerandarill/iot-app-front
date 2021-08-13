@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import plus from "../../media/plus.svg";
+// import plus from "../../media/plus.svg";
 import sensors from "../../FakeBackend/sensors";
 import SearchBox from "../SearchBox";
 import dot from "../../media/dot.svg";
@@ -30,7 +30,8 @@ const Sensors = () => {
                                      className={s.groups.length === 0 ? "object shadow obj-free" : "object shadow"}
                                 >
                                     {s.name? s.name
-                                        : <><img src={dot} alt="new" height={10} /><div className="mrg-l">{s.sn}</div></>}
+                                        : <><img src={dot} alt="new" height={10} />
+                                            <div className="mrg-l">{s.sn}</div></>}
                                 </Link>
                             )}
                         </div>

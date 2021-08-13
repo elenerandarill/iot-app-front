@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import sensorGroups from "../../FakeBackend/sensorGroups";
-import remove from "../../media/remove.svg";
 import ButtonFunc from "../ButtonFunc";
 
 const GroupDetails = (props) => {
@@ -82,11 +81,8 @@ const GroupDetails = (props) => {
                                     {group.sensors.length === 0
                                         ? <div className="centered">nie ma jeszcze żadnych czujników</div>
                                         : group.sensors.map(sensor =>
-                                            <div key={sensor.toString()} className="assigned shadow">
-                                                <div className="assigned-txt-half pointer">{sensor}</div>
-                                                <div className="assigned-rem-half">
-                                                    <img src={remove} className="i-remove pointer"/>
-                                                </div>
+                                            <div key={sensor.toString()} className="shadow object">
+                                                {sensor}
                                             </div>)
                                     }
                                 </div>

@@ -1,4 +1,4 @@
-import plus from "../../media/plus.svg";
+// import plus from "../../media/plus.svg";
 import sensorGroups from "../../FakeBackend/sensorGroups";
 import SearchBox from "../SearchBox";
 import { Link } from "react-router-dom";
