@@ -1,42 +1,37 @@
 const sensorGroups = [
     {
-        object: "group",
-        name: "szklarnia",
         id: "1",
-        sensors: ["szklarnia-001", "szklarnia-002", "moj-ulubiony-czujnik-ktory-jest-za-rogiem"],
-        measurements: { avTemp: "22", avHumid: "55%", avWind: "14"},
+        name: "szklarnia",
+        sensors: ["1", "2", "3"],
+        measurements: { avTemp: 22, avHumid: 55, avWind: 14 },
         notes: "tu będzie jakaś ważna notatka"
     },
     {
-        object: "group",
-        name: "sad jabłonie",
         id: "2",
-        sensors: ["jabłonie-001", "jabłonie-002", "jabłonie-003", "jabłonie-004"],
-        measurements: { avTemp: "18", avHumid: "45%", avWind: "15"},
+        name: "sad jabłonie",
+        sensors: ["2", "4", "5", "6"],
+        measurements: { avTemp: 18, avHumid: 45, avWind: 15},
         notes: "tu będzie jakaś ważna notatka"
     },
     {
-        object: "group",
-        name: "sad grusze",
         id: "3",
-        sensors: ["czujnik-gruszek-001", "czujnik-gruszek-002", "czujnik-gruszek-003", "jabłonie-004"],
-        measurements: { avTemp: "18", avHumid: "45%", avWind: "15"},
+        name: "sad grusze",
+        sensors: ["7", "8", "9", "10"],
+        measurements: { avTemp: 18, avHumid: 45, avWind: 15},
         notes: "tu będzie jakaś ważna notatka"
     },
     {
-        object: "group",
-        name: "tulipany",
         id: "4",
-        sensors: ["cz-tulipany-001", "cz-tulipany-002", "jabłonie-003"],
-        measurements: { avTemp: "18", avHumid: "45%", avWind: "15"},
+        name: "tulipany",
+        sensors: ["11", "12", "1"],
+        measurements: { avTemp: 18, avHumid: 45, avWind: 15},
         notes: "tu będzie jakaś ważna notatka"
     },
     {
-        object: "group",
-        name: "czereśnie",
         id: "5",
+        name: "czereśnie",
         sensors: [],
-        measurements: { avTemp: "18", avHumid: "45%", avWind: "15"},
+        measurements: { avTemp: 18, avHumid: 45, avWind: 15},
         notes: "tu będzie jakaś ważna notatka"
     },
 ]

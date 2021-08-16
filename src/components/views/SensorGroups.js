@@ -20,6 +20,7 @@ const SensorGroups = () => {
                     <div className="white-space top-contact">
                         <div className="centered"><SearchBox/></div>
                         <div className="object-container">
+
                             {sensorGroups.map(sg =>
                                 <Link key={sg.id}
                                       to={`/sensor-groups/${sg.id}`}
@@ -34,6 +35,7 @@ const SensorGroups = () => {
                                         </>}
                                 </Link>
                             )}
+                            
                         </div>
                     </div>
 
