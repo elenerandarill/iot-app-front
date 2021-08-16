@@ -1,5 +1,5 @@
 import dot from "../../media/dot.svg";
-import AlertDetailView from "./AlertDetailView";
+import AlertDetailView from "./alertDetailView";
 
 const ListAlerts = ({ list, onSelect, showDetails }) => {
 

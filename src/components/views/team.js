@@ -1,9 +1,9 @@
-import SearchBox from "../SearchBox";
+import SearchBox from "../searchBox";
 import {Link} from "react-router-dom";
 import plus from "../../media/plus.svg";
 import dot from "../../media/dot.svg";
-import people from "../../FakeBackend/people";
-import ButtonFunc from "../ButtonFunc";
+import getPeople from "../../FakeBackend/getPeople";
+import ButtonFunc from "../buttonFunc";
 
 const Team = () => {
     return (
@@ -19,7 +19,7 @@ const Team = () => {
                     <div className="white-space top-contact">
                         <div className="centered"><SearchBox/></div>
                         <div className="object-container">
-                            {people.map(p =>
+                            {getPeople.map(p =>
                                 <Link key={p.id}
                                       to={`/team/${p.id}`}
                                       person_id={p.id}

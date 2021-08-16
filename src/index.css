@@ -16,26 +16,6 @@
   --violet02: #171A44;
   --darkblue: #001544;
 }
-
-
-/* ------ colors ------ */
-
-.txt-gray03 {
-  color: var(--gray03);
-}
-.txt-violet {
-  color: var(--violet01);
-}
-.txt-dark {
-  color: var(--dark);
-}
-.paint-violet01 {
-  background: var(--violet01);
-}
-.paint-gray01 {
-  background: var(--gray01);
-}
-
 /* ------ colors ------ */
 
 * {
@@ -416,6 +396,14 @@ body {
   text-align: center;
 }
 
+.object-container-grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  grid-template-areas: "edit" "objects-list";
+  padding: 10px;
+}
+
 .object {
   min-width: 180px;
   min-height: 80px;
@@ -431,6 +419,10 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+.edit-objs-btn {
+  padding: 0 0 15px 0;
+  flex: none;
 }
 
 .pointer {

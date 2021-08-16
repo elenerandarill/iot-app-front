@@ -24,6 +24,10 @@
     margin-left: 30px;
 }
 
+.big-padding {
+    padding: 35px;
+}
+
 .item-center {
     margin: auto;
 }

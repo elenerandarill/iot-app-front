@@ -1,4 +1,4 @@
-const alerts = [
+const getAlerts = [
     {
         id: "6",
         new: true,
@@ -125,4 +125,4 @@ const alerts = [
         msg: "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
     }
 ]
-export default alerts;
+export default getAlerts;

@@ -1,6 +1,6 @@
-import MenuButton from "./MenuButton";
+import MenuButton from "./menuButton";
 import logo_iot from "../media/logo.svg";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "./logoutButton";
 import {Link} from "react-router-dom";
 
 
@@ -22,8 +22,8 @@ const SideBar = ({ location }) => {
             <Link to="/sensors" className="txt-right">
                 <MenuButton text="Czujniki"  path="/sensors"/>
             </Link>
-            <Link to="/sensor-groups" className="txt-right">
-                <MenuButton text="Grupy" path="/sensor-groups"/>
+            <Link to="/groups-of-sensors" className="txt-right">
+                <MenuButton text="Grupy" path="/groups-of-sensors"/>
             </Link>
             <Link to="/team" className="txt-right">
                 <MenuButton text="Zespół" path="/team"/>

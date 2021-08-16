@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-const ListObjects = ({object, list, linkTo}) => {
+const ListAssignedObjects = ({object, list, linkTo}) => {
     // console.log("wlasciwy obiekt jest pod key=object, ", object.object)
 
     const objLookupList = [];
@@ -29,13 +29,13 @@ const ListObjects = ({object, list, linkTo}) => {
         result.map(obj =>
             <Link
                 key={obj.id}
-                to={`/${linkTo === "group"? "sensor-groups" : "sensors"}/${obj.id}`}
+                to={`/${linkTo === "group"? "groups-of-sensors" : "sensors"}/${obj.id}`}
             >
                 <div className="object shadow">
-                    {obj.name}
+                    {obj.name.trim() === ""? obj.sn : obj.name}
                 </div>
             </Link>)
     )
 }
 
-export default ListObjects;
+export default ListAssignedObjects;

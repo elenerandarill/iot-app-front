@@ -23,3 +23,13 @@
 .bgd-gray {
     background: var(--gray01);
 }
+
+.paint-blue {
+    background: var(--blue);
+}
+.paint-violet01 {
+    background: var(--violet01);
+}
+.paint-gray01 {
+    background: var(--gray01);
+}

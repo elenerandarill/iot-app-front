@@ -1,20 +1,20 @@
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Homepage from "./components/views/Homepage";
-import Alerts from "./components/views/Alerts";
-import Sensors from "./components/views/Sensors";
-import SensorGroups from "./components/views/SensorGroups";
-import Team from "./components/views/Team";
-import Contact from "./components/views/Contact";
+import Homepage from "./components/views/homepage";
+import Alerts from "./components/views/alerts";
+import Sensors from "./components/views/sensors";
+import GroupsOfSensors from "./components/views/groupsOfSensors";
+import Team from "./components/views/team";
+import Contact from "./components/views/contact";
+import Login from "./components/views/login";
+import UserViews from "./components/views/userViews";
+import Register from "./components/views/register";
+import SensorDetails from "./components/views/sensorDetails";
+import GroupDetails from "./components/views/groupDetails";
+import TeamMemberDetails from "./components/views/teamMemberDetails";
+import Test from "./components/views/test";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
-import React from "react";
-import Login from "./components/views/Login";
-import UserViews from "./components/views/UserViews";
-import Register from "./components/views/Register";
-import SensorDetails from "./components/views/SensorDetails";
-import GroupDetails from "./components/views/GroupDetails";
-import TeamMemberDetails from "./components/views/TeamMemberDetails";
-import Test from "./components/views/Test";
 
 
 function App() {
@@ -30,8 +30,8 @@ function App() {
                         <Route path="/alerts" component={Alerts}/>
                         <Route path="/sensors" exact component={Sensors}/>
                         <Route path="/sensors/:id" component={SensorDetails}/>
-                        <Route path="/sensor-groups" exact component={SensorGroups}/>
-                        <Route path="/sensor-groups/:id" component={GroupDetails}/>
+                        <Route path="/groups-of-sensors/" exact component={GroupsOfSensors}/>
+                        <Route path="/groups-of-sensors/:id" component={GroupDetails}/>
                         <Route path="/team" exact component={Team}/>
                         <Route path="/team/:id" component={TeamMemberDetails}/>
                         <Route path="/contact" component={Contact}/>

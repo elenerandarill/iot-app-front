@@ -1,4 +1,4 @@
-const sensors = [
+const getSensors = [
     {
         id: "1",
         type: "AM104",
@@ -43,7 +43,7 @@ const sensors = [
     {
         id: "4",
         type: "EM300-SLD",
-        name: "",
+        name: "   ",
         sn: "222asd111",
         battery: 95,
         groups: [],
@@ -144,4 +144,4 @@ const sensors = [
     },
 ]
 
-export default sensors;
+export default getSensors;

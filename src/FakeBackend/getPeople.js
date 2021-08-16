@@ -1,4 +1,4 @@
-const people = [
+const getPeople = [
     {
         id: "1",
         fullname: "Tomasz Kowalski",
@@ -22,4 +22,4 @@ const people = [
     },
     ]
 
-export default people;
+export default getPeople;

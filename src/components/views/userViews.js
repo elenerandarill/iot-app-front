@@ -1,7 +1,7 @@
-import SideBar from "../SideBar";
+import SideBar from "../sideBar";
 import {Notifications} from "react-push-notification";
-import TopBar from "../TopBar";
-import Footer from "../Footer";
+import TopBar from "../topBar";
+import Footer from "../footer";
 
 const UserViews = ({children}) => {
     return (

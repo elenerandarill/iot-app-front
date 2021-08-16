@@ -1,4 +1,4 @@
-const sensorGroups = [
+const getGroupsOfSensors = [
     {
         id: "1",
         name: "szklarnia",
@@ -36,4 +36,4 @@ const sensorGroups = [
     },
 ]
 
-export default sensorGroups;
+export default getGroupsOfSensors;

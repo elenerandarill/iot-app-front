@@ -1,14 +1,14 @@
-import people from "../../FakeBackend/people";
+import getPeople from "../../FakeBackend/getPeople";
 import {Link} from "react-router-dom";
 import remove from "../../media/remove.svg";
-import ButtonFunc from "../ButtonFunc";
+import ButtonFunc from "../buttonFunc";
 
 const TeamMemberDetails = (props) => {
     const id = props.match.params.id;
 
     const getPerson = (id) => {
         // zwraca liste!
-        return people.filter(s => s.id === id)[0]
+        return getPeople.filter(s => s.id === id)[0]
     }
 
     const person = getPerson(id);

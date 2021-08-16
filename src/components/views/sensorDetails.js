@@ -1,16 +1,15 @@
 import {Link} from "react-router-dom";
-import ListObjects from "../ListObjects";
-import ButtonFunc from "../ButtonFunc";
-import ListMeasurements from "../ListMeasurements.js";
-// import remove from "../../media/remove.svg";
-import sensors from "../../FakeBackend/sensors";
-import sensorGroups from "../../FakeBackend/sensorGroups";
+import ButtonFunc from "../buttonFunc";
+import ListMeasurements from "../listMeasurements.js";
+import ListAssignedObjects from "../listAssignedObjects";
+import getSensors from "../../FakeBackend/getSensors";
+import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 
 const SensorDetails = (props) => {
 
     const id = props.match.params.id;
 
-    const sensor = sensors.filter(s => s.id === id)[0];
+    const sensor = getSensors.filter(s => s.id === id)[0];
 
     return (
         <div className="main">
@@ -23,7 +22,7 @@ const SensorDetails = (props) => {
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                        {sensor.name === "" ? sensor.sn : sensor.name}
+                        {sensor.name.trim() === "" ? sensor.sn : sensor.name}
                     </div>
                     <div className="white-space top-contact">
 
@@ -83,23 +82,22 @@ const SensorDetails = (props) => {
                         <div className="shadow no-contact centered pad-bot-15px">
                             <div className="mrg-tb head-txt">PRZYPISANY DO GRUP</div>
                             <div className="position-cent">
-                                <div className="object-container txt-violet txt-semibold">
+                                <div className="object-container-grid">
+                                    <div className="edit-objs-btn centered">
+                                        <ButtonFunc text={"edytuj"}/>
+                                    </div>
 
-                                    {sensor.groups.length === 0
-                                        ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                        : <ListObjects object={sensor} list={sensorGroups} linkTo={"group"}/>}
+                                    <div className="object-container txt-violet txt-semibold">
+                                        {sensor.groups.length === 0
+                                            ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                            : <ListAssignedObjects object={sensor} list={getGroupsOfSensors} linkTo={"group"}/>}
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="shadow no-contact fx-between paint-gray01">
-                                <div className="btn btn-small txt-center mrg-tb">edytuj</div>
-                                {/*<div className="btn btn-small txt-center mrg-tb">dodaj grupę</div>*/}
-                                {/*<div className="btn btn-small txt-center mrg-tb">wyczyść grupy</div>*/}
-                            </div>
+                            {/*<div className="btn btn-small txt-center mrg-tb">dodaj grupę</div>*/}
+                            {/*<div className="btn btn-small txt-center mrg-tb">wyczyść grupy</div>*/}
                         </div>
-
-
-
                     </div>
                 </div>
             </div>

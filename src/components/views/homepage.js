@@ -1,7 +1,6 @@
-import Element from "../Element";
-import Table from "../Table";
-import plus from "../../media/plus.svg";
-import ButtonFunc from "../ButtonFunc";
+import Element from "../element";
+import Table from "../table";
+import ButtonFunc from "../buttonFunc";
 
 const Homepage = () => {
     return(

@@ -5,21 +5,21 @@ const Contact = () => {
                 <div className="content-srodek">
                     <div className="white-space no-contact">
 
-                        <div className="contact-container">
+                        <div className="contact-container big-padding">
                             <div className="contact-way centered">
                                 email
-                                <div className="contact-details">serwis@iotsolution.pl</div>
+                                <div className="contact-details">email@iotsolution.pl</div>
                             </div>
 
                             <div className="contact-way centered">
                                 Telefon
-                                <div className="contact-details">+48 735-976-468</div>
+                                <div className="contact-details">+48 111-222-333</div>
                             </div>
 
                             <div className="contact-way centered txt-center">
                                 Adres kontaktowy
                                 <div className="contact-details">
-                                    Cyprian Gajda Consulting<br/> ul. Tadeusza Kościuszki <br/> 7 05-090 Raszyn
+                                    IoT Solution<br/> ul. Jakaś-tam 13<br/>00-000 MIEJSCOWOŚĆ
                                 </div>
                             </div>
                         </div>

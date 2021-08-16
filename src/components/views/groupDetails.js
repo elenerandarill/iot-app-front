@@ -1,13 +1,15 @@
 import {Link} from "react-router-dom";
-import sensorGroups from "../../FakeBackend/sensorGroups";
-import ButtonFunc from "../ButtonFunc";
+import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
+import getSensors from "../../FakeBackend/getSensors";
+import ButtonFunc from "../buttonFunc";
+import ListAssignedObjects from "../listAssignedObjects";
 
 const GroupDetails = (props) => {
     const id = props.match.params.id;
 
     const getGroup = (id) => {
         // zwraca liste!
-        return sensorGroups.filter(s => s.id === id)[0]
+        return getGroupsOfSensors.filter(s => s.id === id)[0]
     }
 
     const group = getGroup(id);
@@ -15,7 +17,7 @@ const GroupDetails = (props) => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <Link to="/sensor-groups">
+                <Link to="/groups-of-sensors">
                     <ButtonFunc text={"powrót do listy"}/>
                 </Link>
             </div>
@@ -76,25 +78,20 @@ const GroupDetails = (props) => {
                         <div className="shadow no-contact centered pad-bot-15px">
                             <div className="mrg-tb">CZUJNIKI ({group.sensors.length})</div>
                             <div className="position-cent">
-                                <div className="object-container txt-violet txt-semibold">
+                                <div className="object-container-grid">
+                                    <div className="edit-objs-btn centered">
+                                        <ButtonFunc text={"edytuj"}/>
+                                    </div>
+                                    <div className="object-container txt-violet txt-semibold">
 
-                                    {group.sensors.length === 0
-                                        ? <div className="centered">nie ma jeszcze żadnych czujników</div>
-                                        : group.sensors.map(sensor =>
-                                            <div key={sensor.toString()} className="shadow object">
-                                                {sensor}
-                                            </div>)
-                                    }
+                                        {group.sensors.length === 0
+                                            ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                            : <ListAssignedObjects object={group} list={getSensors} linkTo={"sensor"}/>}
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="shadow no-contact fx-between paint-gray01">
-                            <div className="btn btn-small txt-center mrg-tb">dodaj/usuń czujnik</div>
-                            <div className="btn btn-small txt-center mrg-tb">wyczyść grupę</div>
-                            <div className="btn btn-small txt-center mrg-tb">usuń grupę</div>
-                        </div>
-
                     </div>
                 </div>
             </div>

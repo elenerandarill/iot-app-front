@@ -1,4 +1,4 @@
-import ActionIcon from "../ActionIcon";
+import ActionIcon from "../actionIcon";
 
 const AlertDetailView = ({ a, onCloseClick }) => {
     console.log("Wywolano")

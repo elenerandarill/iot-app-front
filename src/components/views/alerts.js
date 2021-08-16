@@ -1,9 +1,9 @@
-import ListAlerts from "./ListAlerts";
-import alerts from "../../FakeBackend/alerts";
+import ListAlerts from "./listAlerts";
+import getAlerts from "../../FakeBackend/getAlerts";
 import plus from "../../media/plus.svg";
 import {useState} from "react";
-import SearchBox from "../SearchBox";
-import ButtonFunc from "../ButtonFunc";
+import SearchBox from "../searchBox";
+import ButtonFunc from "../buttonFunc";
 
 
 const Alerts = () => {
@@ -31,10 +31,10 @@ const Alerts = () => {
                         {/*    <div className="btn btn-color">skasuj wszystkie<br/> alerty</div>*/}
                         {/*</div>*/}
 
-                        {alerts.length === 0
+                        {getAlerts.length === 0
                             ? <div>Brak nowych alertów.</div>
                             : <ListAlerts
-                                list={alerts}
+                                list={getAlerts}
                                 showDetails={showDetails}
                                 onSelect={(a) => setShowDetails(a)}
                             />
