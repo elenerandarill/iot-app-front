@@ -57,7 +57,7 @@ const getSensors = [
         name: "szklarnia001",
         sn: "77asdfghjkl",
         battery: 15,
-        groups: ["5"],
+        groups: ["5", "1"],
         measurements: { temperature: 19, humidity: 43},
         GPS: [21.5124, 32.3434],
         notes: "jakas tam notatka"

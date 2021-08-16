@@ -5,6 +5,8 @@ import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import SearchBox from "../searchBox";
 import ButtonFunc from "../buttonFunc";
+import ListAssignedObjects from "../listAssignedObjects";
+import ListObjects from "../listObjects";
 
 const Sensors = () => {
 
@@ -22,22 +24,7 @@ const Sensors = () => {
                         <SearchBox/>
                         <div className="object-container">
 
-                            {getSensors.map(s =>
-                                <Link
-                                    key={s.id}
-                                    to={`/sensors/${s.id}`}
-                                    // sensor_id={s.id}
-                                    className={s.groups.length === 0
-                                        ? "object shadow obj-free"
-                                        : "object shadow"}
-                                >
-                                    {s.name.trim() === ""
-                                        ? <><img src={dot} alt="nie przypisano" height={10} />
-                                            <div className="mrg-l">{s.sn}</div></>
-                                        :s.name
-                                    }
-                                </Link>
-                            )}
+                            <ListObjects list={getSensors} linkTo={"sensor"}/>
 
                         </div>
                     </div>

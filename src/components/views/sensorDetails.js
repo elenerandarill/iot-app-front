@@ -90,7 +90,7 @@ const SensorDetails = (props) => {
                                     <div className="object-container txt-violet txt-semibold">
                                         {sensor.groups.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects object={sensor} list={getGroupsOfSensors} linkTo={"group"}/>}
+                                            : <ListAssignedObjects assigned={sensor.groups} list={getGroupsOfSensors} linkTo={"group"}/>}
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,9 @@ import SearchBox from "../searchBox";
 import { Link } from "react-router-dom";
 import dot from "../../media/dot.svg";
 import ButtonFunc from "../buttonFunc";
+import getSensors from "../../FakeBackend/getSensors";
+import ListAssignedObjects from "../listAssignedObjects";
+import ListObjects from "../listObjects";
 
 const GroupsOfSensors = () => {
 
@@ -21,20 +24,7 @@ const GroupsOfSensors = () => {
                         <div className="centered"><SearchBox/></div>
                         <div className="object-container">
 
-                            {getGroupsOfSensors.map(sg =>
-                                <Link key={sg.id}
-                                      to={`/groups-of-sensors/${sg.id}`}
-                                      sensor_id={sg.id}
-                                      className={sg.sensors.length === 0
-                                          ? "object shadow obj-free"
-                                          : "object shadow"}
-                                >
-                                    {sg.name ? sg.name
-                                        : <><img src={dot} alt="nie przypisano" height={10}/>
-                                            <div className="mrg-l">{sg.sn}</div>
-                                        </>}
-                                </Link>
-                            )}
+                            <ListObjects list={getGroupsOfSensors} type={"group"}/>
 
                         </div>
                     </div>
