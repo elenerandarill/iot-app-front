@@ -12,7 +12,7 @@ const Alerts = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"alert"} add="yes"/>
+                <ButtonFunc text={"alert"} add={true}/>
                 <ButtonFunc text={"przeczytano wszystkie"}/>
                 <ButtonFunc text={"usuń wszystkie"}/>
             </div>
@@ -26,10 +26,6 @@ const Alerts = () => {
                         <div className="position-cent">
                             <SearchBox/>
                         </div>
-                        {/*<div className="shadow no-contact fx-between paint-gray01">*/}
-                        {/*    <div className="btn btn-color">oznacz wszystkie <br/> jako przeczytane</div>*/}
-                        {/*    <div className="btn btn-color">skasuj wszystkie<br/> alerty</div>*/}
-                        {/*</div>*/}
 
                         {getAlerts.length === 0
                             ? <div>Brak nowych alertów.</div>

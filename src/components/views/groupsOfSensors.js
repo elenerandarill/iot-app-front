@@ -4,8 +4,6 @@ import SearchBox from "../searchBox";
 import { Link } from "react-router-dom";
 import dot from "../../media/dot.svg";
 import ButtonFunc from "../buttonFunc";
-import getSensors from "../../FakeBackend/getSensors";
-import ListAssignedObjects from "../listAssignedObjects";
 import ListObjects from "../listObjects";
 
 const GroupsOfSensors = () => {
@@ -13,7 +11,11 @@ const GroupsOfSensors = () => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"nowa grupa"} add="yes"/>
+                <ButtonFunc
+                    text={"nowa grupa"}
+                    add={true}
+                    link={"/add/groups-of-sensors"}
+                />
             </div>
 
             <div className="content-3x">

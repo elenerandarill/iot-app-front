@@ -9,7 +9,7 @@ const Team = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"osoba"} add="yes"/>
+                <ButtonFunc text={"osoba"} add={true}/>
             </div>
 
             <div className="content-3x">

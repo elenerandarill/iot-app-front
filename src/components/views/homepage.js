@@ -7,10 +7,10 @@ const Homepage = () => {
         <div className="main">
 
             <div className="buttons-container">
-                <ButtonFunc text={"wartość"} add="yes"/>
-                <ButtonFunc text={"tabela"} add="yes"/>
-                <ButtonFunc text={"wykres"} add="yes"/>
-                <ButtonFunc text={"mapa"} add="yes"/>
+                <ButtonFunc text={"wartość"} add={true}/>
+                <ButtonFunc text={"tabela"} add={true}/>
+                <ButtonFunc text={"wykres"} add={true}/>
+                <ButtonFunc text={"mapa"} add={true}/>
             </div>
 
             <div className="main-content">

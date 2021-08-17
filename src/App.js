@@ -13,6 +13,7 @@ import SensorDetails from "./components/views/sensorDetails";
 import GroupDetails from "./components/views/groupDetails";
 import TeamMemberDetails from "./components/views/teamMemberDetails";
 import Test from "./components/views/test";
+import AddGroupOfSensors from "./components/views/addGroupOfSensors";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
 
@@ -31,7 +32,8 @@ function App() {
                         <Route path="/sensors" exact component={Sensors}/>
                         <Route path="/sensors/:id" component={SensorDetails}/>
                         <Route path="/groups-of-sensors/" exact component={GroupsOfSensors}/>
-                        <Route path="/groups-of-sensors/:id" component={GroupDetails}/>
+                        <Route path="/add/groups-of-sensors" exact component={AddGroupOfSensors}/>
+                        <Route path="/groups-of-sensors/:id" exact component={GroupDetails}/>
                         <Route path="/team" exact component={Team}/>
                         <Route path="/team/:id" component={TeamMemberDetails}/>
                         <Route path="/contact" component={Contact}/>

@@ -222,7 +222,7 @@ body {
 
 .no-contact {
   border-radius: 5px;
-  padding: 5px 15px;
+  /*padding: 5px 15px;*/
   margin: 5px;
   line-height: 29px;
 }

@@ -9,7 +9,7 @@ const AlertDetailView = ({ a, onCloseClick }) => {
                 {/*<i className="fas fa-times fa-lg icon paint-violet"  onClick={onClick}></i>*/}
                 <ActionIcon onClick={onCloseClick} action="close" descr="close" height={15}/>
                 <div className="obj-details">
-                    <div>{a.date} / {a.time}</div>
+                    <div>{a.datetime}</div>
                     <div className="txt-semibold btn btn-small">
                         {a.datatype === "sensor"? "czujnik:" : "grupa:"}&nbsp;{a.name}
                     </div>

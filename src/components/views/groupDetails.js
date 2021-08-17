@@ -20,6 +20,7 @@ const GroupDetails = (props) => {
                 <Link to="/groups-of-sensors">
                     <ButtonFunc text={"powrót do listy"}/>
                 </Link>
+                <ButtonFunc text={"usuń tę grupę"}/>
             </div>
 
             <div className="content-3x">

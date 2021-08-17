@@ -10,9 +10,12 @@ const ListObjects =({list, type}) => {
                 to={`/${type === "group"? "groups-of-sensors" : "sensors"}/${obj.id}`}
             >
                 <div className="object shadow">
+                    <div>
+                        <img src={dot} alt="nie przypisano" height={10}/>
+                    </div>
+
                     {obj.name.trim() === ""
-                        ? <><img src={dot} alt="nie przypisano" height={10} />
-                            <div className="mrg-l">{obj.sn}</div></>
+                        ? <div className="mrg-l">{obj.sn}</div>
                         : obj.name}
                 </div>
             </Link>)
