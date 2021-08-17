@@ -34,6 +34,9 @@ const getGroupsOfSensors = [
         measurements: { avTemp: 18, avHumid: 45, avWind: 15},
         notes: "tu będzie jakaś ważna notatka"
     },
-]
+].map(groupOfSensors => {
+    groupOfSensors.getDisplayName = () => groupOfSensors.name
+    return groupOfSensors
+})
 
 export default getGroupsOfSensors;

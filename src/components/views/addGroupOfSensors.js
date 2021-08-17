@@ -1,35 +1,20 @@
 import ButtonFunc from "../buttonFunc";
 import {Link} from "react-router-dom";
 import { useState } from "react";
+import DisplayChoices from "../displayChoices";
+import fakeMeasurements from "../../FakeFrontend/getGroupMeasurements";
 
 
 const AddGroupOfSensors = () => {
     const [gname, setGname] = useState("");
     const [gnotes, setGnotes] = useState("");
     const [gperiod, setGperiod] = useState("");
-    let [choices, setChoices] = useState([]);
-
-    // let chosenMeasurements = [];
-
-    const measurements = [
-        "temperatura", "wilgotność powietrza", "wilgotność podłoża",
-        "ciśnienie", "oświetlenie", "stężenie CO2", "stężenie EC",
-        "ilość tVOC", "aktywność", "dystans", "poziom wody"
-    ];
 
     const onSubmit = (e) => {
+        // trzeba bedzie zalaczyc liste choices przed wyslaniem!
         e.preventDefault();
     }
 
-    const toggleChoices = (m) => {
-        console.log("list: ", choices)
-        choices.includes(m)
-            ? choices = choices.filter(choice => choice !== m)
-            : choices.push(m)
-        setChoices([...choices])
-
-        console.log("list: ", choices)
-    }
 
     return(
         <div className="main">
@@ -76,19 +61,9 @@ const AddGroupOfSensors = () => {
                             <div className="head-txt">
                                 Zaznacz dane, które chcesz monitorować w grupie
                             </div>
-                                <div className="object-container">
 
-                                    {measurements.map(m =>
-                                        <div
-                                            key={m.toString()}
-                                            className={`object-choices shadow ${choices.includes(m) ? " choice-active" : ""}`}
-                                            onClick={() => toggleChoices(m)}
-                                        >
-                                            {m}
-                                        </div>
+                            <DisplayChoices availableChoices={fakeMeasurements} />
 
-                                        )}
-                                </div>
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">

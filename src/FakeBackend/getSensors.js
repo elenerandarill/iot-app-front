@@ -142,6 +142,9 @@ const getSensors = [
         GPS: [20.5684, 28.1284],
         notes: "jakas tam notatka"
     },
-]
+].map(sensor => {
+    sensor.getDisplayName = () => sensor.name.trim() === "" ? sensor.sn : sensor.name
+    return sensor
+})
 
 export default getSensors;
