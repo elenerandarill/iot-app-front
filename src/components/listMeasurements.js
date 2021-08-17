@@ -1,9 +1,9 @@
-const ListMeasurements = (sensorObj) => {
+const ListMeasurements = ({sensorObj}) => {
     // console.log("przekazano: ", sensorObj)
 
     return (
         <div className="txt-violet txt-semibold object-container">
-            {Object.entries(sensorObj.sensorObj.measurements).map(([key, value]) =>
+            {Object.entries(sensorObj.measurements).map(([key, value]) =>
                 <div key={key.toString()} className="mrg-tb mrg-lr">
                     <div className="txt-water">
                         {key === "temperature" && "temperatura | °C"}

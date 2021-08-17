@@ -62,9 +62,9 @@ const TeamMemberDetails = (props) => {
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
-                                        {person.groups.length === 0
+                                        {person.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={person.groups} list={getGroupsOfSensors} linkTo={"group"}/>
+                                            : <ListAssignedObjects assigned={person.assigned} list={getGroupsOfSensors} linkTo={"group"}/>
                                         }
                                     </div>
                                 </div>

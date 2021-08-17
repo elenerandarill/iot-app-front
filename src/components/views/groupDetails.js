@@ -77,7 +77,7 @@ const GroupDetails = (props) => {
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">CZUJNIKI ({group.sensors.length})</div>
+                            <div className="mrg-tb">CZUJNIKI ({group.assigned.length})</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
@@ -85,9 +85,9 @@ const GroupDetails = (props) => {
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
-                                        {group.sensors.length === 0
+                                        {group.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={group.sensors} list={getSensors} linkTo={"sensor"}/>}
+                                            : <ListAssignedObjects assigned={group.assigned} list={getSensors} linkTo={"sensor"}/>}
 
                                     </div>
                                 </div>
