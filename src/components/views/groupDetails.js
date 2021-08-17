@@ -3,6 +3,8 @@ import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import getSensors from "../../FakeBackend/getSensors";
 import ButtonFunc from "../buttonFunc";
 import ListAssignedObjects from "../listAssignedObjects";
+import EditAssigned from "../editAssigned";
+
 
 const GroupDetails = (props) => {
     const id = props.match.params.id;
@@ -18,7 +20,7 @@ const GroupDetails = (props) => {
         <div className="main">
             <div className="buttons-container">
                 <Link to="/groups-of-sensors">
-                    <ButtonFunc text={"powrót do listy"}/>
+                    <ButtonFunc text={"powrót do listy"} link={"/groups-of-sensors"}/>
                 </Link>
                 <ButtonFunc text={"usuń tę grupę"}/>
             </div>
@@ -31,7 +33,7 @@ const GroupDetails = (props) => {
                     <div className="white-space top-contact">
 
                         <div className="shadow object">
-                            <div>NAZWA</div>
+                            <div className="head-txt">NAZWA</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
@@ -43,7 +45,7 @@ const GroupDetails = (props) => {
                         </div>
 
                         <div className="shadow object">
-                            <div>NOTATKA</div>
+                            <div className="head-txt">NOTATKA</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
@@ -55,7 +57,7 @@ const GroupDetails = (props) => {
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">OSTATNI POMIAR</div>
+                            <div className="head-txt">OSTATNI POMIAR</div>
                             <div className="position-cent">
                                 <div className="txt-violet txt-semibold object-container">
 
@@ -77,11 +79,14 @@ const GroupDetails = (props) => {
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">CZUJNIKI ({group.assigned.length})</div>
+                            <div className="head-txt ">CZUJNIKI ({group.assigned.length})</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc text={"edytuj"}/>
+                                        <ButtonFunc
+                                            text={"edytuj"}
+                                            link={`/groups-of-sensors/${group.id}/edit`}
+                                        />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 

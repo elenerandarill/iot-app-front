@@ -11,12 +11,13 @@ const ListObjects =({list, type}) => {
             >
                 <div className="object shadow">
                     <div>
-                        {obj.assigned.length === 0 && <img src={dot} alt="nie przypisano" height={10}/>}
+                        {obj.assigned.length === 0 &&
+                            <img className="dot" src={dot} alt="nie przypisano" height={10}/>}
                     </div>
 
                     {obj.name.trim() === ""
-                        ? <div className="mrg-l">{obj.sn}</div>
-                        : <div className="mrg-l">{obj.name}</div>}
+                        ? <div>{obj.sn}</div>
+                        : <div>{obj.name}</div>}
                 </div>
             </Link>)
     )

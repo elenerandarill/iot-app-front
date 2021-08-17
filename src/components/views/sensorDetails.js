@@ -84,7 +84,10 @@ const SensorDetails = (props) => {
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc text={"edytuj"}/>
+                                        <ButtonFunc
+                                            text={"edytuj"}
+                                            link={`/sensors/${sensor.id}/edit`}
+                                        />
                                     </div>
 
                                     <div className="object-container txt-violet txt-semibold">

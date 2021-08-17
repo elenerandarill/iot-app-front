@@ -13,7 +13,11 @@ const Sensors = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"zakup czujniki"} add={true} link=""/>
+                <ButtonFunc
+                    text={"zakup czujniki"}
+                    add={true}
+                    link=""
+                />
             </div>
 
             <div className="content-3x">

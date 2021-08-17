@@ -21,9 +21,9 @@ const GroupsOfSensors = () => {
             <div className="content-3x">
                 <div className="content-srodek">
 
-                    <div className="headline-color btn-section">Grupy czujników</div>
+                    <div className="headline-color">Grupy czujników</div>
                     <div className="white-space top-contact">
-                        <div className="centered"><SearchBox/></div>
+                        <SearchBox/>
                         <div className="object-container">
 
                             <ListObjects list={getGroupsOfSensors} type={"group"}/>

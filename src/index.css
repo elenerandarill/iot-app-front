@@ -127,7 +127,6 @@ body {
 
 .btn:active {
   transform: scale(0.98);
-  color: var(--blue);
 }
 
 .menu-btn {
@@ -183,6 +182,11 @@ body {
   margin: 3px 0 5px 0;
 }
 
+/*.head-light {*/
+/*  letter-spacing: 2px;*/
+/*  text-transform: uppercase;*/
+/*}*/
+
 .element {
   /*height: 180px;*/
   height: 370px;
@@ -215,14 +219,14 @@ body {
 
 .white-space {
   justify-self: stretch;
-  padding: 15px 30px;
+  padding: 20px;
   background: white;
   box-shadow: 0 0 4px 0 var(--gray02);
 }
 
 .no-contact {
   border-radius: 5px;
-  /*padding: 5px 15px;*/
+  padding: 15px;
   margin: 5px;
   line-height: 29px;
 }
@@ -254,27 +258,22 @@ body {
 
 .input {
   max-width: 700px;
-  width: 100%;
+  width: 70%;
   font-size: 16px;
   text-rendering: auto;
   text-align: center;
   background: none;
-  padding: 8px 10px 0 10px;
-  margin: 5px 0 15px 0;
+  /*padding: 8px 10px 0 10px;*/
+  margin: 15px;
   border: none;
   border-bottom: 1px var(--gray02) solid;
 }
 
  /*---- icons ----*/
 
-/*.icon {*/
-/*  position: relative;*/
-/*}*/
-
-/*.icon:hover {*/
-/*  cursor: pointer;*/
-/*  color: var(--blue);*/
-/*}*/
+img.dot {
+  margin-right: 10px;
+}
 
 .icon-container {
   display: flex;
@@ -420,6 +419,39 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.object-choices{
+  min-width: 180px;
+  min-height: 50px;
+  margin: 5px;
+  padding: 5px 15px;
+  color: var(--water);
+  border-radius: 5px;
+  border: white solid 1px;
+  cursor: pointer;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.object-choices:hover {
+  border: var(--blue) solid 1px;
+  color: var(--blue);
+}
+
+.choice-active {
+  border: var(--blue) solid 1px;
+  color: var(--gray01);
+  background: var(--blue);
+}
+.choice-active:hover {
+  border: var(--gray01) solid 1px;
+  color: var(--gray01);
+  background: var(--blue);
+}
+
 .edit-objs-btn {
   padding: 0 0 15px 0;
   flex: none;

@@ -19,6 +19,10 @@
     margin: 15px 0;
 }
 
+.mrg-t {
+    margin-top: 15px;
+}
+
 .mrg-lr {
     margin-right: 30px;
     margin-left: 30px;
@@ -72,5 +76,9 @@
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.txt-up {
+    text-transform: uppercase;
 }
 

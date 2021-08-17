@@ -17,10 +17,8 @@ const TeamMemberDetails = (props) => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to="/team">
-                    <ButtonFunc text={"powrót do listy"}/>
-                </Link>
-                <ButtonFunc text={"usuń tę osobę"}/>
+                <ButtonFunc text={"powrót do listy"} link="/team"/>
+                <ButtonFunc text={"usuń tę osobę"} link="/person/delete"/>
             </div>
 
             <div className="content-3x">
@@ -31,7 +29,7 @@ const TeamMemberDetails = (props) => {
                     <div className="white-space top-contact">
 
                         <div className="shadow object">
-                            <div>IMIĘ I NAZWISKO</div>
+                            <div className="head-txt">IMIĘ I NAZWISKO</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
@@ -42,7 +40,7 @@ const TeamMemberDetails = (props) => {
                             </div>
                         </div>
                         <div className="shadow object">
-                            <div>NOTATKA</div>
+                            <div className="head-txt">NOTATKA</div>
                             <div className="position-cent">
                                 <input
                                     type="text"
@@ -54,11 +52,11 @@ const TeamMemberDetails = (props) => {
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb">DOSTĘP DO GRUP</div>
+                            <div className="head-txt">DOSTĘP DO GRUP</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc text={"edytuj"}/>
+                                        <ButtonFunc text={"edytuj"} link="team/:id/edit"/>
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
