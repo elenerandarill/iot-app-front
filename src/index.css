@@ -190,10 +190,10 @@ a {
   margin: 3px 0 5px 0;
 }
 
-/*.head-light {*/
-/*  letter-spacing: 2px;*/
-/*  text-transform: uppercase;*/
-/*}*/
+.head-light {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
 
 .element {
   /*height: 180px;*/
@@ -227,7 +227,7 @@ a {
 
 .white-space {
   justify-self: stretch;
-  padding: 20px;
+  padding: 20px 10px 30px 10px;
   background: white;
   box-shadow: 0 0 4px 0 var(--gray02);
 }
@@ -241,7 +241,7 @@ a {
 
 .top-contact {
   border-radius: 0 0 5px 5px;
-  padding: 10px;
+  /*padding: 10px;*/
 }
 
 .top-contact-mrg {
@@ -263,6 +263,18 @@ a {
   text-align: center;
   align-items: center;
   line-height: 28px;
+}
+
+.listed-attribute {
+  border-radius: 5px;
+  padding: 15px;
+  margin: 5px;
+  line-height: 29px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .input {
@@ -402,6 +414,7 @@ img.dot {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  padding: 15px 0 5px 0;
 }
 
 .object-container-grid {
@@ -409,7 +422,7 @@ img.dot {
   grid-template-columns: auto;
   grid-template-rows: auto auto;
   grid-template-areas: "edit" "objects-list";
-  padding: 10px;
+  padding: 10px 5px;
 }
 
 .object {

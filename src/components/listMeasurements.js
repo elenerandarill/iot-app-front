@@ -1,9 +1,19 @@
 const ListMeasurements = ({sensorObj}) => {
     // console.log("przekazano: ", sensorObj)
+    // sprawdzic czy ostatni pomiar jest na koncu listy!;
+
+    const idx = sensorObj.measurements.length - 1;
+    const latestData = sensorObj.measurements[idx];  //obj
 
     return (
+        <div>
+            <div className="centered head-light txt-blue txt-semibold">
+                {latestData.datetime}
+            </div>
+
         <div className="txt-violet txt-semibold object-container">
-            {Object.entries(sensorObj.measurements).map(([key, value]) =>
+
+            {Object.entries(latestData.data).map(([key, value]) =>
                 <div key={key.toString()} className="mrg-tb mrg-lr">
                     <div className="txt-water">
                         {key === "temperature" && "temperatura | °C"}
@@ -19,12 +29,13 @@ const ListMeasurements = ({sensorObj}) => {
                         {key === "water_level" && "poziom wody | cm"}
                         {key === "water_leak" && "wyciek"}
                         {key === "door" && "drzwi"}
-
                     </div>
                     <h1>{value}</h1>
                 </div>
             )}
-        </div>)
+        </div>
+        </div>
+    )
 }
 
 export default ListMeasurements;

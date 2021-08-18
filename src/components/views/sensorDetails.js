@@ -4,6 +4,7 @@ import ListMeasurements from "../listMeasurements.js";
 import ListAssignedObjects from "../listAssignedObjects";
 import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
+import { InputAttribute, DisplayAttribute } from "../attributes";
 
 const SensorDetails = (props) => {
 
@@ -24,60 +25,42 @@ const SensorDetails = (props) => {
                     </div>
                     <div className="white-space top-contact">
 
-                        <div className="shadow object">
-                            <div className="head-txt">NAZWA</div>
-                            <div className="position-cent">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    className="input"
-                                    placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
-                                />
-                            </div>
-                        </div>
-                        <div className="shadow object">
-                            <div className="head-txt">NOTATKA</div>
-                            <div className="position-cent">
-                                <input
-                                    type="text"
-                                    name="notes"
-                                    className="input"
-                                    placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}
-                                />
-                            </div>
-                        </div>
+                        <InputAttribute
+                            label="nazwa"
+                            name="sensorName"
+                            placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
+                            // onChange={}
+                        />
 
-                        <div className="shadow object">
-                            <div className="head-txt">NUMER SERYJNY</div>
-                            <div className="position-cent">
-                                <div className="txt-water txt-semibold">{sensor.sn}</div>
-                            </div>
-                        </div>
+                        <InputAttribute
+                            label="notatka"
+                            name="sensorNotes"
+                            placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}
+                            // onChange={}
+                        />
 
-                        <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="mrg-tb head-txt">BATERIA</div>
-                            <div className="position-cent">
-                                <div className="txt-water txt-semibold">{sensor.battery}%</div>
-                            </div>
-                        </div>
+                        <DisplayAttribute name="numer seryjny" value={sensor.sn} />
+                        <DisplayAttribute name="bateria" value={sensor.battery + "%"} />
+                        <DisplayAttribute name="GPS" value={sensor.GPS[0] + ", " + sensor.GPS[1]} />
 
-                        <div className="shadow object">
-                            <div className="head-txt">GPS</div>
-                            <div className="position-cent">
-                                <div className="txt-water txt-semibold">{sensor.GPS[0]}, {sensor.GPS[1]}</div>
-                            </div>
-                        </div>
-
-                        <div className="shadow no-contact centered pad-bot-15px">
+                        <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">OSTATNI POMIAR</div>
                             <div className="position-cent">
-
                                 <ListMeasurements sensorObj={sensor}/>
-
                             </div>
                         </div>
 
-                        <div className="shadow no-contact centered pad-bot-15px">
+                        <div className="shadow listed-attribute">
+                            <div className="mrg-tb head-txt">tutaj wyświetlę sobie wykresik ostanich pomiarów!</div>
+                            <div className="position-cent">
+                                tutaj wyświetlę sobie wykresik ostanich pomiarów!
+                                tutaj wyświetlę sobie wykresik ostanich pomiarów!
+                                tutaj wyświetlę sobie wykresik ostanich pomiarów!
+                                tutaj wyświetlę sobie wykresik ostanich pomiarów!
+                            </div>
+                        </div>
+
+                        <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">PRZYPISANY DO GRUP</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
@@ -95,9 +78,6 @@ const SensorDetails = (props) => {
                                     </div>
                                 </div>
                             </div>
-
-                            {/*<div className="btn btn-small txt-center mrg-tb">dodaj grupę</div>*/}
-                            {/*<div className="btn btn-small txt-center mrg-tb">wyczyść grupy</div>*/}
                         </div>
                     </div>
                 </div>

@@ -20,12 +20,13 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                        edycja {headline}
+                        edycja {headline} - {object.name}
                     </div>
 
-                    <div className="shadow top-contact centered txt-center">
+                    <div className="shadow white-space top-contact  txt-center">
                         <div className="head-txt">
-                            Zaznacz czujniki, które chcesz monitorować w grupie
+                            {object.sn ? "Zaznacz grupy, do których chcesz przypisać czujnik "
+                                : "Zaznacz czujniki, które chcesz monitorować w grupie "}
                         </div>
                         <div className="object-container">
                             <DisplayChoices availableChoices={availableChoices} />

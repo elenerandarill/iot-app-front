@@ -18,7 +18,14 @@
 .txt-water{
     color: var(--water);
 }
+.txt-blue{
+    color: var(--blue);
+}
 
+
+.txt-gray02 {
+    color: var(--gray02);
+}
 
 .bgd-gray {
     background: var(--gray01);

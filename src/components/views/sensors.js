@@ -1,9 +1,4 @@
-import { Link } from "react-router-dom";
-// import plus from "../../media/plus.svg";
-import dot from "../../media/dot.svg";
 import getSensors from "../../FakeBackend/getSensors";
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import SearchBox from "../searchBox";
 import ButtonFunc from "../buttonFunc";
 import ListObjects from "../listObjects";
 
@@ -21,17 +16,10 @@ const Sensors = () => {
 
             <div className="content-3x">
                 <div className="content-srodek">
-
                     <div className="headline-color">Twoje czujniki</div>
                     <div className="white-space top-contact">
-                        <SearchBox/>
-                        <div className="object-container">
-
-                            <ListObjects list={getSensors} linkTo={"sensor"}/>
-
-                        </div>
+                        <ListObjects list={getSensors} linkTo={"sensor"}/>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -1,9 +1,8 @@
-import {Link} from "react-router-dom";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import getSensors from "../../FakeBackend/getSensors";
 import ButtonFunc from "../buttonFunc";
 import ListAssignedObjects from "../listAssignedObjects";
-import EditAssigned from "../editAssigned";
+import { InputAttribute } from "../attributes";
 
 
 const GroupDetails = (props) => {
@@ -29,32 +28,22 @@ const GroupDetails = (props) => {
                         {group.name}
                     </div>
                     <div className="white-space top-contact">
+                        <InputAttribute
+                            label="nazwa"
+                            name="groupName"
+                            placeholder={group.name}
+                            // onChange={}
+                        />
 
-                        <div className="shadow object">
-                            <div className="head-txt">NAZWA</div>
-                            <div className="position-cent">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    className="input"
-                                    placeholder={group.name}
-                                />
-                            </div>
-                        </div>
+                        <InputAttribute
+                            label="notatka"
+                            name="groupNotes"
+                            placeholder={group.notes === "" ? "Tu wpisz notatkę." : group.notes}
+                            // onChange={}
+                        />
 
-                        <div className="shadow object">
-                            <div className="head-txt">NOTATKA</div>
-                            <div className="position-cent">
-                                <input
-                                    type="text"
-                                    name="notes"
-                                    className="input"
-                                    placeholder={group.notes === "" ? "Tu wpisz notatkę." : group.notes}
-                                />
-                            </div>
-                        </div>
 
-                        <div className="shadow no-contact centered pad-bot-15px">
+                        <div className="shadow listed-attribute">
                             <div className="head-txt">OSTATNI POMIAR</div>
                             <div className="position-cent">
                                 <div className="txt-violet txt-semibold object-container">

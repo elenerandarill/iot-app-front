@@ -27,9 +27,26 @@ const DisplayChoices = ({ availableChoices }) => {
 
     return (
 
-        <div className="object-container">
+        <div className="object-container-grid">
             <SearchBox value={searchQuery} onChange={(query) => handleSearch(query)}/>
-            {/*<SearchBox />*/}
+
+            <div className="object-container">
+                <div
+                    className="btn btn-color insert-button"
+                    onClick={() => console.log("Zaznaczono wszystkie!")}
+                >
+                    zaznacz wszystkie
+                </div>
+
+                <div
+                    className="btn btn-color insert-button"
+                    onClick={() => console.log("Wysłano!")}
+                >
+                    gotowe
+                </div>
+            </div>
+
+            <div className="object-container">
             {queryChoices.map(choice =>
                 <div
                     key={choice.id}
@@ -40,8 +57,9 @@ const DisplayChoices = ({ availableChoices }) => {
                     {choice.getDisplayName()}
                 </div>
             )}
-
+            </div>
         </div>
+
     );
 };
 

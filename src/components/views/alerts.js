@@ -13,8 +13,6 @@ const Alerts = () => {
         <div className="main">
             <div className="buttons-container">
                 <ButtonFunc text={"alert"} add={true}/>
-                <ButtonFunc text={"przeczytano wszystkie"}/>
-                <ButtonFunc text={"usuń wszystkie"}/>
             </div>
 
             <div className="content-3x">
@@ -25,6 +23,11 @@ const Alerts = () => {
                     <div className="white-space top-contact">
                         <div className="position-cent">
                             <SearchBox/>
+                        </div>
+
+                        <div className="object-container">
+                        <ButtonFunc text={"przeczytano wszystkie"}/>
+                        <ButtonFunc text={"usuń wszystkie"}/>
                         </div>
 
                         {getAlerts.length === 0

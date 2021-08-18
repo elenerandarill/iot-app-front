@@ -17,7 +17,7 @@ const Team = () => {
 
                     <div className="headline-color">Osoby w teamie</div>
                     <div className="white-space top-contact">
-                        <div className="centered"><SearchBox/></div>
+                        {/*<div className="centered"><SearchBox/></div>*/}
                         <div className="object-container">
                             {getPeople.map(p =>
                                 <Link key={p.id}

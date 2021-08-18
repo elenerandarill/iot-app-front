@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const SearchBox = ({value, onChange}) => {
-    console.log("inBox: ", value);
     return (
         <div  className="position-cent">
             <input

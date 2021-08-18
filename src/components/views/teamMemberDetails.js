@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import ButtonFunc from "../buttonFunc";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import ListAssignedObjects from "../listAssignedObjects";
+import {InputAttribute} from "../attributes";
 
 const TeamMemberDetails = (props) => {
     const id = props.match.params.id;
@@ -28,30 +29,20 @@ const TeamMemberDetails = (props) => {
                     </div>
                     <div className="white-space top-contact">
 
-                        <div className="shadow object">
-                            <div className="head-txt">IMIĘ I NAZWISKO</div>
-                            <div className="position-cent">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    className="input"
-                                    placeholder={person.fullname}
-                                />
-                            </div>
-                        </div>
-                        <div className="shadow object">
-                            <div className="head-txt">NOTATKA</div>
-                            <div className="position-cent">
-                                <input
-                                    type="text"
-                                    name="notes"
-                                    className="input"
-                                    placeholder={person.notes === "" ? "Tu wpisz notatkę." : person.notes}
-                                />
-                            </div>
-                        </div>
+                        <InputAttribute
+                            label="imię i nazwisko"
+                            name="personFullname"
+                            placeholder={person.fullname}
+                            // onChange={}
+                        />
+                        <InputAttribute
+                            label="notatka"
+                            name="personNotes"
+                            placeholder={person.notes === "" ? "Tu wpisz notatkę." : person.notes}
+                            // onChange={}
+                        />
 
-                        <div className="shadow no-contact centered pad-bot-15px">
+                        <div className="shadow listed-attribute">
                             <div className="head-txt">DOSTĘP DO GRUP</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
