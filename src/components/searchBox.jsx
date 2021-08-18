@@ -2,15 +2,16 @@ import React from 'react';
 
 
 const SearchBox = ({value, onChange}) => {
+    console.log("inBox: ", value);
     return (
-        <div className="position-cent">
+        <div  className="position-cent">
             <input
+                className="input"
                 type="text"
                 name="query"
-                className="input"
                 placeholder="Szukaj"
-                // value={value}
-                // onChange={e => onChange(e.currentTarget.value)}
+                value={value}
+                onChange={e => {console.log(e.currentTarget.value); onChange(e.currentTarget.value)}}
             />
         </div>
     );

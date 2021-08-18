@@ -57,7 +57,7 @@ const Login = ({onAdd}) => {
                     <input
                         type="submit"
                         value="Zaloguj"
-                        className="btn btn-color headline-color mrg-tb"
+                        className="btn btn-color"
                     />
                     <div>Nie pamiętasz hasła?</div>
                 </form>

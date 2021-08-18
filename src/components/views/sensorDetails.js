@@ -14,9 +14,7 @@ const SensorDetails = (props) => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to="/sensors">
-                    <ButtonFunc text={"powrót do listy"}/>
-                </Link>
+                <ButtonFunc text={"powrót do listy"} link="/sensors"/>
             </div>
 
             <div className="content-3x">

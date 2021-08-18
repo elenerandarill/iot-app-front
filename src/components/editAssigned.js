@@ -1,4 +1,3 @@
-import {Link} from "react-router-dom";
 import ButtonFunc from "./buttonFunc";
 import DisplayChoices from "./displayChoices";
 
@@ -12,13 +11,10 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to="/groups-of-sensors">
                     <ButtonFunc
-                        text={"powrót do grupy"}
+                        text={"anuluj"}
                         link={`/${linkTo}/${object.id}`}
                     />
-                </Link>
-                <ButtonFunc text={"usuń tę grupę"}/>
             </div>
 
             <div className="content-3x">
@@ -27,7 +23,7 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
                         edycja {headline}
                     </div>
 
-                    <div className="shadow no-contact centered txt-center">
+                    <div className="shadow top-contact centered txt-center">
                         <div className="head-txt">
                             Zaznacz czujniki, które chcesz monitorować w grupie
                         </div>

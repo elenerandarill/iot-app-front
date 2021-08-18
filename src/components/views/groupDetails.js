@@ -19,9 +19,7 @@ const GroupDetails = (props) => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <Link to="/groups-of-sensors">
-                    <ButtonFunc text={"powrót do listy"} link={"/groups-of-sensors"}/>
-                </Link>
+                <ButtonFunc text={"powrót do listy"} link={"/groups-of-sensors"}/>
                 <ButtonFunc text={"usuń tę grupę"}/>
             </div>
 

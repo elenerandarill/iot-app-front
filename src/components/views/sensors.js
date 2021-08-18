@@ -5,7 +5,6 @@ import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import SearchBox from "../searchBox";
 import ButtonFunc from "../buttonFunc";
-import ListAssignedObjects from "../listAssignedObjects";
 import ListObjects from "../listObjects";
 
 const Sensors = () => {

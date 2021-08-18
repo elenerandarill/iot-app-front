@@ -99,6 +99,10 @@ body {
 }
 /* ----- Smaller elements ------ */
 
+a {
+  text-decoration:none;
+}
+
 /* ------ Btn ------ */
 
 .buttons-container {
@@ -150,15 +154,19 @@ body {
   color: var(--gray01);
   font-family: "Segoe UI", sans-serif;
   font-size: 12px;
+  line-height: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 5px;
   background: var(--blue);
   /*background-image: linear-gradient(var(--blue), var(--water));*/
-  padding: 15px 40px;
+  padding: 0 40px;
   text-align: center;
+  min-height: 45px;
+
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: auto 5px;
 }
 
@@ -233,6 +241,7 @@ body {
 
 .top-contact {
   border-radius: 0 0 5px 5px;
+  padding: 10px;
 }
 
 .top-contact-mrg {
@@ -452,6 +461,13 @@ img.dot {
   background: var(--blue);
 }
 
+.obj-sn {
+  font-family: "Segoe UI Regular", sans-serif;
+  font-size: 14px;
+  line-height: 15px;
+  color: var(--gray02);
+}
+
 .edit-objs-btn {
   padding: 0 0 15px 0;
   flex: none;
@@ -484,6 +500,10 @@ img.dot {
 .alerts {
   min-height: 0;
   margin-bottom: 10px;
+}
+
+.mark-as-new {
+  border-left: var(--blue) solid 4px;
 }
 
 .alert-txt {
