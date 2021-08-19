@@ -12,6 +12,7 @@ export const InputAttribute = ({ label, name, placeholder }) => {
                     name={name}
                     className="input"
                     placeholder={placeholder}
+                    // onFocus={(e) => onFocusShow()}
                 />
             </div>
         </div>
