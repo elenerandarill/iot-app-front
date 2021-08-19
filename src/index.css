@@ -43,14 +43,17 @@ body {
 
 .topbar {
   grid-area: topbar;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "alerts restore";
+  /*display: grid;*/
+  /*grid-template-columns: auto auto;*/
+  /*grid-template-rows: auto;*/
+  /*grid-template-areas:*/
+  /*  "alerts restore";*/
 
-  padding-top: 25px;
+  /*padding-top: 25px;*/
   border-bottom: var(--gray02) solid 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .main {
@@ -314,15 +317,17 @@ img.dot {
 ########################
 
 .topbar-alert {
-  font-family: "Segoe UI Regular", "Segoe UI", serif;
-  color: var(--blue);
-  font-weight: bold;
-  grid-area: alerts;
+  /*grid-area: alerts;*/
+  font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
+  background: yellow;
+
+  display: flex;
+  flex-direction: column;
+  justify-self: right;
 }
 
 .topbar-restore {
-  text-align: right;
-  grid-area: restore;
+  display: flex;
 }
 
 .sidebar-logo {
@@ -340,6 +345,7 @@ img.dot {
   margin: 0 5px 0 5px;
 }
 
+/*?????*/
 .edit {
   justify-self: end;
   grid-area: edit;
@@ -465,13 +471,15 @@ img.dot {
 
 .choice-active {
   border: var(--blue) solid 1px;
-  color: var(--gray01);
-  background: var(--blue);
+  color: var(--blue);
+  font-family: "Segoe UI Semibold", sans-serif;
+  background: white;
 }
 .choice-active:hover {
-  border: var(--gray01) solid 1px;
-  color: var(--gray01);
-  background: var(--blue);
+  border: var(--blue) solid 1px;
+  color: var(--blue);
+  font-family: "Segoe UI Semibold", sans-serif;
+  background: white;
 }
 
 .obj-sn {

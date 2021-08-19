@@ -1,12 +1,20 @@
 import gear from "../media/gear.svg";
+import getAlerts from "../FakeBackend/getAlerts";
 
 const TopBar = () => {
+
+    const countNew = () => {
+        return getAlerts.filter(alert => alert.new === true).length
+    }
+
     return(
-        <div className="topbar">
-            <div className="topbar-alert">Nie masz nowych alertów.</div>
+        <div className="topbar txt-semibold txt-blue">
+            <div>
+                {countNew() === 0 ? "Nie masz nowych alertów" : "Nowe alerty: " + countNew()}
+            </div>
             <div className="topbar-restore">
-                <img src={gear} className="gear edit" alt="restore default layout"/>
-                <button className="btn mrg-r">widok&nbsp;domyślny</button>
+                    <img src={gear} className="gear" alt="restore default layout"/>
+                    <div className="mrg-r">widok&nbsp;domyślny</div>
             </div>
         </div>
     )

@@ -2,10 +2,12 @@ import { useState } from "react";
 import SearchBox from "./searchBox";
 
 
-const DisplayChoices = ({ availableChoices }) => {
-    let [selected, setSelected] = useState([]);
+const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
+    let [selected, setSelected] = useState(alreadyAssigned);
     let [searchQuery, setSearchQuery] = useState("");
     let [queryChoices, setQueryChoices] = useState(availableChoices);
+
+    //availableChoices type: [{},{},{},...] lista obiektów
 
     const toggleChoices = (choice) => {
         console.log("list: ", selected)

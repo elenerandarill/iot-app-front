@@ -17,6 +17,7 @@ import AddGroupOfSensors from "./components/views/addGroupOfSensors";
 import EditAssigned from "./components/editAssigned";
 import EditSensor from "./components/views/editSensor";
 import EditGroupOfSensors from "./components/views/editGroupOfSensors";
+import EditPersonGroups from "./components/views/editPersonGroups";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
 
@@ -40,7 +41,8 @@ function App() {
                         <Route path="/groups-of-sensors/:id" exact component={GroupDetails}/>
                         <Route path="/groups-of-sensors/:id/edit" exact component={EditGroupOfSensors}/>
                         <Route path="/team" exact component={Team}/>
-                        <Route path="/team/:id" component={TeamMemberDetails}/>
+                        <Route path="/team/:id" exact component={TeamMemberDetails}/>
+                        <Route path="/team/:id/edit" exact component={EditPersonGroups}/>
                         <Route path="/contact" component={Contact}/>
                 </UserViews>
             </Switch>

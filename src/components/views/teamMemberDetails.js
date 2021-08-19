@@ -47,13 +47,20 @@ const TeamMemberDetails = (props) => {
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc text={"edytuj"} link="team/:id/edit"/>
+                                        <ButtonFunc
+                                            text={"edytuj"}
+                                            link={`/team/${person.id}/edit`}
+                                        />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
                                         {person.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={person.assigned} list={getGroupsOfSensors} linkTo={"group"}/>
+                                            : <ListAssignedObjects
+                                                assigned={person.assigned}
+                                                list={getGroupsOfSensors}
+                                                linkTo={"group"}
+                                            />
                                         }
                                     </div>
                                 </div>

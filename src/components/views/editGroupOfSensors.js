@@ -8,7 +8,7 @@ const EditGroupOfSensors = (props) => {
     const group = getGroupsOfSensors.filter(g => g.id === id)[0];
 
     return (
-        <EditAssigned headline={"czujników grupy"} linkTo={"groups-of-sensors"}
+        <EditAssigned headline={"czujników grupy - "} linkTo={"groups-of-sensors"}
                       object={group} availableChoices={getSensors}/>
     )
 }
