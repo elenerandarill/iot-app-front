@@ -1,3 +1,4 @@
+import ButtonSendOne from "./buttonSendOne";
 
 
 export const InputAttribute = ({ label, name, placeholder }) => {
@@ -15,6 +16,7 @@ export const InputAttribute = ({ label, name, placeholder }) => {
                     // onFocus={(e) => onFocusShow()}
                 />
             </div>
+            <ButtonSendOne text="zapisz" forField={label}/>
         </div>
     );
 };

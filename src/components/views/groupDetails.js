@@ -48,6 +48,7 @@ const GroupDetails = (props) => {
                             <div className="position-cent">
                                 <div className="txt-violet txt-semibold object-container">
 
+                                {/*do przerobienia!!!*/}
                                     {Object.entries(group.measurements).map(([key, value]) =>
                                         <div key={key.toString()} className="mrg-tb mrg-lr">
                                             {key === "avTemp" && "śr. temperatura"}

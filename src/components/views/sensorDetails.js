@@ -6,6 +6,8 @@ import {InputAttribute, DisplayAttribute} from "../attributes";
 import ChartTypeArea from "../chartTypeArea";
 import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
+import ChartTypeBar from "../chartTypeBar";
+import ButtonSendOne from "../buttonSendOne";
 
 const SensorDetails = (props) => {
 
@@ -13,25 +15,6 @@ const SensorDetails = (props) => {
 
     const sensor = getSensors.filter(s => s.id === id)[0];
 
-    // const showControls = () => {
-    //     console.log("showControls");
-    //     return <button>x</button>
-    // }
-
-    const getChartData = (obj) => {
-        let results = []
-        for (const item of obj.measurements) {
-            console.log("mamy dany obiekt: ", item);
-            const name = item.datetime.slice(11, 16);
-            results.push({
-                name: name,
-                temperature: item.data.temperature,
-                humidity: item.data.humidity
-            });
-            console.log("results: ", results);
-        }
-        return results
-    }
 
     return (
         <div className="main">
@@ -63,7 +46,16 @@ const SensorDetails = (props) => {
 
                         <DisplayAttribute name="numer seryjny" value={sensor.sn}/>
                         <DisplayAttribute name="bateria" value={sensor.battery + "%"}/>
-                        <DisplayAttribute name="GPS" value={sensor.GPS[0] + ", " + sensor.GPS[1]}/>
+
+                        <div className="shadow listed-attribute">
+                            <div className="head-txt">GPS</div>
+                            <div className="position-cent">
+                                <div className="txt-water txt-semibold">
+                                    {sensor.GPS[0] + ", " + sensor.GPS[1]}
+                                </div>
+                            </div>
+                            <ButtonSendOne text="ustaw nowy" forField="gps"/>
+                        </div>
 
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">OSTATNI POMIAR</div>
@@ -72,16 +64,21 @@ const SensorDetails = (props) => {
                             </div>
                         </div>
 
+                        {/* --- area chart --- */}
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">
-                                temperatura - wykres ostanich 5 pomiarów
+                                wykres ostanich 5 pomiarów
                             </div>
-
-                                <ChartTypeArea width={730} height={250} data={getChartData(sensor)}/>
-
-                            <div className="position-cent">
-                            </div>
+                            <ChartTypeArea height={250} object={sensor}/>
                         </div>
+                        {/* --- bar chart --- */}
+                        <div className="shadow listed-attribute">
+                            <div className="mrg-tb head-txt">
+                                wykres ostanich 5 pomiarów
+                            </div>
+                            <ChartTypeBar height={250} object={sensor}/>
+                        </div>
+
 
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">PRZYPISANY DO GRUP</div>
