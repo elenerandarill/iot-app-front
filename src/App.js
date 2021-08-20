@@ -14,10 +14,10 @@ import GroupDetails from "./components/views/groupDetails";
 import TeamMemberDetails from "./components/views/teamMemberDetails";
 import Test from "./components/views/test";
 import AddGroupOfSensors from "./components/views/addGroupOfSensors";
-import EditAssigned from "./components/editAssigned";
 import EditSensor from "./components/views/editSensor";
 import EditGroupOfSensors from "./components/views/editGroupOfSensors";
 import EditPersonGroups from "./components/views/editPersonGroups";
+import EditSensorChart from "./components/views/editSensorChart";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
 
@@ -36,6 +36,7 @@ function App() {
                         <Route path="/sensors" exact component={Sensors}/>
                         <Route path="/sensors/:id" exact component={SensorDetails}/>
                         <Route path="/sensors/:id/edit" exact component={EditSensor}/>
+                        <Route path="/sensors/:id/edit/chart" exact component={EditSensorChart}/>
                         <Route path="/groups-of-sensors/" exact component={GroupsOfSensors}/>
                         <Route path="/add/groups-of-sensors" exact component={AddGroupOfSensors}/>
                         <Route path="/groups-of-sensors/:id" exact component={GroupDetails}/>

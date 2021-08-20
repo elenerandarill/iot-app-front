@@ -4,46 +4,28 @@ import LogoutButton from "./logoutButton";
 import {Link} from "react-router-dom";
 
 
-const SideBar = ({ location }) => {
+const SideBar = ({location}) => {
     const onClick = () => {
         console.log("kliknięto ")
     }
 
-    return(
+    return (
         <div className="sidebar">
             <img src={logo_iot} alt="IoT Solution logo" className="sidebar-logo"/>
 
-            <Link to="/" className="txt-right">
-                <MenuButton text="Pulpit" path="/"/>
-            </Link>
-            <Link to="/alerts" className="txt-right">
-                <MenuButton text="Alerty"  path="/alerts"/>
-            </Link>
-            <Link to="/sensors" className="txt-right">
-                <MenuButton text="Czujniki"  path="/sensors"/>
-            </Link>
-            <Link to="/groups-of-sensors" className="txt-right">
-                <MenuButton text="Grupy" path="/groups-of-sensors"/>
-            </Link>
-            <Link to="/team" className="txt-right">
-                <MenuButton text="Zespół" path="/team"/>
-            </Link>
-            <Link to="/contact" className="txt-right">
-                <MenuButton text="Kontakt" path="/contact"/>
-            </Link>
+            <MenuButton text="Pulpit" path="/"/>
+            <MenuButton text="Alerty" path="/alerts"/>
+            <MenuButton text="Czujniki" path="/sensors"/>
+            <MenuButton text="Grupy" path="/groups-of-sensors"/>
+            <MenuButton text="Zespół" path="/team"/>
+            <MenuButton text="Kontakt" path="/contact"/>
 
             <LogoutButton text="Wyloguj" onClick={onClick}/>
             <br/>
             Tymczasowe skróty:
-            <Link to="/login">
-                <MenuButton text="Logowanie" path="/login"/>
-            </Link>
-            <Link to="/register">
-                <MenuButton text="Rejestracja" path="/register"/>
-            </Link>
-            <Link to="/test">
-                <MenuButton text="Test Requesta" path="/text"/>
-            </Link>
+            <MenuButton text="Logowanie" path="/login"/>
+            <MenuButton text="Rejestracja" path="/register"/>
+            <MenuButton text="Test Requesta" path="/text"/>
 
         </div>
     )

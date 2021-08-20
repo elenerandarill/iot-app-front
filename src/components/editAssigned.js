@@ -46,7 +46,10 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
                             {headline2(object)}
                         </div>
                         <div className="object-container">
-                            <DisplayChoices availableChoices={availableChoices} alreadyAssigned={getAssignedObjects(object)}/>
+                            <DisplayChoices
+                                availableChoices={availableChoices}
+                                alreadyAssigned={getAssignedObjects(object)}
+                            />
                         </div>
                     </div>
                 </div>

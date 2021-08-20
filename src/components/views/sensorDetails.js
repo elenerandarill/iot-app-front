@@ -1,4 +1,3 @@
-import {Link} from "react-router-dom";
 import ButtonFunc from "../buttonFunc";
 import ListMeasurements from "../listMeasurements.js";
 import ListAssignedObjects from "../listAssignedObjects";
@@ -8,6 +7,7 @@ import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import ChartTypeBar from "../chartTypeBar";
 import ButtonSendOne from "../buttonSendOne";
+import ChartDataChoices from "../chartDataChoices";
 
 const SensorDetails = (props) => {
 
@@ -69,8 +69,16 @@ const SensorDetails = (props) => {
                             <div className="mrg-tb head-txt">
                                 wykres ostanich 5 pomiarów
                             </div>
+
+                            {/*<ChartDataChoices source={sensor}/>*/}
+                            <ButtonFunc
+                                text={"edytuj"}
+                                link={`/sensors/${sensor.id}/edit/chart`}
+                            />
+
                             <ChartTypeArea height={250} object={sensor}/>
                         </div>
+
                         {/* --- bar chart --- */}
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">

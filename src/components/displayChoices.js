@@ -3,7 +3,7 @@ import SearchBox from "./searchBox";
 
 
 const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
-    let [selected, setSelected] = useState(alreadyAssigned);
+    let [selected, setSelected] = useState(alreadyAssigned);  //list
     let [searchQuery, setSearchQuery] = useState("");
     let [queryChoices, setQueryChoices] = useState(availableChoices);
 

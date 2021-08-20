@@ -1,17 +1,18 @@
 import { useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 const MenuButton = ({ text, path }) => {
-    const usePathname = () => {
-        const location = useLocation();
-        return location.pathname;
-    }
+    const location = useLocation();
 
     return (
-        <button
-            className={usePathname() === path ? "btn menu-btn menu-active" : "btn menu-btn menu-inactive"}
-        >
-            {text}
-        </button>
+        <Link to={path}>
+            <div
+                className={location.pathname === path ? "btn menu-active" : "btn menu-inactive"}
+            >
+                {text}
+            </div>
+        </Link>
     )
 }
 
