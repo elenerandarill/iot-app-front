@@ -1,22 +1,26 @@
 import { useState } from "react";
 import SearchBox from "./searchBox";
+import SelectChoices from "./selectChoices";
 
 
 const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
+
+    // availableChoices = [1, 2, 3, 4, 5]
+    // selected = [3, 4]
+    // 1. <SelectChoices availableChoices={[1, 2, 3, 4, 5]} selected={[3, 4]} onNewSelection={(newSelected) => onNewSelection(newSelected)}
+    // 2. User zaznacza element #2
+    // 3. Uruchamia sie SelectChoices.toggleChoices(), w ktorej powstaje nowa lista
+    // 4. toggleChoices() informuje rodzica o nowej liscie przez wywolanie onNewSelection() z nowa lista
+    // 5.
+
+
     let [selected, setSelected] = useState(alreadyAssigned);  //list
     let [searchQuery, setSearchQuery] = useState("");
     let [queryChoices, setQueryChoices] = useState(availableChoices);
 
     //availableChoices type: [{},{},{},...] lista obiektów
 
-    const toggleChoices = (choice) => {
-        console.log("list: ", selected)
-        selected.includes(choice)
-            ? selected = selected.filter(ch => ch !== choice)
-            : selected.push(choice)
-        setSelected([...selected])
-        console.log("list: ", selected)
-    }
+
 
     const handleSearch = (query) => {
         setSearchQuery(query);
@@ -27,6 +31,20 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
         setQueryChoices(filtered);
     }
 
+    const onSelectAllClick = () => {
+        let newSelection = [...selected]
+        // console.log("newSelection", newSelection)
+        // queryChoices.map(ch => newSelection.push(ch))
+        newSelection.push(...queryChoices)
+        const uniqueSelection = Array.from(new Set(newSelection))
+        console.log("uniqueSelection: ",uniqueSelection)
+        setSelected(uniqueSelection)
+    };
+
+    // const onSelectNoneClick = () => {
+    //     );
+    // };
+
     return (
 
         <div className="object-container-grid">
@@ -35,31 +53,25 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
             <div className="object-container">
                 <div
                     className="btn btn-color insert-button"
-                    onClick={() => console.log("Zaznaczono wszystkie!")}
+                    onClick={() => onSelectAllClick()}
                 >
                     zaznacz wszystkie
                 </div>
-
                 <div
                     className="btn btn-color insert-button"
-                    onClick={() => console.log("Wysłano!")}
+                    onClick={() => setSelected([])}
                 >
-                    gotowe
+                    odznacz wszystkie
                 </div>
+
             </div>
 
-            <div className="object-container">
-            {queryChoices.map(choice =>
-                <div
-                    key={choice.id}
-                    className={`object-choices shadow ${selected.includes(choice) 
-                        ? " choice-active" : ""}`}
-                    onClick={() => toggleChoices(choice)}
-                >
-                    {choice.getDisplayName()}
-                </div>
-            )}
-            </div>
+            <SelectChoices
+                availableChoices={queryChoices}
+                selected={selected}
+                // onNewSelection={(newSelected) => onNewSelection(newSelected)}
+                onNewSelection={setSelected}
+            />
         </div>
 
     );

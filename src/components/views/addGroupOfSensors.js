@@ -57,10 +57,10 @@ const AddGroupOfSensors = () => {
                         </div>
                         <div className="shadow no-contact centered txt-center">
                             <div className="head-txt">
-                                Zaznacz dane, które chcesz monitorować w grupie
+                                Zaznacz dane, które chcesz monitorować w&nbsp;grupie
                             </div>
 
-                            <DisplayChoices availableChoices={fakeMeasurements} />
+                            <DisplayChoices availableChoices={fakeMeasurements} alreadyAssigned={[]} />
 
                         </div>
 
