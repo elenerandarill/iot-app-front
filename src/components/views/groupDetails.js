@@ -4,6 +4,7 @@ import getSensors from "../../FakeBackend/getSensors";
 import ButtonFunc from "../buttonFunc";
 import ListAssignedObjects from "../listAssignedObjects";
 import { InputAttribute } from "../attributes";
+import {sensorObjectRenderer} from "./sensors";
 
 
 const GroupDetails = () => {
@@ -50,18 +51,18 @@ const GroupDetails = () => {
                                 <div className="txt-violet txt-semibold object-container">
 
                                 {/*do przerobienia!!!*/}
-                                    {Object.entries(group.measurements).map(([key, value]) =>
-                                        <div key={key.toString()} className="mrg-tb mrg-lr">
-                                            {key === "avTemp" && "śr. temperatura"}
-                                            {key === "avHumid" && "śr. wilgotność"}
-                                            {key === "avWind" && "śr. prędkość wiatru"}
-                                            :<br/>
-                                            <h2>{value}
-                                                {key === "avTemp" && " °C"}
-                                                {key === "avWind" && " km/h"}
-                                            </h2>
-                                        </div>
-                                    )}
+                                {/*    {Object.entries(group.measurements).map(([key, value]) =>*/}
+                                {/*        <div key={key.toString()} className="mrg-tb mrg-lr">*/}
+                                {/*            {key === "avTemp" && "śr. temperatura"}*/}
+                                {/*            {key === "avHumid" && "śr. wilgotność"}*/}
+                                {/*            {key === "avWind" && "śr. prędkość wiatru"}*/}
+                                {/*            :<br/>*/}
+                                {/*            <h2>{value}*/}
+                                {/*                {key === "avTemp" && " °C"}*/}
+                                {/*                {key === "avWind" && " km/h"}*/}
+                                {/*            </h2>*/}
+                                {/*        </div>*/}
+                                {/*    )}*/}
 
                                 </div>
                             </div>
@@ -81,7 +82,8 @@ const GroupDetails = () => {
 
                                         {group.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={group.assigned} list={getSensors} linkTo={"sensor"}/>}
+                                            : <ListAssignedObjects assigned={group.assigned} list={getSensors}
+                                                                   objectRenderer={sensorObjectRenderer}/>}
 
                                     </div>
                                 </div>

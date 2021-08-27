@@ -9,6 +9,7 @@ import ChartTypeBar from "../chartTypeBar";
 import ChartDataChoices from "../chartDataChoices";
 import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
+import {groupObjectRenderer} from "./groupsOfSensors";
 
 const SensorDetails = () => {
 
@@ -103,10 +104,8 @@ const SensorDetails = () => {
                                     <div className="object-container txt-violet txt-semibold">
                                         {sensor.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects
-                                                assigned={sensor.assigned}
-                                                list={getGroupsOfSensors}
-                                                linkTo={"group"}
+                                            : <ListAssignedObjects assigned={sensor.assigned} list={getGroupsOfSensors}
+                                                objectRenderer={groupObjectRenderer}
                                             />}
                                     </div>
                                 </div>

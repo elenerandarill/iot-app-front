@@ -1,6 +1,25 @@
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import ButtonFunc from "../buttonFunc";
 import ListObjects from "../listObjects";
+import {Link} from "react-router-dom";
+import {GroupOfSensors} from "../../FakeBackend/getGroupsOfSensors";
+
+/**
+ * @param group {GroupOfSensors}
+ * @returns {JSX.Element}
+ */
+export const groupObjectRenderer = (group) => {
+    return (
+        <Link
+            key={group.id}
+            to={`/groups-of-sensors/${group.id}`}
+        >
+            <div className={"object shadow" + (group.assigned.length === 0 ? " mark-as-new" : "")}>
+                <div className="txt-semibold">{group.getDisplayName()}</div>
+            </div>
+        </Link>
+    )
+}
 
 const GroupsOfSensors = () => {
 
@@ -18,7 +37,7 @@ const GroupsOfSensors = () => {
                 <div className="content-srodek">
                     <div className="headline-color">Grupy czujników</div>
                     <div className="white-space top-contact">
-                            <ListObjects list={getGroupsOfSensors} type={"groups-of-sensors"}/>
+                            <ListObjects list={getGroupsOfSensors} objectRenderer={groupObjectRenderer}/>
                     </div>
                 </div>
             </div>

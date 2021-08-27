@@ -5,6 +5,7 @@ import ButtonFunc from "../buttonFunc";
 import ListAssignedObjects from "../listAssignedObjects";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import getPeople from "../../FakeBackend/getPeople";
+import {groupObjectRenderer} from "./groupsOfSensors";
 
 const TeamMemberDetails = () => {
     const {id} = useParams();
@@ -15,6 +16,13 @@ const TeamMemberDetails = () => {
     }
 
     const person = getPerson(id);
+    if(!person) {
+        return (
+            <div className="main">
+                <div>NIE ZNALEZIONO TAKIEJ OSOBY</div>
+            </div>
+        )
+    }
 
     return (
         <div className="main">
@@ -57,10 +65,8 @@ const TeamMemberDetails = () => {
 
                                         {person.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects
-                                                assigned={person.assigned}
-                                                list={getGroupsOfSensors}
-                                                linkTo={"group"}
+                                            : <ListAssignedObjects assigned={person.assigned} list={getGroupsOfSensors}
+                                                objectRenderer={groupObjectRenderer}
                                             />
                                         }
                                     </div>

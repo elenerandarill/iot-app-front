@@ -1,117 +1,153 @@
-const getAlerts = [
-    {
-        id: "6",
-        new: true,
-        datetime: "2021.10.13 19:00:01",
-        type: "sensor",
-        name: "moj-sad-011",
-        targetType: "sensor",
-        targetId: "1",
-        msg: "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
-    },
-    {
-        id: "5",
-        new: true,
-        datetime: "2021.10.13 19:00:01",
-        type: "sensor",
-        name: "moj-sad-012",
-        targetType: "sensor",
-        targetId: "2",
-        msg: "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
-    },
-    {
-        id: "4",
-        new: true,
-        datetime: "2021.10.13 19:00:01",
-        type: "sensor",
-        name: "moj-sad-011",
-        targetType: "sensor",
-        targetId: "3",
-        msg: "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
-    },
-    {
-        id: "3",
-        new: false,
-        datetime: "2021.10.13 19:00:01",
-        name: "moj-sad-011",
-        targetType: "group",
-        targetId: "4",
-        msg: "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
-    },
-    {
-        id: "2",
-        new: false,
-        datetime: "2021.10.13 19:00:01",
-        name: "moj-ulubiony-czujnik-ktory-jest-za-rogiem",
-        targetType: "sensor",
-        targetId: "5",
-        msg: "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
-    },
-    {
-        id: "1",
-        new: false,
-        datetime: "2021.10.13 19:00:01",
-        name: "moj-sad-011",
-        targetType: "sensor",
-        targetId: "6",
-        msg: "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
-    },
-    {
-        id: "16",
-        new: true,
-        datetime: "2021.10.13 19:00:01",
-        type: "sensor",
-        name: "moj-sad-011",
-        targetType: "sensor",
-        targetId: "6",
-        msg: "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
-    },
-    {
-        id: "15",
-        new: true,
-        datetime: "2021.10.13 19:00:01",
-        type: "sensor",
-        name: "moj-sad-012",
-        targetType: "sensor",
-        targetId: "1",
-        msg: "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
-    },
-    {
-        id: "14",
-        new: true,
-        datetime: "2021.10.13 19:00:01",
-        type: "sensor",
-        name: "moj-sad-011",
-        targetType: "sensor",
-        targetId: "11",
-        msg: "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
-    },
-    {
-        id: "13",
-        new: false,
-        datetime: "2021.10.13 19:00:01",
-        name: "moj-sad-011",
-        targetType: "group",
-        targetId: "12",
-        msg: "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
-    },
-    {
-        id: "12",
-        new: false,
-        datetime: "2021.10.13 19:00:01",
-        name: "moj-sad-012",
-        targetType: "sensor",
-        targetId: "7",
-        msg: "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
-    },
-    {
-        id: "11",
-        new: false,
-        datetime: "2021.10.13 19:00:01",
-        name: "moj-sad-011",
-        targetType: "sensor",
-        targetId: "8",
-        msg: "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
+
+export class Alert {
+    /** @type {string} */
+    id
+    /** @type {boolean} */
+    read
+    /** @type {string} */
+    datetime
+    /** @type {string} */
+    type
+    /** @type {string} */
+    name
+    /** @type {string} */
+    targetType
+    /** @type {string} */
+    targetId
+    /** @type {string} */
+    msg
+
+    constructor(id, read, datetime, type, name, targetType, targetId, msg) {
+        this.id = id;
+        this.read = read;
+        this.datetime = datetime;
+        this.type = type;
+        this.name = name;
+        this.targetType = targetType;
+        this.targetId = targetId;
+        this.msg = msg;
     }
+
+    getDisplayName() {
+        return this.name
+    }
+}
+
+/** @type {Alert[]} */
+const getAlerts = [
+    new Alert(
+        "6",
+        true,
+        "2021.10.13 19:00:01",
+        "sensor",
+        "moj-sad-011",
+        "sensor",
+        "1",
+        "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
+    ),
+    new Alert(
+        "5",
+        true,
+        "2021.10.13 19:00:01",
+        "sensor",
+        "moj-sad-012",
+        "sensor",
+        "2",
+        "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
+    ),
+    new Alert(
+        "4",
+        true,
+        "2021.10.13 19:00:01",
+        "sensor",
+        "moj-sad-011",
+        "sensor",
+        "3",
+        "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
+    ),
+    new Alert(
+        "3",
+        false,
+        "2021.10.13 19:00:01",
+        "moj-sad-011",
+        "group",
+        "4",
+        "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
+    ),
+    new Alert(
+        "2",
+        false,
+        "2021.10.13 19:00:01",
+        "moj-ulubiony-czujnik-ktory-jest-za-rogiem",
+        "sensor",
+        "5",
+        "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
+    ),
+    new Alert(
+        "1",
+        false,
+        "2021.10.13 19:00:01",
+        "moj-sad-011",
+        "sensor",
+        "6",
+        "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
+    ),
+    new Alert(
+        "16",
+        true,
+        "2021.10.13 19:00:01",
+        "sensor",
+        "moj-sad-011",
+        "sensor",
+        "6",
+        "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
+    ),
+    new Alert(
+        "15",
+        true,
+        "2021.10.13 19:00:01",
+        "sensor",
+        "moj-sad-012",
+        "sensor",
+        "1",
+        "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
+    ),
+    new Alert(
+        "14",
+        true,
+        "2021.10.13 19:00:01",
+        "sensor",
+        "moj-sad-011",
+        "sensor",
+        "11",
+        "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
+    ),
+    new Alert(
+        "13",
+        false,
+        "2021.10.13 19:00:01",
+        "moj-sad-011",
+        "group",
+        "12",
+        "brak dostępu do sieci od 9:15, problemy z łącznością, ostatni raport otrzymano o 9:00"
+    ),
+    new Alert(
+        "12",
+        false,
+        "2021.10.13 19:00:01",
+        "moj-sad-012",
+        "sensor",
+        "7",
+        "brak dostępu do sieci od 19:00, problemy z łącznością, ostatni raport otrzymano o 17:00"
+    ),
+    new Alert(
+        "11",
+        false,
+        "2021.10.13 19:00:01",
+        "moj-sad-011",
+        "sensor",
+        "8",
+        "brak dostępu do sieci od 11:35, problemy z łącznością, ostatni raport otrzymano o 11:00"
+    )
 ]
 export default getAlerts;

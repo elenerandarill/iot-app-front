@@ -1,11 +1,11 @@
 import ListObjects from "./listObjects";
 
 
-const ListAssignedObjects = ({assigned, list, linkTo}) => {
+const ListAssignedObjects = ({assigned, list, objectRenderer}) => {
     const results = list.filter(elem => assigned.includes(elem.id));
 
     return(
-     <ListObjects list={results} type={linkTo}/>
+        <ListObjects list={results} objectRenderer={objectRenderer}/>
     )
 }
 

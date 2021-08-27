@@ -1,12 +1,52 @@
+import {Measurement} from "./Measurement";
+
+export class Sensor {
+    /** @type {string} */
+    id
+    /** @type {string} */
+    type
+    /** @type {string} */
+    name
+    /** @type {string} */
+    sn
+    /** @type {number} */
+    battery
+    /** @type {string[]} */
+    assigned
+    /** @type {Measurement[]} */
+    measurements
+    /** @type {[number, number]} */
+    GPS
+    /** @type {string} */
+    notes
+
+    constructor(id, type, name, sn, battery, assigned, measurements, GPS, notes) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.sn = sn;
+        this.battery = battery;
+        this.assigned = assigned;
+        this.measurements = measurements;
+        this.GPS = GPS;
+        this.notes = notes;
+    }
+
+    getDisplayName() {
+        return this.name.trim() === "" ? this.sn : this.name
+    }
+}
+
+/** @type {Sensor[]} */
 const getSensors = [
-    {
-        id: "1",
-        type: "AM104",
-        name: "moj-sad-001",
-        sn: "123asd456",
-        battery: 15,
-        assigned: ["1", "2"],
-        measurements: [
+    new Sensor(
+        "1",
+        "AM104",
+        "moj-sad-001",
+        "123asd456",
+        15,
+        ["1", "2"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -43,17 +83,17 @@ const getSensors = [
                 }
             },
         ],
-        GPS: [21.5620, 32.1230],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "2",
-        type: "AM107",
-        name: "moj-ulubiony-czujnik-ktory-jest-za-rogiem",
-        sn: "456asd456",
-        battery: 50,
-        assigned: ["3", "4"],
-        measurements: [
+        [21.5620, 32.1230],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "2",
+        "AM107",
+        "moj-ulubiony-czujnik-ktory-jest-za-rogiem",
+        "456asd456",
+        50,
+        ["3", "4"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -64,17 +104,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5624, 28.1234],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "3",
-        type: "EM300-MCS",
-        name: "",
-        sn: "111asd111",
-        battery: 90,
-        assigned: [],
-        measurements: [
+        [20.5624, 28.1234],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "3",
+        "EM300-MCS",
+        "",
+        "111asd111",
+        90,
+        [],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -82,17 +122,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5624, 28.1234],
-        notes: "nowy czujnik"
-    },
-    {
-        id: "4",
-        type: "EM300-SLD",
-        name: "   ",
-        sn: "222asd111",
-        battery: 95,
-        assigned: [],
-        measurements: [
+        [20.5624, 28.1234],
+        "nowy czujnik"
+    ),
+    new Sensor(
+        "4",
+        "EM300-SLD",
+        "   ",
+        "222asd111",
+        95,
+        [],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -100,17 +140,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.4624, 28.1234],
-        notes: "nowy czujnik, jeszcze nie przypisany"
-    },
-    {
-        id: "5",
-        type: "EM300-TH",
-        name: "szklarnia001",
-        sn: "77asdfghjkl",
-        battery: 15,
-        assigned: ["5", "1"],
-        measurements: [
+        [20.4624, 28.1234],
+        "nowy czujnik, jeszcze nie przypisany"
+    ),
+    new Sensor(
+        "5",
+        "EM300-TH",
+        "szklarnia001",
+        "77asdfghjkl",
+        15,
+        ["5", "1"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -118,17 +158,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [21.5124, 32.3434],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "6",
-        type: "EM500-CO2",
-        name: "szklarnia002",
-        sn: "66zxcvbnm",
-        battery: 50,
-        assigned: ["2", "5"],
-        measurements: [
+        [21.5124, 32.3434],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "6",
+        "EM500-CO2",
+        "szklarnia002",
+        "66zxcvbnm",
+        50,
+        ["2", "5"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -137,17 +177,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [21.3624, 32.2234],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "7",
-        type: "EM500-LGT",
-        name: "",
-        sn: "55qwertyuiop",
-        battery: 90,
-        assigned: [],
-        measurements: [
+        [21.3624, 32.2234],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "7",
+        "EM500-LGT",
+        "",
+        "55qwertyuiop",
+        90,
+        [],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -155,17 +195,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5619, 28.1228],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "8",
-        type: "EM500-PP",
-        name: "ciśnieniowy",
-        sn: "33qwerthjkl",
-        battery: 95,
-        assigned: [],
-        measurements: [
+        [20.5619, 28.1228],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "8",
+        "EM500-PP",
+        "ciśnieniowy",
+        "33qwerthjkl",
+        95,
+        [],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -173,17 +213,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5621, 28.1231],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "9",
-        type: "EM500-PT100",
-        name: "szklarnia003",
-        sn: "22zxcvbnm",
-        battery: 50,
-        assigned: ["2", "3"],
-        measurements: [
+        [20.5621, 28.1231],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "9",
+        "EM500-PT100",
+        "szklarnia003",
+        "22zxcvbnm",
+        50,
+        ["2", "3"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -191,17 +231,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5624, 28.1234],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "10",
-        type: "EM500-SMT",
-        name: "szklarnia004",
-        sn: "00zxcvbnm",
-        battery: 50,
-        assigned: ["2"],
-        measurements: [
+        [20.5624, 28.1234],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "10",
+        "EM500-SMT",
+        "szklarnia004",
+        "00zxcvbnm",
+        50,
+        ["2"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -209,17 +249,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5024, 28.1204],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "11",
-        type: "EM500-SWL",
-        name: "poziom wody",
-        sn: "00zxcvbnm",
-        battery: "50",
-        assigned: ["3"],
-        measurements: [
+        [20.5024, 28.1204],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "11",
+        "EM500-SWL",
+        "poziom wody",
+        "00zxcvbnm",
+        "50",
+        ["3"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -227,17 +267,17 @@ const getSensors = [
                 }
             }
         ],
-        GPS: [20.5654, 28.1204],
-        notes: "jakas tam notatka"
-    },
-    {
-        id: "12",
-        type: "EM500-UDL",
-        name: "szklarnia005",
-        sn: "00zxcvbnm",
-        battery: 50,
-        assigned: ["2", "4"],
-        measurements: [
+        [20.5654, 28.1204],
+        "jakas tam notatka"
+    ),
+    new Sensor(
+        "12",
+        "EM500-UDL",
+        "szklarnia005",
+        "00zxcvbnm",
+        50,
+        ["2", "4"],
+        [
             {
                 datetime: "2021.07.11 17:25:33",
                 data: {
@@ -245,12 +285,9 @@ const getSensors = [
                 }
             },
         ],
-        GPS: [20.5684, 28.1284],
-        notes: "jakas tam notatka"
-    },
-].map(sensor => {
-    sensor.getDisplayName = () => sensor.name.trim() === "" ? sensor.sn : sensor.name
-    return sensor
-})
+        [20.5684, 28.1284],
+        "jakas tam notatka"
+    ),
+]
 
 export default getSensors;
