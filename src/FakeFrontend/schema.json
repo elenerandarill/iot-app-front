@@ -1,0 +1,129 @@
+{
+  "comment": "Schema requestu ustawiajacego przypisanie czujnika do grup",
+  "schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "GroupsOfASensor",
+    "description": "List of group IDs to which the sensor should be assigned to",
+    "type": "object",
+    "properties": {
+      "sensorId": {
+        "description": "ID of the sensor",
+        "type": "string"
+      },
+      "groups": {
+        "description": "List of group IDs which to assign for this sensor",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "required": [
+      "sensorId",
+      "groups"
+    ]
+  },
+  "request": {
+    "sensorId": "123",
+    "groups": [
+      "5",
+      "42",
+      "a6b6c6d"
+    ]
+  },
+
+  "comment2": "Utworzenie grupy sensorow",
+  "schema2": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "group",
+    "properties": {
+      "name": {
+        "description": "Name of the group",
+        "type": "string"
+      },
+      "notes": {
+        "description": "User's personal notes",
+        "type": "string"
+      },
+      "sensors": {
+        "description": "List of sensors assigned to this group",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "required": ["name"]
+  },
+  "request2": {
+    "name": "sad jabłonie",
+    "notes": "tu będzie jakaś ważna notatka",
+    "sensors": [
+      "1a",
+      "2b",
+      "3c"
+    ]
+  },
+
+
+  "comment3": "Konfiguracja widoku grupy sensorow",
+  "schema3": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/product.schema.json",
+    "title": "group",
+    "properties": {
+      "groupId": {
+        "description": "ID of the group",
+        "type": "string"
+      },
+      "measurements": {
+        "description": "List of things to monitor",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "function": {
+              "type": "string"
+            },
+            "sensor": {
+              "type": "string"
+            },
+            "timeRange": {
+              "type": "string"
+            }
+          }
+        },
+        "minItems": 0,
+        "uniqueItems": true
+      }
+    },
+    "required": ["groupId"]
+  },
+  "request3": {
+    "groupId": "a12345b",
+    "measurements": [
+      {
+        "function": "average",
+        "sensor": "temperature",
+        "timeRange": "96h"
+      },
+      {
+        "function": "max",
+        "sensor": "humidity",
+        "timeRange": "3h"
+      },
+      {
+        "function": "min",
+        "sensor": "illumination",
+        "timeRange": "2021.01.01T15:00:15-2021.02.01T15:00:15"
+      }
+    ]
+  }
+
+}

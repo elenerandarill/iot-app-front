@@ -14,7 +14,7 @@ import GroupDetails from "./components/views/groupDetails";
 import TeamMemberDetails from "./components/views/teamMemberDetails";
 import Test from "./components/views/test";
 import AddGroupOfSensors from "./components/views/addGroupOfSensors";
-import EditSensor from "./components/views/editSensor";
+import EditSensorGroups from "./components/views/editSensorGroups";
 import EditGroupOfSensors from "./components/views/editGroupOfSensors";
 import EditPersonGroups from "./components/views/editPersonGroups";
 import EditSensorChart from "./components/views/editSensorChart";
@@ -35,7 +35,7 @@ function App() {
                         <Route path="/alerts" component={Alerts}/>
                         <Route path="/sensors" exact component={Sensors}/>
                         <Route path="/sensors/:id" exact component={SensorDetails}/>
-                        <Route path="/sensors/:id/edit" exact component={EditSensor}/>
+                        <Route path="/sensors/:id/edit" exact component={EditSensorGroups}/>
                         <Route path="/sensors/:id/edit/chart" exact component={EditSensorChart}/>
                         <Route path="/groups-of-sensors/" exact component={GroupsOfSensors}/>
                         <Route path="/add/groups-of-sensors" exact component={AddGroupOfSensors}/>

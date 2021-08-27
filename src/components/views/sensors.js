@@ -18,7 +18,7 @@ const Sensors = () => {
                 <div className="content-srodek">
                     <div className="headline-color">Twoje czujniki</div>
                     <div className="white-space top-contact">
-                        <ListObjects list={getSensors} linkTo={"sensor"}/>
+                        <ListObjects list={getSensors} type={"sensor"}/>
                     </div>
                 </div>
             </div>

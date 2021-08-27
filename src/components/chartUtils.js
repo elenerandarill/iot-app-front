@@ -1,4 +1,6 @@
 
+import {ChoiceableString} from "../FakeFrontend/ChoiceableString";
+
 export const getChartData = (obj) => {
     let results = []
     for (const item of obj.measurements) {
@@ -21,11 +23,15 @@ export const chartsColors = {
     violet01: "#171A44",
 }
 
-export const getLabels = (obj) => {
-    const labels = [];
+export const getMeasurements = (obj) => {
+    let labels = [];
+    console.log("allLabels: ", (obj.measurements[1]).data);
     const allLabels = (obj.measurements[1]).data;
     Object.entries(allLabels).map(([key, value]) => {
+        console.log("key: ", key);
         labels.push(key)
+        console.log("labels: ", labels);
     })
-    return labels   //list
+    return labels
+        .map(label => new ChoiceableString(label, label))
 }

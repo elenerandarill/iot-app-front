@@ -14,6 +14,22 @@ const ListObjects = ({list, type}) => {
         setQueryChoices(filtered);
     }
 
+    const presentData = (object) => {
+        if (object.fullname){
+            return <div className="txt-semibold">{object.fullname}</div>
+        }
+        else if (object.name.trim() === "") {
+            return <div className="txt-semibold">{object.sn}</div>
+        }
+        else {
+            return (
+                <div>
+                    <div className="txt-semibold">{object.name}</div>
+                    <div className="obj-sn">{object.sn}</div>
+                </div>)
+        }
+    }
+
     return (
         <div>
             <SearchBox value={searchQuery} onChange={(query) => handleSearch(query)}/>
@@ -21,15 +37,10 @@ const ListObjects = ({list, type}) => {
                 {queryChoices.map(obj =>
                 <Link
                     key={obj.id}
-                    to={`/${type === "group" ? "groups-of-sensors" : "sensors"}/${obj.id}`}
+                    to={`/${type}/${obj.id}`}
                 >
                     <div className={"object shadow" + (obj.assigned.length === 0 ? " mark-as-new" : "")}>
-                        {obj.name.trim() === ""
-                            ? <div className="txt-semibold">{obj.sn}</div>
-                            : <div>
-                                <div className="txt-semibold">{obj.name}</div>
-                                <div className="obj-sn">{obj.sn}</div>
-                            </div>}
+                        {presentData(obj)}
                     </div>
                 </Link>
                 )}

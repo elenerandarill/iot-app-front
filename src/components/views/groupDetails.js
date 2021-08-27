@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import getSensors from "../../FakeBackend/getSensors";
 import ButtonFunc from "../buttonFunc";
@@ -5,8 +6,8 @@ import ListAssignedObjects from "../listAssignedObjects";
 import { InputAttribute } from "../attributes";
 
 
-const GroupDetails = (props) => {
-    const id = props.match.params.id;
+const GroupDetails = () => {
+    const {id} = useParams();
 
     const getGroup = (id) => {
         // zwraca liste!

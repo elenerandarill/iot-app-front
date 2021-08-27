@@ -1,10 +1,11 @@
+import { useParams } from "react-router-dom";
+import EditAssigned from "../editAssigned";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import getPeople from "../../FakeBackend/getPeople";
-import EditAssigned from "../editAssigned";
 
-const EditPersonGroups = (props) => {
+const EditPersonGroups = () => {
 
-    const id = props.match.params.id;
+    const {id} = useParams();
     const person = getPeople.filter(p => p.id === id)[0];
 
     return (

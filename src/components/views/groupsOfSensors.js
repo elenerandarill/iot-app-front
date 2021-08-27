@@ -18,7 +18,7 @@ const GroupsOfSensors = () => {
                 <div className="content-srodek">
                     <div className="headline-color">Grupy czujników</div>
                     <div className="white-space top-contact">
-                            <ListObjects list={getGroupsOfSensors} type={"group"}/>
+                            <ListObjects list={getGroupsOfSensors} type={"groups-of-sensors"}/>
                     </div>
                 </div>
             </div>

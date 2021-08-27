@@ -1,14 +1,13 @@
-import React from 'react';
+import { useParams } from "react-router-dom";
 import ChartDataChoices from "../chartDataChoices";
 import ButtonFunc from "../buttonFunc";
-import { getLabels } from "../chartUtils";
+import { getMeasurements } from "../chartUtils";
 import DisplayChoices from "../displayChoices";
 import getSensors from "../../FakeBackend/getSensors";
 import getChartsInfo from "../../FakeFrontend/getChartsInfo";
 
-const EditSensorChart = (props) => {
-
-    const id = props.match.params.id;
+const EditSensorChart = () => {
+    let {id} = useParams();
     const sensor = getSensors.filter(s => s.id === id)[0];
 
     return (
@@ -33,12 +32,6 @@ const EditSensorChart = (props) => {
                             </div>
                             <div className="object-container">
                                 <ChartDataChoices list={getChartsInfo}/>
-
-                                {/*<DisplayChoices*/}
-                                {/*    availableChoices={getChartsInfo}*/}
-                                {/*    alreadyAssigned={[getChartsInfo[0]]}*/}
-                                {/*/>*/}
-
                             </div>
 
                             <div className="object-container-grid mrg-0-top30">
@@ -47,20 +40,20 @@ const EditSensorChart = (props) => {
                                 </div>
 
                                 <div className="object-container">
-                                <div
-                                    className="btn btn-color"
-                                    onClick={() => console.log("Wysłano!")}
-                                >
-                                    gotowe
-                                </div>
+                                    <div
+                                        className="btn btn-color"
+                                        onClick={() => console.log("Wysłano!")}
+                                    >
+                                        gotowe
+                                    </div>
                                 </div>
 
                                 <div className="object-container">
 
-                                    {/*<DisplayChoices*/}
-                                    {/*    availableChoices={getLabels(sensor)}*/}
-                                    {/*    alreadyAssigned={[sensor]}*/}
-                                    {/*/>*/}
+                                    <DisplayChoices
+                                        availableChoices={getMeasurements(sensor)}
+                                        alreadyAssigned={[sensor]}
+                                    />
                                 </div>
                             </div>
                         </div>

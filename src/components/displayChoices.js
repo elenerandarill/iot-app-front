@@ -25,6 +25,7 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
     const handleSearch = (query) => {
         setSearchQuery(query);
 
+        // TODO: Filtrowanie po ID a nie displayName
         const filtered = availableChoices.filter(
             choice => choice.getDisplayName().toLowerCase().includes(query.toLowerCase()))
 
@@ -41,22 +42,20 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
         setSelected(uniqueSelection)
     };
 
-    // const onSelectNoneClick = () => {
-    //     );
-    // };
-
     return (
 
         <div className="object-container-grid">
             <SearchBox value={searchQuery} onChange={(query) => handleSearch(query)}/>
 
             <div className="object-container">
+
                 <div
                     className="btn btn-color insert-button"
                     onClick={() => onSelectAllClick()}
                 >
                     zaznacz wszystkie
                 </div>
+
                 <div
                     className="btn btn-color insert-button"
                     onClick={() => setSelected([])}

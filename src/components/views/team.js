@@ -1,9 +1,7 @@
-import SearchBox from "../searchBox";
-import {Link} from "react-router-dom";
-import plus from "../../media/plus.svg";
-import dot from "../../media/dot.svg";
 import getPeople from "../../FakeBackend/getPeople";
 import ButtonFunc from "../buttonFunc";
+import getSensors from "../../FakeBackend/getSensors";
+import ListObjects from "../listObjects";
 
 const Team = () => {
     return (
@@ -17,18 +15,7 @@ const Team = () => {
 
                     <div className="headline-color">Osoby w teamie</div>
                     <div className="white-space top-contact">
-                        {/*<div className="centered"><SearchBox/></div>*/}
-                        <div className="object-container">
-                            {getPeople.map(p =>
-                                <Link key={p.id}
-                                      to={`/team/${p.id}`}
-                                      person_id={p.id}
-                                      className="object shadow"
-                                >
-                                    {p.fullname}
-                                </Link>
-                            )}
-                        </div>
+                        <ListObjects list={getPeople} type={"team"}/>
                     </div>
 
                 </div>

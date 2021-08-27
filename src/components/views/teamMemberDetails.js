@@ -1,12 +1,13 @@
-import getPeople from "../../FakeBackend/getPeople";
+import { useParams } from "react-router-dom";
 import {Link} from "react-router-dom";
-import ButtonFunc from "../buttonFunc";
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import ListAssignedObjects from "../listAssignedObjects";
 import {InputAttribute} from "../attributes";
+import ButtonFunc from "../buttonFunc";
+import ListAssignedObjects from "../listAssignedObjects";
+import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
+import getPeople from "../../FakeBackend/getPeople";
 
-const TeamMemberDetails = (props) => {
-    const id = props.match.params.id;
+const TeamMemberDetails = () => {
+    const {id} = useParams();
 
     const getPerson = (id) => {
         // zwraca liste!

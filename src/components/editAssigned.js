@@ -1,5 +1,8 @@
+import { useHistory } from "react-router-dom";
 import ButtonFunc from "./buttonFunc";
 import DisplayChoices from "./displayChoices";
+import axios from "axios";
+import {CATFISH_URL} from "../iotConfig";
 
 /**
  * @param type --> sensors-in
@@ -7,6 +10,8 @@ import DisplayChoices from "./displayChoices";
  * @constructor
  */
 const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
+
+    let history = useHistory();
 
     const headline2 = (object) => {
         if (object.fullname) {
@@ -25,6 +30,32 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
         console.log(results);
         return results
     }
+
+    const handleSend = (object) => {
+        // POST
+        const id = object.id
+        const list = object.assigned
+        console.log("przekazano: ", object)
+        axios.post(CATFISH_URL, {
+            $schema: "https://json-schema.org/draft/2020-12/schema",
+            $id: "https://example.com/product.schema.json",
+            title: "GroupsOfASensor",
+            sensorId: id,
+            groups: list
+        })
+
+            .then(function (response) {
+                console.log("response to Front", response);
+                if (response.status === 200){
+                    // console.log("Przekierowuję...");
+                    history.push(`/${linkTo}/${object.id}`);
+                }
+            })
+            .catch(function (error) {
+                console.log("error", error);
+            });
+    };
+
 
     return (
         <div className="main">
@@ -50,6 +81,14 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
                                 availableChoices={availableChoices}
                                 alreadyAssigned={getAssignedObjects(object)}
                             />
+                        </div>
+                        <div className="object-container">
+                        <div
+                            className="btn btn-color"
+                            onClick={() => handleSend(object)}
+                        >
+                            gotowe
+                        </div>
                         </div>
                     </div>
                 </div>

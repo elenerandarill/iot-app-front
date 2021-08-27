@@ -1,10 +1,11 @@
+import { useParams } from "react-router-dom";
 import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
 import EditAssigned from "../editAssigned";
 
-const EditGroupOfSensors = (props) => {
+const EditGroupOfSensors = () => {
 
-    const id = props.match.params.id;
+    const {id} = useParams();
     const group = getGroupsOfSensors.filter(g => g.id === id)[0];
 
     return (

@@ -1,17 +1,18 @@
+import { useParams } from "react-router-dom";
+import {InputAttribute, DisplayAttribute} from "../attributes";
 import ButtonFunc from "../buttonFunc";
 import ListMeasurements from "../listMeasurements.js";
 import ListAssignedObjects from "../listAssignedObjects";
-import {InputAttribute, DisplayAttribute} from "../attributes";
+import ButtonSendOne from "../buttonSendOne";
 import ChartTypeArea from "../chartTypeArea";
+import ChartTypeBar from "../chartTypeBar";
+import ChartDataChoices from "../chartDataChoices";
 import getSensors from "../../FakeBackend/getSensors";
 import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import ChartTypeBar from "../chartTypeBar";
-import ButtonSendOne from "../buttonSendOne";
-import ChartDataChoices from "../chartDataChoices";
 
-const SensorDetails = (props) => {
+const SensorDetails = () => {
 
-    const id = props.match.params.id;
+    const {id} = useParams();
 
     const sensor = getSensors.filter(s => s.id === id)[0];
 
@@ -87,7 +88,7 @@ const SensorDetails = (props) => {
                             <ChartTypeBar height={250} object={sensor}/>
                         </div>
 
-
+                        {/* --- edit assigned --- */}
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">PRZYPISANY DO GRUP</div>
                             <div className="position-cent">
