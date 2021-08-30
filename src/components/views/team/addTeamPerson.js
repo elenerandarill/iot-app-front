@@ -15,12 +15,16 @@ const AddTeamPerson = () => {
         let data = {}
         data["fullname"] = pname
         data["notes"] = pnotes
-        data["assigned"] = selection
+        data["assigned"] = getIds(selection)
 
         sendForm(data)
             // .then((json) => {
             //     console.log("json: ", json)
             // })
+    }
+
+    const getIds = (objects) => {
+        return objects.map(o => o.id)
     }
 
     const sendForm = async (data) => {

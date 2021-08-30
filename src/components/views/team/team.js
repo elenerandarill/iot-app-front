@@ -29,10 +29,11 @@ const Team = () => {
         const getTeam = async () => {
             const teamFromServer = await fetchTeam()
             console.log("teamFromServer: ", teamFromServer);
-            setTeam(jsonToPerson(teamFromServer));
+            return jsonToPerson(teamFromServer)
         }
 
         getTeam()
+            .then(team => setTeam(team))
     }, [])
 
     const fetchTeam = async () => {

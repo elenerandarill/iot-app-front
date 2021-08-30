@@ -8,6 +8,7 @@ const AddSGroup = () => {
     const [gname, setGname] = useState("");
     const [gnotes, setGnotes] = useState("");
     const [gperiod, setGperiod] = useState("");
+    const [selected, setSelected] = useState([])
 
     const onSubmit = (e) => {
         // trzeba bedzie zalaczyc liste choices przed wyslaniem!
@@ -59,7 +60,11 @@ const AddSGroup = () => {
                                 Zaznacz dane, które chcesz monitorować w&nbsp;grupie
                             </div>
 
-                            <DisplayChoices availableChoices={fakeMeasurements} alreadyAssigned={[]} />
+                            <DisplayChoices
+                                availableChoices={fakeMeasurements}
+                                alreadyAssigned={[]}
+                                onNewSelection={setSelected}
+                            />
 
                         </div>
 

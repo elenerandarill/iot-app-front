@@ -4,18 +4,41 @@ import {InputAttribute} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListAssignedObjects from "../../listAssignedObjects";
 import getSGroups from "../../../FakeBackend/getSGroups";
-import getPeople from "../../../FakeBackend/getPeople";
+import getPeople, {Person} from "../../../FakeBackend/getPeople";
 import {groupObjectRenderer} from "../sGroups/sGroups";
+import {useEffect, useState} from "react";
+
 
 const TeamPersonDetails = () => {
     const {id} = useParams();
+    const [person, setPerson] = useState(undefined)
 
-    const getPerson = (id) => {
-        // zwraca liste!
-        return getPeople.filter(s => s.id === id)[0]
+    useEffect(() => {
+        const fetchPerson = async (id) => {
+            console.log("Sending request to fetch person")
+            const res = await fetch(
+                "http://localhost:8000/cgi-bin/fake/get_person",
+                {
+                    method: "POST",
+                    body: JSON.stringify({"id": id})
+                }
+            )
+            console.log("resp: ", res)
+            const resJson = await res.json()
+            console.log("resp.json: ", resJson)
+            const person = jsonToPerson(resJson)
+            console.log("person details: ", person)
+            return person
+        }
+
+        fetchPerson(id)
+            .then((person) => setPerson(person))
+    }, [id])
+
+    const jsonToPerson = (p) => {
+        return new Person(p.id, p.fullname, p.joinedAt, p.assigned, p.notes)
     }
 
-    const person = getPerson(id);
     if(!person) {
         return (
             <div className="main">

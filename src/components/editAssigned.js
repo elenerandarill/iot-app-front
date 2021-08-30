@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ButtonFunc from "./buttonFunc";
 import DisplayChoices from "./displayChoices";
@@ -10,6 +11,7 @@ import {CATFISH_URL} from "../iotConfig";
  * @constructor
  */
 const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
+    const [selection, setSelection] = useState([])
 
     let history = useHistory();
 
@@ -80,6 +82,7 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
                             <DisplayChoices
                                 availableChoices={availableChoices}
                                 alreadyAssigned={getAssignedObjects(object)}
+                                onNewSelection={setSelection}
                             />
                         </div>
                         <div className="object-container">

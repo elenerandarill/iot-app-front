@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ChartDataChoices from "../../chartDataChoices";
 import ButtonFunc from "../../buttonFunc";
@@ -7,6 +8,7 @@ import getSensors from "../../../FakeBackend/getSensors";
 import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
 
 const EditSensorChart = () => {
+    const [selected, setSelected] = useState([])
     let {id} = useParams();
     const sensor = getSensors.filter(s => s.id === id)[0];
 
@@ -53,6 +55,7 @@ const EditSensorChart = () => {
                                     <DisplayChoices
                                         availableChoices={getMeasurements(sensor)}
                                         alreadyAssigned={[sensor]}
+                                        onNewSelection={setSelected}
                                     />
                                 </div>
                             </div>
