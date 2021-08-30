@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonFunc from "../../buttonFunc";
 import DisplayChoices from "../../displayChoices";
-import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
+import getSGroups from "../../../FakeBackend/getSGroups";
 
 const AddTeamPerson = () => {
     const [pname, setPname] = useState("");
@@ -57,7 +57,7 @@ const AddTeamPerson = () => {
                                     Zaznacz grupy, do których dana osoba ma&nbsp;mieć uprawnienia
                                 </div>
 
-                                <DisplayChoices availableChoices={fakeMeasurements} alreadyAssigned={[]}/>
+                                <DisplayChoices availableChoices={getSGroups} alreadyAssigned={[]}/>
 
                             </div>
 

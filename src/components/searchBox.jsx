@@ -10,7 +10,10 @@ const SearchBox = ({value, onChange}) => {
                 name="query"
                 placeholder="Szukaj"
                 value={value}
-                onChange={e => {console.log(e.currentTarget.value); onChange(e.currentTarget.value)}}
+                onChange={e => {
+                    console.log(e.currentTarget.value);
+                    onChange(e.currentTarget.value)
+                }}
             />
         </div>
     );

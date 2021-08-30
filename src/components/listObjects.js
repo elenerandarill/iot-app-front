@@ -4,20 +4,17 @@ import {useState} from "react";
 
 const ListObjects = ({list, objectRenderer}) => {
     let [searchQuery, setSearchQuery] = useState("");
-    let [filteredChoices, setFilteredChoices] = useState(list);
+    console.log("w list object: ", list)
 
-    const handleSearch = (query) => {
-        setSearchQuery(query);
-        const filtered = list.filter(
-            choice => choice.getDisplayName().toLowerCase().includes(query.toLowerCase()))
-        setFilteredChoices(filtered);
-    }
+    const filtered = list.filter(
+        choice => choice.getDisplayName().toLowerCase().includes(searchQuery.toLowerCase())
+    )
 
     return (
         <div>
-            <SearchBox value={searchQuery} onChange={(query) => handleSearch(query)}/>
+            <SearchBox value={searchQuery} onChange={setSearchQuery}/>
             <div className="object-container">
-                {filteredChoices.map(objectRenderer)}
+                {filtered.map(objectRenderer)}
             </div>
         </div>
 
