@@ -3,7 +3,7 @@ import SearchBox from "./searchBox";
 import SelectChoices from "./selectChoices";
 
 
-const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
+const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) => {
 
     // availableChoices = [1, 2, 3, 4, 5]
     // selected = [3, 4]
@@ -69,7 +69,10 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned }) => {
                 availableChoices={queryChoices}
                 selected={selected}
                 // onNewSelection={(newSelected) => onNewSelection(newSelected)}
-                onNewSelection={setSelected}
+                onNewSelection={(newSelection) => {
+                    setSelected(newSelection)
+                    onNewSelection(newSelection)
+                }}
             />
         </div>
 

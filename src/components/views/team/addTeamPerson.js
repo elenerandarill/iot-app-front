@@ -6,11 +6,37 @@ import getSGroups from "../../../FakeBackend/getSGroups";
 const AddTeamPerson = () => {
     const [pname, setPname] = useState("");
     const [pnotes, setPnotes] = useState("");
+    const [selection, setSelection] = useState([])
 
 
     const onSubmit = (e) => {
         // trzeba bedzie zalaczyc liste choices przed wyslaniem!
         e.preventDefault();
+        let data = {}
+        data["fullname"] = pname
+        data["notes"] = pnotes
+        data["assigned"] = selection
+
+        sendForm(data)
+            // .then((json) => {
+            //     console.log("json: ", json)
+            // })
+    }
+
+    const sendForm = async (data) => {
+        console.log("Sending new person to backend")
+        // https://stackoverflow.com/questions/29775797/fetch-post-json-data
+        const res = await fetch(
+            "http://localhost:8000/cgi-bin/fake/add_team", {
+                method: "POST",
+                body: JSON.stringify(data)
+            }
+        )
+
+        const resStatus = res.status
+
+        const resJson = await res.json()
+        // ...
     }
 
     return (
@@ -57,7 +83,10 @@ const AddTeamPerson = () => {
                                     Zaznacz grupy, do których dana osoba ma&nbsp;mieć uprawnienia
                                 </div>
 
-                                <DisplayChoices availableChoices={getSGroups} alreadyAssigned={[]}/>
+                                <DisplayChoices availableChoices={getSGroups} alreadyAssigned={[]}
+                                                onNewSelection={(newSelection) => {
+                                                    setSelection(newSelection)
+                                                }} />
 
                             </div>
 
