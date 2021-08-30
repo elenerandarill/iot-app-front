@@ -11,6 +11,10 @@
     font-family: "Segoe UI Semibold", sans-serif;
 }
 
+.txt-regular {
+    font-family: "Segoe UI Regular", sans-serif;
+}
+
 .txt-violet{
     color: var(--violet01);
 }

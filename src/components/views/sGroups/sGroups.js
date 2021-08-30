@@ -1,8 +1,8 @@
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import ButtonFunc from "../buttonFunc";
-import ListObjects from "../listObjects";
+import getSGroups from "../../../FakeBackend/getSGroups";
+import ButtonFunc from "../../buttonFunc";
+import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
-import {GroupOfSensors} from "../../FakeBackend/getGroupsOfSensors";
+import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
 
 /**
  * @param group {GroupOfSensors}
@@ -12,7 +12,7 @@ export const groupObjectRenderer = (group) => {
     return (
         <Link
             key={group.id}
-            to={`/groups-of-sensors/${group.id}`}
+            to={`/sgroups/${group.id}`}
         >
             <div className={"object shadow" + (group.assigned.length === 0 ? " mark-as-new" : "")}>
                 <div className="txt-semibold">{group.getDisplayName()}</div>
@@ -21,7 +21,7 @@ export const groupObjectRenderer = (group) => {
     )
 }
 
-const GroupsOfSensors = () => {
+const SGroups = () => {
 
     return(
         <div className="main">
@@ -29,7 +29,7 @@ const GroupsOfSensors = () => {
                 <ButtonFunc
                     text={"nowa grupa"}
                     add={true}
-                    link={"/add/groups-of-sensors"}
+                    link={"/add/sgroups"}
                 />
             </div>
 
@@ -37,7 +37,7 @@ const GroupsOfSensors = () => {
                 <div className="content-srodek">
                     <div className="headline-color">Grupy czujników</div>
                     <div className="white-space top-contact">
-                            <ListObjects list={getGroupsOfSensors} objectRenderer={groupObjectRenderer}/>
+                            <ListObjects list={getSGroups} objectRenderer={groupObjectRenderer}/>
                     </div>
                 </div>
             </div>
@@ -45,4 +45,4 @@ const GroupsOfSensors = () => {
     )
 }
 
-export default GroupsOfSensors;
+export default SGroups;

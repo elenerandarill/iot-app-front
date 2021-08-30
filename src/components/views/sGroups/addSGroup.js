@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ButtonFunc from "../buttonFunc";
-import DisplayChoices from "../displayChoices";
-import fakeMeasurements from "../../FakeFrontend/getGroupMeasurements";
+import ButtonFunc from "../../buttonFunc";
+import DisplayChoices from "../../displayChoices";
+import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
 
 
-const AddGroupOfSensors = () => {
+const AddSGroup = () => {
     const [gname, setGname] = useState("");
     const [gnotes, setGnotes] = useState("");
     const [gperiod, setGperiod] = useState("");
@@ -18,7 +18,7 @@ const AddGroupOfSensors = () => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"powrót do listy"} link={"/groups-of-sensors"}/>
+                <ButtonFunc text={"powrót do listy"} link={"/sgroups"}/>
             </div>
 
             <div className="content-3x">
@@ -91,4 +91,4 @@ const AddGroupOfSensors = () => {
     )
 }
 
-export default AddGroupOfSensors;
+export default AddSGroup;

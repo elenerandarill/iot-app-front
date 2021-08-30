@@ -1,18 +1,18 @@
 import { useParams } from "react-router-dom";
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import getSensors from "../../FakeBackend/getSensors";
-import ButtonFunc from "../buttonFunc";
-import ListAssignedObjects from "../listAssignedObjects";
-import { InputAttribute } from "../attributes";
-import {sensorObjectRenderer} from "./sensors";
+import getSGroups from "../../../FakeBackend/getSGroups";
+import getSensors from "../../../FakeBackend/getSensors";
+import ButtonFunc from "../../buttonFunc";
+import ListAssignedObjects from "../../listAssignedObjects";
+import { InputAttribute } from "../../attributes";
+import {sensorObjectRenderer} from "../sensors/sensors";
 
 
-const GroupDetails = () => {
+const SGroupDetails = () => {
     const {id} = useParams();
 
     const getGroup = (id) => {
         // zwraca liste!
-        return getGroupsOfSensors.filter(s => s.id === id)[0]
+        return getSGroups.filter(s => s.id === id)[0]
     }
 
     const group = getGroup(id);
@@ -20,7 +20,7 @@ const GroupDetails = () => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"powrót do listy"} link={"/groups-of-sensors"}/>
+                <ButtonFunc text={"powrót do listy"} link={"/sgroups"}/>
                 <ButtonFunc text={"usuń tę grupę"}/>
             </div>
 
@@ -75,7 +75,7 @@ const GroupDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonFunc
                                             text={"edytuj"}
-                                            link={`/groups-of-sensors/${group.id}/edit`}
+                                            link={`/sgroups/${group.id}/edit`}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
@@ -96,4 +96,4 @@ const GroupDetails = () => {
     )
 }
 
-export default GroupDetails;
+export default SGroupDetails;

@@ -1,8 +1,8 @@
-import getSensors from "../../FakeBackend/getSensors";
-import ButtonFunc from "../buttonFunc";
-import ListObjects from "../listObjects";
+import getSensors from "../../../FakeBackend/getSensors";
+import ButtonFunc from "../../buttonFunc";
+import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
-import {Sensor} from "../../FakeBackend/getSensors";
+import {Sensor} from "../../../FakeBackend/getSensors";
 
 /**
  * @param sensor {Sensor}

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import EditAssigned from "../editAssigned";
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import getPeople from "../../FakeBackend/getPeople";
+import EditAssigned from "../../editAssigned";
+import getSGroups from "../../../FakeBackend/getSGroups";
+import getPeople from "../../../FakeBackend/getPeople";
 
 const EditPersonGroups = () => {
 
@@ -10,7 +10,7 @@ const EditPersonGroups = () => {
 
     return (
         <EditAssigned headline={"dostępnych grup"} linkTo={"team"}
-                      object={person} availableChoices={getGroupsOfSensors}/>
+                      object={person} availableChoices={getSGroups}/>
     )
 }
 

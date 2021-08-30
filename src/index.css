@@ -542,9 +542,13 @@ img.dot {
 
 .obj-active {
   color: white;
-  background: var(--gray02);
-  border: var(--violet01) solid 1px;
+  background: var(--blue);
+  border: var(--blue) solid 1px;
   margin-bottom: 0;
+}
+
+.obj-active:hover {
+  color: white;
 }
 
 .overlay-bgd {

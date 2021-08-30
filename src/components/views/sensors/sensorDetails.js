@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
-import {InputAttribute, DisplayAttribute} from "../attributes";
-import ButtonFunc from "../buttonFunc";
-import ListMeasurements from "../listMeasurements.js";
-import ListAssignedObjects from "../listAssignedObjects";
-import ButtonSendOne from "../buttonSendOne";
-import ChartTypeArea from "../chartTypeArea";
-import ChartTypeBar from "../chartTypeBar";
-import ChartDataChoices from "../chartDataChoices";
-import getSensors from "../../FakeBackend/getSensors";
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import {groupObjectRenderer} from "./groupsOfSensors";
+import {InputAttribute, DisplayAttribute} from "../../attributes";
+import ButtonFunc from "../../buttonFunc";
+import ListMeasurements from "../../listMeasurements.js";
+import ListAssignedObjects from "../../listAssignedObjects";
+import ButtonSendOne from "../../buttonSendOne";
+import ChartTypeArea from "../../chartTypeArea";
+import ChartTypeBar from "../../chartTypeBar";
+import ChartDataChoices from "../../chartDataChoices";
+import getSensors from "../../../FakeBackend/getSensors";
+import getSGroups from "../../../FakeBackend/getSGroups";
+import {groupObjectRenderer} from "../sGroups/sGroups";
 
 const SensorDetails = () => {
 
@@ -104,7 +104,7 @@ const SensorDetails = () => {
                                     <div className="object-container txt-violet txt-semibold">
                                         {sensor.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={sensor.assigned} list={getGroupsOfSensors}
+                                            : <ListAssignedObjects assigned={sensor.assigned} list={getSGroups}
                                                 objectRenderer={groupObjectRenderer}
                                             />}
                                     </div>

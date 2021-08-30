@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import {Link} from "react-router-dom";
-import {InputAttribute} from "../attributes";
-import ButtonFunc from "../buttonFunc";
-import ListAssignedObjects from "../listAssignedObjects";
-import getGroupsOfSensors from "../../FakeBackend/getGroupsOfSensors";
-import getPeople from "../../FakeBackend/getPeople";
-import {groupObjectRenderer} from "./groupsOfSensors";
+import {InputAttribute} from "../../attributes";
+import ButtonFunc from "../../buttonFunc";
+import ListAssignedObjects from "../../listAssignedObjects";
+import getSGroups from "../../../FakeBackend/getSGroups";
+import getPeople from "../../../FakeBackend/getPeople";
+import {groupObjectRenderer} from "../sGroups/sGroups";
 
-const TeamMemberDetails = () => {
+const TeamPersonDetails = () => {
     const {id} = useParams();
 
     const getPerson = (id) => {
@@ -65,7 +65,7 @@ const TeamMemberDetails = () => {
 
                                         {person.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={person.assigned} list={getGroupsOfSensors}
+                                            : <ListAssignedObjects assigned={person.assigned} list={getSGroups}
                                                 objectRenderer={groupObjectRenderer}
                                             />
                                         }
@@ -81,4 +81,4 @@ const TeamMemberDetails = () => {
     )
 }
 
-export default TeamMemberDetails;
+export default TeamPersonDetails;

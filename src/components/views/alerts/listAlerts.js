@@ -1,4 +1,4 @@
-import dot from "../../media/dot.svg";
+import { Link } from "react-router-dom";
 import AlertDetailView from "./alertDetailView";
 
 const ListAlerts = ({ list, onSelect, showDetails }) => {
@@ -9,12 +9,12 @@ const ListAlerts = ({ list, onSelect, showDetails }) => {
                 <div
                     className={"shadow object alerts"
                     + (showDetails && showDetails.id === a.id ? " obj-active" : "")
-                    + (a.new === true ? " mark-as-new" : "")}
+                    + (a.read === true ? " mark-as-new" : "")}
                     onClick={() => onSelect(a)}
                 >
-                    <div className="alert-txt">{a.datetime} /</div>
+                    <div className="alert-txt">{a.datetime}</div>
                     <div className="txt-semibold alert-txt txt-violet">
-                        {a.datatype === "sensor" ? "czujnik:" : "grupa:"}&nbsp;{a.name}
+                            {a.targetType === "sensor" ? "czujnik:" : "grupa:"}&nbsp;{a.name}
                     </div>
 
                 </div>

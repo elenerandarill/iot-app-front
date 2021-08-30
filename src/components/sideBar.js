@@ -16,7 +16,7 @@ const SideBar = ({location}) => {
             <MenuButton text="Pulpit" path="/"/>
             <MenuButton text="Alerty" path="/alerts"/>
             <MenuButton text="Czujniki" path="/sensors"/>
-            <MenuButton text="Grupy" path="/groups-of-sensors"/>
+            <MenuButton text="Grupy" path="/sgroups"/>
             <MenuButton text="Zespół" path="/team"/>
             <MenuButton text="Kontakt" path="/contact"/>
 

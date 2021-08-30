@@ -1,6 +1,6 @@
-import getPeople from "../../FakeBackend/getPeople";
-import ButtonFunc from "../buttonFunc";
-import ListObjects from "../listObjects";
+import getPeople from "../../../FakeBackend/getPeople";
+import ButtonFunc from "../../buttonFunc";
+import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
 
 /**

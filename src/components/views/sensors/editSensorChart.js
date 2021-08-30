@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
-import ChartDataChoices from "../chartDataChoices";
-import ButtonFunc from "../buttonFunc";
-import { getMeasurements } from "../chartUtils";
-import DisplayChoices from "../displayChoices";
-import getSensors from "../../FakeBackend/getSensors";
-import getChartsInfo from "../../FakeFrontend/getChartsInfo";
+import ChartDataChoices from "../../chartDataChoices";
+import ButtonFunc from "../../buttonFunc";
+import { getMeasurements } from "../../chartUtils";
+import DisplayChoices from "../../displayChoices";
+import getSensors from "../../../FakeBackend/getSensors";
+import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
 
 const EditSensorChart = () => {
     let {id} = useParams();
@@ -16,7 +16,7 @@ const EditSensorChart = () => {
                 <div className="buttons-container">
                     <ButtonFunc
                         text={"anuluj"}
-                        link={`/sensors}/${sensor.id}`}
+                        link={`/sensors/${sensor.id}`}
                     />
                 </div>
 

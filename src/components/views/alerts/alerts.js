@@ -1,9 +1,8 @@
 import ListAlerts from "./listAlerts";
-import getAlerts from "../../FakeBackend/getAlerts";
-import plus from "../../media/plus.svg";
+import getAlerts from "../../../FakeBackend/getAlerts";
 import {useState} from "react";
-import SearchBox from "../searchBox";
-import ButtonFunc from "../buttonFunc";
+import SearchBox from "../../searchBox";
+import ButtonFunc from "../../buttonFunc";
 
 
 const Alerts = () => {

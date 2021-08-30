@@ -25,7 +25,7 @@ export class GroupOfSensors {
 }
 
 /** @type {GroupOfSensors[]} */
-const getGroupsOfSensors = [
+const getSGroups = [
     new GroupOfSensors(
         "1",
         "szklarnia",
@@ -103,4 +103,4 @@ const getGroupsOfSensors = [
     ),
 ]
 
-export default getGroupsOfSensors;
+export default getSGroups;

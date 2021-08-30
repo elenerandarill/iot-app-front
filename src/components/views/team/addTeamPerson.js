@@ -1,9 +1,9 @@
 import { useState } from "react";
-import ButtonFunc from "../buttonFunc";
-import DisplayChoices from "../displayChoices";
-import fakeMeasurements from "../../FakeFrontend/getGroupMeasurements";
+import ButtonFunc from "../../buttonFunc";
+import DisplayChoices from "../../displayChoices";
+import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
 
-const AddTeamMember = () => {
+const AddTeamPerson = () => {
     const [pname, setPname] = useState("");
     const [pnotes, setPnotes] = useState("");
 
@@ -76,4 +76,4 @@ const AddTeamMember = () => {
     );
 };
 
-export default AddTeamMember;
+export default AddTeamPerson;
