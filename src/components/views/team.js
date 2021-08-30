@@ -1,6 +1,5 @@
 import getPeople from "../../FakeBackend/getPeople";
 import ButtonFunc from "../buttonFunc";
-import getSensors from "../../FakeBackend/getSensors";
 import ListObjects from "../listObjects";
 import {Link} from "react-router-dom";
 
@@ -26,7 +25,7 @@ const Team = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"osoba"} add={true}/>
+                <ButtonFunc text={"osoba"} add={true} link={"add/team"}/>
             </div>
 
             <div className="content-3x">

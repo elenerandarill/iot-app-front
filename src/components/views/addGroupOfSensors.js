@@ -1,6 +1,5 @@
-import ButtonFunc from "../buttonFunc";
-import {Link} from "react-router-dom";
 import { useState } from "react";
+import ButtonFunc from "../buttonFunc";
 import DisplayChoices from "../displayChoices";
 import fakeMeasurements from "../../FakeFrontend/getGroupMeasurements";
 
