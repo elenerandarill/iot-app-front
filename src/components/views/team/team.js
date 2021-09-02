@@ -3,6 +3,7 @@ import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {GET_TEAM_MEMBER_URL, GET_TEAM_URL} from "../../../iotConfig";
 
 /**
  * @param person {Person}
@@ -39,7 +40,7 @@ const Team = () => {
     const fetchTeam = async () => {
         console.log("Sending request to fetch team")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
-        const res = await fetch("http://localhost:8000/cgi-bin/fake/get_team", { method: "POST" })
+        const res = await fetch(GET_TEAM_URL, { method: "POST" })
         return await res.json()
     }
 

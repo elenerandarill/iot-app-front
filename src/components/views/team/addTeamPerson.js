@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import ButtonFunc from "../../buttonFunc";
 import DisplayChoices from "../../displayChoices";
 import getSGroups from "../../../FakeBackend/getSGroups";
+import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
 
 const AddTeamPerson = () => {
     const [pname, setPname] = useState("");
     const [pnotes, setPnotes] = useState("");
     const [selection, setSelection] = useState([])
-
+    let history = useHistory();
 
     const onSubmit = (e) => {
         // trzeba bedzie zalaczyc liste choices przed wyslaniem!
@@ -31,15 +33,24 @@ const AddTeamPerson = () => {
         console.log("Sending new person to backend")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
         const res = await fetch(
-            "http://localhost:8000/cgi-bin/fake/add_team", {
+            ADD_TEAM_MEMBER_URL, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(data)
             }
         )
-
         const resStatus = res.status
-
+        console.log("resp status: ", resStatus)
+        if (resStatus === 200){
+            history.push("/team")
+        }else{
+            alert("Error, resp status " + resStatus)
+        }
+        // Aby wyciagnac body! i tez zwraca Promise, stąd await
         const resJson = await res.json()
+        console.log("resp body: ", resJson)
         // ...
     }
 

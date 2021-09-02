@@ -1,11 +1,10 @@
 import React from 'react';
 
-const ButtonSendOne = ({ text, forField }) => {
+const ButtonSendOne = ({ text, forField, onClick }) => {
     return (
             <div
+                onClick={onClick}
                 className="btn btn-color"
-                onClick={() => console.log("Wysłano zmianę dot. ", forField)}
-                // wyslij POSTem request ze zmiana
             >
                 {text}
             </div>

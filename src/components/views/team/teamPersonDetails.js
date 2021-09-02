@@ -7,9 +7,12 @@ import getSGroups from "../../../FakeBackend/getSGroups";
 import getPeople, {Person} from "../../../FakeBackend/getPeople";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
+import {GET_TEAM_MEMBER_URL} from "../../../iotConfig";
 
 
 const TeamPersonDetails = () => {
+    const [pfullname, setPfullname] = useState();
+    const [pnotes, setPnotes] = useState();
     const {id} = useParams();
     const [person, setPerson] = useState(undefined)
 
@@ -17,7 +20,7 @@ const TeamPersonDetails = () => {
         const fetchPerson = async (id) => {
             console.log("Sending request to fetch person")
             const res = await fetch(
-                "http://localhost:8000/cgi-bin/fake/get_person",
+                GET_TEAM_MEMBER_URL,
                 {
                     method: "POST",
                     body: JSON.stringify({"id": id})
@@ -47,6 +50,11 @@ const TeamPersonDetails = () => {
         )
     }
 
+    const setNewFullname = (input) => {
+        console.log("input for fullname: ", input)
+        setPfullname(input)
+    }
+
     return (
         <div className="main">
             <div className="buttons-container">
@@ -63,13 +71,13 @@ const TeamPersonDetails = () => {
 
                         <InputAttribute
                             label="imię i nazwisko"
-                            name="personFullname"
+                            name="pFullname"
                             placeholder={person.fullname}
-                            // onChange={}
+                            // onClick={(e) => setNewFullname(e.target.value)}
                         />
                         <InputAttribute
                             label="notatka"
-                            name="personNotes"
+                            name="pNotes"
                             placeholder={person.notes === "" ? "Tu wpisz notatkę." : person.notes}
                             // onChange={}
                         />

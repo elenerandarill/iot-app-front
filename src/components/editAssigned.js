@@ -1,20 +1,16 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import ButtonFunc from "./buttonFunc";
 import DisplayChoices from "./displayChoices";
-import axios from "axios";
-import {CATFISH_URL} from "../iotConfig";
 
 /**
  * @param type --> sensors-in
  * @returns {JSX.Element}
  * @constructor
  */
-const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
+const EditAssigned = ({headline, linkTo, object, availableChoices, handleSend}) => {
     const [selection, setSelection] = useState([])
 
-    let history = useHistory();
-
+    //TODO: wrzucić w parametry!
     const headline2 = (object) => {
         if (object.fullname) {
             return "Zaznacz grupy, do których udzielasz dostępu"
@@ -29,35 +25,9 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
 
     const getAssignedObjects = (obj) => {
         const results = availableChoices.filter(o => obj.assigned.includes(o.id));
-        console.log(results);
+        console.log("getAssignedObjects, res: ", results);
         return results
     }
-
-    const handleSend = (object) => {
-        // POST
-        const id = object.id
-        const list = object.assigned
-        console.log("przekazano: ", object)
-        axios.post(CATFISH_URL, {
-            $schema: "https://json-schema.org/draft/2020-12/schema",
-            $id: "https://example.com/product.schema.json",
-            title: "GroupsOfASensor",
-            sensorId: id,
-            groups: list
-        })
-
-            .then(function (response) {
-                console.log("response to Front", response);
-                if (response.status === 200){
-                    // console.log("Przekierowuję...");
-                    history.push(`/${linkTo}/${object.id}`);
-                }
-            })
-            .catch(function (error) {
-                console.log("error", error);
-            });
-    };
-
 
     return (
         <div className="main">
@@ -88,7 +58,10 @@ const EditAssigned = ({headline, linkTo, object, availableChoices}) => {
                         <div className="object-container">
                         <div
                             className="btn btn-color"
-                            onClick={() => handleSend(object)}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                handleSend(selection)
+                            }}
                         >
                             gotowe
                         </div>
