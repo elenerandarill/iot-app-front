@@ -30,6 +30,29 @@ export class BackendConnector {
 
     /**
      * @param url {string}
+     * @param object {any}
+     * @param value {string[]}
+     * @returns {Promise<BackendResponse>}
+     */
+    async sendAttribute(url, object, value) {
+        const id = object.id
+
+        let data = {
+            $schema: "https://json-schema.org/draft/2020-12/schema",
+            $id: "https://example.com/product.schema.json",
+            objectId: id,
+            value: value
+        }
+        // console.log("przekazano: ", object)
+
+        // POST
+        return await this.sendForm(url, data)
+    }
+
+
+
+    /**
+     * @param url {string}
      * @param data {Object.<string, any>}
      * @returns {Promise<BackendResponse>}
      */

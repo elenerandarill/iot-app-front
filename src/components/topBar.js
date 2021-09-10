@@ -4,7 +4,7 @@ import getAlerts from "../FakeBackend/getAlerts";
 const TopBar = () => {
 
     const countNew = () => {
-        return getAlerts.filter(alert => alert.new === true).length
+        return getAlerts.filter(alert => alert.read === true).length
     }
 
     return(

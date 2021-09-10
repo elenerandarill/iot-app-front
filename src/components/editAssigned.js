@@ -7,21 +7,8 @@ import DisplayChoices from "./displayChoices";
  * @returns {JSX.Element}
  * @constructor
  */
-const EditAssigned = ({headline, linkTo, object, availableChoices, handleSend}) => {
+const EditAssigned = ({headline, description, linkTo, object, availableChoices, handleSend}) => {
     const [selection, setSelection] = useState([])
-
-    //TODO: wrzucić w parametry!
-    const headline2 = (object) => {
-        if (object.fullname) {
-            return "Zaznacz grupy, do których udzielasz dostępu"
-        }
-        else if (object.sn) {
-            return "Zaznacz grupy, w których ma być czujnik"
-        }
-        else {
-            return "Zaznacz czujniki, które chcesz monitorować w grupie"
-        }
-    }
 
     const getAssignedObjects = (obj) => {
         const results = availableChoices.filter(o => obj.assigned.includes(o.id));
@@ -41,12 +28,12 @@ const EditAssigned = ({headline, linkTo, object, availableChoices, handleSend}) 
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                        edycja {headline} {object.name}
+                         {headline} {object.name}
                     </div>
 
                     <div className="shadow white-space top-contact  txt-center">
                         <div className="head-txt">
-                            {headline2(object)}
+                            {description}
                         </div>
                         <div className="object-container">
                             <DisplayChoices

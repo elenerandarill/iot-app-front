@@ -3,23 +3,23 @@ import {useState} from "react";
 import {useParams} from "react-router-dom";
 
 
-export const InputAttribute = ({ label, name, placeholder }) => {
-    const [newValue, setNewValue] = useState(undefined);
-    const {id} = useParams();
+export const InputAttribute = ({ label, name, placeholder, setNewValue }) => {
+    // const [newValue, setNewValue] = useState(undefined);
+    // const {id} = useParams();
 
     // const getEndpoint = () => {
     //     //TODO: logika do znalezienia odpowiedniego endpointa????
     //     return "http://localhost:8000/cgi-bin/fake/team/:id/edit"
     // }
-
-    let data = {
-        $schema: "https://json-schema.org/draft/2020-12/schema",
-        $id: "https://example.com/product.schema.json",
-        title: "EditObjectValue",
-        objectId: id,
-        valueName: name,
-        newValue: newValue
-    }
+    //
+    // let data = {
+    //     $schema: "https://json-schema.org/draft/2020-12/schema",
+    //     $id: "https://example.com/product.schema.json",
+    //     title: "EditObjectValue",
+    //     objectId: id,
+    //     valueName: name,
+    //     newValue: newValue
+    // }
 
     const handleSend = async () => {
         console.log("handle send z buttona")
@@ -53,6 +53,12 @@ export const InputAttribute = ({ label, name, placeholder }) => {
                 onClick={() => handleSend()}
             >
                 zapisz
+            </div>
+            <div
+                className="btn btn-color"
+                onClick={() => handleSend()}
+            >
+                rezygnuj
             </div>
         </div>
     )

@@ -11,14 +11,14 @@ import UserViews from "./components/views/userViews";
 import Register from "./components/views/register";
 import SensorDetails from "./components/views/sensors/sensorDetails";
 import SGroupDetails from "./components/views/sGroups/sGroupDetails";
-import TeamPersonDetails from "./components/views/team/teamPersonDetails";
+import TeamMemberDetails from "./components/views/team/teamMemberDetails";
 import Test from "./components/views/test";
 import AddSGroup from "./components/views/sGroups/addSGroup";
 import EditSensorGroups from "./components/views/sensors/editSensorGroups";
 import EditSGroup from "./components/views/sGroups/editSGroup";
-import EditPersonGroups from "./components/views/team/editPersonGroups";
+import EditMemberGroups from "./components/views/team/editMemberGroups";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
-import AddTeamPerson from "./components/views/team/addTeamPerson";
+import AddTeamMember from "./components/views/team/addTeamMember";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
 
@@ -43,9 +43,9 @@ function App() {
                         <Route path="/sgroups/:id" exact component={SGroupDetails}/>
                         <Route path="/sgroups/:id/edit" exact component={EditSGroup}/>
                         <Route path="/team" exact component={Team}/>
-                        <Route path="/team/:id" exact component={TeamPersonDetails}/>
-                        <Route path="/add/team" exact component={AddTeamPerson}/>
-                        <Route path="/team/:id/edit" exact component={EditPersonGroups}/>
+                        <Route path="/team/:id" exact component={TeamMemberDetails}/>
+                        <Route path="/add/team" exact component={AddTeamMember}/>
+                        <Route path="/team/:id/edit" exact component={EditMemberGroups}/>
                         <Route path="/contact" component={Contact}/>
                 </UserViews>
             </Switch>

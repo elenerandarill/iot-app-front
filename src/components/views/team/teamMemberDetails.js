@@ -1,24 +1,26 @@
-import { useParams } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {Link} from "react-router-dom";
 import {InputAttribute} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListAssignedObjects from "../../listAssignedObjects";
 import getSGroups from "../../../FakeBackend/getSGroups";
-import getPeople, {Person} from "../../../FakeBackend/getPeople";
+import getMembers, {Member} from "../../../FakeBackend/getMembers";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
-import {GET_TEAM_MEMBER_URL} from "../../../iotConfig";
+import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL} from "../../../iotConfig";
+import {BackendConnector} from "../../../FakeFrontend/backendConnector";
 
 
-const TeamPersonDetails = () => {
-    const [pfullname, setPfullname] = useState();
-    const [pnotes, setPnotes] = useState();
+const TeamMemberDetails = () => {
+    // const [fullname, setFullname] = useState();
+    // const [notes, setNotes] = useState();
+    const history = useHistory()
     const {id} = useParams();
-    const [person, setPerson] = useState(undefined)
+    const [member, setMember] = useState(undefined)
 
     useEffect(() => {
-        const fetchPerson = async (id) => {
-            console.log("Sending request to fetch person")
+        const fetchMember = async (id) => {
+            console.log("Sending request to fetch member")
             const res = await fetch(
                 GET_TEAM_MEMBER_URL,
                 {
@@ -26,23 +28,22 @@ const TeamPersonDetails = () => {
                     body: JSON.stringify({"id": id})
                 }
             )
-            console.log("resp: ", res)
             const resJson = await res.json()
-            console.log("resp.json: ", resJson)
-            const person = jsonToPerson(resJson)
-            console.log("person details: ", person)
-            return person
+            console.log("resp: ", res, ", resp.json: ", resJson)
+            const member = jsonToMember(resJson)
+            console.log("member details: ", member)
+            return member
         }
 
-        fetchPerson(id)
-            .then((person) => setPerson(person))
+        fetchMember(id)
+            .then((member) => setMember(member))
     }, [id])
 
-    const jsonToPerson = (p) => {
-        return new Person(p.id, p.fullname, p.joinedAt, p.assigned, p.notes)
+    const jsonToMember = (m) => {
+        return new Member(m.id, m.fullname, m.joinedAt, m.assigned, m.notes)
     }
 
-    if(!person) {
+    if(!member) {
         return (
             <div className="main">
                 <div>NIE ZNALEZIONO TAKIEJ OSOBY</div>
@@ -50,35 +51,46 @@ const TeamPersonDetails = () => {
         )
     }
 
-    const setNewFullname = (input) => {
-        console.log("input for fullname: ", input)
-        setPfullname(input)
+    const sendRequest = async (fullname) => {
+        console.log("New input for field: ", fullname)
+        const backConn = new BackendConnector()
+        const response = await backConn.sendAttribute(
+            SET_TEAM_MEMBER_NAME_URL,
+            member,
+            fullname
+        )
+        if (response.status === 200){
+            history.push(`/team/${member.id}`)
+        }
+        else {
+            console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
+        }
     }
 
     return (
         <div className="main">
             <div className="buttons-container">
                 <ButtonFunc text={"powrót do listy"} link="/team"/>
-                <ButtonFunc text={"usuń tę osobę"} link="/person/delete"/>
+                <ButtonFunc text={"usuń tę osobę"} link="/member/delete"/>
             </div>
 
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                        {person.fullname}
+                        {member.fullname}
                     </div>
                     <div className="white-space top-contact">
 
                         <InputAttribute
                             label="imię i nazwisko"
-                            name="pFullname"
-                            placeholder={person.fullname}
-                            // onClick={(e) => setNewFullname(e.target.value)}
+                            name="fullname"
+                            placeholder={member.fullname}
+                            setNewValue={sendRequest}
                         />
                         <InputAttribute
                             label="notatka"
-                            name="pNotes"
-                            placeholder={person.notes === "" ? "Tu wpisz notatkę." : person.notes}
+                            name="notes"
+                            placeholder={member.notes === "" ? "Tu wpisz notatkę." : member.notes}
                             // onChange={}
                         />
 
@@ -89,14 +101,14 @@ const TeamPersonDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonFunc
                                             text={"edytuj"}
-                                            link={`/team/${person.id}/edit`}
+                                            link={`/team/${member.id}/edit`}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
-                                        {person.assigned.length === 0
+                                        {member.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={person.assigned} list={getSGroups}
+                                            : <ListAssignedObjects assigned={member.assigned} list={getSGroups}
                                                 objectRenderer={groupObjectRenderer}
                                             />
                                         }
@@ -112,4 +124,4 @@ const TeamPersonDetails = () => {
     )
 }
 
-export default TeamPersonDetails;
+export default TeamMemberDetails;

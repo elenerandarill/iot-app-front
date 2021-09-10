@@ -40,6 +40,7 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
         const uniqueSelection = Array.from(new Set(newSelection))
         console.log("uniqueSelection: ",uniqueSelection)
         setSelected(uniqueSelection)
+        onNewSelection(newSelection)
     };
 
     return (

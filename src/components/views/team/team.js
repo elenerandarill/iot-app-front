@@ -1,23 +1,23 @@
-import getPeople, {Person} from "../../../FakeBackend/getPeople";
+import getMembers, { Member } from "../../../FakeBackend/getMembers";
 import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {GET_TEAM_MEMBER_URL, GET_TEAM_URL} from "../../../iotConfig";
+import { GET_TEAM_URL } from "../../../iotConfig";
 
 /**
- * @param person {Person}
+ * @param member {Member}
  * @returns {JSX.Element}
  */
-export const personObjectRenderer = (person) => {
-    console.log("renderer dostaje: ", person)
+export const memberObjectRenderer = (member) => {
+    console.log("renderer dostaje: ", member)
     return (
         <Link
-            key={person.id}
-            to={`/team/${person.id}`}
+            key={member.id}
+            to={`/team/${member.id}`}
         >
-            <div className={"object shadow" + (person.assigned.length === 0 ? " mark-as-new" : "")}>
-                <div className="txt-semibold">{person.fullname}</div>
+            <div className={"object shadow" + (member.assigned.length === 0 ? " mark-as-new" : "")}>
+                <div className="txt-semibold">{member.fullname}</div>
             </div>
         </Link>
     )
@@ -30,7 +30,7 @@ const Team = () => {
         const getTeam = async () => {
             const teamFromServer = await fetchTeam()
             console.log("teamFromServer: ", teamFromServer);
-            return jsonToPerson(teamFromServer)
+            return jsonToMember(teamFromServer)
         }
 
         getTeam()
@@ -44,8 +44,8 @@ const Team = () => {
         return await res.json()
     }
 
-    const jsonToPerson = (list) => {
-        const list2 = list.map(p => new Person(p.id, p.fullname, p.joinedAt, p.assigned, p.notes))
+    const jsonToMember = (list) => {
+        const list2 = list.map(m => new Member(m.id, m.fullname, m.joinedAt, m.assigned, m.notes))
         console.log("list2: ", list2)
         return list2
     }
@@ -61,7 +61,7 @@ const Team = () => {
 
                     <div className="headline-color">Osoby w teamie</div>
                     <div className="white-space top-contact">
-                        <ListObjects list={team} objectRenderer={personObjectRenderer}/>
+                        <ListObjects list={team} objectRenderer={memberObjectRenderer}/>
                     </div>
 
                 </div>

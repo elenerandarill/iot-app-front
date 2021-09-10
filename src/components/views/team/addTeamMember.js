@@ -5,7 +5,7 @@ import DisplayChoices from "../../displayChoices";
 import getSGroups from "../../../FakeBackend/getSGroups";
 import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
 
-const AddTeamPerson = () => {
+const AddTeamMember = () => {
     const [pname, setPname] = useState("");
     const [pnotes, setPnotes] = useState("");
     const [selection, setSelection] = useState([])
@@ -30,7 +30,7 @@ const AddTeamPerson = () => {
     }
 
     const sendForm = async (data) => {
-        console.log("Sending new person to backend")
+        console.log("Sending new member to backend")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
         const res = await fetch(
             ADD_TEAM_MEMBER_URL, {
@@ -120,4 +120,4 @@ const AddTeamPerson = () => {
     );
 };
 
-export default AddTeamPerson;
+export default AddTeamMember;
