@@ -1,39 +1,17 @@
-// import ButtonSendOne from "./buttonSendOne";
 import {useState} from "react";
-import {useParams} from "react-router-dom";
 
 
-export const InputAttribute = ({ label, name, placeholder, setNewValue }) => {
-    // const [newValue, setNewValue] = useState(undefined);
-    // const {id} = useParams();
+export const InputAttribute = ({ label, name, placeholder, sendChange }) => {
+    const [newValue, setNewValue] = useState(undefined);
 
-    // const getEndpoint = () => {
-    //     //TODO: logika do znalezienia odpowiedniego endpointa????
-    //     return "http://localhost:8000/cgi-bin/fake/team/:id/edit"
-    // }
-    //
-    // let data = {
-    //     $schema: "https://json-schema.org/draft/2020-12/schema",
-    //     $id: "https://example.com/product.schema.json",
-    //     title: "EditObjectValue",
-    //     objectId: id,
-    //     valueName: name,
-    //     newValue: newValue
-    // }
-
-    const handleSend = async () => {
-        console.log("handle send z buttona")
-        // POST z podmiana wartosci 'name' na zawartość 'newValue'?
-        // const res = await fetch(
-        //     getEndpoint(),
-        //     {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(data)
-        //     }
-        // )
+    const onNewValue = (value) => {
+        if (value !== undefined && value !== ""){
+            sendChange(value) // przekazuje do gory
+        }
+        else{
+            // pokazac alert!
+            console.log("Nowa wartość powinna być dłuższa niż 0 znaków.")
+        }
     }
 
     return(
@@ -50,15 +28,9 @@ export const InputAttribute = ({ label, name, placeholder, setNewValue }) => {
             </div>
             <div
                 className="btn btn-color"
-                onClick={() => handleSend()}
+                onClick={() => onNewValue(newValue)}
             >
                 zapisz
-            </div>
-            <div
-                className="btn btn-color"
-                onClick={() => handleSend()}
-            >
-                rezygnuj
             </div>
         </div>
     )

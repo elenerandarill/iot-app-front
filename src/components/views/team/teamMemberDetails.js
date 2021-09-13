@@ -7,7 +7,7 @@ import getSGroups from "../../../FakeBackend/getSGroups";
 import getMembers, {Member} from "../../../FakeBackend/getMembers";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
-import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL} from "../../../iotConfig";
+import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
 import {BackendConnector} from "../../../FakeFrontend/backendConnector";
 
 
@@ -51,7 +51,7 @@ const TeamMemberDetails = () => {
         )
     }
 
-    const sendRequest = async (fullname) => {
+    const changeFullname = async (fullname) => {
         console.log("New input for field: ", fullname)
         const backConn = new BackendConnector()
         const response = await backConn.sendAttribute(
@@ -66,6 +66,28 @@ const TeamMemberDetails = () => {
             console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
         }
     }
+
+    const changeNotes = async (notes) => {
+        try {
+            console.log("New input for field: ", notes)
+            const backConn = new BackendConnector()
+            const response = await backConn.sendAttribute(
+                SET_TEAM_MEMBER_NOTES_URL,
+                member,
+                notes
+            )
+            if (response.status === 200) {
+                history.push(`/team/${member.id}`)
+            } else {
+                console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
+            }
+        }
+        catch(e) {
+            console.log("catch - ERROR", e)
+        }
+
+    }
+
 
     return (
         <div className="main">
@@ -85,13 +107,13 @@ const TeamMemberDetails = () => {
                             label="imię i nazwisko"
                             name="fullname"
                             placeholder={member.fullname}
-                            setNewValue={sendRequest}
+                            sendChange={changeFullname}
                         />
                         <InputAttribute
                             label="notatka"
                             name="notes"
                             placeholder={member.notes === "" ? "Tu wpisz notatkę." : member.notes}
-                            // onChange={}
+                            sendChange={changeNotes}
                         />
 
                         <div className="shadow listed-attribute">
