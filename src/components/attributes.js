@@ -1,30 +1,61 @@
 import {useState} from "react";
 
 
-export const InputAttribute = ({ label, name, placeholder, sendChange }) => {
-    const [newValue, setNewValue] = useState(undefined);
+export const InputString = ({label, name, placeholder, sendChange}) => {
+    const [newValue, setNewValue] = useState(placeholder)
 
     const onNewValue = (value) => {
-        if (value !== undefined && value !== ""){
+        if (value) {
             sendChange(value) // przekazuje do gory
-        }
-        else{
+        } else {
             // pokazac alert!
             console.log("Nowa wartość powinna być dłuższa niż 0 znaków.")
         }
     }
 
-    return(
+    return (
         <div className="shadow listed-attribute">
             <div className="head-txt">{label}</div>
             <div className="position-cent">
                 <input
-                    type="text"
-                    name={name}
-                    className="input"
-                    placeholder={placeholder}
-                    onChange={(e) => setNewValue(e.target.value)}
-                />
+                type="text"
+                name={name}
+                className="input"
+                placeholder={placeholder}
+                onChange={(e) => setNewValue(e.target.value)}
+            />
+            </div>
+            <div
+                className="btn btn-color"
+                onClick={() => onNewValue(newValue)}
+            >
+                zapisz
+            </div>
+        </div>
+    )
+}
+
+export const InputTextarea = ({label, name, placeholder, sendChange}) => {
+    const [newValue, setNewValue] = useState(placeholder)
+
+    const onNewValue = (value) => {
+        if (value) {
+            sendChange(value) // przekazuje do gory
+        }
+    }
+
+    return (
+        <div className="shadow listed-attribute">
+            <div className="head-txt">{label}</div>
+            <div className="position-cent">
+                <div
+                    id={name}
+                    className="txtarea"
+                    contentEditable="true"
+                    onInput={(e) => setNewValue(e.target.textContent)}
+                >
+                    {placeholder}
+                </div>
             </div>
             <div
                 className="btn btn-color"

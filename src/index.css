@@ -287,6 +287,17 @@ a {
   border-bottom: 1px var(--gray02) solid;
 }
 
+.txtarea {
+  max-width: 800px;
+  width: 70%;
+  font-family: "Segoe UI Regular", sans-serif;
+  color: var(--gray03);
+  text-align: center;
+  padding: 5px 5px;
+  border-bottom: 1px var(--gray02) solid;
+  display: inline;
+}
+
  /*---- icons ----*/
 
 img.dot {

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import {InputAttribute, DisplayAttribute} from "../../attributes";
+import {DisplayAttribute, InputString, InputTextarea} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListMeasurements from "../../listMeasurements.js";
 import ListAssignedObjects from "../../listAssignedObjects";
@@ -31,7 +31,7 @@ const SensorDetails = () => {
                     </div>
                     <div className="white-space top-contact">
 
-                        <InputAttribute
+                        <InputString
                             label="nazwa"
                             name="sensorName"
                             placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
@@ -39,7 +39,7 @@ const SensorDetails = () => {
                             // onFocusShow={() => showControls()}
                         />
 
-                        <InputAttribute
+                        <InputTextarea
                             label="notatka"
                             name="sensorNotes"
                             placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}

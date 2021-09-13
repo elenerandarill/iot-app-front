@@ -3,8 +3,10 @@ import getSGroups from "../../../FakeBackend/getSGroups";
 import getSensors from "../../../FakeBackend/getSensors";
 import ButtonFunc from "../../buttonFunc";
 import ListAssignedObjects from "../../listAssignedObjects";
-import { InputAttribute } from "../../attributes";
+import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
+import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {SET_TEAM_MEMBER_NAME_URL} from "../../../iotConfig";
 
 
 const SGroupDetails = () => {
@@ -16,6 +18,22 @@ const SGroupDetails = () => {
     }
 
     const group = getGroup(id);
+
+    // const changeName = async (fullname) => {
+    //     console.log("New input for field: ", fullname)
+    //     const backConn = new BackendConnector()
+    //     const response = await backConn.sendAttribute(
+    //         SET,
+    //         group,
+    //         fullname
+    //     )
+    //     if (response.status === 200){
+    //         history.push(`/team/${member.id}`)
+    //     }
+    //     else {
+    //         console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
+    //     }
+    // }
 
     return(
         <div className="main">
@@ -30,14 +48,14 @@ const SGroupDetails = () => {
                         {group.name}
                     </div>
                     <div className="white-space top-contact">
-                        <InputAttribute
+                        <InputString
                             label="nazwa"
                             name="groupName"
                             placeholder={group.name}
-                            // onChange={}
+                            // sendChange={changeName}
                         />
 
-                        <InputAttribute
+                        <InputTextarea
                             label="notatka"
                             name="groupNotes"
                             placeholder={group.notes === "" ? "Tu wpisz notatkę." : group.notes}

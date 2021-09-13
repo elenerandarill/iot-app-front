@@ -1,6 +1,6 @@
 import {useHistory, useParams} from "react-router-dom";
 import {Link} from "react-router-dom";
-import {InputAttribute} from "../../attributes";
+import {InputString, InputTextarea} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListAssignedObjects from "../../listAssignedObjects";
 import getSGroups from "../../../FakeBackend/getSGroups";
@@ -103,13 +103,13 @@ const TeamMemberDetails = () => {
                     </div>
                     <div className="white-space top-contact">
 
-                        <InputAttribute
+                        <InputString
                             label="imię i nazwisko"
                             name="fullname"
                             placeholder={member.fullname}
                             sendChange={changeFullname}
                         />
-                        <InputAttribute
+                        <InputTextarea
                             label="notatka"
                             name="notes"
                             placeholder={member.notes === "" ? "Tu wpisz notatkę." : member.notes}
