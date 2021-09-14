@@ -10,8 +10,9 @@ import ChartDataChoices from "../../chartDataChoices";
 import {Sensor} from "../../../FakeBackend/getSensors";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
-import {GET_SENSOR_URL} from "../../../iotConfig";
+import {GET_SENSOR_URL, SET_SENSOR_NAME_URL, SET_SENSOR_NOTES_URL} from "../../../iotConfig";
 import {getSensorAssignedSgroups} from "../../../FakeFrontend/dataUtils";
+import {BackendConnector} from "../../../FakeFrontend/backendConnector";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(undefined)
@@ -56,6 +57,48 @@ const SensorDetails = () => {
         )
     }
 
+
+    const changeName = async (name) => {
+        try {
+            console.log("New input for field: ", name)
+            const backConn = new BackendConnector()
+            const response = await backConn.sendAttribute(
+                SET_SENSOR_NAME_URL,
+                sensor,
+                name
+            )
+            if (response.status === 200) {
+                console.log("[ success ] in changing value")
+            } else {
+                console.log("Sensor - Nie udało się zmienić wartości, status: ", response.status)
+            }
+        }
+        catch(e) {
+            console.log("catch - ERROR", e)
+        }
+    }
+
+    const changeNotes = async (notes) => {
+        try {
+            console.log("New input for field: ", notes)
+            const backConn = new BackendConnector()
+            const response = await backConn.sendAttribute(
+                SET_SENSOR_NOTES_URL,
+                sensor,
+                notes
+            )
+            if (response.status === 200) {
+                console.log("[ success ] in changing value")
+            } else {
+                console.log("Sensor - Nie udało się zmienić wartości, status: ", response.status)
+            }
+        }
+        catch(e) {
+            console.log("catch - ERROR", e)
+        }
+
+    }
+
     return (
         <div className="main">
             <div className="buttons-container">
@@ -73,14 +116,14 @@ const SensorDetails = () => {
                             label="nazwa"
                             name="sensorName"
                             placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
-                            // onChange={}
+                            sendChange={changeName}
                         />
 
                         <InputTextarea
                             label="notatka"
                             name="sensorNotes"
                             placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}
-                            // onChange={}
+                            sendChange={changeNotes}
                         />
 
                         <DisplayAttribute name="numer seryjny" value={sensor.sn}/>

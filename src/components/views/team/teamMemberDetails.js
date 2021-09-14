@@ -54,18 +54,21 @@ const TeamMemberDetails = () => {
     }
 
     const changeFullname = async (fullname) => {
-        console.log("New input for field: ", fullname)
-        const backConn = new BackendConnector()
-        const response = await backConn.sendAttribute(
-            SET_TEAM_MEMBER_NAME_URL,
-            member,
-            fullname
-        )
-        if (response.status === 200){
-            history.push(`/team/${member.id}`)
-        }
-        else {
-            console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
+        try {
+            console.log("New input for field: ", fullname)
+            const backConn = new BackendConnector()
+            const response = await backConn.sendAttribute(
+                SET_TEAM_MEMBER_NAME_URL,
+                member,
+                fullname
+            )
+            if (response.status === 200) {
+                history.push(`/team/${member.id}`)
+            } else {
+                console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
+            }
+        } catch (e) {
+            console.log("catch - ERROR", e)
         }
     }
 
