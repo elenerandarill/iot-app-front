@@ -1,13 +1,14 @@
 import {useState} from "react";
 
 
-export const InputString = ({label, name, placeholder, sendChange}) => {
+export const InputString = ({label, name, placeholder, object, url, sendChange}) => {
     const [newValue, setNewValue] = useState(placeholder)
 
     const onNewValue = (value) => {
         if (value) {
-            sendChange(value) // przekazuje do gory
-        } else {
+            sendChange(value, object, url) // przekazuje do gory
+        }
+        else {
             // pokazac alert!
             console.log("Nowa wartość powinna być dłuższa niż 0 znaków.")
         }
@@ -35,12 +36,16 @@ export const InputString = ({label, name, placeholder, sendChange}) => {
     )
 }
 
-export const InputTextarea = ({label, name, placeholder, sendChange}) => {
+export const InputTextarea = ({label, name, placeholder, object, url, sendChange}) => {
     const [newValue, setNewValue] = useState(placeholder)
 
     const onNewValue = (value) => {
         if (value) {
-            sendChange(value) // przekazuje do gory
+            sendChange(value, object, url) // przekazuje do gory
+        }
+        else {
+            // pokazac alert!
+            console.log("Nowa wartość powinna być dłuższa niż 0 znaków.")
         }
     }
 

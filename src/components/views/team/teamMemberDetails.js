@@ -6,15 +6,14 @@ import {Member} from "../../../FakeBackend/getMembers";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
 import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
-import {getMemberAssignedSgroups} from "../../../FakeFrontend/dataUtils";
+import {getMemberAssignedSgroups, changeValue} from "../../../FakeFrontend/dataUtils";
 
 
 const TeamMemberDetails = () => {
     const [member, setMember] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
-    const history = useHistory()
+    // const history = useHistory()
 
 
     useEffect(() => {
@@ -53,46 +52,6 @@ const TeamMemberDetails = () => {
         )
     }
 
-    const changeFullname = async (fullname) => {
-        try {
-            console.log("New input for field: ", fullname)
-            const backConn = new BackendConnector()
-            const response = await backConn.sendAttribute(
-                SET_TEAM_MEMBER_NAME_URL,
-                member,
-                fullname
-            )
-            if (response.status === 200) {
-                history.push(`/team/${member.id}`)
-            } else {
-                console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
-            }
-        } catch (e) {
-            console.log("catch - ERROR", e)
-        }
-    }
-
-    const changeNotes = async (notes) => {
-        try {
-            console.log("New input for field: ", notes)
-            const backConn = new BackendConnector()
-            const response = await backConn.sendAttribute(
-                SET_TEAM_MEMBER_NOTES_URL,
-                member,
-                notes
-            )
-            if (response.status === 200) {
-                history.push(`/team/${member.id}`)
-            } else {
-                console.log("Członek grupy - Nie udało się zmienić wartości, status: ", response.status)
-            }
-        }
-        catch(e) {
-            console.log("catch - ERROR", e)
-        }
-
-    }
-
     return (
         <div className="main">
             <div className="buttons-container">
@@ -111,13 +70,17 @@ const TeamMemberDetails = () => {
                             label="imię i nazwisko"
                             name="fullname"
                             placeholder={member.fullname}
-                            sendChange={changeFullname}
+                            object={member}
+                            url={SET_TEAM_MEMBER_NAME_URL}
+                            sendChange={changeValue}
                         />
                         <InputTextarea
                             label="notatka"
                             name="notes"
                             placeholder={member.notes === "" ? "Tu wpisz notatkę." : member.notes}
-                            sendChange={changeNotes}
+                            object={member}
+                            url={SET_TEAM_MEMBER_NOTES_URL}
+                            sendChange={changeValue}
                         />
 
                         <div className="shadow listed-attribute">

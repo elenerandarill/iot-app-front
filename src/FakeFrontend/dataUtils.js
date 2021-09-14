@@ -1,7 +1,34 @@
-import {GET_SENSOR_ASSIGNED_URL, GET_SGROUP_ASSIGNED_URL, GET_TEAM_MEMBER_ASSIGNED_URL} from "../iotConfig";
+import {
+    GET_SENSOR_ASSIGNED_URL,
+    GET_SGROUP_ASSIGNED_URL,
+    GET_TEAM_MEMBER_ASSIGNED_URL
+} from "../iotConfig";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {Sensor} from "../FakeBackend/getSensors";
+import {BackendConnector} from "./backendConnector";
 
+
+// universal func for changing either name or notes value.
+
+export const changeValue = async (value, object, url) => {
+    try {
+        console.log("New input for field: ", value)
+        const backConn = new BackendConnector()
+        const response = await backConn.sendAttribute(
+            url,
+            object,
+            value
+        )
+        if (response.status === 200) {
+            console.log("[ success ] in changing the value")
+        } else {
+            console.log("[ failure ] in changing value, the status: ", response.status)
+        }
+    }
+    catch(e) {
+        console.log("catch - ERROR", e)
+    }
+}
 
 // wysyłany jest request >> response jest przepisywany na obiekty
 // >> lista obiektów jest zwracana z funkcji

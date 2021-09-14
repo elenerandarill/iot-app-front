@@ -4,17 +4,16 @@ import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {GET_SGROUP_URL, SET_SGROUP_NAME_URL,SET_SGROUP_NOTES_URL} from "../../../iotConfig";
+import {GET_SGROUP_URL, SET_SGROUP_NAME_URL, SET_SGROUP_NOTES_URL} from "../../../iotConfig";
 import {useEffect, useState} from "react";
-import {getSgroupAssignedSensors} from "../../../FakeFrontend/dataUtils";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {changeValue, getSgroupAssignedSensors} from "../../../FakeFrontend/dataUtils";
 
 
 const SGroupDetails = () => {
     const [sgroup, setSgroup] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
-    const history = useHistory()
+    // const history = useHistory()
 
     useEffect(() => {
         const fetchSgroup = async (id) => {
@@ -52,43 +51,6 @@ const SGroupDetails = () => {
         )
     }
 
-    const changeName = async (name) => {
-        console.log("New input for field: ", name)
-        const backConn = new BackendConnector()
-        const response = await backConn.sendAttribute(
-            SET_SGROUP_NAME_URL,
-            sgroup,
-            name
-        )
-        if (response.status === 200){
-            console.log("[ success ] in changing value")
-        }
-        else {
-            console.log("sGrupa - Nie udało się zmienić wartości, status: ", response.status)
-        }
-    }
-
-    const changeNotes = async (notes) => {
-        try {
-            console.log("New input for field: ", notes)
-            const backConn = new BackendConnector()
-            const response = await backConn.sendAttribute(
-                SET_SGROUP_NOTES_URL,
-                sgroup,
-                notes
-            )
-            if (response.status === 200) {
-                console.log("[ success ] in changing value")
-            } else {
-                console.log("sGrupa - Nie udało się zmienić wartości, status: ", response.status)
-            }
-        }
-        catch(e) {
-            console.log("catch - ERROR", e)
-        }
-
-    }
-
     return(
         <div className="main">
             <div className="buttons-container">
@@ -106,14 +68,18 @@ const SGroupDetails = () => {
                             label="nazwa"
                             name="name"
                             placeholder={sgroup.name}
-                            sendChange={changeName}
+                            object={sgroup}
+                            url={SET_SGROUP_NAME_URL}
+                            sendChange={changeValue}
                         />
 
                         <InputTextarea
                             label="notatka"
                             name="notes"
                             placeholder={sgroup.notes === "" ? "Tu wpisz notatkę." : sgroup.notes}
-                            sendChange={changeNotes}
+                            object={sgroup}
+                            url={SET_SGROUP_NOTES_URL}
+                            sendChange={changeValue}
                         />
 
 

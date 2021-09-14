@@ -6,19 +6,19 @@ import ListObjects from "../../listObjects";
 import ButtonSendOne from "../../buttonSendOne";
 import ChartTypeArea from "../../chartTypeArea";
 import ChartTypeBar from "../../chartTypeBar";
-import ChartDataChoices from "../../chartDataChoices";
+// import ChartDataChoices from "../../chartDataChoices";
 import {Sensor} from "../../../FakeBackend/getSensors";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
 import {GET_SENSOR_URL, SET_SENSOR_NAME_URL, SET_SENSOR_NOTES_URL} from "../../../iotConfig";
-import {getSensorAssignedSgroups} from "../../../FakeFrontend/dataUtils";
+import {changeValue, getSensorAssignedSgroups} from "../../../FakeFrontend/dataUtils";
 import {BackendConnector} from "../../../FakeFrontend/backendConnector";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
-    const history = useHistory()
+    // const history = useHistory()
 
     useEffect(() => {
         const fetchSensor = async (id) => {
@@ -57,48 +57,6 @@ const SensorDetails = () => {
         )
     }
 
-
-    const changeName = async (name) => {
-        try {
-            console.log("New input for field: ", name)
-            const backConn = new BackendConnector()
-            const response = await backConn.sendAttribute(
-                SET_SENSOR_NAME_URL,
-                sensor,
-                name
-            )
-            if (response.status === 200) {
-                console.log("[ success ] in changing value")
-            } else {
-                console.log("Sensor - Nie udało się zmienić wartości, status: ", response.status)
-            }
-        }
-        catch(e) {
-            console.log("catch - ERROR", e)
-        }
-    }
-
-    const changeNotes = async (notes) => {
-        try {
-            console.log("New input for field: ", notes)
-            const backConn = new BackendConnector()
-            const response = await backConn.sendAttribute(
-                SET_SENSOR_NOTES_URL,
-                sensor,
-                notes
-            )
-            if (response.status === 200) {
-                console.log("[ success ] in changing value")
-            } else {
-                console.log("Sensor - Nie udało się zmienić wartości, status: ", response.status)
-            }
-        }
-        catch(e) {
-            console.log("catch - ERROR", e)
-        }
-
-    }
-
     return (
         <div className="main">
             <div className="buttons-container">
@@ -114,16 +72,20 @@ const SensorDetails = () => {
                         <DisplayAttribute name="typ urządzenia" value={sensor.type}/>
                         <InputString
                             label="nazwa"
-                            name="sensorName"
+                            name="name"
                             placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
-                            sendChange={changeName}
+                            object={sensor}
+                            url={SET_SENSOR_NAME_URL}
+                            sendChange={changeValue}
                         />
 
                         <InputTextarea
                             label="notatka"
-                            name="sensorNotes"
+                            name="notes"
                             placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}
-                            sendChange={changeNotes}
+                            object={sensor}
+                            url={SET_SENSOR_NOTES_URL}
+                            sendChange={changeValue}
                         />
 
                         <DisplayAttribute name="numer seryjny" value={sensor.sn}/>
