@@ -10,7 +10,7 @@ import { GET_TEAM_URL } from "../../../iotConfig";
  * @returns {JSX.Element}
  */
 export const memberObjectRenderer = (member) => {
-    console.log("renderer dostaje: ", member)
+    // console.log("renderer dostaje: ", member)
     return (
         <Link
             key={member.id}
@@ -26,27 +26,33 @@ export const memberObjectRenderer = (member) => {
 const Team = () => {
     const [team, setTeam] = useState([]);
 
+    // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
         const getTeam = async () => {
             const teamFromServer = await fetchTeam()
-            console.log("teamFromServer: ", teamFromServer);
+            console.log("teamFromServer: ", teamFromServer)
             return jsonToMember(teamFromServer)
         }
 
         getTeam()
             .then(team => setTeam(team))
+
     }, [])
 
     const fetchTeam = async () => {
-        console.log("Sending request to fetch team")
+        console.log("Sending request to fetch Team")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
-        const res = await fetch(GET_TEAM_URL, { method: "POST" })
+        const res = await fetch(
+            GET_TEAM_URL,
+            { method: "POST" }
+        )
         return await res.json()
     }
 
     const jsonToMember = (list) => {
-        const list2 = list.map(m => new Member(m.id, m.fullname, m.joinedAt, m.assigned, m.notes))
-        console.log("list2: ", list2)
+        const list2 = list.map(m =>
+            new Member(m.id, m.fullname, m.joinedAt, m.assigned, m.notes))
+        console.log("[ from backend ] all objects of type Member: ", list2)
         return list2
     }
 

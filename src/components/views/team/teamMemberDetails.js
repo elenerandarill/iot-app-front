@@ -1,22 +1,22 @@
 import {useHistory, useParams} from "react-router-dom";
-import {Link} from "react-router-dom";
 import {InputString, InputTextarea} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
-import ListAssignedObjects from "../../listAssignedObjects";
+import ListObjects from "../../listObjects";
 import getSGroups from "../../../FakeBackend/getSGroups";
 import getMembers, {Member} from "../../../FakeBackend/getMembers";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
 import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
 import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {getMemberAssignedSgroups} from "../../../FakeFrontend/dataUtils";
 
 
 const TeamMemberDetails = () => {
-    // const [fullname, setFullname] = useState();
-    // const [notes, setNotes] = useState();
-    const history = useHistory()
-    const {id} = useParams();
     const [member, setMember] = useState(undefined)
+    const [assignedObjs, setAssignedObjs] = useState([])
+    const {id} = useParams();
+    const history = useHistory()
+
 
     useEffect(() => {
         const fetchMember = async (id) => {
@@ -37,6 +37,13 @@ const TeamMemberDetails = () => {
 
         fetchMember(id)
             .then((member) => setMember(member))
+
+        getMemberAssignedSgroups(id)
+            .then(listObjs => setAssignedObjs(listObjs))
+    }, [id])
+
+    useEffect(() => {
+        
     }, [id])
 
     const jsonToMember = (m) => {
@@ -46,7 +53,7 @@ const TeamMemberDetails = () => {
     if(!member) {
         return (
             <div className="main">
-                <div>NIE ZNALEZIONO TAKIEJ OSOBY</div>
+                <div className="stats-title">nie znaleziono takiej osoby</div>
             </div>
         )
     }
@@ -87,7 +94,6 @@ const TeamMemberDetails = () => {
         }
 
     }
-
 
     return (
         <div className="main">
@@ -130,7 +136,8 @@ const TeamMemberDetails = () => {
 
                                         {member.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={member.assigned} list={getSGroups}
+                                            : <ListObjects
+                                                list={assignedObjs}
                                                 objectRenderer={groupObjectRenderer}
                                             />
                                         }

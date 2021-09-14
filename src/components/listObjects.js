@@ -4,7 +4,7 @@ import {useState} from "react";
 
 const ListObjects = ({list, objectRenderer}) => {
     let [searchQuery, setSearchQuery] = useState("");
-    console.log("w list object: ", list)
+    console.log("The list of objects: ", list)
 
     const filtered = list.filter(
         choice => choice.getDisplayName().toLowerCase().includes(searchQuery.toLowerCase())

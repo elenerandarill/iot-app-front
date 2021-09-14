@@ -1,23 +1,52 @@
-import { useParams } from "react-router-dom";
-import getSGroups from "../../../FakeBackend/getSGroups";
+import {useHistory, useParams} from "react-router-dom";
+import getSGroups, {GroupOfSensors} from "../../../FakeBackend/getSGroups";
 import getSensors from "../../../FakeBackend/getSensors";
 import ButtonFunc from "../../buttonFunc";
 import ListAssignedObjects from "../../listAssignedObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
 import {BackendConnector} from "../../../FakeFrontend/backendConnector";
-import {SET_TEAM_MEMBER_NAME_URL} from "../../../iotConfig";
+import {GET_SGROUP_URL, SET_TEAM_MEMBER_NAME_URL} from "../../../iotConfig";
+import {useEffect, useState} from "react";
 
 
 const SGroupDetails = () => {
+    const [sgroup, setSgroup] = useState(undefined)
     const {id} = useParams();
+    const history = useHistory()
 
-    const getGroup = (id) => {
-        // zwraca liste!
-        return getSGroups.filter(s => s.id === id)[0]
+    useEffect(() => {
+        const fetchSgroup = async (id) => {
+            console.log("Sending request to fetch sGroup")
+            const res = await fetch(
+                GET_SGROUP_URL,
+                {
+                    method: "POST",
+                    body: JSON.stringify({"id": id})
+                }
+                )
+            const resJson = await res.json()
+            console.log("resp: ", res, ", resp.json: ", resJson)
+            const sgroup = jsonToSgroup(resJson)
+            console.log("sGroup details: ", sgroup)
+            return sgroup
+        }
+
+        fetchSgroup(id)
+            .then((sgroup) => setSgroup(sgroup))
+    }, [id])
+
+    const jsonToSgroup = (g) => {
+        return new GroupOfSensors(g.id, g.name, g.assigned, g.measurements, g.notes)
     }
 
-    const group = getGroup(id);
+    if (!sgroup) {
+        return(
+            <div className="main">
+                <div className="stats-title">nie znaleziono takiej grupy</div>
+            </div>
+        )
+    }
 
     // const changeName = async (fullname) => {
     //     console.log("New input for field: ", fullname)
@@ -45,20 +74,20 @@ const SGroupDetails = () => {
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                        {group.name}
+                        {sgroup.name}
                     </div>
                     <div className="white-space top-contact">
                         <InputString
                             label="nazwa"
                             name="groupName"
-                            placeholder={group.name}
+                            placeholder={sgroup.name}
                             // sendChange={changeName}
                         />
 
                         <InputTextarea
                             label="notatka"
                             name="groupNotes"
-                            placeholder={group.notes === "" ? "Tu wpisz notatkę." : group.notes}
+                            placeholder={sgroup.notes === "" ? "Tu wpisz notatkę." : sgroup.notes}
                             // onChange={}
                         />
 
@@ -87,20 +116,20 @@ const SGroupDetails = () => {
                         </div>
 
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="head-txt ">CZUJNIKI ({group.assigned.length})</div>
+                            <div className="head-txt ">CZUJNIKI ({sgroup.assigned.length})</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
                                         <ButtonFunc
                                             text={"edytuj"}
-                                            link={`/sgroups/${group.id}/edit`}
+                                            link={`/sgroups/${sgroup.id}/edit`}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
-                                        {group.assigned.length === 0
+                                        {sgroup.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={group.assigned} list={getSensors}
+                                            : <ListAssignedObjects assigned={sgroup.assigned} list={getSensors}
                                                                    objectRenderer={sensorObjectRenderer}/>}
 
                                     </div>
