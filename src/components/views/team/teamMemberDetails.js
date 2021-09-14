@@ -2,8 +2,7 @@ import {useHistory, useParams} from "react-router-dom";
 import {InputString, InputTextarea} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
-import getSGroups from "../../../FakeBackend/getSGroups";
-import getMembers, {Member} from "../../../FakeBackend/getMembers";
+import {Member} from "../../../FakeBackend/getMembers";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
 import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
@@ -20,7 +19,7 @@ const TeamMemberDetails = () => {
 
     useEffect(() => {
         const fetchMember = async (id) => {
-            console.log("Sending request to fetch member")
+            console.log("Sending request to fetch Member")
             const res = await fetch(
                 GET_TEAM_MEMBER_URL,
                 {
@@ -40,10 +39,6 @@ const TeamMemberDetails = () => {
 
         getMemberAssignedSgroups(id)
             .then(listObjs => setAssignedObjs(listObjs))
-    }, [id])
-
-    useEffect(() => {
-        
     }, [id])
 
     const jsonToMember = (m) => {

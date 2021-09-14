@@ -1,22 +1,60 @@
-import { useParams } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {DisplayAttribute, InputString, InputTextarea} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListMeasurements from "../../listMeasurements.js";
-import ListAssignedObjects from "../../listAssignedObjects";
+import ListObjects from "../../listObjects";
 import ButtonSendOne from "../../buttonSendOne";
 import ChartTypeArea from "../../chartTypeArea";
 import ChartTypeBar from "../../chartTypeBar";
 import ChartDataChoices from "../../chartDataChoices";
-import getSensors from "../../../FakeBackend/getSensors";
-import getSGroups from "../../../FakeBackend/getSGroups";
+import {Sensor} from "../../../FakeBackend/getSensors";
 import {groupObjectRenderer} from "../sGroups/sGroups";
+import {useEffect, useState} from "react";
+import {GET_SENSOR_URL} from "../../../iotConfig";
+import {getSensorAssignedSgroups} from "../../../FakeFrontend/dataUtils";
 
 const SensorDetails = () => {
-
+    const [sensor, setSensor] = useState(undefined)
+    const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
+    const history = useHistory()
 
-    const sensor = getSensors.filter(s => s.id === id)[0];
+    useEffect(() => {
+        const fetchSensor = async (id) => {
+            console.log("Sending request to fetch Sensor")
+             const res = await fetch(
+                GET_SENSOR_URL,
+                {
+                    method: "POST",
+                    body: JSON.stringify({"id": id})
+                }
+            )
+            const resJson = await res.json()
+            console.log("resp: ", res, ", resp.json: ", resJson)
+            const sensor = jsonToSensor(resJson)
+            console.log("sensor details: ", sensor)
+            return sensor
+        }
 
+        fetchSensor(id)
+            .then((sensor) => setSensor(sensor))
+
+        getSensorAssignedSgroups(id)
+            .then(listObjs => setAssignedObjs(listObjs))
+        }, [id])
+
+    const jsonToSensor = (s) => {
+        return new Sensor(s.id, s.type, s.name, s.sn, s.battery, s.assigned,
+            s.measurements, s.GPS, s.notes)
+    }
+
+    if (!sensor) {
+        return(
+            <div className="main">
+                <div className="stats-title">nie znaleziono takiego czujnika</div>
+            </div>
+        )
+    }
 
     return (
         <div className="main">
@@ -30,13 +68,12 @@ const SensorDetails = () => {
                         {sensor.name.trim() === "" ? sensor.sn : sensor.name}
                     </div>
                     <div className="white-space top-contact">
-
+                        <DisplayAttribute name="typ urządzenia" value={sensor.type}/>
                         <InputString
                             label="nazwa"
                             name="sensorName"
                             placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
                             // onChange={}
-                            // onFocusShow={() => showControls()}
                         />
 
                         <InputTextarea
@@ -104,9 +141,11 @@ const SensorDetails = () => {
                                     <div className="object-container txt-violet txt-semibold">
                                         {sensor.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={sensor.assigned} list={getSGroups}
+                                            : <ListObjects
+                                                list={assignedObjs}
                                                 objectRenderer={groupObjectRenderer}
-                                            />}
+                                            />
+                                        }
                                     </div>
                                 </div>
                             </div>

@@ -1,17 +1,17 @@
 import {useHistory, useParams} from "react-router-dom";
-import getSGroups, {GroupOfSensors} from "../../../FakeBackend/getSGroups";
-import getSensors from "../../../FakeBackend/getSensors";
+import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
 import ButtonFunc from "../../buttonFunc";
-import ListAssignedObjects from "../../listAssignedObjects";
+import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
-import {GET_SGROUP_URL, SET_TEAM_MEMBER_NAME_URL} from "../../../iotConfig";
+import {GET_SGROUP_URL} from "../../../iotConfig";
 import {useEffect, useState} from "react";
+import {getSgroupAssignedSensors} from "../../../FakeFrontend/dataUtils";
 
 
 const SGroupDetails = () => {
     const [sgroup, setSgroup] = useState(undefined)
+    const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
     const history = useHistory()
 
@@ -34,6 +34,9 @@ const SGroupDetails = () => {
 
         fetchSgroup(id)
             .then((sgroup) => setSgroup(sgroup))
+
+        getSgroupAssignedSensors(id)
+            .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
     const jsonToSgroup = (g) => {
@@ -79,14 +82,14 @@ const SGroupDetails = () => {
                     <div className="white-space top-contact">
                         <InputString
                             label="nazwa"
-                            name="groupName"
+                            name="name"
                             placeholder={sgroup.name}
                             // sendChange={changeName}
                         />
 
                         <InputTextarea
                             label="notatka"
-                            name="groupNotes"
+                            name="notes"
                             placeholder={sgroup.notes === "" ? "Tu wpisz notatkę." : sgroup.notes}
                             // onChange={}
                         />
@@ -126,12 +129,12 @@ const SGroupDetails = () => {
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
-
                                         {sgroup.assigned.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
-                                            : <ListAssignedObjects assigned={sgroup.assigned} list={getSensors}
-                                                                   objectRenderer={sensorObjectRenderer}/>}
-
+                                            : <ListObjects
+                                                list={assignedObjs}
+                                                objectRenderer={sensorObjectRenderer}
+                                            />}
                                     </div>
                                 </div>
                             </div>

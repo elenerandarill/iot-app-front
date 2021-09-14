@@ -9,6 +9,7 @@ export const GET_SENSORS_URL = BASE_CATFISH_URL + "/sensors/get"
 export const ADD_SENSOR_URL = BASE_CATFISH_URL + "/sensor/add"
 export const GET_SENSOR_URL = BASE_CATFISH_URL + "/sensor/get"
 export const SET_SENSOR_ASSIGNED_URL = BASE_CATFISH_URL + "/sensor/assigned/set"
+export const GET_SENSOR_ASSIGNED_URL = BASE_CATFISH_URL + "/sensor/assigned/get"
 
 //SGROUPS
 export const GET_SGROUPS_URL = BASE_CATFISH_URL + "/sgroups/get"

@@ -36,7 +36,6 @@ const Team = () => {
 
         getTeam()
             .then(team => setTeam(team))
-
     }, [])
 
     const fetchTeam = async () => {
@@ -67,7 +66,10 @@ const Team = () => {
 
                     <div className="headline-color">Osoby w teamie</div>
                     <div className="white-space top-contact">
-                        <ListObjects list={team} objectRenderer={memberObjectRenderer}/>
+                        <ListObjects
+                            list={team}
+                            objectRenderer={memberObjectRenderer}
+                        />
                     </div>
 
                 </div>
