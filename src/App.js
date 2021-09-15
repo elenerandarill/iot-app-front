@@ -19,6 +19,7 @@ import EditSGroup from "./components/views/sGroups/editSGroup";
 import EditMemberGroups from "./components/views/team/editMemberGroups";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
 import AddTeamMember from "./components/views/team/addTeamMember";
+import AddNewAlert from "./components/views/alerts/addNewAlert";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
 
@@ -33,7 +34,8 @@ function App() {
 
                 <UserViews>
                         <Route path="/" exact component={Homepage}/>
-                        <Route path="/alerts" component={Alerts}/>
+                        <Route path="/alerts" exact component={Alerts}/>
+                        <Route path="/alerts/new" exact component={AddNewAlert}/>
                         <Route path="/sensors" exact component={Sensors}/>
                         <Route path="/sensors/:id" exact component={SensorDetails}/>
                         <Route path="/sensors/:id/edit" exact component={EditSensorGroups}/>

@@ -29,14 +29,15 @@ export const sensorObjectRenderer = (sensor) => {
 const Sensors = () => {
     const [sensors, setSensors] = useState([]);
 
+
+    const getSensors = async () => {
+        const sensorsFromServer = await fetchSensors()
+        console.log("sensorsFromServer: ", sensorsFromServer)
+        return jsonToSensor(sensorsFromServer)
+    }
+
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
-        const getSensors = async () => {
-            const sensorsFromServer = await fetchSensors()
-            console.log("sensorsFromServer: ", sensorsFromServer)
-            return jsonToSensor(sensorsFromServer)
-        }
-
         getSensors()
             .then(sensors => setSensors(sensors))
     }, [])

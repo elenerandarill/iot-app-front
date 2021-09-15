@@ -1,27 +1,30 @@
 import { Link } from "react-router-dom";
 
 
-const AlertDetailView = ({ a, onCloseClick }) => {
-    console.log("Wywolano")
+const AlertDetailView = ({ alert, onCloseClick }) => {
+    console.log("Wywolano z alertem: ", alert)
 
     return(
         <div>
             <div className="white-space no-contact top-contact-mrg">
                 <div className="txt-right">
-                    <i className="fas fa-times fa-lg txt-blue"  onClick={onCloseClick}/>
+                    <i
+                        className="fas fa-times fa-lg txt-blue"
+                        onClick={onCloseClick}
+                    />
                 </div>
                 <div className="obj-details">
-                    {/* !!! naprawic formatowanie daty i czasu!!!!!!!!!!!!!!!! */}
-                    <div>{a.datetime}</div>
+                    {/* TODO !!! naprawic formatowanie daty i czasu!!!!!!!!!!!!!!!! */}
+                    <div>{alert.datetime}</div>
                     <div className="txt-semibold btn btn-small">
-                        <Link to={`/${a.targetType === "sensor"? "sensors" : "sgroups"}/${a.targetId}`}>
-                            {a.targetType === "sensor" && `czujnik: ${a.name}`}
-                            {a.targetType === "group" && `grupa: ${a.name}`}
+                        <Link to={`/${alert.type === "sensor"? "sensors" : "sgroups"}/${alert.targetId}`}>
+                            {alert.type === "sensor" && `czujnik: ${alert.name}`}
+                            {alert.type === "group" && `grupa: ${alert.name}`}
                         </Link>
 
                     </div>
                     <div className="mrg-tb mrg-lr txt-regular">
-                        <i>"{a.msg}"</i>
+                        <i>"{alert.msg}"</i>
                     </div>
                 </div>
             </div>

@@ -31,3 +31,9 @@ export const SET_TEAM_MEMBER_NOTES_URL = BASE_CATFISH_URL + "/team/member/notes"
 export const SET_TEAM_MEMBER_ASSIGNED_URL = BASE_CATFISH_URL + "/team/member/assigned/set"
 export const GET_TEAM_MEMBER_ASSIGNED_URL = BASE_CATFISH_URL + "/team/member/assigned/get"
 
+// ALERTS
+export const GET_ALERTS_URL = BASE_CATFISH_URL + "/alerts/get"
+export const SET_ALERT_READ_URL = BASE_CATFISH_URL + "/alerts/read"
+export const SET_ALERTS_READ_URL = BASE_CATFISH_URL + "/alerts/read/all"
+export const DELETE_ALERT_URL = BASE_CATFISH_URL + "/alerts/delete"
+export const DELETE_ALERTS_ALL_URL = BASE_CATFISH_URL + "/alerts/delete/all"

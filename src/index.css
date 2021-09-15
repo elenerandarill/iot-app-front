@@ -183,6 +183,7 @@ a {
   color: var(--darkblue);
   font-family: "Segoe UI Semibold", sans-serif;
   text-transform: uppercase;
+  text-align: center;
   letter-spacing: 3px;
   margin: 3px 0 5px 0;
 }
