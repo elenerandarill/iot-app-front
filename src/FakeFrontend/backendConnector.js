@@ -1,8 +1,19 @@
 import {BackendResponse} from "./backendResponse";
-import {GET_SENSOR_URL, GET_SENSORS_URL, GET_SGROUP_URL, GET_SGROUPS_URL, GET_TEAM_MEMBER_URL} from "../iotConfig";
+import {
+    DELETE_ALERT_URL,
+    DELETE_ALERTS_ALL_URL,
+    GET_ALERTS_URL,
+    GET_SENSOR_URL,
+    GET_SENSORS_URL,
+    GET_SGROUP_URL,
+    GET_SGROUPS_URL,
+    GET_TEAM_MEMBER_URL,
+    SET_ALERT_READ_URL, SET_ALERTS_READ_URL
+} from "../iotConfig";
 import {Sensor} from "../FakeBackend/getSensors";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {Member} from "../FakeBackend/getMembers";
+import {Alert} from "../FakeBackend/getAlerts";
 
 //////////
 
@@ -119,6 +130,93 @@ const jsonToMember = (m) => {
 
 //////////////////
 
+export const getAlerts = async () => {
+    const alertsFromServer = await fetchAlerts()
+    console.log("alertsFromServer: ", alertsFromServer)
+    return jsonToAlert(alertsFromServer)
+}
+const fetchAlerts = async () => {
+    console.log("Sending request to fetch Alerts")
+    const res = await fetch(
+        GET_ALERTS_URL,
+        {method: "POST"}
+    )
+    return await res.json()
+}
+
+const jsonToAlert = (list) => {
+    const list2 = list.map(a =>
+        new Alert(a.id, a.read, a.datetime, a.type, a.name, a.targetId, a.msg))
+    console.log("[ from backend ] all objects of type Alert: ", list2)
+    return list2
+}
+
+//////////////////
+
+
+export const readAlert = async (id) => {
+    console.log("Sending request to read Alert")
+    const res = await fetch(
+        SET_ALERT_READ_URL,
+        {
+            method: "POST",
+            body: JSON.stringify({"id": id})
+        }
+        )
+    console.log("status: ", res.status)
+}
+
+//////////////////
+
+export const handleDeleteAll = async () => {
+    console.log("[ Delete ] wszystkie alerty")
+    const res = await fetch(
+        DELETE_ALERTS_ALL_URL,
+        {method: "POST"}
+    )
+    if (res.status === 200){
+        console.log("Usunieto wszystkie alerty.")
+
+    }
+    else {
+        console.log("Cos poszlo nie tak, status: ", res.status)
+    }
+}
+
+export const handleReadAll = async () => {
+    console.log("[ Mark ] wszyskie alerty jako przeczytane")
+    const res = await fetch(
+        SET_ALERTS_READ_URL,
+        {method: "POST"}
+    )
+    if (res.status === 200){
+        console.log("Oznaczono wszystkie alerty.")
+
+    }
+    else {
+        console.log("Cos poszlo nie tak, status: ", res.status)
+    }
+}
+
+
+export const handleDeleteAlert = async (id) => {
+    console.log("[ Delete ] wszystkie alerty")
+    const res = await fetch(
+        DELETE_ALERT_URL,
+        {
+            method: "POST",
+            body: JSON.stringify({"id": id})
+        }
+    )
+    if (res.status === 200){
+        console.log("Usunieto alert o id: ", id)
+    }
+    else {
+        console.log("Cos poszlo nie tak, status: ", res.status)
+    }
+}
+
+//////////////////
 
 
 export class BackendConnector {

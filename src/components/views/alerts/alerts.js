@@ -1,8 +1,8 @@
 import ListAlerts from "./listAlerts";
 import {Alert} from "../../../FakeBackend/getAlerts";
+import {getAlerts, handleDeleteAlert, handleDeleteAll, handleReadAll} from "../../../FakeFrontend/backendConnector";
 import {useEffect, useState} from "react";
 import SearchBox from "../../searchBox";
-import {DELETE_ALERTS_ALL_URL, GET_ALERTS_URL, SET_ALERTS_READ_URL} from "../../../iotConfig";
 import {Link} from "react-router-dom";
 
 
@@ -10,77 +10,27 @@ const Alerts = () => {
     // const [showDetails, setShowDetails] = useState(undefined)
     const [alerts, setAlerts] = useState([]);
 
-
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
-    const getAlerts = async () => {
-        const alertsFromServer = await fetchAlerts()
-        console.log("alertsFromServer: ", alertsFromServer)
-        return jsonToAlert(alertsFromServer)
-    }
-
     const refreshData = () => {
         getAlerts()
-            .then(alerts => setAlerts(alerts))
+            .then(alerts => {
+                setAlerts(alerts)
+            })
     }
 
     useEffect(() => {
         refreshData()
     }, [])
 
-    const fetchAlerts = async () => {
-        console.log("Sending request to fetch Alerts")
-        const res = await fetch(
-            GET_ALERTS_URL,
-            {method: "POST"}
-        )
-        return await res.json()
-    }
 
-    const jsonToAlert = (list) => {
-        const list2 = list.map(a =>
-            new Alert(a.id, a.read, a.datetime, a.type, a.name, a.targetId, a.msg))
-        console.log("[ from backend ] all objects of type Alert: ", list2)
-        return list2
-    }
-
-    // const text2 = "Czy na pewno chcesz oznaczyć wszystkie alerty jako 'przeczytane'?"
-
-
-    const handleDeleteAll = async() => {
-        console.log("[ Delete ] wszystkie alerty")
-        const res = await fetch(
-            DELETE_ALERTS_ALL_URL,
-            {method: "POST"}
-        )
-        if (res.status === 200){
-            console.log("Usunieto wszystkie alerty.")
-            setAlerts([])
+    const handleOnAlertRead = (id) => {
+        const list = [...alerts]
+        for (const alert of list) {
+            if (alert.id === id) {
+                alert.read = true
+            }
         }
-        else {
-            console.log("Cos poszlo nie tak, status: ", res.status)
-        }
-    }
-
-    const warningDeleteAll = () => {
-        const text = "Czy na pewno chcesz trwale usunąć wszystkie alerty?"
-        const confirm = window.confirm(text)
-        if (confirm === true)
-            handleDeleteAll()
-    }
-
-    const handleReadAll = async () => {
-        console.log("[ Mark ] wszyskie alerty jako przeczytane")
-        const res = await fetch(
-            SET_ALERTS_READ_URL,
-            {method: "POST"}
-        )
-        if (res.status === 200){
-            console.log("Oznaczono wszystkie alerty.")
-            refreshData()
-        }
-        else {
-            console.log("Cos poszlo nie tak, status: ", res.status)
-        }
+        setAlerts(list)
     }
 
     const warningReadAll = () => {
@@ -88,6 +38,30 @@ const Alerts = () => {
         const confirm = window.confirm(text)
         if (confirm === true)
             handleReadAll()
+                .then(() =>
+                    setAlerts(alerts.map(a => {
+                        a.read = true
+                        return a
+                    }))
+                )
+    }
+
+    const warningDeleteAll = () => {
+        const text = "Czy na pewno chcesz trwale usunąć wszystkie alerty?"
+        const confirm = window.confirm(text)
+        if (confirm === true)
+            handleDeleteAll()
+                .then(() => setAlerts([]))
+    }
+
+    const warningDeleteAlert = (id) => {
+        const text = "Czy na pewno chcesz trwale usunąć ten alert?"
+        const confirm = window.confirm(text)
+        if (confirm === true)
+            handleDeleteAlert(id)
+                .then(() => {
+                    setAlerts(alerts.filter(a => a.id !== id))
+                })
     }
 
 
@@ -130,7 +104,9 @@ const Alerts = () => {
                         {alerts.length === 0
                             ? <div>Brak nowych alertów.</div>
                             : <ListAlerts
-                                list={alerts}
+                                alerts={alerts}
+                                onAlertRead={handleOnAlertRead}
+                                onDelete={warningDeleteAlert}
                             />
                         }
                     </div>

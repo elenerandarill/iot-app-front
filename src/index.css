@@ -301,18 +301,31 @@ a {
 
  /*---- icons ----*/
 
-img.dot {
-  margin-right: 10px;
+i {
+  cursor: pointer;
 }
 
-.icon-container {
+.container-alert-icons {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  /*text-align: center;*/
+  padding: 5px 0;
+
+}
+
+img.dot {
+  margin-right: 10px;
 }
 
 .icon-overlay {
   position: absolute;
   opacity: 0;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .icon-container:hover .icon-overlay{

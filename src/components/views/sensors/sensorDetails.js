@@ -84,7 +84,7 @@ const SensorDetails = () => {
                                 className="btn btn-color"
                                 onClick={() => console.log("Ustawiam nowy GPS")}
                             >
-                                ustaw nowy
+                                aktualizuj
                             </div>
                         </div>
 
