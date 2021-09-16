@@ -1,4 +1,4 @@
-import getMembers, { Member } from "../../../FakeBackend/getMembers";
+import { Member } from "../../../FakeBackend/getMembers";
 import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
 import { Link } from "react-router-dom";
@@ -58,7 +58,12 @@ const Team = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"osoba"} add={true} link={"add/team"}/>
+                <Link to={"/team/add"}>
+                    <div className="btn btn-color">
+                        <i className="fas fa-plus mrg-r5"/>
+                        osoba
+                    </div>
+                </Link>
             </div>
 
             <div className="content-3x">

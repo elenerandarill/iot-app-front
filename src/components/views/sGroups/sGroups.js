@@ -1,9 +1,9 @@
 import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
-import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
+// import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
+import {getSgroups} from "../../../FakeFrontend/backendConnector";
 import {useEffect, useState} from "react";
-import {GET_SGROUPS_URL} from "../../../iotConfig";
 
 /**
  * @param group {GroupOfSensors}
@@ -28,41 +28,20 @@ const SGroups = () => {
 
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
-        const getSgroups = async () => {
-            const sGoupsFromServer = await fetchSgroup()
-            console.log("sGoupsFromServer: ", sGoupsFromServer)
-            return jsonToSgroup(sGoupsFromServer)
-        }
-
         getSgroups()
             .then(sGroups => setSgroups(sGroups))
     }, [])
-
-    const fetchSgroup = async () => {
-        console.log("Sending request to fetch sGroups")
-        const res = await fetch(
-            GET_SGROUPS_URL,
-            { method: "POST" }
-        )
-        return await res.json()
-    }
-
-    const jsonToSgroup = (list) => {
-        const list2 = list.map(g =>
-            new GroupOfSensors(g.id, g.name, g.assigned, g.measurements, g.notes))
-        console.log("[ from backend ] all objects of type GroupOfSensors: ", list2)
-        return list2
-    }
 
 
     return(
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc
-                    text={"nowa grupa"}
-                    add={true}
-                    link={"/add/sgroups"}
-                />
+                <Link to={"/sgroups/add"}>
+                    <div className="btn btn-color">
+                        <i className="fas fa-plus mrg-r5"/>
+                        nowa grupa
+                    </div>
+                </Link>
             </div>
 
             <div className="content-3x">

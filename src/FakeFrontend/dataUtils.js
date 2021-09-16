@@ -36,7 +36,7 @@ export const changeValue = async (value, object, url) => {
 // from backend fetch all groups assigned to a member
 
 const fetchMemberAssigned = async (id) => {
-    console.log("Sending request to fetch assigned of this sGroup")
+    console.log("Sending request to fetch assigned sGroups")
     const res = await fetch(
         GET_TEAM_MEMBER_ASSIGNED_URL,
         { method: "POST",
@@ -116,3 +116,18 @@ export const getSensorAssignedSgroups = async (id) => {
     console.log("assignedFromServer Sgroups: ", assignedFromServer)
     return jsonToSgroups(assignedFromServer) // lista obj
 }
+
+////////
+
+// {Object.entries(group.measurements).map(([key, value]) =>
+//     <div key={key.toString()} className="mrg-tb mrg-lr">
+//         {key === "avTemp" && "śr. temperatura"}
+//         {key === "avHumid" && "śr. wilgotność"}
+//         {key === "avWind" && "śr. prędkość wiatru"}
+//         :<br/>
+//         <h2>{value}
+//             {key === "avTemp" && " °C"}
+//             {key === "avWind" && " km/h"}
+//         </h2>
+//     </div>
+// )}

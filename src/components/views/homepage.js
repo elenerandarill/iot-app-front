@@ -1,17 +1,38 @@
 // import Element from "../element";
 // import Table from "../table";
-import ButtonFunc from "../buttonFunc";
+import {Link} from "react-router-dom";
 
 const Homepage = () => {
     return(
         <div className="main">
 
             <div className="buttons-container">
-                <ButtonFunc text={"wartość"} add={true}/>
-                <ButtonFunc text={"tabela"} add={true}/>
-                <ButtonFunc text={"wykres"} add={true}/>
-                <ButtonFunc text={"mapa"} add={true}/>
+                <Link to={"/team/add"}>
+                    <div className="btn btn-color">
+                        <i className="fas fa-plus mrg-r5"/>
+                        wartość
+                    </div>
+                </Link>
+                <Link to={"/team/add"}>
+                    <div className="btn btn-color">
+                        <i className="fas fa-plus mrg-r5"/>
+                        tabela
+                    </div>
+                </Link>
+                <Link to={"/team/add"}>
+                    <div className="btn btn-color">
+                        <i className="fas fa-plus mrg-r5"/>
+                        wykres
+                    </div>
+                </Link>
+                <Link to={"/team/add"}>
+                    <div className="btn btn-color">
+                        <i className="fas fa-plus mrg-r5"/>
+                        mapa
+                    </div>
+                </Link>
             </div>
+
             <div className="head-txt">Tu będzie pulpit.</div>
 
             {/*<div className="main-content">*/}

@@ -1,41 +1,57 @@
 import {useHistory, useParams} from "react-router-dom";
-import getSensors from "../../../FakeBackend/getSensors";
-import getSGroups from "../../../FakeBackend/getSGroups";
 import EditAssigned from "../../editAssigned";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {BackendConnector, fetchSgroup, getSensors} from "../../../FakeFrontend/backendConnector";
 import {SET_SGROUP_ASSIGNED_URL} from "../../../iotConfig";
+import {useEffect, useState} from "react";
 
 const EditSGroup = () => {
+    const [sgroup, setSgroup] = useState(undefined)
+    const [sensors, setSensors] = useState(undefined)
     const history = useHistory()
-
     const {id} = useParams();
-    const group = getSGroups.filter(g => g.id === id)[0];
+
+    useEffect(() => {
+        fetchSgroup(id)
+            .then((sgroup) => setSgroup(sgroup))
+
+        getSensors()
+            .then((sensors) => setSensors(sensors))
+    }, [id])
 
     const sendRequest = async (assigned) => {
         const backConn = new BackendConnector()
         const response = await backConn.sendAssigned(
             SET_SGROUP_ASSIGNED_URL,
-            group,
+            sgroup,
             assigned
         )
         if (response.status === 200){
-            history.push(`/sgroups/${group.id}`)
+            history.push(`/sgroups/${id}`)
         }
         else {
             console.log("sGrupy - Nie udało się zmienić assigned, status: ", response.status)
         }
     }
 
+    // upewniam sie, ze oba sa pobrane!
+    if (sgroup && sensors){
     return (
         <EditAssigned
             headline={"edycja czujników grupy - "}
             description={"Zaznacz czujniki, które chcesz monitorować w grupie"}
             linkTo={"sgroups"}
-            object={group}
-            availableChoices={getSensors}
+            object={sgroup}
+            availableChoices={sensors}
             handleSend={sendRequest}
         />
     )
+    }else{
+        return (
+            <div className="head-txt">
+                Pobieranie danych. Proszę czekać.
+            </div>
+        )
+    }
 }
 
 export default EditSGroup;

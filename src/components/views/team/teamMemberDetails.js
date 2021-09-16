@@ -1,38 +1,20 @@
-import {useHistory, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {InputString, InputTextarea} from "../../attributes";
 import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
-import {Member} from "../../../FakeBackend/getMembers";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
-import {GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
+import {SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
 import {getMemberAssignedSgroups, changeValue} from "../../../FakeFrontend/dataUtils";
+import {fetchMember} from "../../../FakeFrontend/backendConnector";
 
 
 const TeamMemberDetails = () => {
     const [member, setMember] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
-    // const history = useHistory()
-
 
     useEffect(() => {
-        const fetchMember = async (id) => {
-            console.log("Sending request to fetch Member")
-            const res = await fetch(
-                GET_TEAM_MEMBER_URL,
-                {
-                    method: "POST",
-                    body: JSON.stringify({"id": id})
-                }
-            )
-            const resJson = await res.json()
-            console.log("resp: ", res, ", resp.json: ", resJson)
-            const member = jsonToMember(resJson)
-            console.log("member details: ", member)
-            return member
-        }
-
         fetchMember(id)
             .then((member) => setMember(member))
 
@@ -40,9 +22,7 @@ const TeamMemberDetails = () => {
             .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
-    const jsonToMember = (m) => {
-        return new Member(m.id, m.fullname, m.joinedAt, m.assigned, m.notes)
-    }
+
 
     if(!member) {
         return (
@@ -55,8 +35,20 @@ const TeamMemberDetails = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"powrót do listy"} link="/team"/>
-                <ButtonFunc text={"usuń tę osobę"} link="/member/delete"/>
+                <Link to={"/team"}>
+                    <div
+                        className="btn btn-color"
+                    >
+                        powrót do listy
+                    </div>
+                </Link>
+                <Link to={"team/member/delete"}>
+                    <div
+                        className="btn btn-color"
+                    >
+                        usuń tę osobę
+                    </div>
+                </Link>
             </div>
 
             <div className="content-3x">
@@ -90,7 +82,7 @@ const TeamMemberDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonFunc
                                             text={"edytuj"}
-                                            link={`/team/${member.id}/edit`}
+                                            link={`/team/${id}/edit`}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">

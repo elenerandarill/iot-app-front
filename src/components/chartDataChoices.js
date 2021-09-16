@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 
 const ChartDataChoices = ({ list }) => {
-    const [chosen, setChosen] = useState();
+    const [chosen, setChosen] = useState(undefined);
 
     const handleChoices = (chart) => {
         setChosen(chart);

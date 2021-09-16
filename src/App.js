@@ -41,12 +41,12 @@ function App() {
                         <Route path="/sensors/:id/edit" exact component={EditSensorGroups}/>
                         <Route path="/sensors/:id/edit/chart" exact component={EditSensorChart}/>
                         <Route path="/sgroups/" exact component={SGroups}/>
-                        <Route path="/add/sgroups" exact component={AddSGroup}/>
+                        <Route path="/sgroups/add" exact component={AddSGroup}/>
                         <Route path="/sgroups/:id" exact component={SGroupDetails}/>
                         <Route path="/sgroups/:id/edit" exact component={EditSGroup}/>
                         <Route path="/team" exact component={Team}/>
                         <Route path="/team/:id" exact component={TeamMemberDetails}/>
-                        <Route path="/add/team" exact component={AddTeamMember}/>
+                        <Route path="/team/add" exact component={AddTeamMember}/>
                         <Route path="/team/:id/edit" exact component={EditMemberGroups}/>
                         <Route path="/contact" component={Contact}/>
                 </UserViews>

@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import {Link, useParams} from "react-router-dom";
 import ChartDataChoices from "../../chartDataChoices";
-import ButtonFunc from "../../buttonFunc";
 import { getMeasurements } from "../../chartUtils";
 import DisplayChoices from "../../displayChoices";
-import getSensors from "../../../FakeBackend/getSensors";
+// import getSensors from "../../../FakeBackend/getSensors";
 import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
 
 const EditSensorChart = () => {
     const [selected, setSelected] = useState([])
+    const [sensor, setSensor] = useState(undefined)
     let {id} = useParams();
-    const sensor = getSensors.filter(s => s.id === id)[0];
 
     return (
         <div>
             <div className="main">
                 <div className="buttons-container">
-                    <ButtonFunc
-                        text={"anuluj"}
-                        link={`/sensors/${sensor.id}`}
-                    />
+                    <Link to={`/sensors/${sensor.id}`}>
+                        <div
+                            className="btn btn-color"
+                        >
+                            anuluj
+                        </div>
+                    </Link>
                 </div>
 
                 <div className="content-3x">
@@ -52,11 +54,11 @@ const EditSensorChart = () => {
 
                                 <div className="object-container">
 
-                                    <DisplayChoices
-                                        availableChoices={getMeasurements(sensor)}
-                                        alreadyAssigned={[sensor]}
-                                        onNewSelection={setSelected}
-                                    />
+                                    {/*<DisplayChoices*/}
+                                    {/*    availableChoices={getMeasurements(sensor)}*/}
+                                    {/*    alreadyAssigned={[sensor]}*/}
+                                    {/*    onNewSelection={setSelected}*/}
+                                    {/*/>*/}
                                 </div>
                             </div>
                         </div>

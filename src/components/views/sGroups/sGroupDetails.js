@@ -1,47 +1,24 @@
-import {useHistory, useParams} from "react-router-dom";
-import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
-import ButtonFunc from "../../buttonFunc";
+import React, {useEffect, useState} from "react";
+import {Link, useParams} from "react-router-dom";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {GET_SGROUP_URL, SET_SGROUP_NAME_URL, SET_SGROUP_NOTES_URL} from "../../../iotConfig";
-import {useEffect, useState} from "react";
+import {SET_SGROUP_NAME_URL, SET_SGROUP_NOTES_URL} from "../../../iotConfig";
 import {changeValue, getSgroupAssignedSensors} from "../../../FakeFrontend/dataUtils";
-
+import {fetchSgroup} from "../../../FakeFrontend/backendConnector";
 
 const SGroupDetails = () => {
     const [sgroup, setSgroup] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
-    // const history = useHistory()
 
     useEffect(() => {
-        const fetchSgroup = async (id) => {
-            console.log("Sending request to fetch sGroup")
-            const res = await fetch(
-                GET_SGROUP_URL,
-                {
-                    method: "POST",
-                    body: JSON.stringify({"id": id})
-                }
-                )
-            const resJson = await res.json()
-            console.log("resp: ", res, ", resp.json: ", resJson)
-            const sgroup = jsonToSgroup(resJson)
-            console.log("sGroup details: ", sgroup)
-            return sgroup
-        }
-
         fetchSgroup(id)
             .then((sgroup) => setSgroup(sgroup))
 
         getSgroupAssignedSensors(id)
             .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
-
-    const jsonToSgroup = (g) => {
-        return new GroupOfSensors(g.id, g.name, g.assigned, g.measurements, g.notes)
-    }
 
     if (!sgroup) {
         return(
@@ -54,8 +31,19 @@ const SGroupDetails = () => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"powrót do listy"} link={"/sgroups"}/>
-                <ButtonFunc text={"usuń tę grupę"}/>
+                <Link to={"/sgroups"}>
+                    <div
+                        className="btn btn-color"
+                    >
+                        powrót do listy
+                    </div>
+                </Link>
+                <div
+                    className="btn btn-color"
+                    onClick={() => console.log("Usuwam tę grupę")}
+                >
+                    usuń tę grupę
+                </div>
             </div>
 
             <div className="content-3x">
@@ -87,38 +75,29 @@ const SGroupDetails = () => {
                             <div className="head-txt">OSTATNI POMIAR</div>
                             <div className="position-cent">
                                 <div className="txt-violet txt-semibold object-container">
-
-                                {/*do przerobienia!!!*/}
-                                {/*    {Object.entries(group.measurements).map(([key, value]) =>*/}
-                                {/*        <div key={key.toString()} className="mrg-tb mrg-lr">*/}
-                                {/*            {key === "avTemp" && "śr. temperatura"}*/}
-                                {/*            {key === "avHumid" && "śr. wilgotność"}*/}
-                                {/*            {key === "avWind" && "śr. prędkość wiatru"}*/}
-                                {/*            :<br/>*/}
-                                {/*            <h2>{value}*/}
-                                {/*                {key === "avTemp" && " °C"}*/}
-                                {/*                {key === "avWind" && " km/h"}*/}
-                                {/*            </h2>*/}
-                                {/*        </div>*/}
-                                {/*    )}*/}
+                                TU BĘDĄ JAKIEŚ DANE
 
                                 </div>
                             </div>
                         </div>
 
+                        {/* --- edit assigned --- */}
                         <div className="shadow no-contact centered pad-bot-15px">
                             <div className="head-txt ">CZUJNIKI ({sgroup.assigned.length})</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc
-                                            text={"edytuj"}
-                                            link={`/sgroups/${sgroup.id}/edit`}
-                                        />
+                                        <Link to={`/sgroups/${id}/edit`}>
+                                            <div
+                                                className="btn btn-color"
+                                            >
+                                                edytuj
+                                            </div>
+                                        </Link>
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
                                         {sgroup.assigned.length === 0
-                                            ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                            ? <div className="centered">nie przypisano żadnych czujników</div>
                                             : <ListObjects
                                                 list={assignedObjs}
                                                 objectRenderer={sensorObjectRenderer}

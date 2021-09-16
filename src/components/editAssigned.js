@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ButtonFunc from "./buttonFunc";
 import DisplayChoices from "./displayChoices";
+import {Link} from "react-router-dom";
 
 /**
  * @param type --> sensors-in
@@ -9,6 +9,8 @@ import DisplayChoices from "./displayChoices";
  */
 const EditAssigned = ({headline, description, linkTo, object, availableChoices, handleSend}) => {
     const [selection, setSelection] = useState([])
+
+    console.log("dostał obiekt: ", object)
 
     const getAssignedObjects = (obj) => {
         const results = availableChoices.filter(o => obj.assigned.includes(o.id));
@@ -19,10 +21,13 @@ const EditAssigned = ({headline, description, linkTo, object, availableChoices, 
     return (
         <div className="main">
             <div className="buttons-container">
-                    <ButtonFunc
-                        text={"anuluj"}
-                        link={`/${linkTo}/${object.id}`}
-                    />
+                <Link to={`/${linkTo}/${object.id}`}>
+                    <div
+                        className="btn btn-color"
+                    >
+                        anuluj
+                    </div>
+                </Link>
             </div>
 
             <div className="content-3x">

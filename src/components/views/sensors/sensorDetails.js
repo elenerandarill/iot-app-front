@@ -1,42 +1,22 @@
-import {useHistory, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {DisplayAttribute, InputString, InputTextarea} from "../../attributes";
-import ButtonFunc from "../../buttonFunc";
 import ListMeasurements from "../../listMeasurements.js";
 import ListObjects from "../../listObjects";
-import ButtonSendOne from "../../buttonSendOne";
 import ChartTypeArea from "../../chartTypeArea";
 import ChartTypeBar from "../../chartTypeBar";
 // import ChartDataChoices from "../../chartDataChoices";
-import {Sensor} from "../../../FakeBackend/getSensors";
 import {groupObjectRenderer} from "../sGroups/sGroups";
-import {useEffect, useState} from "react";
-import {GET_SENSOR_URL, SET_SENSOR_NAME_URL, SET_SENSOR_NOTES_URL} from "../../../iotConfig";
+import {SET_SENSOR_NAME_URL, SET_SENSOR_NOTES_URL} from "../../../iotConfig";
 import {changeValue, getSensorAssignedSgroups} from "../../../FakeFrontend/dataUtils";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {fetchSensor} from "../../../FakeFrontend/backendConnector";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
-    // const history = useHistory()
 
     useEffect(() => {
-        const fetchSensor = async (id) => {
-            console.log("Sending request to fetch Sensor")
-             const res = await fetch(
-                GET_SENSOR_URL,
-                {
-                    method: "POST",
-                    body: JSON.stringify({"id": id})
-                }
-            )
-            const resJson = await res.json()
-            console.log("resp: ", res, ", resp.json: ", resJson)
-            const sensor = jsonToSensor(resJson)
-            console.log("sensor details: ", sensor)
-            return sensor
-        }
-
         fetchSensor(id)
             .then((sensor) => setSensor(sensor))
 
@@ -44,10 +24,6 @@ const SensorDetails = () => {
             .then(listObjs => setAssignedObjs(listObjs))
         }, [id])
 
-    const jsonToSensor = (s) => {
-        return new Sensor(s.id, s.type, s.name, s.sn, s.battery, s.assigned,
-            s.measurements, s.GPS, s.notes)
-    }
 
     if (!sensor) {
         return(
@@ -60,7 +36,13 @@ const SensorDetails = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"powrót do listy"} link="/sensors"/>
+                <Link to={"/sensors"}>
+                    <div
+                        className="btn btn-color"
+                    >
+                        powrót do listy
+                    </div>
+                </Link>
             </div>
 
             <div className="content-3x">
@@ -98,7 +80,12 @@ const SensorDetails = () => {
                                     {sensor.GPS[0] + ", " + sensor.GPS[1]}
                                 </div>
                             </div>
-                            <ButtonSendOne text="ustaw nowy" forField="gps"/>
+                            <div
+                                className="btn btn-color"
+                                onClick={() => console.log("Ustawiam nowy GPS")}
+                            >
+                                ustaw nowy
+                            </div>
                         </div>
 
                         <div className="shadow listed-attribute">
@@ -115,10 +102,14 @@ const SensorDetails = () => {
                             </div>
 
                             {/*<ChartDataChoices source={sensor}/>*/}
-                            <ButtonFunc
-                                text={"edytuj"}
-                                link={`/sensors/${sensor.id}/edit/chart`}
-                            />
+
+                            <Link to={`/sensors/${id}/edit/chart`}>
+                                <div
+                                    className="btn btn-color"
+                                >
+                                    edytuj
+                                </div>
+                            </Link>
 
                             <ChartTypeArea height={250} object={sensor}/>
                         </div>
@@ -137,10 +128,13 @@ const SensorDetails = () => {
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc
-                                            text={"edytuj"}
-                                            link={`/sensors/${sensor.id}/edit`}
-                                        />
+                                        <Link to={`/sensors/${id}/edit`}>
+                                            <div
+                                                className="btn btn-color"
+                                            >
+                                                edytuj
+                                            </div>
+                                        </Link>
                                     </div>
 
                                     <div className="object-container txt-violet txt-semibold">
