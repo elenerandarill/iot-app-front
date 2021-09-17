@@ -12,6 +12,8 @@ export const SET_SENSOR_NAME_URL = BASE_CATFISH_URL + "/sensor/name"
 export const SET_SENSOR_NOTES_URL = BASE_CATFISH_URL + "/sensor/notes"
 export const SET_SENSOR_ASSIGNED_URL = BASE_CATFISH_URL + "/sensor/assigned/set"
 export const GET_SENSOR_ASSIGNED_URL = BASE_CATFISH_URL + "/sensor/assigned/get"
+//GPS
+export const SET_LOCATION_URL = BASE_CATFISH_URL + "/sensor/location"
 
 //SGROUPS
 export const GET_SGROUPS_URL = BASE_CATFISH_URL + "/sgroups/get"
@@ -37,3 +39,4 @@ export const SET_ALERT_READ_URL = BASE_CATFISH_URL + "/alerts/read"
 export const SET_ALERTS_READ_URL = BASE_CATFISH_URL + "/alerts/read/all"
 export const DELETE_ALERT_URL = BASE_CATFISH_URL + "/alerts/delete"
 export const DELETE_ALERTS_ALL_URL = BASE_CATFISH_URL + "/alerts/delete/all"
+

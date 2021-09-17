@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import DisplayChoices from "../../displayChoices";
-import {getSgroups} from "../../../FakeFrontend/backendConnector";
+import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 // import getSGroups from "../../../FakeBackend/getSGroups";
 import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
 

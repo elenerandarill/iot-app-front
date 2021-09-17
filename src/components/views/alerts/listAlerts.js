@@ -1,6 +1,6 @@
 import AlertDetailView from "./alertDetailView";
 import {useState} from "react";
-import {readAlert, handleDeleteAlert} from "../../../FakeFrontend/backendConnector";
+import {readAlert} from "../../../FakeFrontend/backendAlertConnector";
 
 
 const ListAlerts = ({ alerts, onAlertRead, onDelete }) => {

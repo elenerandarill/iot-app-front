@@ -5,8 +5,8 @@ import ListObjects from "../../listObjects";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
 import {SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
-import {getMemberAssignedSgroups, changeValue} from "../../../FakeFrontend/dataUtils";
-import {fetchMember} from "../../../FakeFrontend/backendConnector";
+import {changeValue} from "../../../FakeFrontend/backendConnector";
+import {fetchMember, getMemberAssignedSgroups} from "../../../FakeFrontend/backendMemberConnector";
 
 
 const TeamMemberDetails = () => {

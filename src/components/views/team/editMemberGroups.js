@@ -1,7 +1,9 @@
 import {useHistory, useParams} from "react-router-dom";
 import EditAssigned from "../../editAssigned";
 import {SET_TEAM_MEMBER_ASSIGNED_URL} from "../../../iotConfig";
-import {BackendConnector, getSgroups, fetchMember} from "../../../FakeFrontend/backendConnector";
+import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
+import {fetchMember} from "../../../FakeFrontend/backendMemberConnector";
 import {useEffect, useState} from "react";
 
 const EditMemberGroups = () => {

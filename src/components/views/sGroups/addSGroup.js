@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import ButtonFunc from "../../buttonFunc";
 import DisplayChoices from "../../displayChoices";
 // import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
-import {getSensors} from "../../../FakeFrontend/backendConnector";
+import {getSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ADD_SGROUP_URL} from "../../../iotConfig";
 
 

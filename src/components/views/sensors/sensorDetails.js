@@ -8,12 +8,18 @@ import ChartTypeBar from "../../chartTypeBar";
 // import ChartDataChoices from "../../chartDataChoices";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {SET_SENSOR_NAME_URL, SET_SENSOR_NOTES_URL} from "../../../iotConfig";
-import {changeValue, getSensorAssignedSgroups} from "../../../FakeFrontend/dataUtils";
-import {fetchSensor} from "../../../FakeFrontend/backendConnector";
+import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
+import {changeValue} from "../../../FakeFrontend/backendConnector";
+import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
+import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
 
 const SensorDetails = () => {
-    const [sensor, setSensor] = useState(undefined)
-    const [assignedObjs, setAssignedObjs] = useState([])
+    const [sensor, setSensor] = useState(
+        /** @type {Sensor} */ undefined)
+    const [assignedObjs, setAssignedObjs] = useState(
+        /** @type {GroupOfSensors[]} */ [])
+    const [forceRender, setForceRender] = useState(
+        /** @type {number[]} */ 0)
     const {id} = useParams();
 
     useEffect(() => {
@@ -31,6 +37,26 @@ const SensorDetails = () => {
                 <div className="stats-title">nie znaleziono takiego czujnika</div>
             </div>
         )
+    }
+
+    // Geolocation
+    var x = document.getElementById("geo");
+
+    const getLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    const showPosition = (position) => {
+        const newLocation = new GpsCoordinate(position.coords.latitude, position.coords.longitude)
+        updateSensorGps(newLocation, id)
+            .then((newLocation) => {
+                sensor.GPS = newLocation
+                setForceRender(forceRender + 1)
+            })
+
     }
 
     return (
@@ -77,12 +103,12 @@ const SensorDetails = () => {
                             <div className="head-txt">GPS</div>
                             <div className="position-cent">
                                 <div className="txt-water txt-semibold">
-                                    {sensor.GPS[0] + ", " + sensor.GPS[1]}
+                                    {sensor.GPS.latitude}, {sensor.GPS.longitude}
                                 </div>
                             </div>
                             <div
                                 className="btn btn-color"
-                                onClick={() => console.log("Ustawiam nowy GPS")}
+                                onClick={() => getLocation()}
                             >
                                 aktualizuj
                             </div>

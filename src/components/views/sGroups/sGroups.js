@@ -2,7 +2,7 @@ import ButtonFunc from "../../buttonFunc";
 import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
 // import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
-import {getSgroups} from "../../../FakeFrontend/backendConnector";
+import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 
 /**

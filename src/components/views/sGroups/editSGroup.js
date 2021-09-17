@@ -1,8 +1,10 @@
 import {useHistory, useParams} from "react-router-dom";
 import EditAssigned from "../../editAssigned";
-import {BackendConnector, fetchSgroup, getSensors} from "../../../FakeFrontend/backendConnector";
+import {BackendConnector} from "../../../FakeFrontend/backendConnector";
+import {getSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {SET_SGROUP_ASSIGNED_URL} from "../../../iotConfig";
 import {useEffect, useState} from "react";
+import {fetchSgroup} from "../../../FakeFrontend/backendSgroupConnector";
 
 const EditSGroup = () => {
     const [sgroup, setSgroup] = useState(undefined)

@@ -1,6 +1,5 @@
 import ListAlerts from "./listAlerts";
-import {Alert} from "../../../FakeBackend/getAlerts";
-import {getAlerts, handleDeleteAlert, handleDeleteAll, handleReadAll} from "../../../FakeFrontend/backendConnector";
+import {getAlerts, handleDeleteAlert, handleDeleteAlertsAll, handleReadAlertsAll} from "../../../FakeFrontend/backendAlertConnector"
 import {useEffect, useState} from "react";
 import SearchBox from "../../searchBox";
 import {Link} from "react-router-dom";
@@ -37,7 +36,7 @@ const Alerts = () => {
         const text = "Czy na pewno chcesz oznaczyć wszystkie alerty jako 'przeczytane'?"
         const confirm = window.confirm(text)
         if (confirm === true)
-            handleReadAll()
+            handleReadAlertsAll()
                 .then(() =>
                     setAlerts(alerts.map(a => {
                         a.read = true
@@ -50,7 +49,7 @@ const Alerts = () => {
         const text = "Czy na pewno chcesz trwale usunąć wszystkie alerty?"
         const confirm = window.confirm(text)
         if (confirm === true)
-            handleDeleteAll()
+            handleDeleteAlertsAll()
                 .then(() => setAlerts([]))
     }
 

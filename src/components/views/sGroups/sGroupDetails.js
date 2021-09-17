@@ -4,8 +4,9 @@ import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
 import {SET_SGROUP_NAME_URL, SET_SGROUP_NOTES_URL} from "../../../iotConfig";
-import {changeValue, getSgroupAssignedSensors} from "../../../FakeFrontend/dataUtils";
-import {fetchSgroup} from "../../../FakeFrontend/backendConnector";
+import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
+import {changeValue} from "../../../FakeFrontend/backendConnector";
+
 
 const SGroupDetails = () => {
     const [sgroup, setSgroup] = useState(undefined)

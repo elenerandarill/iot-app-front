@@ -1,4 +1,5 @@
 import {Measurement} from "./Measurement";
+import {GpsCoordinate} from "./gpsCoordinate";
 
 export class Sensor {
     /** @type {string} */
@@ -15,7 +16,7 @@ export class Sensor {
     assigned
     /** @type {Measurement[]} */
     measurements
-    /** @type {[number, number]} */
+    /** @type {GpsCoordinate} */
     GPS
     /** @type {string} */
     notes
