@@ -1,9 +1,9 @@
 // import getSensors from "../../../FakeBackend/getSensors";
-import ButtonFunc from "../../buttonFunc";
+import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
 import { useEffect, useState } from "react";
-import {getSensors} from "../../../FakeFrontend/backendSensorConnector";
+import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 
 /**
  * @param sensor {Sensor}
@@ -30,7 +30,7 @@ const Sensors = () => {
 
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
-        getSensors()
+        fetchSensors()
             .then(sensors => setSensors(sensors))
     }, [])
 

@@ -1,6 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {InputString, InputTextarea} from "../../attributes";
-import ButtonFunc from "../../buttonFunc";
+import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
@@ -80,7 +80,7 @@ const TeamMemberDetails = () => {
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <ButtonFunc
+                                        <ButtonLink
                                             text={"edytuj"}
                                             link={`/team/${id}/edit`}
                                         />

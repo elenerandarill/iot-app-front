@@ -1,8 +1,8 @@
-import ButtonFunc from "../../buttonFunc";
+import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
 // import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
-import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
+import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 
 /**
@@ -28,7 +28,7 @@ const SGroups = () => {
 
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
-        getSgroups()
+        fetchSgroups()
             .then(sGroups => setSgroups(sGroups))
     }, [])
 

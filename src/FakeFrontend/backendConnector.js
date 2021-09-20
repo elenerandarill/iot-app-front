@@ -1,5 +1,30 @@
 import {BackendResponse} from "./backendResponse";
 
+/**
+ * @param url {string}
+ * @param data {Object.<string, any>?}
+ * @returns {Promise<BackendResponse>}
+ */
+export const sendRequest = async (url, data) => {
+    console.log("[ Connector ] sending URL: ", url, ", data: ", data)
+    const res = await fetch(
+        url,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+    )
+
+    const resStatus = res.status
+    // Aby wyciagnac body! i tez zwraca Promise, stąd await
+    const resJson = await res.json()
+    console.log("[ Response ] STATUS: ", resStatus, ", BODY: ", resJson)
+
+    return new BackendResponse(resStatus, resJson)
+}
 
 // universal func for changing either name or notes value of the object.
 export const changeValue = async (value, object, url) => {
@@ -47,10 +72,9 @@ export class BackendConnector {
             objectId: id,
             assigned: assignedIds(assigned)
         }
-        // console.log("przekazano: ", object)
 
         // POST
-        return await this.sendForm(url, data)
+        return await sendRequest(url, data)
     }
 
     /**
@@ -71,35 +95,11 @@ export class BackendConnector {
         // console.log("przekazano: ", object)
 
         // POST
-        return await this.sendForm(url, data)
+        return await sendRequest(url, data)
     }
 
 
 
-    /**
-     * @param url {string}
-     * @param data {Object.<string, any>}
-     * @returns {Promise<BackendResponse>}
-     */
-    async sendForm(url, data) {
-        console.log("[ Connector ] sending URL: ", url, ", data: ", data)
-        const res = await fetch(
-            url,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            }
-        )
 
-        const resStatus = res.status
-        // Aby wyciagnac body! i tez zwraca Promise, stąd await
-        const resJson = await res.json()
-        console.log("[ Response ] STATUS: ", resStatus, ", resp BODY: ", resJson)
-
-        return new BackendResponse(resStatus, resJson)
-    }
 }
 

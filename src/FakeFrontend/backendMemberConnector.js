@@ -1,54 +1,38 @@
-// from backend fetch all groups assigned to a member
-
-import {GET_TEAM_MEMBER_ASSIGNED_URL, GET_TEAM_MEMBER_URL} from "../iotConfig";
-import {GroupOfSensors} from "../FakeBackend/getSGroups";
+import {GET_TEAM_MEMBER_ASSIGNED_URL, GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_ASSIGNED_URL} from "../iotConfig";
 import {Member} from "../FakeBackend/getMembers";
+import {jsonToSgroups} from "./backendSgroupConnector";
+import {BackendConnector, sendRequest} from "./backendConnector";
 
-
-export const fetchMember = async (id) => {
-    console.log("[ fetchMember ] Sending request to fetch Member.")
-    const res = await fetch(
-        GET_TEAM_MEMBER_URL,
-        {
-            method: "POST",
-            body: JSON.stringify({"id": id})
-        }
-    )
-    const resJson = await res.json()
-    console.log("[ fetchMember ] resp: ", res, ", resp.json: ", resJson)
-    const member = jsonToMember(resJson)
-    console.log("[ fetchMember ] found member: ", member)
-    return member
-}
+// Parsowanie JSONa
 const jsonToMember = (m) => {
     return new Member(m.id, m.fullname, m.joinedAt, m.assigned, m.notes)
 }
 
 // ---------------------------------------
 
-
-const fetchMemberAssigned = async (id) => {
-    console.log("Sending request to fetch assigned sGroups")
-    const res = await fetch(
-        GET_TEAM_MEMBER_ASSIGNED_URL,
-        { method: "POST",
-            body: JSON.stringify({"id": id})
-        }
+export const fetchMember = async (id) => {
+    const res = await sendRequest(
+        GET_TEAM_MEMBER_URL,
+        {"id": id}
     )
-    return await res.json()
+    return jsonToMember(res.body)
 }
 
-const jsonToSgroups = (list) => {
-    const list2 = list.map(g =>
-        new GroupOfSensors(g.id, g.name, g.assigned, g.measurements, g.notes))
-    console.log("[ from backend ] all objects of type GroupOfSensors: ", list2)
-    return list2
-}
 export const getMemberAssignedSgroups = async (id) => {
-    const assignedFromServer = await fetchMemberAssigned(id)
-    console.log("assignedFromServer sGroups: ", assignedFromServer)
-    return jsonToSgroups(assignedFromServer) // lista obj
+    const res = await sendRequest(
+        GET_TEAM_MEMBER_ASSIGNED_URL,
+        {"id": id}
+    )
+    return jsonToSgroups(res.body)
 }
 
-// ---------------------------------------
+export const setMemberAssignedSgroups = async (member, assigned) => {
+    const backConn = new BackendConnector()
+    return await backConn.sendAssigned(
+        SET_TEAM_MEMBER_ASSIGNED_URL,
+        member,
+        assigned
+    )
+}
+
 

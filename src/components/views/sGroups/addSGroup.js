@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
-import ButtonFunc from "../../buttonFunc";
+import {ButtonLink} from "../../buttons";
 import DisplayChoices from "../../displayChoices";
 // import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
-import {getSensors} from "../../../FakeFrontend/backendSensorConnector";
+import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ADD_SGROUP_URL} from "../../../iotConfig";
+import {sendRequest} from "../../../FakeFrontend/backendConnector";
 
 
 const AddSGroup = () => {
@@ -16,7 +17,7 @@ const AddSGroup = () => {
     const history = useHistory();
 
     useEffect(() => {
-        getSensors()
+        fetchSensors()
             .then(sensors => setSensors(sensors))
     }, [])
 
@@ -27,14 +28,14 @@ const AddSGroup = () => {
         data["notes"] = gnotes
         data["assigned"] = getIds(selection)
 
-        sendForm(data)
+        sendRequest(data)
     }
 
     const getIds = (objects) => {
         return objects.map(o => o.id)
     }
 
-    const sendForm = async(data) => {
+    const sendRequest = async(data) => {
         console.log("Tworzenie nowej grupy.")
         const res = await fetch(
             ADD_SGROUP_URL,
@@ -60,7 +61,7 @@ const AddSGroup = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonFunc text={"powrót do listy"} link={"/sgroups"}/>
+                <ButtonLink text={"powrót do listy"} link={"/sgroups"}/>
             </div>
 
             <div className="content-3x">

@@ -3,23 +3,13 @@ import {
     DELETE_ALERTS_ALL_URL,
     GET_ALERTS_URL,
     SET_ALERT_READ_URL,
-    SET_ALERTS_READ_URL, SET_LOCATION_URL
+    SET_ALERTS_READ_URL,
 } from "../iotConfig";
 import {Alert} from "../FakeBackend/getAlerts";
+import {sendRequest} from "./backendConnector";
 
-export const getAlerts = async () => {
-    const alertsFromServer = await fetchAlerts()
-    console.log("[ getAlerts ] alertsFromServer: ", alertsFromServer)
-    return jsonToAlert(alertsFromServer)
-}
-const fetchAlerts = async () => {
-    console.log("[ getAlerts ] Sending request to fetch Alerts")
-    const res = await fetch(
-        GET_ALERTS_URL,
-        {method: "POST"}
-    )
-    return await res.json()
-}
+
+// Parsowanie JSONa
 
 const jsonToAlert = (list) => {
     const list2 = list.map(a =>
@@ -30,72 +20,35 @@ const jsonToAlert = (list) => {
 
 // --------------------------------------------
 
-
-export const readAlert = async (id) => {
-    console.log("[ readAlert ] Sending request to read Alert")
-    const res = await fetch(
-        SET_ALERT_READ_URL,
-        {
-            method: "POST",
-            body: JSON.stringify({"id": id})
-        }
+export const getAlerts = async () => {
+    const res = await sendRequest(
+        GET_ALERTS_URL
     )
-    console.log(" [ readAlert ] status: ", res.status)
+    return jsonToAlert(res.body)
 }
 
-// --------------------------------------------
-
+export const markReadAlert = async (id) => {
+    await sendRequest(
+        SET_ALERT_READ_URL,
+        {"id": id}
+    )
+}
 
 export const handleReadAlertsAll = async () => {
-    console.log("[ Mark ] wszyskie alerty jako przeczytane")
-    const res = await fetch(
-        SET_ALERTS_READ_URL,
-        {method: "POST"}
+    await sendRequest(
+        SET_ALERTS_READ_URL
     )
-    if (res.status === 200){
-        console.log("[ Mark ] Oznaczono wszystkie alerty.")
-
-    }
-    else {
-        console.log("[ Mark ] Cos poszlo nie tak, status: ", res.status)
-    }
 }
-
-// --------------------------------------------
-
 
 export const handleDeleteAlert = async (id) => {
-    console.log("[ Delete ] wszystkie alerty")
-    const res = await fetch(
+    await sendRequest(
         DELETE_ALERT_URL,
-        {
-            method: "POST",
-            body: JSON.stringify({"id": id})
-        }
+        {"id": id}
     )
-    if (res.status === 200){
-        console.log("[ Delete ] Usunieto alert o id: ", id)
-    }
-    else {
-        console.log("[ Delete ] Cos poszlo nie tak, status: ", res.status)
-    }
 }
-
-// --------------------------------------------
 
 export const handleDeleteAlertsAll = async () => {
-    console.log("[ DeleteAll ] wszystkie alerty")
-    const res = await fetch(
-        DELETE_ALERTS_ALL_URL,
-        {method: "POST"}
+    await sendRequest(
+        DELETE_ALERTS_ALL_URL
     )
-    if (res.status === 200){
-        console.log("[ DeleteAll ] Usunieto wszystkie alerty.")
-
-    }
-    else {
-        console.log("[ DeleteAll ] Cos poszlo nie tak, status: ", res.status)
-    }
 }
-
-// --------------------------------------------

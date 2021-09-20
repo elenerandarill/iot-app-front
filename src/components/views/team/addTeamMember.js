@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import DisplayChoices from "../../displayChoices";
-import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
+import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 // import getSGroups from "../../../FakeBackend/getSGroups";
 import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
+import {sendRequest} from "../../../FakeFrontend/backendConnector";
 
 const AddTeamMember = () => {
     const [sGroups, setSgroups] = useState(undefined);
@@ -13,7 +14,7 @@ const AddTeamMember = () => {
     let history = useHistory();
 
     useEffect(() => {
-        getSgroups()
+        fetchSgroups()
             .then(sGroups => setSgroups(sGroups))
     }, [])
 
@@ -24,14 +25,14 @@ const AddTeamMember = () => {
         data["notes"] = pnotes
         data["assigned"] = getIds(selection)
 
-        sendForm(data)
+        sendRequest(data)
     }
 
     const getIds = (objects) => {
         return objects.map(o => o.id)
     }
 
-    const sendForm = async (data) => {
+    const sendRequest = async (data) => {
         console.log("Tworzenie nowego membera.")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
         const res = await fetch(

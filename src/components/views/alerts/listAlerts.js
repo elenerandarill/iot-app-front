@@ -1,6 +1,6 @@
 import AlertDetailView from "./alertDetailView";
 import {useState} from "react";
-import {readAlert} from "../../../FakeFrontend/backendAlertConnector";
+import {markReadAlert} from "../../../FakeFrontend/backendAlertConnector";
 
 
 const ListAlerts = ({ alerts, onAlertRead, onDelete }) => {
@@ -8,7 +8,7 @@ const ListAlerts = ({ alerts, onAlertRead, onDelete }) => {
 
     const readAndCloseAlert = (a) => {
         if (a.read === false){
-            readAlert(a.id)
+            markReadAlert(a.id)
                 .then(() => {
                     onAlertRead(a.id)
                 })

@@ -12,6 +12,7 @@ import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConne
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
 import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
+import {ButtonLink} from "../../buttons";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(
@@ -40,7 +41,7 @@ const SensorDetails = () => {
     }
 
     // Geolocation
-    var x = document.getElementById("geo");
+    const x = document.getElementById("geo");
 
     const getLocation = () => {
         if (navigator.geolocation) {
@@ -62,13 +63,10 @@ const SensorDetails = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to={"/sensors"}>
-                    <div
-                        className="btn btn-color"
-                    >
-                        powrót do listy
-                    </div>
-                </Link>
+                <ButtonLink
+                    text="powrót do listy"
+                    link={"/sensors"}
+                />
             </div>
 
             <div className="content-3x">

@@ -1,10 +1,8 @@
 import {useHistory, useParams} from "react-router-dom";
 import EditAssigned from "../../editAssigned";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
-import {getSensors} from "../../../FakeFrontend/backendSensorConnector";
-import {SET_SGROUP_ASSIGNED_URL} from "../../../iotConfig";
 import {useEffect, useState} from "react";
-import {fetchSgroup} from "../../../FakeFrontend/backendSgroupConnector";
+import {fetchSgroup, setSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
+import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 
 const EditSGroup = () => {
     const [sgroup, setSgroup] = useState(undefined)
@@ -16,22 +14,18 @@ const EditSGroup = () => {
         fetchSgroup(id)
             .then((sgroup) => setSgroup(sgroup))
 
-        getSensors()
+        fetchSensors()
             .then((sensors) => setSensors(sensors))
     }, [id])
 
     const sendRequest = async (assigned) => {
-        const backConn = new BackendConnector()
-        const response = await backConn.sendAssigned(
-            SET_SGROUP_ASSIGNED_URL,
-            sgroup,
-            assigned
-        )
-        if (response.status === 200){
+        const res = await setSgroupAssignedSensors(sgroup, assigned)
+
+        if (res.status === 200){
             history.push(`/sgroups/${id}`)
         }
         else {
-            console.log("sGrupy - Nie udało się zmienić assigned, status: ", response.status)
+            console.log("sGrupy - Nie udało się zmienić assigned, status: ", res.status)
         }
     }
 

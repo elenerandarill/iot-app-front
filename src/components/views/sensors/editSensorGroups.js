@@ -1,11 +1,8 @@
 import {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router-dom";
-import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
-// import getSGroups from "../../../FakeBackend/getSGroups";
+import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import EditAssigned from "../../editAssigned";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
-import {SET_SENSOR_ASSIGNED_URL} from "../../../iotConfig";
-import {fetchSensor} from "../../../FakeFrontend/backendSensorConnector";
+import {fetchSensor, setSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
 
 const EditSensorGroups = () => {
     const [sGroups, setSgroups] = useState(undefined)
@@ -14,25 +11,21 @@ const EditSensorGroups = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        getSgroups()
+        fetchSgroups()
             .then(sGroups => setSgroups(sGroups))
 
         fetchSensor(id)
             .then((sensor) => setSensor(sensor))
     }, [id])
 
-    const sendRequest = async (assigned) => {
-        const backConn = new BackendConnector()
-        const response = await backConn.sendAssigned(
-            SET_SENSOR_ASSIGNED_URL,
-            sensor,
-            assigned
-        )
-        if (response.status === 200){
+    const sendChangeRequest = async (assigned) => {
+        const res = await setSensorAssignedSgroups(sensor, assigned)
+
+        if (res.status === 200){
             history.push(`/sensors/${id}`)
         }
         else {
-            console.log("Czujniki - Nie udało się zmienić assigned, status: ", response.status)
+            console.log("Czujniki - Nie udało się zmienić assigned, status: ", res.status)
         }
     }
 
@@ -45,7 +38,7 @@ const EditSensorGroups = () => {
                 linkTo={"sensors"}
                 object={sensor}
                 availableChoices={sGroups}
-                handleSend={sendRequest}
+                handleSend={sendChangeRequest}
             />
         )
     }else{

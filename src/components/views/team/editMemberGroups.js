@@ -1,9 +1,7 @@
 import {useHistory, useParams} from "react-router-dom";
 import EditAssigned from "../../editAssigned";
-import {SET_TEAM_MEMBER_ASSIGNED_URL} from "../../../iotConfig";
-import {BackendConnector} from "../../../FakeFrontend/backendConnector";
-import {getSgroups} from "../../../FakeFrontend/backendSgroupConnector";
-import {fetchMember} from "../../../FakeFrontend/backendMemberConnector";
+import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
+import {fetchMember, setMemberAssignedSgroups} from "../../../FakeFrontend/backendMemberConnector";
 import {useEffect, useState} from "react";
 
 const EditMemberGroups = () => {
@@ -13,7 +11,7 @@ const EditMemberGroups = () => {
     const {id} = useParams();
 
     useEffect(() => {
-        getSgroups()
+        fetchSgroups()
             .then((sgroups) => setSgroups(sgroups))
 
         fetchMember(id)
@@ -21,17 +19,13 @@ const EditMemberGroups = () => {
     }, [id])
 
     const sendRequest = async (assigned) => {
-        const backConn = new BackendConnector()
-        const response = await backConn.sendAssigned(
-            SET_TEAM_MEMBER_ASSIGNED_URL,
-            member,
-            assigned
-        )
-        if (response.status === 200){
+        const res = await setMemberAssignedSgroups(member, assigned)
+
+        if (res.status === 200){
             history.push(`/team/${id}`)
         }
         else {
-            console.log("Członek grupy - Nie udało się zmienić assigned, status: ", response.status)
+            console.log("Członek grupy - Nie udało się zmienić assigned, status: ", res.status)
         }
     }
 
