@@ -1,16 +1,16 @@
 import gear from "../media/gear.svg";
-import getAlerts from "../FakeBackend/getAlerts";
 
 const TopBar = () => {
 
     const countNew = () => {
-        return getAlerts.filter(alert => alert.read === true).length
+        return 5
+        // TODO - request do serwera: ile mam nieprzeczytanych alertów?
     }
 
     return(
         <div className="topbar txt-semibold txt-blue">
             <div>
-                {countNew() === 0 ? "Nie masz nowych alertów" : "Nowe alerty: " + countNew()}
+                {countNew() === 0 ? "TODO: Nie masz nowych alertów" : "TODO: Nowe alerty: " + countNew()}
             </div>
             <div className="topbar-restore">
                     <img src={gear} className="gear" alt="restore default layout"/>

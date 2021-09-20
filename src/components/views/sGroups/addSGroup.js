@@ -5,7 +5,6 @@ import DisplayChoices from "../../displayChoices";
 // import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ADD_SGROUP_URL} from "../../../iotConfig";
-import {sendRequest} from "../../../FakeFrontend/backendConnector";
 
 
 const AddSGroup = () => {

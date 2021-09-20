@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {Link, useParams} from "react-router-dom";
 import ChartDataChoices from "../../chartDataChoices";
-import { getMeasurements } from "../../chartUtils";
-import DisplayChoices from "../../displayChoices";
-import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
+// import { getMeasurements } from "../../chartUtils";
+// import DisplayChoices from "../../displayChoices";
+// import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 // import getSensors from "../../../FakeBackend/getSensors";
 import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
 

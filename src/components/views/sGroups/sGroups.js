@@ -1,7 +1,5 @@
-import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
-// import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 

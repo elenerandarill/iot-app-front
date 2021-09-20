@@ -1,7 +1,6 @@
 import MenuButton from "./menuButton";
 import logo_iot from "../media/logo.svg";
 import LogoutButton from "./logoutButton";
-import {Link} from "react-router-dom";
 
 
 const SideBar = ({location}) => {

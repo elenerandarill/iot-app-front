@@ -41,13 +41,11 @@ const SensorDetails = () => {
     }
 
     // Geolocation
-    const x = document.getElementById("geo");
-
     const getLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+            alert("Geolocation is not supported by this browser.")
         }
     }
     const showPosition = (position) => {

@@ -1,8 +1,8 @@
 import ListAlerts from "./listAlerts";
 import {getAlerts, handleDeleteAlert, handleDeleteAlertsAll, handleReadAlertsAll} from "../../../FakeFrontend/backendAlertConnector"
 import {useEffect, useState} from "react";
-import SearchBox from "../../searchBox";
-import {Link} from "react-router-dom";
+// import SearchBox from "../../searchBox";
+import {ButtonFunc, ButtonLink} from "../../buttons";
 
 
 const Alerts = () => {
@@ -67,12 +67,11 @@ const Alerts = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to={"/alerts/new"}>
-                    <div className="btn btn-color">
-                        <i className="fas fa-plus mrg-r5"/>
-                        alert
-                    </div>
-                </Link>
+                <ButtonLink
+                text="alert"
+                add={true}
+                link={"/alerts/new"}
+                />
             </div>
 
             <div className="content-3x">
@@ -86,18 +85,14 @@ const Alerts = () => {
                         {/*</div>*/}
 
                         <div className="object-container">
-                            <div
-                                className="btn btn-color"
-                                onClick={() => warningReadAll()}
-                            >
-                                przeczytano wszystkie
-                            </div>
-                            <div
-                                className="btn btn-color"
+                            <ButtonFunc
+                            text="przeczytano wszystkie"
+                            onClick={() => warningReadAll()}
+                            />
+                            <ButtonFunc
+                                text="usuń wszystkie"
                                 onClick={() => warningDeleteAll()}
-                            >
-                                usuń wszystkie
-                            </div>
+                            />
                         </div>
 
                         {alerts.length === 0

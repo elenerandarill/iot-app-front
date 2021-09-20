@@ -2,9 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import DisplayChoices from "../../displayChoices";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
-// import getSGroups from "../../../FakeBackend/getSGroups";
 import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
-import {sendRequest} from "../../../FakeFrontend/backendConnector";
 
 const AddTeamMember = () => {
     const [sGroups, setSgroups] = useState(undefined);

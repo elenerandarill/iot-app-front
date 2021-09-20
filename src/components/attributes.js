@@ -57,6 +57,7 @@ export const InputTextarea = ({label, name, placeholder, object, url, sendChange
                     id={name}
                     className="txtarea"
                     contentEditable="true"
+                    suppressContentEditableWarning={true}
                     onInput={(e) => setNewValue(e.target.textContent)}
                 >
                     {placeholder}

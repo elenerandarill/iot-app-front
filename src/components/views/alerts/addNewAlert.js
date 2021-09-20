@@ -1,11 +1,9 @@
-import React, {useState} from 'react';
-import ListObjects from "../../listObjects";
-import {sensorObjectRenderer} from "../sensors/sensors";
+import {useState} from 'react';
 
 const AddNewAlert = () => {
     const [selectCategory, setSelectCategory] = useState("")
-    const sensorsList = ["1", "2", "3"]
-    const groupsList = ["1", "2", "3"]
+    // const sensorsList = ["1", "2", "3"]
+    // const groupsList = ["1", "2", "3"]
 
     return (
         <div className="main">
