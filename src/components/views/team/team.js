@@ -3,6 +3,7 @@ import ListObjects from "../../listObjects";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GET_TEAM_URL } from "../../../iotConfig";
+import {ButtonLink} from "../../buttons";
 
 /**
  * @param member {Member}
@@ -57,12 +58,11 @@ const Team = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to={"/team/add"}>
-                    <div className="btn btn-color">
-                        <i className="fas fa-plus mrg-r5"/>
-                        osoba
-                    </div>
-                </Link>
+                <ButtonLink
+                    text="osoba"
+                    add={true}
+                    link={"/team/add"}
+                />
             </div>
 
             <div className="content-3x">

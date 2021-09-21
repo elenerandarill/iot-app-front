@@ -2,6 +2,7 @@ import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
 import { useEffect, useState } from "react";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
+import {ButtonLink} from "../../buttons";
 
 /**
  * @param sensor {Sensor}
@@ -36,12 +37,11 @@ const Sensors = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to={"#"}>
-                    <div className="btn btn-color">
-                        <i className="fas fa-plus mrg-r5"/>
-                        zakup czujniki
-                    </div>
-                </Link>
+                <ButtonLink
+                    text="zakup czujniki"
+                    add={true}
+                    link={"#"}
+                />
             </div>
 
             <div className="content-3x">

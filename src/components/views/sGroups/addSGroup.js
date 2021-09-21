@@ -113,7 +113,7 @@ const AddSGroup = () => {
                             <div className="position-cent mrg-t"><input
                                 type="submit"
                                 value="Utwórz"
-                                className="btn btn-color insert-button"
+                                className="btn btn-color"
                             />
                             </div>
                         </form>

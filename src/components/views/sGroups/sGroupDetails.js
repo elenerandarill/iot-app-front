@@ -6,6 +6,7 @@ import {sensorObjectRenderer} from "../sensors/sensors";
 import {SET_SGROUP_NAME_URL, SET_SGROUP_NOTES_URL} from "../../../iotConfig";
 import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
+import {ButtonFunc, ButtonLink} from "../../buttons";
 
 
 const SGroupDetails = () => {
@@ -32,19 +33,14 @@ const SGroupDetails = () => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <Link to={"/sgroups"}>
-                    <div
-                        className="btn btn-color"
-                    >
-                        powrót do listy
-                    </div>
-                </Link>
-                <div
-                    className="btn btn-color"
+                <ButtonLink
+                    link={"/sgroups"}
+                    text="powrót do listy"
+                />
+                <ButtonFunc
+                    text="usuń tę grupę"
                     onClick={() => console.log("Usuwam tę grupę")}
-                >
-                    usuń tę grupę
-                </div>
+                />
             </div>
 
             <div className="content-3x">
@@ -88,13 +84,10 @@ const SGroupDetails = () => {
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <Link to={`/sgroups/${id}/edit`}>
-                                            <div
-                                                className="btn btn-color"
-                                            >
-                                                edytuj
-                                            </div>
-                                        </Link>
+                                        <ButtonLink
+                                            text="edytuj"
+                                            link={`/sgroups/${id}/edit`}
+                                        />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
                                         {sgroup.assigned.length === 0

@@ -35,20 +35,14 @@ const TeamMemberDetails = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to={"/team"}>
-                    <div
-                        className="btn btn-color"
-                    >
-                        powrót do listy
-                    </div>
-                </Link>
-                <Link to={"team/member/delete"}>
-                    <div
-                        className="btn btn-color"
-                    >
-                        usuń tę osobę
-                    </div>
-                </Link>
+                <ButtonLink
+                text="powrót do listy"
+                link={"/team"}
+                />
+                <ButtonLink
+                    text="usuń tę osobę"
+                    link={"team/member/delete"}
+                />
             </div>
 
             <div className="content-3x">

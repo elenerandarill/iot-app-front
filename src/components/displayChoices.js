@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchBox from "./searchBox";
 import SelectChoices from "./selectChoices";
+import {ButtonFunc} from "./buttons";
 
 
 const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) => {
@@ -49,20 +50,14 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
             <SearchBox value={searchQuery} onChange={(query) => handleSearch(query)}/>
 
             <div className="object-container">
-
-                <div
-                    className="btn btn-color insert-button"
-                    onClick={() => onSelectAllClick()}
-                >
-                    zaznacz wszystkie
-                </div>
-
-                <div
-                    className="btn btn-color insert-button"
-                    onClick={() => setSelected([])}
-                >
-                    odznacz wszystkie
-                </div>
+                <ButtonFunc
+                text="zaznacz wszystkie"
+                onClick={() => onSelectAllClick()}
+                />
+                <ButtonFunc
+                    text="odznacz wszystkie"
+                    onClick={() => setSelected()}
+                />
 
             </div>
 

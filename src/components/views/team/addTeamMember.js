@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import DisplayChoices from "../../displayChoices";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
+import {ButtonLink} from "../../buttons";
 
 const AddTeamMember = () => {
     const [sGroups, setSgroups] = useState(undefined);
@@ -59,13 +60,10 @@ const AddTeamMember = () => {
         return (
             <div className="main">
                 <div className="buttons-container">
-                    <Link to={"/team"}>
-                        <div
-                            className="btn btn-color"
-                        >
-                            powrót do listy
-                        </div>
-                    </Link>
+                    <ButtonLink
+                    text="powrót do listy"
+                    link={"/team"}
+                    />
                 </div>
 
                 <div className="content-3x">
@@ -117,7 +115,7 @@ const AddTeamMember = () => {
                                 <div className="position-cent mrg-t"><input
                                     type="submit"
                                     value="Utwórz"
-                                    className="btn btn-color insert-button"
+                                    className="btn btn-color"
                                 />
                                 </div>
                             </form>

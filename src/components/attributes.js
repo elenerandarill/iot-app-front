@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {ButtonFunc} from "./buttons";
 
 
 export const InputString = ({label, name, placeholder, object, url, sendChange}) => {
@@ -26,12 +27,10 @@ export const InputString = ({label, name, placeholder, object, url, sendChange})
                 onChange={(e) => setNewValue(e.target.value)}
             />
             </div>
-            <div
-                className="btn btn-color"
-                onClick={() => onNewValue(newValue)}
-            >
-                zapisz
-            </div>
+            <ButtonFunc
+            text="zapisz"
+            onClick={() => onNewValue(newValue)}
+            />
         </div>
     )
 }
@@ -63,12 +62,10 @@ export const InputTextarea = ({label, name, placeholder, object, url, sendChange
                     {placeholder}
                 </div>
             </div>
-            <div
-                className="btn btn-color"
-                onClick={() => onNewValue(newValue)}
-            >
-                zapisz
-            </div>
+            <ButtonFunc
+            text="zapisz"
+            onClick={() => onNewValue(newValue)}
+            />
         </div>
     )
 }

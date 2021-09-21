@@ -2,6 +2,7 @@ import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
+import {ButtonLink} from "../../buttons";
 
 /**
  * @param group {GroupOfSensors}
@@ -34,12 +35,11 @@ const SGroups = () => {
     return(
         <div className="main">
             <div className="buttons-container">
-                <Link to={"/sgroups/add"}>
-                    <div className="btn btn-color">
-                        <i className="fas fa-plus mrg-r5"/>
-                        nowa grupa
-                    </div>
-                </Link>
+                <ButtonLink
+                    text="nowa grupa"
+                    add={true}
+                    link={"/sgroups/add"}
+                />
             </div>
 
             <div className="content-3x">

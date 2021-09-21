@@ -12,7 +12,7 @@ import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConne
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
 import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
-import {ButtonLink} from "../../buttons";
+import {ButtonFunc, ButtonLink} from "../../buttons";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(
@@ -102,12 +102,10 @@ const SensorDetails = () => {
                                     {sensor.GPS.latitude}, {sensor.GPS.longitude}
                                 </div>
                             </div>
-                            <div
-                                className="btn btn-color"
-                                onClick={() => getLocation()}
-                            >
-                                aktualizuj
-                            </div>
+                            <ButtonFunc
+                            text="aktualizuj"
+                            onClick={() => getLocation()}
+                            />
                         </div>
 
                         <div className="shadow listed-attribute">
@@ -125,13 +123,10 @@ const SensorDetails = () => {
 
                             {/*<ChartDataChoices source={sensor}/>*/}
 
-                            <Link to={`/sensors/${id}/edit/chart`}>
-                                <div
-                                    className="btn btn-color"
-                                >
-                                    edytuj
-                                </div>
-                            </Link>
+                            <ButtonLink
+                            text="edytuj"
+                            link={`/sensors/${id}/edit/chart`}
+                            />
 
                             <ChartTypeArea height={250} object={sensor}/>
                         </div>
@@ -150,13 +145,10 @@ const SensorDetails = () => {
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
-                                        <Link to={`/sensors/${id}/edit`}>
-                                            <div
-                                                className="btn btn-color"
-                                            >
-                                                edytuj
-                                            </div>
-                                        </Link>
+                                        <ButtonLink
+                                        text="edytuj"
+                                        link={`/sensors/${id}/edit`}
+                                        />
                                     </div>
 
                                     <div className="object-container txt-violet txt-semibold">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DisplayChoices from "./displayChoices";
 import {Link} from "react-router-dom";
+import {ButtonFunc, ButtonLink} from "./buttons";
 
 /**
  * @param type --> sensors-in
@@ -21,19 +22,16 @@ const EditAssigned = ({headline, description, linkTo, object, availableChoices, 
     return (
         <div className="main">
             <div className="buttons-container">
-                <Link to={`/${linkTo}/${object.id}`}>
-                    <div
-                        className="btn btn-color"
-                    >
-                        anuluj
-                    </div>
-                </Link>
+                <ButtonLink
+                    link={`/${linkTo}/${object.id}`}
+                    text="anuluj"
+                />
             </div>
 
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                         {headline} {object.name}
+                        {headline} {object.name}
                     </div>
 
                     <div className="shadow white-space top-contact  txt-center">
@@ -48,6 +46,13 @@ const EditAssigned = ({headline, description, linkTo, object, availableChoices, 
                             />
                         </div>
                         <div className="object-container">
+                            {/*<ButtonFunc*/}
+                            {/*    text="gotowe"*/}
+                            {/*    onClick={(e) => {*/}
+                            {/*        e.preventDefault()*/}
+                            {/*        handleSend(selection)*/}
+                            {/*    }}*/}
+                            {/*/>*/}
                         <div
                             className="btn btn-color"
                             onClick={(e) => {

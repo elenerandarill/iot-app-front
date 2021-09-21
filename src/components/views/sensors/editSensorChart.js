@@ -6,6 +6,7 @@ import ChartDataChoices from "../../chartDataChoices";
 // import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 // import getSensors from "../../../FakeBackend/getSensors";
 import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
+import {ButtonLink} from "../../buttons";
 
 const EditSensorChart = () => {
     // const [selected, setSelected] = useState([])
@@ -16,13 +17,10 @@ const EditSensorChart = () => {
         <div>
             <div className="main">
                 <div className="buttons-container">
-                    <Link to={`/sensors/${sensor.id}`}>
-                        <div
-                            className="btn btn-color"
-                        >
-                            anuluj
-                        </div>
-                    </Link>
+                    <ButtonLink
+                        text="anuluj"
+                        link={`/sensors/${sensor.id}`}
+                    />
                 </div>
 
                 <div className="content-3x">
