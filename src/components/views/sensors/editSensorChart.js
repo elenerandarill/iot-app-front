@@ -8,7 +8,7 @@ import ChartDataChoices from "../../chartDataChoices";
 import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
 
 const EditSensorChart = () => {
-    const [selected, setSelected] = useState([])
+    // const [selected, setSelected] = useState([])
     const [sensor, setSensor] = useState(undefined)
     let {id} = useParams();
 

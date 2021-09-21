@@ -1,6 +1,7 @@
 import {
     DELETE_ALERT_URL,
     DELETE_ALERTS_ALL_URL,
+    GET_ALERTS_UNREAD_COUNT_URL,
     GET_ALERTS_URL,
     SET_ALERT_READ_URL,
     SET_ALERTS_READ_URL,
@@ -51,4 +52,11 @@ export const handleDeleteAlertsAll = async () => {
     await sendRequest(
         DELETE_ALERTS_ALL_URL
     )
+}
+
+export const getUnreadAlertsCount = async () => {
+    const res = await sendRequest(
+        GET_ALERTS_UNREAD_COUNT_URL
+    )
+    return res.body
 }

@@ -20,11 +20,19 @@ import EditMemberGroups from "./components/views/team/editMemberGroups";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
 import AddTeamMember from "./components/views/team/addTeamMember";
 import AddNewAlert from "./components/views/alerts/addNewAlert";
+// import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
 
 
 function App() {
+    // const [unreadAlerts, setUnreadAlerts] = useState()
+    //
+    // const refreshAlertCount = () => {
+    //     getUnreadAlertsCount()
+    //             .then((count) => {setUnreadAlerts(count)})
+    // }
+
     return (
         <BrowserRouter>
             <Switch>

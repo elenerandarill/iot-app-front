@@ -1,16 +1,26 @@
 import gear from "../media/gear.svg";
+import {useEffect, useState} from "react";
+import {getUnreadAlertsCount} from "../FakeFrontend/backendAlertConnector";
 
 const TopBar = () => {
+    const [unreadAlerts, setUnreadAlerts] = useState(0)
 
-    const countNew = () => {
-        return 5
-        // TODO - request do serwera: ile mam nieprzeczytanych alertów?
-    }
+    // Dostaje liczbe z gory, z App.
+    // unreadAlertsCount((count) => {
+    //     setUnreadAlerts(count)
+    // })
+
+    useEffect(() => {
+        getUnreadAlertsCount()
+            .then((count) => {setUnreadAlerts(count)})
+    })
 
     return(
         <div className="topbar txt-semibold txt-blue">
             <div>
-                {countNew() === 0 ? "TODO: Nie masz nowych alertów" : "TODO: Nowe alerty: " + countNew()}
+                {unreadAlerts === 0
+                    ? "Nie masz nowych alertów"
+                    : "Nowe alerty: " + unreadAlerts}
             </div>
             <div className="topbar-restore">
                     <img src={gear} className="gear" alt="restore default layout"/>
