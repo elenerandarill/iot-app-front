@@ -46,22 +46,13 @@ const EditAssigned = ({headline, description, linkTo, object, availableChoices, 
                             />
                         </div>
                         <div className="object-container">
-                            {/*<ButtonFunc*/}
-                            {/*    text="gotowe"*/}
-                            {/*    onClick={(e) => {*/}
-                            {/*        e.preventDefault()*/}
-                            {/*        handleSend(selection)*/}
-                            {/*    }}*/}
-                            {/*/>*/}
-                        <div
-                            className="btn btn-color"
-                            onClick={(e) => {
-                                e.preventDefault()
-                                handleSend(selection)
-                            }}
-                        >
-                            gotowe
-                        </div>
+                            <ButtonFunc
+                                text="gotowe"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    handleSend(selection)
+                                }}
+                            />
                         </div>
                     </div>
                 </div>

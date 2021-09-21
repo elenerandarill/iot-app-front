@@ -17,3 +17,19 @@ const MenuButton = ({ text, path }) => {
 }
 
 export default MenuButton;
+
+export const MenuBurgerButton = ({ text, path, onClick }) => {
+    const location = useLocation();
+
+    return (
+        <Link to={path}>
+            <div
+                className={location.pathname === path
+                    ? "btn menu-active" : "btn menu-inactive"}
+                onClick={onClick}
+            >
+                {text}
+            </div>
+        </Link>
+    )
+}
