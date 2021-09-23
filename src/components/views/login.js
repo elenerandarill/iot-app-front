@@ -1,66 +1,83 @@
-import axios from "axios";
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useHistory} from "react-router-dom";
+import {sendRequest} from "../../FakeFrontend/backendConnector";
+import {LOGIN_URL} from "../../iotConfig";
+import {ButtonFunc} from "../buttons";
 
-const Login = ({onAdd}) => {
+const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
+    const history = useHistory()
 
     const onSubmit = (e) => {
-        // powstrzyma form przed automatycznym wyslaniem, zeby mozna bylo zrobic walidacje
         e.preventDefault()
 
-        // jesli nie wpisano nic w email
         if (!email) {
+            // TODO: toastify
             alert("Podaj email")
             return
         }
-        // jesli wpisano...
-        // onAdd({ email, password })
+        if (!password) {
+            // TODO: toastify
+            alert("Podaj hasło")
+            return
+        }
 
-        // wyzerowanie wartosci pol
-        setEmail("")
-        setPassword("")
+        const handleSend = async () => {
+            return await sendRequest(
+                LOGIN_URL,
+                {email: email, password: password}
+            )
+        }
 
-        // wyslanie POST
-        axios.post('/cgi-bin/dezd', {
-            email: email,
-            password: password
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if (email && password) {
+            const resp = handleSend()
+
+            if (resp.status === 200) {
+                console.log("[ Logowanie ] udane")
+                // wyzerowanie wartosci pol
+                setEmail("")
+                setPassword("")
+                history.push("/")
+            } else {
+                // TODO: toastify
+                alert(`[ Logowanie ] nieudane, status: ${resp.status}`);
+            }
+        }
     }
+
+
 
     return (
         <div className="overlay-bgd">
             <div className="login-area">
-                <h2>Strona Logowania</h2>
-                <form onSubmit={onSubmit} className="white-space no-contact centered width-700">
+                <div className="head-txt">Strona Logowania</div>
+
+                <form
+                    // onSubmit={onSubmit}
+                    className="white-login-area"
+                >
                     <input
                         type="email"
-                        placeholder="login"
-                        className="input"
+                        placeholder="email"
+                        className="input-login"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <input
                         type="password"
                         placeholder="hasło"
-                        className="input"
+                        className="input-login"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <input
-                        type="submit"
-                        value="Zaloguj"
-                        className="btn btn-color"
+                    <ButtonFunc
+                        text="Zaloguj"
+                        onClick={(e) => onSubmit(e)}
                     />
                     <div>Nie pamiętasz hasła?</div>
                 </form>
+
                 <div className="mrg-tb txt-center">Nie posiadasz konta? <br/>
                     <Link to="/register">Zarejestruj się!</Link>
                 </div>

@@ -4,6 +4,10 @@ export const BASE_CATFISH_URL = "http://localhost:8000/cgi-bin/fake"
 
 export const CATFISH_URL = BASE_CATFISH_URL + "/dezd"
 
+// CREDENTIALS
+export const LOGIN_URL = BASE_CATFISH_URL + "/login"
+export const REGISTER_URL = BASE_CATFISH_URL + "/register"
+
 // SENSORS
 export const GET_SENSORS_URL = BASE_CATFISH_URL + "/sensors/get"
 export const ADD_SENSOR_URL = BASE_CATFISH_URL + "/sensor/add"

@@ -46,7 +46,7 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
                 />
                 <br/>
 
-                Tymczasowe skróty:
+                <h6>Tymczasowe skróty:</h6>
                 <MenuBurgerButton text="Logowanie" path="/login"
                                   onClick={() => activateBurgerMenu(false)}/>
                 <MenuBurgerButton text="Rejestracja" path="/register"

@@ -1,9 +1,39 @@
 import {useState} from 'react';
+import {groupObjectRenderer} from "../sGroups/sGroups";
+import {sensorObjectRenderer} from "../sensors/sensors";
+import ListObjects from "../../listObjects";
+import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
+import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
+import {ButtonFunc} from "../../buttons";
+import DisplayChoices from "../../displayChoices";
+
 
 const AddNewAlert = () => {
     const [selectCategory, setSelectCategory] = useState("")
-    // const sensorsList = ["1", "2", "3"]
-    // const groupsList = ["1", "2", "3"]
+    const [objectsList, setObjectsList] = useState(undefined)
+    const [selection, setSelection] = useState(undefined)
+    // const [renderer, setRenderer] = useState(undefined)
+
+    const getSensors = () => {
+        setSelectCategory("sensors")
+        // setRenderer(sensorObjectRenderer)
+        fetchSensors()
+            .then((sensors) => setObjectsList(sensors))
+    }
+    const getSgroups = () => {
+        setSelectCategory("sgroups")
+        // setRenderer(groupObjectRenderer)
+        fetchSgroups()
+            .then((sgroup) => setObjectsList(sgroup))
+    }
+
+    const setChoice = (choice) => {
+        if (selection === choice){
+            setSelection(undefined)
+        } else {
+            setSelection(choice)
+        }
+    }
 
     return (
         <div className="main">
@@ -17,24 +47,41 @@ const AddNewAlert = () => {
                     <div className="white-space top-contact">
 
                         <div className="shadow listed-attribute">
-                            <div className="head-txt">{"obiekt do monitorowania"}</div>
+                            <div className="head-txt">
+                                {"kategoria obiektu do monitorowania"}
+                            </div>
                             <div className="position-cent">
-                                <div
-                                    className="btn btn-color"
-                                    onClick={() => setSelectCategory("sensor")}
-                                >
-                                    czujnik
-                                </div>
-                                <div
-                                    className="btn btn-color"
-                                    onClick={() => setSelectCategory("group")}
-                                >
-                                    grupa czujników
-                                </div>
+                                <ButtonFunc
+                                    text="czujnik"
+                                    onClick={() => getSensors()}
+                                />
+                                <ButtonFunc
+                                    text="grupa czujników"
+                                    onClick={() => getSgroups()}
+                                />
                             </div>
                             <div className="object-container">
-                                {selectCategory === "sensor" && "Tu będą pokazane czujniki do wyboru"}
-                                {selectCategory === "group" && "Tu będą pokazane grupy do wyboru"}
+                                 <div>
+                                     {selectCategory === "sensors" && "Zaznacz czujnik do monitorowania"}
+                                     {selectCategory === "sgroups" && "Zaznacz grupę do monitorowania"}
+
+                                    {objectsList
+                                        ? <div>
+                                            {objectsList.map((choice =>
+                                                    <div
+                                                        key={choice.id}
+                                                        className={`object-choices shadow ${selection === choice
+                                                            ? " choice-active" : ""}`}
+                                                        onClick={() => setChoice(choice)}
+                                                    >
+                                                        {choice.getDisplayName()}
+                                                    </div>
+                                            ))}
+                                        </div>
+
+                                        : <div>Pobieram dane, proszę czekać.</div>
+                                    }
+                                </div>
                             </div>
                         </div>
 
@@ -90,6 +137,7 @@ const AddNewAlert = () => {
         </div>
 
     );
-};
+}
+
 
 export default AddNewAlert;

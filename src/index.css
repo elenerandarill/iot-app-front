@@ -285,7 +285,15 @@ a {
 
 .width-700 {
   max-width: 750px;
-  min-width: 500px;
+  min-width: 380px;
+}
+.login-height {
+  max-height: 550px;
+  min-height: 300px;
+}
+.register-height {
+  max-height: 750px;
+  min-height: 500px;
 }
 
 /*------------------*/
@@ -315,6 +323,18 @@ a {
 .input {
   max-width: 700px;
   width: 70%;
+  font-size: 16px;
+  text-rendering: auto;
+  text-align: center;
+  background: none;
+  /*padding: 8px 10px 0 10px;*/
+  margin: 15px;
+  border: none;
+  border-bottom: 1px var(--gray02) solid;
+}
+.input-login {
+  max-width: 700px;
+  width: 90%;
   font-size: 16px;
   text-rendering: auto;
   text-align: center;
@@ -622,17 +642,52 @@ img.dot {
   background-color: var(--gray01);
   /*overflow-x: hidden;*/
   display: grid;
-  grid-template: 1fr 2fr 1fr / 1fr 2fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+  /*grid-template-columns: 1fr 6fr 1fr;*/
+  grid-template-areas:
+          "void form void2"
+          "void form void2"
+          "void form void2";
 }
 
 .login-area {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-area: form;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
+.white-login-area {
+  border-radius: 5px;
+  width: 90%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-around;
+  /*justify-self: stretch;*/
+  padding: 20px 10px 30px 10px;
+  background: white;
+  box-shadow: 0 0 4px 0 var(--gray02);
+}
+.white-register-area {
+  border-radius: 5px;
+  width: 90%;
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-around;
+  /*justify-self: stretch;*/
+  padding: 20px 10px 30px 10px;
+  background: white;
+  box-shadow: 0 0 4px 0 var(--gray02);
+}
+
 
 /* ---- Test --- */
 .test-btn {
