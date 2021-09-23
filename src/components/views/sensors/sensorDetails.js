@@ -13,6 +13,7 @@ import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
 import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
 import {ButtonFunc, ButtonLink} from "../../buttons";
+import CustomMap from "../../map/customMap";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(
@@ -115,10 +116,49 @@ const SensorDetails = () => {
                             </div>
                         </div>
 
-                        {/* --- area chart --- */}
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">
-                                wykres ostanich 5 pomiarów
+                                dodaj element dla tego czujnika
+                            </div>
+                            <div className="position-cent">
+                                <ButtonLink
+                                    text="wykres"
+                                    add={true}
+                                />
+                                <ButtonLink
+                                    text="tabela"
+                                    add={true}
+                                />
+                                <ButtonLink
+                                    text="mapa"
+                                    add={true}
+                                />
+                            </div>
+                        </div>
+
+                        {/* --- map --- */}
+
+                        <div className="shadow listed-attribute">
+
+                            <div className="head-txt">
+                                położenie geograficzne
+                            </div>
+                            <div className="position-cent">
+                                <CustomMap/>
+                            </div>
+                        </div>
+
+                        {/* --- area chart --- */}
+                        <div className="shadow listed-attribute">
+                            <div className="container-alert-icons">
+                                <i
+                                    className="fas fa-trash-alt mrg-r txt-blue"
+                                    // onClick={onDelete}
+                                />
+                                <div className="mrg-tb head-txt">
+                                    wykres ostanich 5 pomiarów
+                                </div>
+                                <i className="fas fa-cog mrg-l txt-blue"/>
                             </div>
 
                             {/*<ChartDataChoices source={sensor}/>*/}
