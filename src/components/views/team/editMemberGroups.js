@@ -3,6 +3,7 @@ import EditAssigned from "../../editAssigned";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {fetchMember, setMemberAssignedSgroups} from "../../../FakeFrontend/backendMemberConnector";
 import {useEffect, useState} from "react";
+import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 
 const EditMemberGroups = () => {
     const [member, setMember] = useState(undefined)
@@ -22,7 +23,7 @@ const EditMemberGroups = () => {
         const res = await setMemberAssignedSgroups(member, assigned)
 
         if (res.status === 200){
-            history.push(`/team/${id}`)
+            history.push(ROUTE_TMEMBER_DETAILS(id))
         }
         else {
             console.log("Członek grupy - Nie udało się zmienić assigned, status: ", res.status)

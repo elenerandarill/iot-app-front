@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 import {ButtonLink} from "../../buttons";
+import {ROUTE_SGROUP_ADD, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 
 /**
  * @param group {GroupOfSensors}
@@ -13,7 +14,7 @@ export const groupObjectRenderer = (group) => {
     return (
         <Link
             key={group.id}
-            to={`/sgroups/${group.id}`}
+            to={ROUTE_SGROUP_DETAILS(group.id)}
         >
             <div className={"object shadow" + (group.assigned.length === 0 ? " mark-as-new" : "")}>
                 <div className="txt-semibold">{group.name}</div>
@@ -38,7 +39,7 @@ const SGroups = () => {
                 <ButtonLink
                     text="nowa grupa"
                     add={true}
-                    link={"/sgroups/add"}
+                    link={ROUTE_SGROUP_ADD}
                 />
             </div>
 

@@ -1,5 +1,13 @@
 import {MenuBurgerButton} from "../menuButton";
 import LogoutButton from "../logoutButton";
+import {
+    ROUTE_CONTACT,
+    ROUTE_HOME,
+    ROUTE_NOTIFS_LIST,
+    ROUTE_SENSOR_LIST,
+    ROUTE_SGROUP_LIST,
+    ROUTE_TMEMBER_LIST
+} from "../../iotConfig";
 
 const BurgerMenu = ({ activateBurgerMenu }) => {
 
@@ -8,32 +16,32 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
             <div className="burgermenu">
                 <MenuBurgerButton
                     text="Pulpit"
-                    path="/"
+                    path={ROUTE_HOME}
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton
                     text="Alerty"
-                    path="/alerts"
+                    path={ROUTE_NOTIFS_LIST}
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton
                     text="Czujniki"
-                    path="/sensors"
+                    path={ROUTE_SENSOR_LIST}
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton
                     text="Grupy"
-                    path="/sgroups"
+                    path={ROUTE_SGROUP_LIST}
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton
                     text="Zespół"
-                    path="/team"
+                    path={ROUTE_TMEMBER_LIST}
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton
                     text="Kontakt"
-                    path="/contact"
+                    path={ROUTE_CONTACT}
                     onClick={() => activateBurgerMenu(false)}
                 />
 

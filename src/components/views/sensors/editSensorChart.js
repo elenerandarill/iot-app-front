@@ -7,6 +7,7 @@ import ChartDataChoices from "../../chartDataChoices";
 // import getSensors from "../../../FakeBackend/getSensors";
 import getChartsInfo from "../../../FakeFrontend/getChartsInfo";
 import {ButtonLink} from "../../buttons";
+import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
 
 const EditSensorChart = () => {
     // const [selected, setSelected] = useState([])
@@ -19,7 +20,7 @@ const EditSensorChart = () => {
                 <div className="buttons-container">
                     <ButtonLink
                         text="anuluj"
-                        link={`/sensors/${sensor.id}`}
+                        link={ROUTE_SENSOR_DETAILS(sensor.id)}
                     />
                 </div>
 

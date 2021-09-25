@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {SET_SGROUP_NAME_URL, SET_SGROUP_NOTES_URL} from "../../../iotConfig";
+import {ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET} from "../../../iotConfig";
 import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {ButtonFunc, ButtonLink} from "../../buttons";
@@ -34,7 +34,7 @@ const SGroupDetails = () => {
         <div className="main">
             <div className="buttons-container">
                 <ButtonLink
-                    link={"/sgroups"}
+                    link={ROUTE_SGROUP_LIST}
                     text="powrót do listy"
                 />
                 <ButtonFunc
@@ -54,7 +54,7 @@ const SGroupDetails = () => {
                             name="name"
                             placeholder={sgroup.name}
                             object={sgroup}
-                            url={SET_SGROUP_NAME_URL}
+                            url={URL_SGROUP_SET}
                             sendChange={changeValue}
                         />
 
@@ -63,7 +63,7 @@ const SGroupDetails = () => {
                             name="notes"
                             placeholder={sgroup.notes === "" ? "Tu wpisz notatkę." : sgroup.notes}
                             object={sgroup}
-                            url={SET_SGROUP_NOTES_URL}
+                            url={URL_SGROUP_SET}
                             sendChange={changeValue}
                         />
 
@@ -86,7 +86,7 @@ const SGroupDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonLink
                                             text="edytuj"
-                                            link={`/sgroups/${id}/edit`}
+                                            link={ROUTE_SGROUP_EDIT(id)}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">

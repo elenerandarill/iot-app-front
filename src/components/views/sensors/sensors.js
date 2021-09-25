@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import { useEffect, useState } from "react";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ButtonLink} from "../../buttons";
+import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
 
 /**
  * @param sensor {Sensor}
@@ -12,7 +13,7 @@ export const sensorObjectRenderer = (sensor) => {
     return (
         <Link
             key={sensor.id}
-            to={`/sensors/${sensor.id}`}
+            to={ROUTE_SENSOR_DETAILS(sensor.id)}
         >
             <div className={"object shadow" + (sensor.assigned.length === 0 ? " mark-as-new" : "")}>
                 <div>

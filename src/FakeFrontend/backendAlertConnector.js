@@ -1,10 +1,10 @@
 import {
-    DELETE_ALERT_URL,
-    DELETE_ALERTS_ALL_URL,
-    GET_ALERTS_UNREAD_COUNT_URL,
-    GET_ALERTS_URL,
-    SET_ALERT_READ_URL,
-    SET_ALERTS_READ_URL,
+    URL_NOTIFICATION_DEL,
+    URL_NOTIFICATION_DEL_ALL,
+    URL_NOTIFICATION_UNREAD_COUNT_GET,
+    URL_NOTIFICATION_LIST,
+    URL_NOTIFICATION_SET,
+    URL_NOTIFICATION_READ_ALL_SET,
 } from "../iotConfig";
 import {Alert} from "../FakeBackend/getAlerts";
 import {sendRequest} from "./backendConnector";
@@ -14,7 +14,7 @@ import {sendRequest} from "./backendConnector";
 
 const jsonToAlert = (list) => {
     const list2 = list.map(a =>
-        new Alert(a.id, a.read, a.datetime, a.type, a.name, a.targetId, a.msg))
+        new Alert(a.id, a.read, a.important, a.datetime, a.type, a.name, a.targetId, a.msg))
     console.log("[ getAlerts ] returned objects: ", list2)
     return list2
 }
@@ -23,40 +23,47 @@ const jsonToAlert = (list) => {
 
 export const getAlerts = async () => {
     const res = await sendRequest(
-        GET_ALERTS_URL
+        URL_NOTIFICATION_LIST
     )
     return jsonToAlert(res.body)
 }
 
 export const markReadAlert = async (id) => {
-    await sendRequest(
-        SET_ALERT_READ_URL,
-        {"id": id}
+    return await sendRequest(
+        URL_NOTIFICATION_SET,
+        {"id": id, "property": "read", "value": true}
+    )
+}
+
+export const markImportanceAlert = async (id, value) => {
+    return await sendRequest(
+        URL_NOTIFICATION_SET,
+        {"id": id, "property": "important", "value": value}
     )
 }
 
 export const handleReadAlertsAll = async () => {
-    await sendRequest(
-        SET_ALERTS_READ_URL
+    return await sendRequest(
+        URL_NOTIFICATION_READ_ALL_SET
     )
 }
 
 export const handleDeleteAlert = async (id) => {
-    await sendRequest(
-        DELETE_ALERT_URL,
+    return await sendRequest(
+        URL_NOTIFICATION_DEL,
         {"id": id}
     )
 }
 
 export const handleDeleteAlertsAll = async () => {
     await sendRequest(
-        DELETE_ALERTS_ALL_URL
+        URL_NOTIFICATION_DEL_ALL
     )
 }
 
 export const getUnreadAlertsCount = async () => {
     const res = await sendRequest(
-        GET_ALERTS_UNREAD_COUNT_URL
+        URL_NOTIFICATION_UNREAD_COUNT_GET
     )
     return res.body
 }

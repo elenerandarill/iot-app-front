@@ -1,47 +1,76 @@
 
 // export const CATFISH_URL = "/cgi-bin/dezd"
-export const BASE_CATFISH_URL = "http://localhost:8000/cgi-bin/fake"
+export const URL_SERVER_BASE = "http://localhost:8000"
 
-export const CATFISH_URL = BASE_CATFISH_URL + "/dezd"
+export const URL_CATFISH = URL_SERVER_BASE + "/dezd"
 
 // CREDENTIALS
-export const LOGIN_URL = BASE_CATFISH_URL + "/login"
-export const REGISTER_URL = BASE_CATFISH_URL + "/register"
+export const URL_LOGIN = URL_SERVER_BASE + "/login"
+export const URL_REGISTER = URL_SERVER_BASE + "/register"
 
-// SENSORS
-export const GET_SENSORS_URL = BASE_CATFISH_URL + "/sensors/get"
-export const ADD_SENSOR_URL = BASE_CATFISH_URL + "/sensor/add"
-export const GET_SENSOR_URL = BASE_CATFISH_URL + "/sensor/get"
-export const SET_SENSOR_NAME_URL = BASE_CATFISH_URL + "/sensor/name"
-export const SET_SENSOR_NOTES_URL = BASE_CATFISH_URL + "/sensor/notes"
-export const SET_SENSOR_ASSIGNED_URL = BASE_CATFISH_URL + "/sensor/assigned/set"
-export const GET_SENSOR_ASSIGNED_URL = BASE_CATFISH_URL + "/sensor/assigned/get"
-//GPS
-export const SET_LOCATION_URL = BASE_CATFISH_URL + "/sensor/location"
+// SENSOR
+export const URL_SENSOR_LIST = URL_SERVER_BASE + "/sensor/list"
+export const URL_SENSOR_ADD = URL_SERVER_BASE + "/sensor/add"
+export const URL_SENSOR_GET = URL_SERVER_BASE + "/sensor/get"
+export const URL_SENSOR_SET = URL_SERVER_BASE + "/sensor/set"
+// ??????????
+export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/sensor/set_assigned"
+export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/sensor/get_assigned"
 
-//SGROUPS
-export const GET_SGROUPS_URL = BASE_CATFISH_URL + "/sgroups/get"
-export const ADD_SGROUP_URL = BASE_CATFISH_URL + "/sgroup/add"
-export const GET_SGROUP_URL = BASE_CATFISH_URL + "/sgroup/get"
-export const SET_SGROUP_NAME_URL = BASE_CATFISH_URL + "/sgroup/name"
-export const SET_SGROUP_NOTES_URL = BASE_CATFISH_URL + "/sgroup/notes"
-export const SET_SGROUP_ASSIGNED_URL = BASE_CATFISH_URL + "/sgroup/assigned/set"
-export const GET_SGROUP_ASSIGNED_URL = BASE_CATFISH_URL + "/sgroup/assigned/get"
+//SGROUP
+export const URL_SGROUP_LIST = URL_SERVER_BASE + "/sgroup/list"
+export const URL_SGROUP_ADD = URL_SERVER_BASE + "/sgroup/add"
+export const URL_SGROUP_GET = URL_SERVER_BASE + "/sgroup/get"
+export const URL_SGROUP_SET = URL_SERVER_BASE + "/sgroup/set"
+// ?????????????
+export const URL_SGROUP_ASSIGNED_SET = URL_SERVER_BASE + "/sgroup/set_assigned"
+export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/sgroup/get_assigned"
 
-// TEAMS
-export const GET_TEAM_URL = BASE_CATFISH_URL + "/team/get"
-export const ADD_TEAM_MEMBER_URL = BASE_CATFISH_URL + "/team/member/add"
-export const GET_TEAM_MEMBER_URL = BASE_CATFISH_URL + "/team/member/get"
-export const SET_TEAM_MEMBER_NAME_URL = BASE_CATFISH_URL + "/team/member/name"
-export const SET_TEAM_MEMBER_NOTES_URL = BASE_CATFISH_URL + "/team/member/notes"
-export const SET_TEAM_MEMBER_ASSIGNED_URL = BASE_CATFISH_URL + "/team/member/assigned/set"
-export const GET_TEAM_MEMBER_ASSIGNED_URL = BASE_CATFISH_URL + "/team/member/assigned/get"
+// TEAM
+export const URL_TEAM_LIST = URL_SERVER_BASE + "/team/member/list"
+export const URL_TEAM_MEMBER_ADD = URL_SERVER_BASE + "/team/member/add"
+export const URL_TEAM_MEMBER_GET = URL_SERVER_BASE + "/team/member/get"
+export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/team/member/set"
+// ?????????????
+export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/team/member/set_assigned"
+export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/team/member/get_assigned"
 
-// ALERTS
-export const GET_ALERTS_URL = BASE_CATFISH_URL + "/alerts/get"
-export const GET_ALERTS_UNREAD_COUNT_URL = BASE_CATFISH_URL + "/alerts/unread/count"
-export const SET_ALERT_READ_URL = BASE_CATFISH_URL + "/alerts/read"
-export const SET_ALERTS_READ_URL = BASE_CATFISH_URL + "/alerts/read/all"
-export const DELETE_ALERT_URL = BASE_CATFISH_URL + "/alerts/delete"
-export const DELETE_ALERTS_ALL_URL = BASE_CATFISH_URL + "/alerts/delete/all"
+// NOTIFICATION
+export const URL_NOTIFICATION_LIST = URL_SERVER_BASE + "/notification/list"
+export const URL_NOTIFICATION_ADD = URL_SERVER_BASE + "/notification/add"
+export const URL_NOTIFICATION_UNREAD_COUNT_GET = URL_SERVER_BASE + "/notification/get_unread_count"
+export const URL_NOTIFICATION_SET = URL_SERVER_BASE + "/notification/set"
+export const URL_NOTIFICATION_READ_ALL_SET = URL_SERVER_BASE + "/notification/read_all"
+export const URL_NOTIFICATION_DEL = URL_SERVER_BASE + "/notification/del"
+export const URL_NOTIFICATION_DEL_ALL = URL_SERVER_BASE + "/notification/del_all"
+
+// ALERT
+// TODO: add_alert, set_alert, del_alert
+
+
+// ----- ROUTES -----
+
+export const ROUTE_HOME = "/"
+export const ROUTE_LOGIN = "/login"
+export const ROUTE_REGISTER = "/register"
+
+export const ROUTE_SENSOR_LIST = "/sensor/list"
+export const ROUTE_SENSOR_DETAILS = (id) => "/sensor/" + id + "/details"
+export const ROUTE_SENSOR_EDIT = (id) => "/sensor/" + id + "/edit"
+export const ROUTE_SENSOR_EDIT_CHART = (id) => "/sensor/" + id + "/edit/chart"
+
+export const ROUTE_SGROUP_LIST = "/sgroup/list"
+export const ROUTE_SGROUP_DETAILS = (id) => "/sgroup/" + id + "/details"
+export const ROUTE_SGROUP_EDIT = (id) => "/sgroup/" + id + "/edit"
+export const ROUTE_SGROUP_ADD = "/sgroup/add"
+
+export const ROUTE_TMEMBER_LIST = "/team/member/list"
+export const ROUTE_TMEMBER_DETAILS = (id) => "/team/member/" + id + "/details"
+export const ROUTE_TMEMBER_EDIT = (id) => "/team/member/" + id + "/edit"
+export const ROUTE_TMEMBER_ADD = "/team/member/add"
+
+export const ROUTE_NOTIFS_LIST = "/notification/list"
+export const ROUTE_NOTIFS_NEW = "/notification/new"
+
+export const ROUTE_CONTACT = "/contact"
 

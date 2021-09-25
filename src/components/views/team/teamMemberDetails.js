@@ -4,7 +4,7 @@ import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
-import {SET_TEAM_MEMBER_NAME_URL, SET_TEAM_MEMBER_NOTES_URL} from "../../../iotConfig";
+import {ROUTE_TMEMBER_EDIT, ROUTE_TMEMBER_LIST, URL_TEAM_MEMBER_SET} from "../../../iotConfig";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchMember, getMemberAssignedSgroups} from "../../../FakeFrontend/backendMemberConnector";
 
@@ -37,7 +37,7 @@ const TeamMemberDetails = () => {
             <div className="buttons-container">
                 <ButtonLink
                 text="powrót do listy"
-                link={"/team"}
+                link={ROUTE_TMEMBER_LIST}
                 />
                 <ButtonLink
                     text="usuń tę osobę"
@@ -57,7 +57,7 @@ const TeamMemberDetails = () => {
                             name="fullname"
                             placeholder={member.fullname}
                             object={member}
-                            url={SET_TEAM_MEMBER_NAME_URL}
+                            url={URL_TEAM_MEMBER_SET}
                             sendChange={changeValue}
                         />
                         <InputTextarea
@@ -65,7 +65,7 @@ const TeamMemberDetails = () => {
                             name="notes"
                             placeholder={member.notes === "" ? "Tu wpisz notatkę." : member.notes}
                             object={member}
-                            url={SET_TEAM_MEMBER_NOTES_URL}
+                            url={URL_TEAM_MEMBER_SET}
                             sendChange={changeValue}
                         />
 
@@ -76,7 +76,7 @@ const TeamMemberDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonLink
                                             text={"edytuj"}
-                                            link={`/team/${id}/edit`}
+                                            link={ROUTE_TMEMBER_EDIT(id)}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">

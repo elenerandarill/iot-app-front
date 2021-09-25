@@ -15,9 +15,10 @@ export class Alert {
     /** @type {string} */
     msg
 
-    constructor(id, read, datetime, type, name, targetId, msg) {
+    constructor(id, read, important, datetime, type, name, targetId, msg) {
         this.id = id;
         this.read = read;
+        this.important = important;
         this.datetime = datetime;
         this.type = type;
         this.name = name;

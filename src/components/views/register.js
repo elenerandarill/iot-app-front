@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {sendRequest} from "../../FakeFrontend/backendConnector";
-import {REGISTER_URL} from "../../iotConfig";
+import {ROUTE_HOME, URL_REGISTER} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
 
 const Register = () => {
@@ -52,7 +52,7 @@ const Register = () => {
 
         const handleSend = async () => {
             return await sendRequest(
-                REGISTER_URL,
+                URL_REGISTER,
                 {
                     fname: fname,
                     mname: mname,
@@ -77,7 +77,7 @@ const Register = () => {
                     setEmail("")
                     setPassword("")
                     setCompany("")
-                    history.push("/")
+                    history.push(ROUTE_HOME)
                 } else {
                     // TODO: toastify
                     alert(`[ Rejestracja ] nieudana, status: ${resp.status}`);

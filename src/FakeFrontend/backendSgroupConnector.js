@@ -1,4 +1,4 @@
-import {GET_SGROUP_ASSIGNED_URL, GET_SGROUP_URL, GET_SGROUPS_URL, SET_SGROUP_ASSIGNED_URL} from "../iotConfig";
+import {URL_SGROUP_ASSIGNED_GET, URL_SGROUP_GET, URL_SGROUP_LIST, URL_SGROUP_ASSIGNED_SET} from "../iotConfig";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {jsonToSensors} from "./backendSensorConnector";
 import {BackendConnector, sendRequest} from "./backendConnector";
@@ -17,7 +17,7 @@ export const jsonToSgroups = (list) => {
 
 export const fetchSgroup = async (id) => {
     const res = await sendRequest(
-        GET_SGROUP_URL,
+        URL_SGROUP_GET,
         {"id": id}
     )
 
@@ -26,14 +26,14 @@ export const fetchSgroup = async (id) => {
 
 export const fetchSgroups = async () => {
     const res = await sendRequest(
-        GET_SGROUPS_URL
+        URL_SGROUP_LIST
     )
     return jsonToSgroups(res.body)
 }
 
 export const getSgroupAssignedSensors = async (id) => {
     const res = await sendRequest(
-        GET_SGROUP_ASSIGNED_URL,
+        URL_SGROUP_ASSIGNED_GET,
     {"id": id}
     )
     return jsonToSensors(res.body)
@@ -42,7 +42,7 @@ export const getSgroupAssignedSensors = async (id) => {
 export const setSgroupAssignedSensors = async (sgroup, assigned) => {
     const backConn = new BackendConnector()
     return await backConn.sendAssigned(
-        SET_SGROUP_ASSIGNED_URL,
+        URL_SGROUP_ASSIGNED_SET,
         sgroup,
         assigned
     )

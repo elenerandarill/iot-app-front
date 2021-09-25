@@ -4,7 +4,7 @@ import {ButtonLink} from "../../buttons";
 import DisplayChoices from "../../displayChoices";
 // import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
-import {ADD_SGROUP_URL} from "../../../iotConfig";
+import {ROUTE_SGROUP_LIST, URL_SGROUP_ADD} from "../../../iotConfig";
 
 
 const AddSGroup = () => {
@@ -37,7 +37,7 @@ const AddSGroup = () => {
     const sendRequest = async(data) => {
         console.log("Tworzenie nowej grupy.")
         const res = await fetch(
-            ADD_SGROUP_URL,
+            URL_SGROUP_ADD,
             {
                 method: "POST",
                 headers: {
@@ -49,7 +49,7 @@ const AddSGroup = () => {
         const resStatus = res.status
         console.log("Res status: ", resStatus)
         if (resStatus === 200){
-            history.push("/sgroups")
+            history.push(ROUTE_SGROUP_LIST)
         }else{
             alert("Error, resp status " + resStatus)
         }
@@ -60,7 +60,7 @@ const AddSGroup = () => {
     return (
         <div className="main">
             <div className="buttons-container">
-                <ButtonLink text={"powrót do listy"} link={"/sgroups"}/>
+                <ButtonLink text={"powrót do listy"} link={ROUTE_SGROUP_LIST}/>
             </div>
 
             <div className="content-3x">

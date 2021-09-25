@@ -3,6 +3,7 @@ import {getAlerts, handleDeleteAlert, handleDeleteAlertsAll, handleReadAlertsAll
 import {useEffect, useState} from "react";
 // import SearchBox from "../../searchBox";
 import {ButtonFunc, ButtonLink} from "../../buttons";
+import {ROUTE_NOTIFS_NEW} from "../../../iotConfig";
 
 
 const Alerts = () => {
@@ -27,6 +28,16 @@ const Alerts = () => {
         for (const alert of list) {
             if (alert.id === id) {
                 alert.read = true
+            }
+        }
+        setAlerts(list)
+    }
+
+    const handleOnAlertImportance = (id) => {
+        const list = [...alerts]
+        for (const alert of list) {
+            if (alert.id === id) {
+                alert.important = !alert.important
             }
         }
         setAlerts(list)
@@ -70,7 +81,7 @@ const Alerts = () => {
                 <ButtonLink
                 text="alert"
                 add={true}
-                link={"/alerts/new"}
+                link={ROUTE_NOTIFS_NEW}
                 />
             </div>
 
@@ -101,6 +112,7 @@ const Alerts = () => {
                                 alerts={alerts}
                                 onAlertRead={handleOnAlertRead}
                                 onDelete={warningDeleteAlert}
+                                onAlertImportance={handleOnAlertImportance}
                             />
                         }
                     </div>

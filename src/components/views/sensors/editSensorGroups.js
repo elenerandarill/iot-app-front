@@ -3,6 +3,7 @@ import {useHistory, useParams} from "react-router-dom";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import EditAssigned from "../../editAssigned";
 import {fetchSensor, setSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
+import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
 
 const EditSensorGroups = () => {
     const [sGroups, setSgroups] = useState(undefined)
@@ -22,7 +23,7 @@ const EditSensorGroups = () => {
         const res = await setSensorAssignedSgroups(sensor, assigned)
 
         if (res.status === 200){
-            history.push(`/sensors/${id}`)
+            history.push(ROUTE_SENSOR_DETAILS(id))
         }
         else {
             console.log("Czujniki - Nie udało się zmienić assigned, status: ", res.status)
@@ -35,7 +36,7 @@ const EditSensorGroups = () => {
             <EditAssigned
                 headline={"grup czujnika"}
                 description={"Zaznacz grupy, w których ma być czujnik"}
-                linkTo={"sensors"}
+                linkTo={"sensor"}
                 object={sensor}
                 availableChoices={sGroups}
                 handleSend={sendChangeRequest}

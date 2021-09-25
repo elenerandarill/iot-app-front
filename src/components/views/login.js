@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {sendRequest} from "../../FakeFrontend/backendConnector";
-import {LOGIN_URL} from "../../iotConfig";
+import {ROUTE_HOME, URL_LOGIN} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
 
         const handleSend = async () => {
             return await sendRequest(
-                LOGIN_URL,
+                URL_LOGIN,
                 {email: email, password: password}
             )
         }
@@ -38,7 +38,7 @@ const Login = () => {
                 // wyzerowanie wartosci pol
                 setEmail("")
                 setPassword("")
-                history.push("/")
+                history.push(ROUTE_HOME)
             } else {
                 // TODO: toastify
                 alert(`[ Logowanie ] nieudane, status: ${resp.status}`);

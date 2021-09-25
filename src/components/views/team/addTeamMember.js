@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import DisplayChoices from "../../displayChoices";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
-import {ADD_TEAM_MEMBER_URL} from "../../../iotConfig";
+import {ROUTE_TMEMBER_LIST, URL_TEAM_MEMBER_ADD} from "../../../iotConfig";
 import {ButtonLink} from "../../buttons";
 
 const AddTeamMember = () => {
@@ -35,7 +35,7 @@ const AddTeamMember = () => {
         console.log("Tworzenie nowego membera.")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
         const res = await fetch(
-            ADD_TEAM_MEMBER_URL, {
+            URL_TEAM_MEMBER_ADD, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -46,7 +46,7 @@ const AddTeamMember = () => {
         const resStatus = res.status
         console.log("resp status: ", resStatus)
         if (resStatus === 200){
-            history.push("/team")
+            history.push(ROUTE_TMEMBER_LIST)
         }else{
             alert("Error, resp status " + resStatus)
         }
@@ -62,7 +62,7 @@ const AddTeamMember = () => {
                 <div className="buttons-container">
                     <ButtonLink
                     text="powrót do listy"
-                    link={"/team"}
+                    link={ROUTE_TMEMBER_LIST}
                     />
                 </div>
 

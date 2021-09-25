@@ -7,7 +7,7 @@ import ChartTypeArea from "../../chartTypeArea";
 import ChartTypeBar from "../../chartTypeBar";
 // import ChartDataChoices from "../../chartDataChoices";
 import {groupObjectRenderer} from "../sGroups/sGroups";
-import {SET_SENSOR_NAME_URL, SET_SENSOR_NOTES_URL} from "../../../iotConfig";
+import {ROUTE_SENSOR_EDIT, ROUTE_SENSOR_EDIT_CHART, ROUTE_SENSOR_LIST, URL_SENSOR_SET} from "../../../iotConfig";
 import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
@@ -64,7 +64,7 @@ const SensorDetails = () => {
             <div className="buttons-container">
                 <ButtonLink
                     text="powrót do listy"
-                    link={"/sensors"}
+                    link={ROUTE_SENSOR_LIST}
                 />
             </div>
 
@@ -80,7 +80,7 @@ const SensorDetails = () => {
                             name="name"
                             placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
                             object={sensor}
-                            url={SET_SENSOR_NAME_URL}
+                            url={URL_SENSOR_SET}
                             sendChange={changeValue}
                         />
 
@@ -89,7 +89,7 @@ const SensorDetails = () => {
                             name="notes"
                             placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}
                             object={sensor}
-                            url={SET_SENSOR_NOTES_URL}
+                            url={URL_SENSOR_SET}
                             sendChange={changeValue}
                         />
 
@@ -165,7 +165,7 @@ const SensorDetails = () => {
 
                             <ButtonLink
                             text="edytuj"
-                            link={`/sensors/${id}/edit/chart`}
+                            link={ROUTE_SENSOR_EDIT_CHART(id)}
                             />
 
                             <ChartTypeArea height={250} object={sensor}/>
@@ -187,7 +187,7 @@ const SensorDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonLink
                                         text="edytuj"
-                                        link={`/sensors/${id}/edit`}
+                                        link={ROUTE_SENSOR_EDIT(id)}
                                         />
                                     </div>
 

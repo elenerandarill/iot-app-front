@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Homepage from "./components/views/homepage";
 import Alerts from "./components/views/alerts/alerts";
 import Sensors from "./components/views/sensors/sensors";
@@ -20,6 +20,22 @@ import EditMemberGroups from "./components/views/team/editMemberGroups";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
 import AddTeamMember from "./components/views/team/addTeamMember";
 import AddNewAlert from "./components/views/alerts/addNewAlert";
+import {
+    ROUTE_CONTACT,
+    ROUTE_HOME, ROUTE_LOGIN,
+    ROUTE_NOTIFS_LIST,
+    ROUTE_NOTIFS_NEW, ROUTE_REGISTER,
+    ROUTE_SENSOR_DETAILS,
+    ROUTE_SENSOR_EDIT,
+    ROUTE_SENSOR_EDIT_CHART,
+    ROUTE_SENSOR_LIST,
+    ROUTE_SGROUP_ADD,
+    ROUTE_SGROUP_DETAILS,
+    ROUTE_SGROUP_EDIT,
+    ROUTE_SGROUP_LIST,
+    ROUTE_TMEMBER_ADD, ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_EDIT,
+    ROUTE_TMEMBER_LIST
+} from "./iotConfig";
 // import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
@@ -36,27 +52,27 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/login" exact component={Login}/>
-                <Route path="/register" exact component={Register}/>
+                <Route path={ROUTE_LOGIN} exact component={Login}/>
+                <Route path={ROUTE_REGISTER} exact component={Register}/>
                 <Route path="/test" exact component={Test}/>
 
                 <UserViews>
-                        <Route path="/" exact component={Homepage}/>
-                        <Route path="/alerts" exact component={Alerts}/>
-                        <Route path="/alerts/new" exact component={AddNewAlert}/>
-                        <Route path="/sensors" exact component={Sensors}/>
-                        <Route path="/sensors/:id" exact component={SensorDetails}/>
-                        <Route path="/sensors/:id/edit" exact component={EditSensorGroups}/>
-                        <Route path="/sensors/:id/edit/chart" exact component={EditSensorChart}/>
-                        <Route path="/sgroups/" exact component={SGroups}/>
-                        <Route path="/sgroups/add" exact component={AddSGroup}/>
-                        <Route path="/sgroups/:id" exact component={SGroupDetails}/>
-                        <Route path="/sgroups/:id/edit" exact component={EditSGroup}/>
-                        <Route path="/team" exact component={Team}/>
-                        <Route path="/team/:id" exact component={TeamMemberDetails}/>
-                        <Route path="/team/add" exact component={AddTeamMember}/>
-                        <Route path="/team/:id/edit" exact component={EditMemberGroups}/>
-                        <Route path="/contact" component={Contact}/>
+                    <Route path={ROUTE_HOME} exact component={Homepage}/>
+                    <Route path={ROUTE_NOTIFS_LIST} exact component={Alerts}/>
+                    <Route path={ROUTE_NOTIFS_NEW} exact component={AddNewAlert}/>
+                    <Route path={ROUTE_SENSOR_LIST} exact component={Sensors}/>
+                    <Route path={ROUTE_SENSOR_DETAILS(`:id`)} exact component={SensorDetails}/>
+                    <Route path={ROUTE_SENSOR_EDIT(`:id`)} exact component={EditSensorGroups}/>
+                    <Route path={ROUTE_SENSOR_EDIT_CHART(`:id`)} exact component={EditSensorChart}/>
+                    <Route path={ROUTE_SGROUP_LIST} exact component={SGroups}/>
+                    <Route path={ROUTE_SGROUP_ADD} exact component={AddSGroup}/>
+                    <Route path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
+                    <Route path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
+                    <Route path={ROUTE_TMEMBER_LIST} exact component={Team}/>
+                    <Route path={ROUTE_TMEMBER_ADD} exact component={AddTeamMember}/>
+                    <Route path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
+                    <Route path={ROUTE_TMEMBER_EDIT(`:id`)} exact component={EditMemberGroups}/>
+                    <Route path={ROUTE_CONTACT} component={Contact}/>
                 </UserViews>
             </Switch>
         </BrowserRouter>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import DisplayChoices from "./displayChoices";
-import {Link} from "react-router-dom";
 import {ButtonFunc, ButtonLink} from "./buttons";
 
 /**

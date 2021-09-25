@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import {ButtonFunc} from "../../buttons";
+import {ROUTE_SENSOR_DETAILS, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 
 
-const AlertDetailView = ({ alert, onCloseClick, onDelete }) => {
+const AlertDetailView = ({ alert, handleImportant, onCloseClick, onDelete }) => {
     console.log("Wywolano z alertem: ", alert)
 
     return(
@@ -17,8 +19,9 @@ const AlertDetailView = ({ alert, onCloseClick, onDelete }) => {
                     {/* TODO !!! naprawic formatowanie daty i czasu!!!!!!!!!!!!!!!! */}
                     <div>{alert.datetime}</div>
                     <div className="txt-right">
+                        {/*{alert.important === true && <i className="fas fa-star txt-blue"/>}*/}
                         <i
-                            className="fas fa-times fa-lg txt-blue"
+                            className="fas fa-check fa-lg txt-blue"
                             onClick={onCloseClick}
                         />
                     </div>
@@ -26,15 +29,24 @@ const AlertDetailView = ({ alert, onCloseClick, onDelete }) => {
                 <div className="obj-details">
 
                     <div className="txt-semibold btn btn-small">
-                        <Link to={`/${alert.type === "sensor"? "sensors" : "sgroups"}/${alert.targetId}`}>
+                        <Link to={alert.type === "sensor"
+                            ? ROUTE_SENSOR_DETAILS(alert.targetId)
+                            : ROUTE_SGROUP_DETAILS(alert.targetId)
+                            }>
                             {alert.type === "sensor" && `czujnik: ${alert.name}`}
-                            {alert.type === "group" && `grupa: ${alert.name}`}
+                            {alert.type === "sgroup" && `grupa: ${alert.name}`}
                         </Link>
 
                     </div>
                     <div className="mrg-tb mrg-lr txt-regular">
                         <i>"{alert.msg}"</i>
                     </div>
+
+                    <ButtonFunc
+                        text={alert.important ? "zwykły"
+                            : <><i className="fas fa-exclamation mrg-r5"/>ważny</>}
+                        onClick={(event) => handleImportant(alert)}
+                    />
                 </div>
             </div>
         </div>

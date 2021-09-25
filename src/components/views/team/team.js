@@ -2,7 +2,7 @@ import { Member } from "../../../FakeBackend/getMembers";
 import ListObjects from "../../listObjects";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { GET_TEAM_URL } from "../../../iotConfig";
+import {ROUTE_TMEMBER_ADD, ROUTE_TMEMBER_DETAILS, URL_TEAM_LIST} from "../../../iotConfig";
 import {ButtonLink} from "../../buttons";
 
 /**
@@ -14,7 +14,7 @@ export const memberObjectRenderer = (member) => {
     return (
         <Link
             key={member.id}
-            to={`/team/${member.id}`}
+            to={ROUTE_TMEMBER_DETAILS(member.id)}
         >
             <div className={"object shadow" + (member.assigned.length === 0 ? " mark-as-new" : "")}>
                 <div className="txt-semibold">{member.fullname}</div>
@@ -42,7 +42,7 @@ const Team = () => {
         console.log("Sending request to fetch Team")
         // https://stackoverflow.com/questions/29775797/fetch-post-json-data
         const res = await fetch(
-            GET_TEAM_URL,
+            URL_TEAM_LIST,
             { method: "POST" }
         )
         return await res.json()
@@ -61,7 +61,7 @@ const Team = () => {
                 <ButtonLink
                     text="osoba"
                     add={true}
-                    link={"/team/add"}
+                    link={ROUTE_TMEMBER_ADD}
                 />
             </div>
 

@@ -1,9 +1,9 @@
 import {
-    GET_SENSOR_ASSIGNED_URL,
-    GET_SENSOR_URL,
-    GET_SENSORS_URL,
-    SET_LOCATION_URL,
-    SET_SENSOR_ASSIGNED_URL
+    URL_SENSOR_ASSIGNED_GET,
+    URL_SENSOR_GET,
+    URL_SENSOR_LIST,
+    URL_SENSOR_SET,
+    URL_SENSOR_ASSIGNED_SET
 } from "../iotConfig";
 import {GpsCoordinate} from "../FakeBackend/gpsCoordinate";
 import {Sensor} from "../FakeBackend/getSensors";
@@ -27,7 +27,7 @@ export const jsonToSensors = (list) => {
 
 export const fetchSensor = async (id) => {
     const res = await sendRequest(
-        GET_SENSOR_URL,
+        URL_SENSOR_GET,
         {"id": id}
     )
     return jsonToSensor(res.body)
@@ -35,14 +35,14 @@ export const fetchSensor = async (id) => {
 
 export const fetchSensors = async () => {
     const res = await sendRequest(
-        GET_SENSORS_URL
+        URL_SENSOR_LIST
     )
     return jsonToSensors(res.body)
 }
 
 export const getSensorAssignedSgroups = async (id) => {
     const res = await sendRequest(
-        GET_SENSOR_ASSIGNED_URL,
+        URL_SENSOR_ASSIGNED_GET,
         {"id": id}
     )
     return jsonToSgroups(res.body)
@@ -51,7 +51,7 @@ export const getSensorAssignedSgroups = async (id) => {
 export const setSensorAssignedSgroups = async (sensor, assigned) => {
     const backConn = new BackendConnector()
     const response = await backConn.sendAssigned(
-        SET_SENSOR_ASSIGNED_URL,
+        URL_SENSOR_ASSIGNED_SET,
         sensor,
         assigned
     )
@@ -60,7 +60,7 @@ export const setSensorAssignedSgroups = async (sensor, assigned) => {
 
 export const updateSensorGps = async (position, id) => {
     await sendRequest(
-        SET_LOCATION_URL,
+        URL_SENSOR_SET,
         {"id": id,
             "latitude": position.latitude,
             "longitude": position.longitude}

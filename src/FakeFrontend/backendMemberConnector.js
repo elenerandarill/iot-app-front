@@ -1,4 +1,4 @@
-import {GET_TEAM_MEMBER_ASSIGNED_URL, GET_TEAM_MEMBER_URL, SET_TEAM_MEMBER_ASSIGNED_URL} from "../iotConfig";
+import {URL_TEAM_MEMBER_ASSIGNED_GET, URL_TEAM_MEMBER_GET, URL_TEAM_MEMBER_ASSIGNED_SET} from "../iotConfig";
 import {Member} from "../FakeBackend/getMembers";
 import {jsonToSgroups} from "./backendSgroupConnector";
 import {BackendConnector, sendRequest} from "./backendConnector";
@@ -12,7 +12,7 @@ const jsonToMember = (m) => {
 
 export const fetchMember = async (id) => {
     const res = await sendRequest(
-        GET_TEAM_MEMBER_URL,
+        URL_TEAM_MEMBER_GET,
         {"id": id}
     )
     return jsonToMember(res.body)
@@ -20,7 +20,7 @@ export const fetchMember = async (id) => {
 
 export const getMemberAssignedSgroups = async (id) => {
     const res = await sendRequest(
-        GET_TEAM_MEMBER_ASSIGNED_URL,
+        URL_TEAM_MEMBER_ASSIGNED_GET,
         {"id": id}
     )
     return jsonToSgroups(res.body)
@@ -29,7 +29,7 @@ export const getMemberAssignedSgroups = async (id) => {
 export const setMemberAssignedSgroups = async (member, assigned) => {
     const backConn = new BackendConnector()
     return await backConn.sendAssigned(
-        SET_TEAM_MEMBER_ASSIGNED_URL,
+        URL_TEAM_MEMBER_ASSIGNED_SET,
         member,
         assigned
     )
