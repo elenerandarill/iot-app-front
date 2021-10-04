@@ -7,6 +7,7 @@ import {BackendResponse} from "./backendResponse";
  */
 export const sendRequest = async (url, data) => {
     console.log("[ Connector ] sending URL: ", url, ", data: ", data)
+    data["SESID"] = "1aabb"     //TODO do testow tylko!
     const res = await fetch(
         url,
         {

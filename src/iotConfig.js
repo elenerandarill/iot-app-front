@@ -9,40 +9,40 @@ export const URL_LOGIN = URL_SERVER_BASE + "/login"
 export const URL_REGISTER = URL_SERVER_BASE + "/register"
 
 // SENSOR
-export const URL_SENSOR_LIST = URL_SERVER_BASE + "/sensor/list"
-export const URL_SENSOR_ADD = URL_SERVER_BASE + "/sensor/add"
-export const URL_SENSOR_GET = URL_SERVER_BASE + "/sensor/get"
-export const URL_SENSOR_SET = URL_SERVER_BASE + "/sensor/set"
+export const URL_SENSOR_LIST = URL_SERVER_BASE + "/SENSOR/list"
+export const URL_SENSOR_ADD = URL_SERVER_BASE + "/SENSOR/add"
+export const URL_SENSOR_GET = URL_SERVER_BASE + "/SENSOR/get"
+export const URL_SENSOR_SET = URL_SERVER_BASE + "/SENSOR/set"
 // ??????????
-export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/sensor/set_assigned"
-export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/sensor/get_assigned"
+export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/SENSOR/set_assigned"
+export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SENSOR/get_assigned"
 
 //SGROUP
-export const URL_SGROUP_LIST = URL_SERVER_BASE + "/sgroup/list"
-export const URL_SGROUP_ADD = URL_SERVER_BASE + "/sgroup/add"
-export const URL_SGROUP_GET = URL_SERVER_BASE + "/sgroup/get"
-export const URL_SGROUP_SET = URL_SERVER_BASE + "/sgroup/set"
+export const URL_SGROUP_LIST = URL_SERVER_BASE + "/SGROUP/list"
+export const URL_SGROUP_ADD = URL_SERVER_BASE + "/SGROUP/add"
+export const URL_SGROUP_GET = URL_SERVER_BASE + "/SGROUP/get"
+export const URL_SGROUP_SET = URL_SERVER_BASE + "/SGROUP/set"
 // ?????????????
-export const URL_SGROUP_ASSIGNED_SET = URL_SERVER_BASE + "/sgroup/set_assigned"
-export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/sgroup/get_assigned"
+export const URL_SGROUP_ASSIGNED_SET = URL_SERVER_BASE + "/SGROUP/set_assigned"
+export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/SGROUP/get_assigned"
 
 // TEAM
-export const URL_TEAM_LIST = URL_SERVER_BASE + "/team/member/list"
-export const URL_TEAM_MEMBER_ADD = URL_SERVER_BASE + "/team/member/add"
-export const URL_TEAM_MEMBER_GET = URL_SERVER_BASE + "/team/member/get"
-export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/team/member/set"
+export const URL_TEAM_LIST = URL_SERVER_BASE + "/UGRM/list"
+export const URL_TEAM_MEMBER_ADD = URL_SERVER_BASE + "/UGRM/add"
+export const URL_TEAM_MEMBER_GET = URL_SERVER_BASE + "/UGRM/get"
+export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/UGRM/set"
 // ?????????????
-export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/team/member/set_assigned"
-export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/team/member/get_assigned"
+export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/UGRM/set_assigned"
+export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/UGRM/get_assigned"
 
 // NOTIFICATION
-export const URL_NOTIFICATION_LIST = URL_SERVER_BASE + "/notification/list"
-export const URL_NOTIFICATION_ADD = URL_SERVER_BASE + "/notification/add"
-export const URL_NOTIFICATION_UNREAD_COUNT_GET = URL_SERVER_BASE + "/notification/get_unread_count"
-export const URL_NOTIFICATION_SET = URL_SERVER_BASE + "/notification/set"
-export const URL_NOTIFICATION_READ_ALL_SET = URL_SERVER_BASE + "/notification/read_all"
-export const URL_NOTIFICATION_DEL = URL_SERVER_BASE + "/notification/del"
-export const URL_NOTIFICATION_DEL_ALL = URL_SERVER_BASE + "/notification/del_all"
+export const URL_NOTIFICATION_LIST = URL_SERVER_BASE + "/NOTIF/list"
+export const URL_NOTIFICATION_ADD = URL_SERVER_BASE + "/NOTIF/add"
+export const URL_NOTIFICATION_UNREAD_COUNT_GET = URL_SERVER_BASE + "/NOTIF/get_unread_count"
+export const URL_NOTIFICATION_SET = URL_SERVER_BASE + "/NOTIF/set"
+export const URL_NOTIFICATION_READ_ALL_SET = URL_SERVER_BASE + "/NOTIF/read_all"
+export const URL_NOTIFICATION_DEL = URL_SERVER_BASE + "/NOTIF/del"
+export const URL_NOTIFICATION_DEL_ALL = URL_SERVER_BASE + "/NOTIF/del_all"
 
 // ALERT
 // TODO: add_alert, set_alert, del_alert

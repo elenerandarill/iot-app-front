@@ -63,7 +63,8 @@ export const handleDeleteAlertsAll = async () => {
 
 export const getUnreadAlertsCount = async () => {
     const res = await sendRequest(
-        URL_NOTIFICATION_UNREAD_COUNT_GET
+        URL_NOTIFICATION_UNREAD_COUNT_GET,
+        {}
     )
-    return res.body
+    return res.body["NOTIF_UNREAD"]
 }

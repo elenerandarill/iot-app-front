@@ -17,7 +17,7 @@ const TopBar = ({ activateBurgerMenu }) => {
     useEffect(() => {
         getUnreadAlertsCount()
             .then((count) => {setUnreadAlerts(count)})
-    }, [unreadAlerts])
+    }, [])
 
     return(
         <div className="topbar txt-semibold txt-blue">
