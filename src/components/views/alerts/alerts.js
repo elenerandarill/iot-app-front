@@ -1,5 +1,5 @@
 import ListAlerts from "./listAlerts";
-import {getAlerts, handleDeleteAlert, handleDeleteAlertsAll, handleReadAlertsAll} from "../../../FakeFrontend/backendAlertConnector"
+import {fetchAlerts, handleDeleteAlert, handleDeleteAlertsAll, handleReadAlertsAll} from "../../../FakeFrontend/backendAlertConnector"
 import {useEffect, useState} from "react";
 // import SearchBox from "../../searchBox";
 import {ButtonFunc, ButtonLink} from "../../buttons";
@@ -12,10 +12,8 @@ const Alerts = () => {
 
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     const refreshData = () => {
-        getAlerts()
-            .then(alerts => {
-                setAlerts(alerts)
-            })
+        fetchAlerts()
+            .then(alerts => {setAlerts(alerts)})
     }
 
     useEffect(() => {

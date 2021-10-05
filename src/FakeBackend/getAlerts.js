@@ -1,32 +1,34 @@
 
 export class Alert {
-    /** @type {string} */
+    /** @type {number} */
+    conid
+    /** @type {number} */
     id
-    /** @type {boolean} */
+    /** @type {string} */
     read
     /** @type {string} */
+    important
+    /** @type {string} */
     datetime
+    // /** @type {string} */
+    // type
+    // /** @type {string} */
+    // name
+    // /** @type {number} */
+    // targetId
     /** @type {string} */
-    type
-    /** @type {string} */
-    name
-    /** @type {string} */
-    targetId
-    /** @type {string} */
-    msg
+    title
 
-    constructor(id, read, important, datetime, type, name, targetId, msg) {
+    constructor(conid, id, read, important, datetime, title) {
+        this.conid = conid;
         this.id = id;
         this.read = read;
         this.important = important;
         this.datetime = datetime;
-        this.type = type;
-        this.name = name;
-        this.targetId = targetId;
-        this.msg = msg;
+        this.title = title;
     }
 
     getDisplayName() {
-        return this.name
+        return this.title
     }
 }

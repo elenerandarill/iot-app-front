@@ -35,13 +35,13 @@ const ListAlerts = ({ alerts, onAlertRead, onDelete, onAlertImportance }) => {
                 <div
                     className={"shadow object alerts"
                     + (activeAlert && activeAlert.id === a.id ? " obj-active" : "")
-                    + (a.read === false ? " mark-as-new" : "")}
+                    + (a.read ? "" : " mark-as-new")}
                     onClick={() => setActiveAlert(a)}
                 >
                     {a.important && <i className="fas fa-exclamation-circle"/>}
                     <div className="alert-txt">{a.datetime}</div>
                     <div className="txt-semibold alert-txt txt-violet">
-                            {a.type === "sensor" ? "czujnik:" : "grupa:"}&nbsp;{a.name}
+                            {a.title}
                     </div>
                 </div>
 

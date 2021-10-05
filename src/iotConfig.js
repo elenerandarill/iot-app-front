@@ -24,6 +24,7 @@ export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 //SGROUP
 export const URL_SGROUP_LIST = URL_SERVER_BASE + "/SGROUP/list"
 export const URL_SGROUP_ADD = URL_SERVER_BASE + "/SGROUP/add"
+export const URL_SGROUP_DEL = URL_SERVER_BASE + "/SGROUP/del"
 export const URL_SGROUP_GET = URL_SERVER_BASE + "/SGROUP/get"
 export const URL_SGROUP_SET = URL_SERVER_BASE + "/SGROUP/set"
 // ?????????????
@@ -43,7 +44,6 @@ export const URL_NOTIFICATION_LIST = URL_SERVER_BASE + "/NOTIF/list"
 export const URL_NOTIFICATION_ADD = URL_SERVER_BASE + "/NOTIF/add"
 export const URL_NOTIFICATION_UNREAD_COUNT_GET = URL_SERVER_BASE + "/NOTIF/get_unread_count"
 export const URL_NOTIFICATION_SET = URL_SERVER_BASE + "/NOTIF/set"
-export const URL_NOTIFICATION_READ_ALL_SET = URL_SERVER_BASE + "/NOTIF/read_all"
 export const URL_NOTIFICATION_DEL = URL_SERVER_BASE + "/NOTIF/del"
 export const URL_NOTIFICATION_DEL_ALL = URL_SERVER_BASE + "/NOTIF/del_all"
 
@@ -66,6 +66,7 @@ export const ROUTE_SGROUP_LIST = "/sgroup/list"
 export const ROUTE_SGROUP_DETAILS = (id) => "/sgroup/" + id + "/details"
 export const ROUTE_SGROUP_EDIT = (id) => "/sgroup/" + id + "/edit"
 export const ROUTE_SGROUP_ADD = "/sgroup/add"
+export const ROUTE_SGROUP_DEL = "/sgroup/del"
 
 export const ROUTE_TMEMBER_LIST = "/team/member/list"
 export const ROUTE_TMEMBER_DETAILS = (id) => "/team/member/" + id + "/details"

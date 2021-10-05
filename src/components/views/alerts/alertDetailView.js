@@ -29,17 +29,10 @@ const AlertDetailView = ({ alert, handleImportant, onCloseClick, onDelete }) => 
                 <div className="obj-details">
 
                     <div className="txt-semibold btn btn-small">
-                        <Link to={alert.type === "sensor"
-                            ? ROUTE_SENSOR_DETAILS(alert.targetId)
-                            : ROUTE_SGROUP_DETAILS(alert.targetId)
-                            }>
-                            {alert.type === "sensor" && `czujnik: ${alert.name}`}
-                            {alert.type === "sgroup" && `grupa: ${alert.name}`}
-                        </Link>
-
+                        {`condition id: ${alert.conid}`}
                     </div>
                     <div className="mrg-tb mrg-lr txt-regular">
-                        <i>"{alert.msg}"</i>
+                        <i>"{alert.title}"</i>
                     </div>
 
                     <ButtonFunc
