@@ -6,7 +6,7 @@ import {BackendConnector, sendRequest} from "./backendConnector";
 // Parsowanie JSONa
 
 export const jsonToSgroup = (g) => {
-    return new GroupOfSensors(g.id, g.name, g.assigned, g.measurements, g.notes)
+    return new GroupOfSensors(g.SGRID , g.SGNAME , g.SGDESC )
 }
 
 export const jsonToSgroups = (list) => {
@@ -18,7 +18,7 @@ export const jsonToSgroups = (list) => {
 export const fetchSgroup = async (id) => {
     const res = await sendRequest(
         URL_SGROUP_GET,
-        {"id": id}
+        {"SGRID": parseInt(id)}
     )
 
     return jsonToSgroup(res.body)
@@ -34,7 +34,7 @@ export const fetchSgroups = async () => {
 export const getSgroupAssignedSensors = async (id) => {
     const res = await sendRequest(
         URL_SGROUP_ASSIGNED_GET,
-    {"id": id}
+    {"SGMGID": parseInt(id)}
     )
     return jsonToSensors(res.body)
 }

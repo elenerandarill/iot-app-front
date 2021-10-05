@@ -7,7 +7,13 @@ import ChartTypeArea from "../../chartTypeArea";
 import ChartTypeBar from "../../chartTypeBar";
 // import ChartDataChoices from "../../chartDataChoices";
 import {groupObjectRenderer} from "../sGroups/sGroups";
-import {ROUTE_SENSOR_EDIT, ROUTE_SENSOR_EDIT_CHART, ROUTE_SENSOR_LIST, URL_SENSOR_SET} from "../../../iotConfig";
+import {
+    ROUTE_SENSOR_EDIT,
+    ROUTE_SENSOR_EDIT_CHART,
+    ROUTE_SENSOR_LIST,
+    URL_SENSOR_SET,
+    URL_USER_SET
+} from "../../../iotConfig";
 import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
@@ -77,20 +83,16 @@ const SensorDetails = () => {
                         <DisplayAttribute name="typ urządzenia" value={sensor.type}/>
                         <InputString
                             label="nazwa"
-                            name="name"
                             placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
-                            object={sensor}
-                            url={URL_SENSOR_SET}
-                            sendChange={changeValue}
+                            sendChange={(newValue) => changeValue(
+                                URL_SENSOR_SET, "SENID", sensor.id, "SENAME", newValue)}
                         />
 
                         <InputTextarea
                             label="notatka"
-                            name="notes"
                             placeholder={sensor.notes === "" ? "Tu wpisz notatkę." : sensor.notes}
-                            object={sensor}
-                            url={URL_SENSOR_SET}
-                            sendChange={changeValue}
+                            sendChange={(newValue) =>
+                                changeValue(URL_SENSOR_SET, "SENID", sensor.id, "SEDES", newValue)}
                         />
 
                         <DisplayAttribute name="numer seryjny" value={sensor.sn}/>
@@ -112,7 +114,7 @@ const SensorDetails = () => {
                         <div className="shadow listed-attribute">
                             <div className="mrg-tb head-txt">OSTATNI POMIAR</div>
                             <div className="position-cent">
-                                <ListMeasurements sensorObj={sensor}/>
+                                {/*<ListMeasurements sensorObj={sensor}/>*/}
                             </div>
                         </div>
 
@@ -192,7 +194,7 @@ const SensorDetails = () => {
                                     </div>
 
                                     <div className="object-container txt-violet txt-semibold">
-                                        {sensor.assigned.length === 0
+                                        {assignedObjs.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
                                             : <ListObjects
                                                 list={assignedObjs}

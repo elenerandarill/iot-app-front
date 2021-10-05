@@ -1,12 +1,12 @@
-import {Link, useParams} from "react-router-dom";
-import {InputString, InputTextarea} from "../../attributes";
+import {useParams} from "react-router-dom";
+import {InputString} from "../../attributes";
 import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
-import {groupObjectRenderer} from "../sGroups/sGroups";
 import {useEffect, useState} from "react";
-import {ROUTE_TMEMBER_EDIT, ROUTE_TMEMBER_LIST, URL_TEAM_MEMBER_SET} from "../../../iotConfig";
+import {ROUTE_TMEMBER_EDIT, ROUTE_TMEMBER_LIST, URL_TEAM_MEMBER_SET, URL_USER_SET} from "../../../iotConfig";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
-import {fetchMember, getMemberAssignedSgroups} from "../../../FakeFrontend/backendMemberConnector";
+import {fetchMember, getMemberAssigned} from "../../../FakeFrontend/backendMemberConnector";
+import {permRenderer} from "./team";
 
 
 const TeamMemberDetails = () => {
@@ -18,7 +18,7 @@ const TeamMemberDetails = () => {
         fetchMember(id)
             .then((member) => setMember(member))
 
-        getMemberAssignedSgroups(id)
+        getMemberAssigned(id)
             .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
@@ -53,20 +53,16 @@ const TeamMemberDetails = () => {
                     <div className="white-space top-contact">
 
                         <InputString
-                            label="imię i nazwisko"
-                            name="fullname"
-                            placeholder={member.fullname}
-                            object={member}
-                            url={URL_TEAM_MEMBER_SET}
-                            sendChange={changeValue}
+                            label="imię"
+                            placeholder={member.fname}
+                            sendChange={(newValue) => changeValue(
+                                URL_USER_SET, "USRID", member.id, "UFNAME", newValue)}
                         />
-                        <InputTextarea
-                            label="notatka"
-                            name="notes"
-                            placeholder={member.notes === "" ? "Tu wpisz notatkę." : member.notes}
-                            object={member}
-                            url={URL_TEAM_MEMBER_SET}
-                            sendChange={changeValue}
+                        <InputString
+                            label="nazwisko"
+                            placeholder={member.lname}
+                            sendChange={(newValue) => changeValue(
+                            URL_USER_SET, "USRID", member.id, "ULNAME", newValue)}
                         />
 
                         <div className="shadow listed-attribute">
@@ -81,11 +77,11 @@ const TeamMemberDetails = () => {
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
 
-                                        {member.assigned.length === 0
+                                        {assignedObjs.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
                                             : <ListObjects
                                                 list={assignedObjs}
-                                                objectRenderer={groupObjectRenderer}
+                                                objectRenderer={permRenderer}
                                             />
                                         }
                                     </div>

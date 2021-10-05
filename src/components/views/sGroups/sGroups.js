@@ -16,7 +16,7 @@ export const groupObjectRenderer = (group) => {
             key={group.id}
             to={ROUTE_SGROUP_DETAILS(group.id)}
         >
-            <div className={"object shadow" + (group.assigned.length === 0 ? " mark-as-new" : "")}>
+            <div className={"object shadow" + (group.is_new ? " mark-as-new" : "")}>
                 <div className="txt-semibold">{group.name}</div>
             </div>
         </Link>

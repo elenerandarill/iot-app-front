@@ -15,7 +15,7 @@ export const sensorObjectRenderer = (sensor) => {
             key={sensor.id}
             to={ROUTE_SENSOR_DETAILS(sensor.id)}
         >
-            <div className={"object shadow" + (sensor.assigned.length === 0 ? " mark-as-new" : "")}>
+            <div className={"object shadow" + (sensor.is_new ? " mark-as-new" : "")}>
                 <div>
                     <div className="txt-semibold">{sensor.getDisplayName()}</div>
                     <div className="obj-sn">{sensor.sn}</div>

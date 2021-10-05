@@ -1,13 +1,12 @@
 import {useState} from "react";
 import {ButtonFunc} from "./buttons";
 
-
-export const InputString = ({label, name, placeholder, object, url, sendChange}) => {
+export const InputString = ({label, placeholder, sendChange}) => {
     const [newValue, setNewValue] = useState(placeholder)
 
     const onNewValue = (value) => {
         if (value) {
-            sendChange(value, object, url) // przekazuje do gory
+            sendChange(value) // przekazuje do gory
         }
         else {
             // pokazac alert!
@@ -20,27 +19,27 @@ export const InputString = ({label, name, placeholder, object, url, sendChange})
             <div className="head-txt">{label}</div>
             <div className="position-cent">
                 <input
-                type="text"
-                name={name}
-                className="input"
-                placeholder={placeholder}
-                onChange={(e) => setNewValue(e.target.value)}
-            />
+                    type="text"
+                    className="input"
+                    placeholder={placeholder}
+                    onChange={(e) => setNewValue(e.target.value)}
+                />
             </div>
             <ButtonFunc
-            text="zapisz"
-            onClick={() => onNewValue(newValue)}
+                text="zapisz"
+                onClick={() => onNewValue(newValue)}
             />
         </div>
     )
 }
 
-export const InputTextarea = ({label, name, placeholder, object, url, sendChange}) => {
+
+export const InputTextarea = ({label, placeholder, sendChange}) => {
     const [newValue, setNewValue] = useState(placeholder)
 
     const onNewValue = (value) => {
         if (value) {
-            sendChange(value, object, url) // przekazuje do gory
+            sendChange(value) // przekazuje do gory
         }
         else {
             // pokazac alert!
@@ -53,7 +52,6 @@ export const InputTextarea = ({label, name, placeholder, object, url, sendChange
             <div className="head-txt">{label}</div>
             <div className="position-cent">
                 <div
-                    id={name}
                     className="txtarea"
                     contentEditable="true"
                     suppressContentEditableWarning={true}

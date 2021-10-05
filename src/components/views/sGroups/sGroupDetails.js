@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET} from "../../../iotConfig";
+import {ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET, URL_USER_SET} from "../../../iotConfig";
 import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {ButtonFunc, ButtonLink} from "../../buttons";
@@ -51,20 +51,16 @@ const SGroupDetails = () => {
                     <div className="white-space top-contact">
                         <InputString
                             label="nazwa"
-                            name="name"
                             placeholder={sgroup.name}
-                            object={sgroup}
-                            url={URL_SGROUP_SET}
-                            sendChange={changeValue}
+                            sendChange={(newValue) => changeValue(
+                                URL_SGROUP_SET, "SGRID", sgroup.id, "SGNAME", newValue)}
                         />
 
                         <InputTextarea
                             label="notatka"
-                            name="notes"
                             placeholder={sgroup.notes === "" ? "Tu wpisz notatkę." : sgroup.notes}
-                            object={sgroup}
-                            url={URL_SGROUP_SET}
-                            sendChange={changeValue}
+                            sendChange={(newValue) =>
+                                changeValue(URL_SGROUP_SET, "SGRID", sgroup.id, "SGDESC", newValue)}
                         />
 
 
@@ -80,7 +76,7 @@ const SGroupDetails = () => {
 
                         {/* --- edit assigned --- */}
                         <div className="shadow no-contact centered pad-bot-15px">
-                            <div className="head-txt ">CZUJNIKI ({sgroup.assigned.length})</div>
+                            <div className="head-txt ">CZUJNIKI</div>
                             <div className="position-cent">
                                 <div className="object-container-grid">
                                     <div className="edit-objs-btn centered">
@@ -90,7 +86,7 @@ const SGroupDetails = () => {
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
-                                        {sgroup.assigned.length === 0
+                                        {assignedObjs.length === 0
                                             ? <div className="centered">nie przypisano żadnych czujników</div>
                                             : <ListObjects
                                                 list={assignedObjs}

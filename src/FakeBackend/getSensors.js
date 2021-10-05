@@ -21,16 +21,17 @@ export class Sensor {
     /** @type {string} */
     notes
 
-    constructor(id, type, name, sn, battery, assigned, measurements, GPS, notes) {
+    constructor(id, type, name, sn, GPS, notes) {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.sn = sn;
-        this.battery = battery;
-        this.assigned = assigned;
-        this.measurements = measurements;
         this.GPS = GPS;
         this.notes = notes;
+        this.sn = sn;
+        this.battery = 13; //SDATA
+        this.assigned = []; //SGMEMB
+        this.measurements = []; //SDATA
+        this.is_new = true // TODO zeby Krzysiek zrobil?
     }
 
     getDisplayName() {

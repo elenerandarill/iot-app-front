@@ -8,6 +8,10 @@ export const URL_CATFISH = URL_SERVER_BASE + "/dezd"
 export const URL_LOGIN = URL_SERVER_BASE + "/login"
 export const URL_REGISTER = URL_SERVER_BASE + "/register"
 
+// USER
+export const URL_USER_GET = URL_SERVER_BASE + "/USER/get"
+export const URL_USER_SET = URL_SERVER_BASE + "/USER/set"
+
 // SENSOR
 export const URL_SENSOR_LIST = URL_SERVER_BASE + "/SENSOR/list"
 export const URL_SENSOR_ADD = URL_SERVER_BASE + "/SENSOR/add"
@@ -15,7 +19,7 @@ export const URL_SENSOR_GET = URL_SERVER_BASE + "/SENSOR/get"
 export const URL_SENSOR_SET = URL_SERVER_BASE + "/SENSOR/set"
 // ??????????
 export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/SENSOR/set_assigned"
-export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SENSOR/get_assigned"
+export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 
 //SGROUP
 export const URL_SGROUP_LIST = URL_SERVER_BASE + "/SGROUP/list"
@@ -24,16 +28,15 @@ export const URL_SGROUP_GET = URL_SERVER_BASE + "/SGROUP/get"
 export const URL_SGROUP_SET = URL_SERVER_BASE + "/SGROUP/set"
 // ?????????????
 export const URL_SGROUP_ASSIGNED_SET = URL_SERVER_BASE + "/SGROUP/set_assigned"
-export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/SGROUP/get_assigned"
+export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 
 // TEAM
 export const URL_TEAM_LIST = URL_SERVER_BASE + "/UGRM/list"
 export const URL_TEAM_MEMBER_ADD = URL_SERVER_BASE + "/UGRM/add"
-export const URL_TEAM_MEMBER_GET = URL_SERVER_BASE + "/UGRM/get"
 export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/UGRM/set"
 // ?????????????
 export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/UGRM/set_assigned"
-export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/UGRM/get_assigned"
+export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/PERM/list"
 
 // NOTIFICATION
 export const URL_NOTIFICATION_LIST = URL_SERVER_BASE + "/NOTIF/list"

@@ -10,13 +10,16 @@ export class GroupOfSensors {
     measurements
     /** @type {string} */
     notes
+    /** @type {boolean} */
+    is_new
 
-    constructor(id, name, assigned, measurements, notes) {
+    constructor(id, name, notes) {
         this.id = id;
         this.name = name;
-        this.assigned = assigned;
-        this.measurements = measurements;
         this.notes = notes;
+        this.is_new = true; // TODO zeby Krzysiek zrobil?
+        // this.assigned = assigned;
+        // this.measurements = measurements;
     }
 
     getDisplayName() {

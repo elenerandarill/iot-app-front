@@ -14,9 +14,8 @@ import {BackendConnector, sendRequest} from "./backendConnector";
 
 // Parsowanie JSONa
 export const jsonToSensor = (s) => {
-    const location = new GpsCoordinate(s.GPS[0], s.GPS[1])
-    return new Sensor(s.id, s.type, s.name, s.sn, s.battery, s.assigned,
-        s.measurements, location, s.notes)
+    const location = new GpsCoordinate(s.SELAT, s.SELONG)
+    return new Sensor(s.SENID, s.SETYPE , s.SENAME , s.SEDID , location, s.SEDES )
 }
 
 export const jsonToSensors = (list) => {
@@ -28,7 +27,7 @@ export const jsonToSensors = (list) => {
 export const fetchSensor = async (id) => {
     const res = await sendRequest(
         URL_SENSOR_GET,
-        {"id": id}
+        {"SENID": parseInt(id)}
     )
     return jsonToSensor(res.body)
 }
@@ -43,7 +42,7 @@ export const fetchSensors = async () => {
 export const getSensorAssignedSgroups = async (id) => {
     const res = await sendRequest(
         URL_SENSOR_ASSIGNED_GET,
-        {"id": id}
+        {"SGMSID": parseInt(id)}
     )
     return jsonToSgroups(res.body)
 }
