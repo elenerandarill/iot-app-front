@@ -5,7 +5,7 @@ import {
     URL_TEAM_LIST
 } from "../iotConfig";
 import {Member} from "../FakeBackend/getMembers";
-import {BackendConnector, sendRequest} from "./backendConnector";
+import {sendRequest} from "./backendConnector";
 import {Perm} from "../FakeBackend/getPerms";
 
 // Parsowanie JSONa
@@ -56,13 +56,26 @@ export const getMemberAssigned = async (id) => {
     return res.body.map(o => jsonToPerm(o))
 }
 
-export const setMemberAssignedSgroups = async (member, assigned) => {
-    const backConn = new BackendConnector()
-    return await backConn.sendAssigned(
+const assignedObj = (assigned) => {
+    // [ { PEOBJ: 123, PEOBJT: "SENSOR" }, { PEOBJ: 124, PEOBJT: "SGROUP"} ]
+    let list = []
+    for (const obj of assigned){
+        list.push({"PEOBJ": obj.id, "PEOBJT": obj.type})
+    }
+    return list
+}
+
+export const setMemberAssigned = async (id, assigned) => {
+    const list = assignedObj(assigned)
+    const res = await sendRequest(
         URL_TEAM_MEMBER_ASSIGNED_SET,
-        member,
-        assigned
+        {
+            "PEOID": id, "PEOIDT": "USER",
+            "ASSIGNED": list
+        }
     )
+    console.log("res: ", res)
+    return res.body.map(o => jsonToPerm(o))
 }
 
 

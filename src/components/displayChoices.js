@@ -21,8 +21,6 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
 
     //availableChoices type: [{},{},{},...] lista obiektów
 
-
-
     const handleSearch = (query) => {
         setSearchQuery(query);
 
@@ -56,7 +54,7 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
                 />
                 <ButtonFunc
                     text="odznacz wszystkie"
-                    onClick={() => setSelected()}
+                    onClick={() => setSelected([])}
                 />
 
             </div>

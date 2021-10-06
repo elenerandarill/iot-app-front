@@ -31,19 +31,27 @@ export const fetchSgroups = async () => {
     return jsonToSgroups(res.body)
 }
 
+export const assignedIds = (assigned) => {
+    // returns list of ids
+    return assigned.map(a => a.id)
+}
+
+export const setSgroupAssignedSensors = async (id, assigned) => {
+    const list = assignedIds(assigned)
+    const res = await sendRequest(
+        URL_SGROUP_ASSIGNED_SET,
+        {
+            "SGMGID": parseInt(id),
+            "ASS_SENSORS": list
+        }
+    )
+    return res.status
+}
+
 export const getSgroupAssignedSensors = async (id) => {
     const res = await sendRequest(
         URL_SGROUP_ASSIGNED_GET,
     {"SGMGID": parseInt(id)}
     )
     return jsonToSensors(res.body)
-}
-
-export const setSgroupAssignedSensors = async (sgroup, assigned) => {
-    const backConn = new BackendConnector()
-    return await backConn.sendAssigned(
-        URL_SGROUP_ASSIGNED_SET,
-        sgroup,
-        assigned
-    )
 }

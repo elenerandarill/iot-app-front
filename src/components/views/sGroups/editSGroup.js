@@ -1,12 +1,17 @@
 import {useHistory, useParams} from "react-router-dom";
 import EditAssigned from "../../editAssigned";
 import {useEffect, useState} from "react";
-import {fetchSgroup, setSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
+import {
+    fetchSgroup,
+    getSgroupAssignedSensors,
+    setSgroupAssignedSensors
+} from "../../../FakeFrontend/backendSgroupConnector";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 
 const EditSGroup = () => {
     const [sgroup, setSgroup] = useState(undefined)
+    const [sAssigned, setSAssigned] = useState(undefined)
     const [sensors, setSensors] = useState(undefined)
     const history = useHistory()
     const {id} = useParams();
@@ -17,32 +22,30 @@ const EditSGroup = () => {
 
         fetchSensors()
             .then((sensors) => setSensors(sensors))
+
+        getSgroupAssignedSensors(id)
+            .then((sFound) => setSAssigned(sFound))
     }, [id])
 
-    const sendRequest = async (assigned) => {
-        const res = await setSgroupAssignedSensors(sgroup, assigned)
-
-        if (res.status === 200){
-            history.push(ROUTE_SGROUP_DETAILS(id))
-        }
-        else {
-            console.log("sGrupy - Nie udało się zmienić assigned, status: ", res.status)
-        }
+    const sendChangeRequest = async (assigned) => {
+        setSgroupAssignedSensors(id, assigned)
+            .then(res => history.push(ROUTE_SGROUP_DETAILS(id)))
     }
 
-    // upewniam sie, ze oba sa pobrane!
-    if (sgroup && sensors){
+    // upewniam sie, ze dane sa pobrane z serwera!
+    if (sgroup && sensors && sAssigned){
     return (
         <EditAssigned
             headline={"edycja czujników grupy - "}
             description={"Zaznacz czujniki, które chcesz monitorować w grupie"}
             linkTo={"sgroup"}
             object={sgroup}
+            assigned={sAssigned}
             availableChoices={sensors}
-            handleSend={sendRequest}
+            handleSend={sendChangeRequest}
         />
     )
-    }else{
+    } else {
         return (
             <div className="head-txt">
                 Pobieranie danych. Proszę czekać.

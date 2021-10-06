@@ -7,22 +7,16 @@ import {ButtonFunc, ButtonLink} from "./buttons";
  * @returns {JSX.Element}
  * @constructor
  */
-const EditAssigned = ({headline, description, linkTo, object, availableChoices, handleSend}) => {
+const EditAssigned = ({headline, description, linkTo, object, assigned, availableChoices, handleSend}) => {
     const [selection, setSelection] = useState([])
 
     console.log("dostał obiekt: ", object)
-
-    const getAssignedObjects = (obj) => {
-        const results = availableChoices.filter(o => obj.assigned.includes(o.id));
-        console.log("getAssignedObjects, res: ", results);
-        return results
-    }
 
     return (
         <div className="main">
             <div className="buttons-container">
                 <ButtonLink
-                    link={`/${linkTo}/${object.id}`}
+                    link={`/${linkTo}/${object.id}/details`}
                     text="anuluj"
                 />
             </div>
@@ -30,7 +24,7 @@ const EditAssigned = ({headline, description, linkTo, object, availableChoices, 
             <div className="content-3x">
                 <div className="content-srodek">
                     <div className="headline-color">
-                        {headline} {object.name}
+                        {headline} "{object.getDisplayName()}"
                     </div>
 
                     <div className="shadow white-space top-contact  txt-center">
@@ -40,7 +34,7 @@ const EditAssigned = ({headline, description, linkTo, object, availableChoices, 
                         <div className="object-container">
                             <DisplayChoices
                                 availableChoices={availableChoices}
-                                alreadyAssigned={getAssignedObjects(object)}
+                                alreadyAssigned={assigned}
                                 onNewSelection={setSelection}
                             />
                         </div>

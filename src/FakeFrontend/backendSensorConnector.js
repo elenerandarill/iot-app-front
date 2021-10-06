@@ -7,7 +7,7 @@ import {
 } from "../iotConfig";
 import {GpsCoordinate} from "../FakeBackend/gpsCoordinate";
 import {Sensor} from "../FakeBackend/getSensors";
-import {jsonToSgroups} from "./backendSgroupConnector";
+import {assignedIds, jsonToSgroups} from "./backendSgroupConnector";
 import {BackendConnector, sendRequest} from "./backendConnector";
 
 
@@ -47,14 +47,16 @@ export const getSensorAssignedSgroups = async (id) => {
     return jsonToSgroups(res.body)
 }
 
-export const setSensorAssignedSgroups = async (sensor, assigned) => {
-    const backConn = new BackendConnector()
-    const response = await backConn.sendAssigned(
+export const setSensorAssignedSgroups = async (id, assigned) => {
+    const list = assignedIds(assigned)
+    const res = await sendRequest(
         URL_SENSOR_ASSIGNED_SET,
-        sensor,
-        assigned
+        {
+            "SGMSID": parseInt(id),
+            "ASS_SGROUPS": list
+        }
     )
-    return response
+    return res.status
 }
 
 export const updateSensorGps = async (position, id) => {

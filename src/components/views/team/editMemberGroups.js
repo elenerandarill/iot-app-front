@@ -1,13 +1,20 @@
 import {useHistory, useParams} from "react-router-dom";
 import EditAssigned from "../../editAssigned";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
-import {fetchMember, setMemberAssignedSgroups} from "../../../FakeFrontend/backendMemberConnector";
+import {
+    fetchMember,
+    getMemberAssigned,
+    setMemberAssigned
+} from "../../../FakeFrontend/backendMemberConnector";
 import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
+import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 
 const EditMemberGroups = () => {
     const [member, setMember] = useState(undefined)
+    const [sgAssigned, setSgAssigned] = useState(undefined)
     const [sgroups, setSgroups] = useState(undefined)
+    const [sensors, setSensors] = useState(undefined)
     const history = useHistory()
     const {id} = useParams();
 
@@ -15,34 +22,35 @@ const EditMemberGroups = () => {
         fetchSgroups()
             .then((sgroups) => setSgroups(sgroups))
 
+        fetchSensors()
+            .then((sensors) => setSensors(sensors))
+
         fetchMember(id)
             .then((member) => setMember(member))
+
+        getMemberAssigned(id)
+            .then((sgFound) => setSgAssigned(sgFound))
     }, [id])
 
-    const sendRequest = async (assigned) => {
-        const res = await setMemberAssignedSgroups(member, assigned)
-
-        if (res.status === 200){
-            history.push(ROUTE_TMEMBER_DETAILS(id))
-        }
-        else {
-            console.log("Członek grupy - Nie udało się zmienić assigned, status: ", res.status)
-        }
+    const sendChangeRequest = async (assigned) => {
+        setMemberAssigned(id, assigned)
+            .then(() => history.push(ROUTE_TMEMBER_DETAILS(id)))
     }
 
-    // upewniam sie, ze oba sa pobrane!
-    if (member && sgroups){
+    // upewniam sie, ze dane sa pobrane z serwera!
+    if (member && sgroups && sgAssigned){
         return (
             <EditAssigned
                 headline={"edycja dostępnych grup"}
                 description={"Zaznacz grupy, do których udzielasz dostępu"}
                 linkTo={"team"}
                 object={member}
+                assigned={sgAssigned}
                 availableChoices={sgroups}
-                handleSend={sendRequest}
+                handleSend={sendChangeRequest}
             />
         )
-    }else{
+    } else {
         return (
             <div className="head-txt">
                 Pobieranie danych. Proszę czekać.
