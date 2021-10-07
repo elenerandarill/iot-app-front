@@ -17,6 +17,6 @@ export class Perm {
     }
 
     getDisplayName() {
-        return this.name
+        return this.name.trim() === "" ? this.sn.toString() : this.name
     }
 }

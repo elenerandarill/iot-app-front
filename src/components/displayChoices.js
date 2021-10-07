@@ -33,14 +33,31 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
 
     const onSelectAllClick = () => {
         let newSelection = [...selected]
-        // console.log("newSelection", newSelection)
-        // queryChoices.map(ch => newSelection.push(ch))
-        newSelection.push(...queryChoices)
-        const uniqueSelection = Array.from(new Set(newSelection))
-        console.log("uniqueSelection: ",uniqueSelection)
-        setSelected(uniqueSelection)
+        let newSelectionIds = newSelection.map((o) => o.id)
+
+        for(const queryChoice of queryChoices) {
+            if(!newSelectionIds.includes(queryChoice.id)) {
+                newSelection.push(queryChoice)
+            }
+        }
+
+        setSelected(newSelection)
         onNewSelection(newSelection)
     };
+
+    const onDeselectAllClick = () => {
+        let newSelection = []
+        let queryChoicesIds = queryChoices.map(qc => qc.id)
+
+        for(const s of selected) {
+            if(!queryChoicesIds.includes(s.id)) {
+                newSelection.push(s)
+            }
+        }
+
+        setSelected(newSelection)
+        onNewSelection(newSelection)
+    }
 
     return (
 
@@ -54,7 +71,7 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
                 />
                 <ButtonFunc
                     text="odznacz wszystkie"
-                    onClick={() => setSelected([])}
+                    onClick={onDeselectAllClick}
                 />
 
             </div>

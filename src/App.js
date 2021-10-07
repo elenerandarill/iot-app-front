@@ -16,7 +16,8 @@ import Test from "./components/views/test";
 import AddSGroup from "./components/views/sGroups/addSGroup";
 import EditSensorGroups from "./components/views/sensors/editSensorGroups";
 import EditSGroup from "./components/views/sGroups/editSGroup";
-import EditMemberGroups from "./components/views/team/editMemberGroups";
+import EditMemberSgroups from "./components/views/team/editMemberSgroups";
+import EditMemberSensors from "./components/views/team/editMemberSensors";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
 import AddTeamMember from "./components/views/team/addTeamMember";
 import AddNewAlert from "./components/views/alerts/addNewAlert";
@@ -33,8 +34,8 @@ import {
     ROUTE_SGROUP_DETAILS,
     ROUTE_SGROUP_EDIT,
     ROUTE_SGROUP_LIST,
-    ROUTE_TMEMBER_ADD, ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_EDIT,
-    ROUTE_TMEMBER_LIST
+    ROUTE_TMEMBER_ADD, ROUTE_TMEMBER_DETAILS,
+    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT
 } from "./iotConfig";
 // import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
@@ -71,7 +72,8 @@ function App() {
                     <Route path={ROUTE_TMEMBER_LIST} exact component={Team}/>
                     <Route path={ROUTE_TMEMBER_ADD} exact component={AddTeamMember}/>
                     <Route path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
-                    <Route path={ROUTE_TMEMBER_EDIT(`:id`)} exact component={EditMemberGroups}/>
+                    <Route path={ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
+                    <Route path={ROUTE_TMEMBER_SENSORS_EDIT(`:id`)} exact component={EditMemberSensors}/>
                     <Route path={ROUTE_CONTACT} component={Contact}/>
                 </UserViews>
             </Switch>

@@ -25,12 +25,14 @@ const SelectChoices = ({ availableChoices, selected, onNewSelection }) => {
         <div className="object-container">
         {availableChoices.map(choice =>
                 <div
-                    key={choice.id}
+                    key={choice.id + choice.name}
                     className={`object-choices shadow ${included_in_selection(choice)
                         ? " choice-active" : ""}`}
                     onClick={() => toggleChoices(choice)}
                 >
                     {choice.getDisplayName()}
+                    {/*TODO: renderer? */}
+                    {/*{choice.sn && <div className="obj-sn">{choice.sn}</div>}*/}
                 </div>
             )}
         </div>

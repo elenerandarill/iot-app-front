@@ -70,7 +70,9 @@ export const ROUTE_SGROUP_DEL = "/sgroup/del"
 
 export const ROUTE_TMEMBER_LIST = "/team/member/list"
 export const ROUTE_TMEMBER_DETAILS = (id) => "/team/member/" + id + "/details"
-export const ROUTE_TMEMBER_EDIT = (id) => "/team/member/" + id + "/edit"
+// export const ROUTE_TMEMBER_EDIT = (id) => "/team/member/" + id + "/edit"
+export const ROUTE_TMEMBER_SENSORS_EDIT = (id) => "/team/member/" + id + "/sensors/edit"
+export const ROUTE_TMEMBER_SGROUPS_EDIT = (id) => "/team/member/" + id + "/sgroups/edit"
 export const ROUTE_TMEMBER_ADD = "/team/member/add"
 
 export const ROUTE_NOTIFS_LIST = "/notification/list"

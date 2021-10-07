@@ -3,7 +3,11 @@ import {InputString} from "../../attributes";
 import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {useEffect, useState} from "react";
-import {ROUTE_TMEMBER_EDIT, ROUTE_TMEMBER_LIST, URL_TEAM_MEMBER_SET, URL_USER_SET} from "../../../iotConfig";
+import {
+    ROUTE_TMEMBER_LIST,
+    ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT,
+    URL_USER_SET
+} from "../../../iotConfig";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {fetchMember, getMemberAssigned} from "../../../FakeFrontend/backendMemberConnector";
 import {permRenderer} from "./team";
@@ -22,7 +26,12 @@ const TeamMemberDetails = () => {
             .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
-
+    const filterSgroups = (list) => {
+        return list.filter(o => o.type === "SGROUP")
+    }
+    const filterSensors = (list) => {
+        return list.filter(o => o.type === "SENSOR")
+    }
 
     if(!member) {
         return (
@@ -72,7 +81,7 @@ const TeamMemberDetails = () => {
                                     <div className="edit-objs-btn centered">
                                         <ButtonLink
                                             text={"edytuj"}
-                                            link={ROUTE_TMEMBER_EDIT(id)}
+                                            link={ROUTE_TMEMBER_SGROUPS_EDIT(id)}
                                         />
                                     </div>
                                     <div className="object-container txt-violet txt-semibold">
@@ -80,7 +89,31 @@ const TeamMemberDetails = () => {
                                         {assignedObjs.length === 0
                                             ? <div className="centered">nie przypisano do żadnej grupy</div>
                                             : <ListObjects
-                                                list={assignedObjs}
+                                                list={filterSgroups(assignedObjs)}
+                                                objectRenderer={permRenderer}
+                                            />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="shadow listed-attribute">
+                            <div className="head-txt">DOSTĘP DO CZUJNIKÓW</div>
+                            <div className="position-cent">
+                                <div className="object-container-grid">
+                                    <div className="edit-objs-btn centered">
+                                        <ButtonLink
+                                            text={"edytuj"}
+                                            link={ROUTE_TMEMBER_SENSORS_EDIT(id)}
+                                        />
+                                    </div>
+                                    <div className="object-container txt-violet txt-semibold">
+
+                                        {assignedObjs.length === 0
+                                            ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                            : <ListObjects
+                                                list={filterSensors(assignedObjs)}
                                                 objectRenderer={permRenderer}
                                             />
                                         }

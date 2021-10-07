@@ -52,7 +52,6 @@ export const getMemberAssigned = async (id) => {
         URL_TEAM_MEMBER_ASSIGNED_GET,
         {"PEOID": parseInt(id), "PEOIDT": "USER"}
     )
-    console.log("res: ", res)
     return res.body.map(o => jsonToPerm(o))
 }
 
@@ -60,22 +59,26 @@ const assignedObj = (assigned) => {
     // [ { PEOBJ: 123, PEOBJT: "SENSOR" }, { PEOBJ: 124, PEOBJT: "SGROUP"} ]
     let list = []
     for (const obj of assigned){
-        list.push({"PEOBJ": obj.id, "PEOBJT": obj.type})
+        list.push({
+            "PEOBJ": parseInt(obj.id),
+            "PEMASK": ["list", "get", "set", "new", "del", "add", "rem"]
+        })
     }
     return list
 }
 
-export const setMemberAssigned = async (id, assigned) => {
+export const setMemberAssigned = async (id, assigned, assType) => {
     const list = assignedObj(assigned)
     const res = await sendRequest(
         URL_TEAM_MEMBER_ASSIGNED_SET,
         {
-            "PEOID": id, "PEOIDT": "USER",
-            "ASSIGNED": list
+            "PEOID": parseInt(id),
+            "PEOIDT": "USER",
+            "PEOBJT": assType,
+            "ASSIGNED": list,
         }
     )
-    console.log("res: ", res)
-    return res.body.map(o => jsonToPerm(o))
+    return res.status
 }
 
 

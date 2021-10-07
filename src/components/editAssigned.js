@@ -8,7 +8,7 @@ import {ButtonFunc, ButtonLink} from "./buttons";
  * @constructor
  */
 const EditAssigned = ({headline, description, linkTo, object, assigned, availableChoices, handleSend}) => {
-    const [selection, setSelection] = useState([])
+    const [selection, setSelection] = useState(assigned)
 
     console.log("dostał obiekt: ", object)
 

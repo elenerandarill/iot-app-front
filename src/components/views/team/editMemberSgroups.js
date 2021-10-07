@@ -8,32 +8,43 @@ import {
 } from "../../../FakeFrontend/backendMemberConnector";
 import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
-import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
+import {Perm} from "../../../FakeBackend/getPerms";
 
-const EditMemberGroups = () => {
+
+const EditMemberSgroups = () => {
     const [member, setMember] = useState(undefined)
     const [sgAssigned, setSgAssigned] = useState(undefined)
     const [sgroups, setSgroups] = useState(undefined)
-    const [sensors, setSensors] = useState(undefined)
     const history = useHistory()
     const {id} = useParams();
+
+    const convert_to_perms = (sglist) => {
+        console.log("Lista sgrup: ", sglist)
+        let permList = []
+        for (const sg of sglist){
+            permList.push(new Perm(sg.id, "SGROUP", sg.name))
+        }
+        return permList
+    }
+    const filterSgroups = (list) => {
+        return list.filter(o => o.type === "SGROUP")
+    }
 
     useEffect(() => {
         fetchSgroups()
             .then((sgroups) => setSgroups(sgroups))
 
-        fetchSensors()
-            .then((sensors) => setSensors(sensors))
-
         fetchMember(id)
-            .then((member) => setMember(member))
+            .then((member) => {
+                setMember(member)
+            })
 
         getMemberAssigned(id)
-            .then((sgFound) => setSgAssigned(sgFound))
+            .then((sgFound) => setSgAssigned(filterSgroups(sgFound)))
     }, [id])
 
     const sendChangeRequest = async (assigned) => {
-        setMemberAssigned(id, assigned)
+        setMemberAssigned(id, assigned, "SGROUP")
             .then(() => history.push(ROUTE_TMEMBER_DETAILS(id)))
     }
 
@@ -43,10 +54,10 @@ const EditMemberGroups = () => {
             <EditAssigned
                 headline={"edycja dostępnych grup"}
                 description={"Zaznacz grupy, do których udzielasz dostępu"}
-                linkTo={"team"}
+                linkTo={`team/${id}/details`}
                 object={member}
                 assigned={sgAssigned}
-                availableChoices={sgroups}
+                availableChoices={convert_to_perms(sgroups)}
                 handleSend={sendChangeRequest}
             />
         )
@@ -59,4 +70,4 @@ const EditMemberGroups = () => {
     }
 }
 
-export default EditMemberGroups;
+export default EditMemberSgroups;

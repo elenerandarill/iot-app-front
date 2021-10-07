@@ -25,7 +25,7 @@ export const memberObjectRenderer = (member) => {
 }
 
 export const permRenderer = (perm) => {
-    console.log("permRenderer dostaje: ", perm)
+    // console.log("permRenderer dostaje: ", perm)
     return(
         <Link
             key={perm.type + perm.id}
@@ -34,7 +34,7 @@ export const permRenderer = (perm) => {
                     : ROUTE_SGROUP_DETAILS(perm.id)}
         >
             <div className={"object shadow"}>
-                <div className="txt-semibold">{perm.name}</div>
+                <div className="txt-semibold">{perm.getDisplayName()}</div>
             </div>
         </Link>
     )
