@@ -54,7 +54,7 @@ const EditMemberSgroups = () => {
             <EditAssigned
                 headline={"edycja dostępnych grup"}
                 description={"Zaznacz grupy, do których udzielasz dostępu"}
-                linkTo={`team/${id}/details`}
+                linkTo={"team"}
                 object={member}
                 assigned={sgAssigned}
                 availableChoices={convert_to_perms(sgroups)}

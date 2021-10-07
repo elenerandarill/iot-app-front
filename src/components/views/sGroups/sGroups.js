@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 import {ButtonLink} from "../../buttons";
-import {ROUTE_SGROUP_ADD, ROUTE_SGROUP_DEL, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
+import {ROUTE_SGROUP_NEW, ROUTE_SGROUP_DEL, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 
 /**
  * @param group {GroupOfSensors}
@@ -39,11 +39,7 @@ const SGroups = () => {
                 <ButtonLink
                     text="nowa grupa"
                     add={true}
-                    link={ROUTE_SGROUP_ADD}
-                />
-                <ButtonLink
-                    text="usuń tę grupę"
-                    link={ROUTE_SGROUP_DEL}
+                    link={ROUTE_SGROUP_NEW}
                 />
             </div>
 

@@ -11,22 +11,22 @@ const Homepage = () => {
                 <ButtonLink
                     text="wartość"
                     add={true}
-                    link={"/team/add"}
+                    link={"/team/new"}
                 />
                 <ButtonLink
                     text="tabela"
                     add={true}
-                    link={"/team/add"}
+                    link={"/team/new"}
                 />
                 <ButtonLink
                     text="wykres"
                     add={true}
-                    link={"/team/add"}
+                    link={"/team/new"}
                 />
                 <ButtonLink
                     text="mapa"
                     add={true}
-                    link={"/team/add"}
+                    link={"/team/new"}
                 />
             </div>
 

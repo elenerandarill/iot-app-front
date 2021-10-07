@@ -8,7 +8,7 @@ import {
 import {GpsCoordinate} from "../FakeBackend/gpsCoordinate";
 import {Sensor} from "../FakeBackend/getSensors";
 import {assignedIds, jsonToSgroups} from "./backendSgroupConnector";
-import {BackendConnector, sendRequest} from "./backendConnector";
+import {sendRequest} from "./backendConnector";
 
 
 

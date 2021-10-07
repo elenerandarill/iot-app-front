@@ -13,14 +13,14 @@ import SensorDetails from "./components/views/sensors/sensorDetails";
 import SGroupDetails from "./components/views/sGroups/sGroupDetails";
 import TeamMemberDetails from "./components/views/team/teamMemberDetails";
 import Test from "./components/views/test";
-import AddSGroup from "./components/views/sGroups/addSGroup";
+import NewSGroup from "./components/views/sGroups/newSGroup";
 import EditSensorGroups from "./components/views/sensors/editSensorGroups";
 import EditSGroup from "./components/views/sGroups/editSGroup";
 import EditMemberSgroups from "./components/views/team/editMemberSgroups";
 import EditMemberSensors from "./components/views/team/editMemberSensors";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
-import AddTeamMember from "./components/views/team/addTeamMember";
-import AddNewAlert from "./components/views/alerts/addNewAlert";
+import NewTeamMember from "./components/views/team/newTeamMember";
+import NewAlert from "./components/views/alerts/newAlert";
 import {
     ROUTE_CONTACT,
     ROUTE_HOME, ROUTE_LOGIN,
@@ -30,13 +30,14 @@ import {
     ROUTE_SENSOR_EDIT,
     ROUTE_SENSOR_EDIT_CHART,
     ROUTE_SENSOR_LIST,
-    ROUTE_SGROUP_ADD,
+    ROUTE_SGROUP_NEW,
     ROUTE_SGROUP_DETAILS,
     ROUTE_SGROUP_EDIT,
     ROUTE_SGROUP_LIST,
-    ROUTE_TMEMBER_ADD, ROUTE_TMEMBER_DETAILS,
-    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT
+    ROUTE_TMEMBER_NEW, ROUTE_TMEMBER_DETAILS,
+    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT, ROUTE_TMEMBER_REM
 } from "./iotConfig";
+import RemoveTeamMember from "./components/views/team/removeTeamMember";
 // import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
@@ -60,20 +61,21 @@ function App() {
                 <UserViews>
                     <Route path={ROUTE_HOME} exact component={Homepage}/>
                     <Route path={ROUTE_NOTIFS_LIST} exact component={Alerts}/>
-                    <Route path={ROUTE_NOTIFS_NEW} exact component={AddNewAlert}/>
+                    <Route path={ROUTE_NOTIFS_NEW} exact component={NewAlert}/>
                     <Route path={ROUTE_SENSOR_LIST} exact component={Sensors}/>
                     <Route path={ROUTE_SENSOR_DETAILS(`:id`)} exact component={SensorDetails}/>
                     <Route path={ROUTE_SENSOR_EDIT(`:id`)} exact component={EditSensorGroups}/>
                     <Route path={ROUTE_SENSOR_EDIT_CHART(`:id`)} exact component={EditSensorChart}/>
                     <Route path={ROUTE_SGROUP_LIST} exact component={SGroups}/>
-                    <Route path={ROUTE_SGROUP_ADD} exact component={AddSGroup}/>
+                    <Route path={ROUTE_SGROUP_NEW} exact component={NewSGroup}/>
                     <Route path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
                     <Route path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
                     <Route path={ROUTE_TMEMBER_LIST} exact component={Team}/>
-                    <Route path={ROUTE_TMEMBER_ADD} exact component={AddTeamMember}/>
+                    <Route path={ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
                     <Route path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
                     <Route path={ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
                     <Route path={ROUTE_TMEMBER_SENSORS_EDIT(`:id`)} exact component={EditMemberSensors}/>
+                    <Route path={ROUTE_TMEMBER_REM(`:id`)} exact component={RemoveTeamMember}/>
                     <Route path={ROUTE_CONTACT} component={Contact}/>
                 </UserViews>
             </Switch>

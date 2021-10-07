@@ -1,4 +1,10 @@
-import {URL_SGROUP_ASSIGNED_GET, URL_SGROUP_GET, URL_SGROUP_LIST, URL_SGROUP_ASSIGNED_SET} from "../iotConfig";
+import {
+    URL_SGROUP_ASSIGNED_GET,
+    URL_SGROUP_GET,
+    URL_SGROUP_LIST,
+    URL_SGROUP_ASSIGNED_SET,
+    URL_SGROUP_NEW, ROUTE_SGROUP_LIST
+} from "../iotConfig";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {jsonToSensors} from "./backendSensorConnector";
 import {BackendConnector, sendRequest} from "./backendConnector";
@@ -34,6 +40,14 @@ export const fetchSgroups = async () => {
 export const assignedIds = (assigned) => {
     // returns list of ids
     return assigned.map(a => a.id)
+}
+
+export const newSgroup = async (name) => {
+    const res = await sendRequest(
+        URL_SGROUP_NEW,
+        {"SGNAME": name}
+    )
+    return res.body["SGRID"]
 }
 
 export const setSgroupAssignedSensors = async (id, assigned) => {

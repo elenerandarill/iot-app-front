@@ -2,7 +2,7 @@ import {
     URL_TEAM_MEMBER_ASSIGNED_GET,
     URL_USER_GET,
     URL_TEAM_MEMBER_ASSIGNED_SET,
-    URL_TEAM_LIST
+    URL_TEAM_LIST, URL_TEAM_MEMBER_NEW, ROUTE_TMEMBER_LIST, URL_TEAM_MEMBER_REM
 } from "../iotConfig";
 import {Member} from "../FakeBackend/getMembers";
 import {sendRequest} from "./backendConnector";
@@ -46,6 +46,32 @@ export const fetchMember = async (id) => {
     )
     return jsonToMember(res.body)
 }
+
+
+
+export const newMember = async (userId) => {
+    // https://stackoverflow.com/questions/29775797/fetch-post-json-data
+    const res = await sendRequest(
+        URL_TEAM_MEMBER_NEW,
+        {
+            "UGMGID": 1, //TODO tutaj trzeba bedzie znalezc id ugrupy!
+            "UGMUID": parseInt(userId),
+        }
+    )
+    return res.status
+}
+
+export const remMember = async (userId) => {
+    const res = await sendRequest(
+        URL_TEAM_MEMBER_REM,
+        {
+            "UGMGID": 1, //TODO tutaj trzeba bedzie znalezc id ugrupy!
+            "UGMUID": parseInt(userId),
+        }
+    )
+    return res.status
+}
+
 
 export const getMemberAssigned = async (id) => {
     const res = await sendRequest(

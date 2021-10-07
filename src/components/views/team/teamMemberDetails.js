@@ -50,7 +50,7 @@ const TeamMemberDetails = () => {
                 />
                 <ButtonLink
                     text="usuń tę osobę"
-                    link={"team/member/delete"}
+                    link={`/team/member/${id}/rem`}
                 />
             </div>
 
@@ -87,7 +87,7 @@ const TeamMemberDetails = () => {
                                     <div className="object-container txt-violet txt-semibold">
 
                                         {assignedObjs.length === 0
-                                            ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                            ? <div className="centered">nie przypisano żadnej grupy</div>
                                             : <ListObjects
                                                 list={filterSgroups(assignedObjs)}
                                                 objectRenderer={permRenderer}
@@ -111,7 +111,7 @@ const TeamMemberDetails = () => {
                                     <div className="object-container txt-violet txt-semibold">
 
                                         {assignedObjs.length === 0
-                                            ? <div className="centered">nie przypisano do żadnej grupy</div>
+                                            ? <div className="centered">nie przypisano żadnego czujnika</div>
                                             : <ListObjects
                                                 list={filterSensors(assignedObjs)}
                                                 objectRenderer={permRenderer}

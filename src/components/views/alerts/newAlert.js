@@ -8,7 +8,7 @@ import {ButtonFunc} from "../../buttons";
 import DisplayChoices from "../../displayChoices";
 
 
-const AddNewAlert = () => {
+const NewAlert = () => {
     const [selectCategory, setSelectCategory] = useState("")
     const [objectsList, setObjectsList] = useState(undefined)
     const [selection, setSelection] = useState(undefined)
@@ -140,4 +140,4 @@ const AddNewAlert = () => {
 }
 
 
-export default AddNewAlert;
+export default NewAlert;

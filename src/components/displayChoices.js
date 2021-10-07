@@ -13,29 +13,35 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
     // 3. Uruchamia sie SelectChoices.toggleChoices(), w ktorej powstaje nowa lista
     // 4. toggleChoices() informuje rodzica o nowej liscie przez wywolanie onNewSelection() z nowa lista
     // 5.
-
+    console.log("availableChoices: ", availableChoices)
 
     let [selected, setSelected] = useState(alreadyAssigned);  //list
     let [searchQuery, setSearchQuery] = useState("");
-    let [queryChoices, setQueryChoices] = useState(availableChoices);
+    //let [queryChoices, setQueryChoices] = useState(availableChoices);
+
+    const getFilteredChoices = () => {
+        return availableChoices.filter(ch => ch.getDisplayName().toLowerCase().includes(searchQuery.toLowerCase()))
+    }
+
+    console.log("DisplayChoices.getFilteredChoices: ", getFilteredChoices)
 
     //availableChoices type: [{},{},{},...] lista obiektów
 
     const handleSearch = (query) => {
         setSearchQuery(query);
-
-        // TODO: Filtrowanie po ID a nie displayName
-        const filtered = availableChoices.filter(
-            choice => choice.getDisplayName().toLowerCase().includes(query.toLowerCase()))
-
-        setQueryChoices(filtered);
+        //
+        // // TODO: Filtrowanie po ID a nie displayName
+        // const filtered = availableChoices.filter(
+        //     choice => choice.getDisplayName().toLowerCase().includes(query.toLowerCase()))
+        //
+        // setQueryChoices(filtered);
     }
 
     const onSelectAllClick = () => {
         let newSelection = [...selected]
         let newSelectionIds = newSelection.map((o) => o.id)
 
-        for(const queryChoice of queryChoices) {
+        for(const queryChoice of getFilteredChoices()) {
             if(!newSelectionIds.includes(queryChoice.id)) {
                 newSelection.push(queryChoice)
             }
@@ -47,7 +53,7 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
 
     const onDeselectAllClick = () => {
         let newSelection = []
-        let queryChoicesIds = queryChoices.map(qc => qc.id)
+        let queryChoicesIds = getFilteredChoices().map(qc => qc.id)
 
         for(const s of selected) {
             if(!queryChoicesIds.includes(s.id)) {
@@ -77,7 +83,7 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
             </div>
 
             <SelectChoices
-                availableChoices={queryChoices}
+                availableChoices={getFilteredChoices()}
                 selected={selected}
                 // onNewSelection={(newSelected) => onNewSelection(newSelected)}
                 onNewSelection={(newSelection) => {

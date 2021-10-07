@@ -2,7 +2,7 @@ import { Member } from "../../../FakeBackend/getMembers";
 import ListObjects from "../../listObjects";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {ROUTE_SENSOR_DETAILS, ROUTE_SGROUP_DETAILS, ROUTE_TMEMBER_ADD, ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
+import {ROUTE_SENSOR_DETAILS, ROUTE_SGROUP_DETAILS, ROUTE_TMEMBER_NEW, ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {ButtonLink} from "../../buttons";
 import {fetchTeam} from "../../../FakeFrontend/backendMemberConnector";
 
@@ -56,7 +56,7 @@ const Team = () => {
                 <ButtonLink
                     text="osoba"
                     add={true}
-                    link={ROUTE_TMEMBER_ADD}
+                    link={ROUTE_TMEMBER_NEW}
                 />
             </div>
 

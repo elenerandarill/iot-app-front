@@ -35,6 +35,6 @@ export class Sensor {
     }
 
     getDisplayName() {
-        return this.name.trim() === "" ? this.sn : this.name
+        return this.name.trim() === "" ? this.sn.toString() : this.name
     }
 }
