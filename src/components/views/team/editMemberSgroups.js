@@ -9,6 +9,7 @@ import {
 import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {Perm} from "../../../FakeBackend/getPerms";
+import UserViews from "../userViews";
 
 
 const EditMemberSgroups = () => {
@@ -21,7 +22,7 @@ const EditMemberSgroups = () => {
     const convert_to_perms = (sglist) => {
         console.log("Lista sgrup: ", sglist)
         let permList = []
-        for (const sg of sglist){
+        for (const sg of sglist) {
             permList.push(new Perm(sg.id, "SGROUP", sg.name))
         }
         return permList
@@ -49,23 +50,27 @@ const EditMemberSgroups = () => {
     }
 
     // upewniam sie, ze dane sa pobrane z serwera!
-    if (member && sgroups && sgAssigned){
+    if (member && sgroups && sgAssigned) {
         return (
-            <EditAssigned
-                headline={"edycja dostępnych grup"}
-                description={"Zaznacz grupy, do których udzielasz dostępu"}
-                linkTo={"team"}
-                object={member}
-                assigned={sgAssigned}
-                availableChoices={convert_to_perms(sgroups)}
-                handleSend={sendChangeRequest}
-            />
+            <UserViews>
+                <EditAssigned
+                    headline={"edycja dostępnych grup"}
+                    description={"Zaznacz grupy, do których udzielasz dostępu"}
+                    linkTo={"team"}
+                    object={member}
+                    assigned={sgAssigned}
+                    availableChoices={convert_to_perms(sgroups)}
+                    handleSend={sendChangeRequest}
+                />
+            </UserViews>
         )
     } else {
         return (
-            <div className="head-txt">
-                Pobieranie danych. Proszę czekać.
-            </div>
+            <UserViews>
+                <div className="head-txt">
+                    Pobieranie danych. Proszę czekać.
+                </div>
+            </UserViews>
         )
     }
 }

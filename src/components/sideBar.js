@@ -1,22 +1,31 @@
 import MenuButton from "./menuButton";
 import logo_iot from "../media/logo.svg";
-import LogoutButton from "./logoutButton";
 import useWindowDimensions from "./useWindowDimensions";
 import {
     ROUTE_CONTACT,
-    ROUTE_HOME,
+    ROUTE_HOME, ROUTE_LOGIN,
     ROUTE_NOTIFS_LIST,
     ROUTE_SENSOR_LIST,
     ROUTE_SGROUP_LIST,
     ROUTE_TMEMBER_LIST
 } from "../iotConfig";
+import {sendLogout} from "../FakeFrontend/backendConnector";
+import {useHistory} from "react-router-dom";
+import LogoutButton from "./logoutButton";
+import * as authService from "../authService";
 
 
 const SideBar = () => {
-    const { width, height } = useWindowDimensions();
+    const { width, height } = useWindowDimensions()
+    const history = useHistory()
 
-    const onClick = () => {
-        console.log("kliknięto Wyloguj")
+    const onLogout = () => {
+        // Info do backendu
+        sendLogout()
+            .then(() => {
+                authService.logout()
+                history.push(ROUTE_LOGIN)
+            })
     }
 
     return (
@@ -31,7 +40,7 @@ const SideBar = () => {
             <MenuButton text="Zespół" path={ROUTE_TMEMBER_LIST}/>
             <MenuButton text="Kontakt" path={ROUTE_CONTACT}/>
 
-            <LogoutButton text="Wyloguj" onClick={onClick}/>
+            <LogoutButton text="Wyloguj" onClick={onLogout}/>
             <br/>
             <h6>Tymczasowe skróty:</h6>
             <MenuButton text="Logowanie" path="/login"/>

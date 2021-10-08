@@ -1,4 +1,25 @@
 import {BackendResponse} from "./backendResponse";
+import {URL_LOGIN, URL_LOGOUT} from "../iotConfig";
+import * as authService from "../authService";
+
+
+export const sendLogin = async (email, pass) => {
+    const res = await sendRequest(
+        URL_LOGIN,
+        {
+            "UEMAIL": email,
+            "UPASS": pass
+        }
+    )
+    return res.body
+}
+
+export const sendLogout = async () => {
+    const res = await sendRequest(
+        URL_LOGOUT
+    )
+    return res.status
+}
 
 /**
  * @param url {string}
@@ -10,7 +31,11 @@ export const sendRequest = async (url, data) => {
     if (data === undefined){
         data = {}
     }
-    data["SESID"] = "1aabb"     //TODO do testow tylko!
+    const loggedUser = authService.getLoggedUser()
+    if (loggedUser){
+        data["SESID"] = loggedUser.sessionId
+    }
+
     const res = await fetch(
         url,
         {
@@ -43,34 +68,4 @@ export const changeValue = async (url, idName, id, propName, propValue) => {
     return await sendRequest(url, data)
 }
 
-// ---------------------------------------
-
-
-export class BackendConnector {
-
-    /**
-     * @param url {string}
-     * @param object {any}
-     * @param assigned {string[]}
-     * @returns {Promise<BackendResponse>}
-     */
-    async sendAssigned(url, object, assigned) {
-        const id = object.id
-
-        const assignedIds = (assigned) => {
-            // returns list of ids
-            return assigned.map(a => a.id)
-        }
-
-        let data = {
-            $schema: "https://json-schema.org/draft/2020-12/schema",
-            $id: "https://example.com/product.schema.json",
-            objectId: id,
-            assigned: assignedIds(assigned)
-        }
-
-        // POST
-        return await sendRequest(url, data)
-    }
-}
 

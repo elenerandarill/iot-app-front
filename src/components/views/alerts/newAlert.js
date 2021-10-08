@@ -6,6 +6,7 @@ import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {ButtonFunc} from "../../buttons";
 import DisplayChoices from "../../displayChoices";
+import UserViews from "../userViews";
 
 
 const NewAlert = () => {
@@ -28,7 +29,7 @@ const NewAlert = () => {
     }
 
     const setChoice = (choice) => {
-        if (selection === choice){
+        if (selection === choice) {
             setSelection(undefined)
         } else {
             setSelection(choice)
@@ -36,106 +37,107 @@ const NewAlert = () => {
     }
 
     return (
-        <div className="main">
-            <div className="buttons-container"/>
+        <UserViews>
+            <div className="main">
+                <div className="buttons-container"/>
 
-            <div className="content-3x">
-                <div className="content-srodek">
-                    <div className="headline-color">
-                        utworzenie nowego alertu
-                    </div>
-                    <div className="white-space top-contact">
+                <div className="content-3x">
+                    <div className="content-srodek">
+                        <div className="headline-color">
+                            utworzenie nowego alertu
+                        </div>
+                        <div className="white-space top-contact">
 
-                        <div className="shadow listed-attribute">
-                            <div className="head-txt">
-                                {"kategoria obiektu do monitorowania"}
+                            <div className="shadow listed-attribute">
+                                <div className="head-txt">
+                                    {"kategoria obiektu do monitorowania"}
+                                </div>
+                                <div className="position-cent">
+                                    <ButtonFunc
+                                        text="czujnik"
+                                        onClick={() => getSensors()}
+                                    />
+                                    <ButtonFunc
+                                        text="grupa czujników"
+                                        onClick={() => getSgroups()}
+                                    />
+                                </div>
+                                <div className="object-container">
+                                    <div>
+                                        {selectCategory === "sensors" && "Zaznacz czujnik do monitorowania"}
+                                        {selectCategory === "sgroups" && "Zaznacz grupę do monitorowania"}
+
+                                        {objectsList
+                                            ? <div>
+                                                {objectsList.map((choice =>
+                                                        <div
+                                                            key={choice.id}
+                                                            className={`object-choices shadow ${selection === choice
+                                                                ? " choice-active" : ""}`}
+                                                            onClick={() => setChoice(choice)}
+                                                        >
+                                                            {choice.getDisplayName()}
+                                                        </div>
+                                                ))}
+                                            </div>
+
+                                            : <div>Pobieram dane, proszę czekać.</div>
+                                        }
+                                    </div>
+                                </div>
                             </div>
-                            <div className="position-cent">
-                                <ButtonFunc
-                                    text="czujnik"
-                                    onClick={() => getSensors()}
-                                />
-                                <ButtonFunc
-                                    text="grupa czujników"
-                                    onClick={() => getSgroups()}
-                                />
+
+                            <div className="shadow listed-attribute">
+                                <div className="head-txt">{"wybierz pomiar"}</div>
+                                <div className="position-cent">
+
+                                </div>
+                            </div>
+                            <div className="shadow listed-attribute">
+                                <div className="head-txt">{"wybierz regułę"}</div>
+                                <div className="position-cent">
+                                    <div
+                                        className="btn btn-color"
+                                        onClick={() => console.log("wybrano równy")}
+                                    >
+                                        równy
+                                    </div>
+                                    <div
+                                        className="btn btn-color"
+                                        onClick={() => console.log("wybrano większy niż")}
+                                    >
+                                        większy niż
+                                    </div>
+                                    <div
+                                        className="btn btn-color"
+                                        onClick={() => console.log("wybrano mniejszy niż")}
+                                    >
+                                        mniejszy niż
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className="shadow listed-attribute">
+                                <div className="head-txt">{"podaj wartość graniczną"}</div>
+                                <div className="position-cent">
+                                    <input
+                                        className="input"
+                                    /> [jednostka]
+                                </div>
                             </div>
                             <div className="object-container">
-                                 <div>
-                                     {selectCategory === "sensors" && "Zaznacz czujnik do monitorowania"}
-                                     {selectCategory === "sgroups" && "Zaznacz grupę do monitorowania"}
-
-                                    {objectsList
-                                        ? <div>
-                                            {objectsList.map((choice =>
-                                                    <div
-                                                        key={choice.id}
-                                                        className={`object-choices shadow ${selection === choice
-                                                            ? " choice-active" : ""}`}
-                                                        onClick={() => setChoice(choice)}
-                                                    >
-                                                        {choice.getDisplayName()}
-                                                    </div>
-                                            ))}
-                                        </div>
-
-                                        : <div>Pobieram dane, proszę czekać.</div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="shadow listed-attribute">
-                            <div className="head-txt">{"wybierz pomiar"}</div>
-                            <div className="position-cent">
-
-                            </div>
-                        </div>
-                        <div className="shadow listed-attribute">
-                            <div className="head-txt">{"wybierz regułę"}</div>
-                            <div className="position-cent">
                                 <div
                                     className="btn btn-color"
-                                    onClick={() => console.log("wybrano równy")}
+                                    onClick={() => console.log("stworzono nowy alarm")}
                                 >
-                                    równy
+                                    gotowe
                                 </div>
-                                <div
-                                    className="btn btn-color"
-                                    onClick={() => console.log("wybrano większy niż")}
-                                >
-                                    większy niż
-                                </div>
-                                <div
-                                    className="btn btn-color"
-                                    onClick={() => console.log("wybrano mniejszy niż")}
-                                >
-                                    mniejszy niż
-                                </div>
-
-                            </div>
-                        </div>
-                        <div className="shadow listed-attribute">
-                            <div className="head-txt">{"podaj wartość graniczną"}</div>
-                            <div className="position-cent">
-                                <input
-                                    className="input"
-                                /> [jednostka]
-                            </div>
-                        </div>
-                        <div className="object-container">
-                            <div
-                                className="btn btn-color"
-                                onClick={() => console.log("stworzono nowy alarm")}
-                            >
-                                gotowe
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        </UserViews>
     );
 }
 

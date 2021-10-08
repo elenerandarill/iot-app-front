@@ -2,14 +2,27 @@ import {MenuBurgerButton} from "../menuButton";
 import LogoutButton from "../logoutButton";
 import {
     ROUTE_CONTACT,
-    ROUTE_HOME,
+    ROUTE_HOME, ROUTE_LOGIN,
     ROUTE_NOTIFS_LIST,
     ROUTE_SENSOR_LIST,
     ROUTE_SGROUP_LIST,
     ROUTE_TMEMBER_LIST
 } from "../../iotConfig";
+import {sendLogout} from "../../FakeFrontend/backendConnector";
+import * as authService from "../../authService";
+import {useHistory} from "react-router-dom";
 
 const BurgerMenu = ({ activateBurgerMenu }) => {
+    const history = useHistory()
+
+    const onLogout = () => {
+        // Info do backendu
+        sendLogout()
+            .then(() => {
+                authService.logout()
+                history.push(ROUTE_LOGIN)
+            })
+    }
 
     return (
         <div className="burgermenu-overlay">
@@ -47,10 +60,7 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
 
                 <LogoutButton
                     text="Wyloguj"
-                    onClick={() => {
-                        console.log("Wylogowano")
-                        activateBurgerMenu(false)
-                    }}
+                    onClick={onLogout}
                 />
                 <br/>
 

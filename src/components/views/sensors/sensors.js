@@ -1,9 +1,10 @@
 import ListObjects from "../../listObjects";
 import {Link} from "react-router-dom";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ButtonLink} from "../../buttons";
 import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
+import UserViews from "../userViews";
 
 /**
  * @param sensor {Sensor}
@@ -36,27 +37,30 @@ const Sensors = () => {
 
 
     return (
-        <div className="main">
-            <div className="buttons-container">
-                <ButtonLink
-                    text="zakup czujniki"
-                    add={true}
-                    link={"#"}
-                />
-            </div>
+        <UserViews>
+            <div className="main">
+                <div className="buttons-container">
+                    <ButtonLink
+                        text="zakup czujniki"
+                        add={true}
+                        link={"#"}
+                    />
+                </div>
 
-            <div className="content-3x">
-                <div className="content-srodek">
-                    <div className="headline-color">Twoje czujniki</div>
-                    <div className="white-space top-contact">
-                        <ListObjects
-                            list={sensors}
-                            objectRenderer={sensorObjectRenderer}
-                        />
+                <div className="content-3x">
+                    <div className="content-srodek">
+                        <div className="headline-color">Twoje czujniki</div>
+                        <div className="white-space top-contact">
+                            <ListObjects
+                                list={sensors}
+                                objectRenderer={sensorObjectRenderer}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )}
+        </UserViews>
+    )
+}
 
 export default Sensors;

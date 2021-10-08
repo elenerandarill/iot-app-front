@@ -4,6 +4,7 @@ import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 import {ButtonLink} from "../../buttons";
 import {ROUTE_SGROUP_NEW, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
+import UserViews from "../userViews";
 
 /**
  * @param group {GroupOfSensors}
@@ -33,27 +34,29 @@ const SGroups = () => {
     }, [])
 
 
-    return(
-        <div className="main">
-            <div className="buttons-container">
-                <ButtonLink
-                    text="nowa grupa"
-                    add={true}
-                    link={ROUTE_SGROUP_NEW}
-                />
-            </div>
+    return (
+        <UserViews>
+            <div className="main">
+                <div className="buttons-container">
+                    <ButtonLink
+                        text="nowa grupa"
+                        add={true}
+                        link={ROUTE_SGROUP_NEW}
+                    />
+                </div>
 
-            <div className="content-3x">
-                <div className="content-srodek">
-                    <div className="headline-color">Grupy czujników</div>
-                    <div className="white-space top-contact">
-                        <ListObjects
-                            list={sGroups}
-                            objectRenderer={groupObjectRenderer}/>
+                <div className="content-3x">
+                    <div className="content-srodek">
+                        <div className="headline-color">Grupy czujników</div>
+                        <div className="white-space top-contact">
+                            <ListObjects
+                                list={sGroups}
+                                objectRenderer={groupObjectRenderer}/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </UserViews>
     )
 }
 

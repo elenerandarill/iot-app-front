@@ -2,9 +2,11 @@
 // import Table from "../table";
 import {Link} from "react-router-dom";
 import {ButtonLink} from "../buttons";
+import UserViews from "./userViews";
 
 const Homepage = () => {
     return(
+        <UserViews>
         <div className="main">
 
             <div className="buttons-container">
@@ -44,6 +46,7 @@ const Homepage = () => {
             {/*    />*/}
             {/*</div>*/}
         </div>
+        </UserViews>
     )
 }
 

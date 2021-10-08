@@ -8,7 +8,8 @@ const MenuButton = ({ text, path }) => {
     return (
         <Link to={path}>
             <div
-                className={location.pathname === path ? "btn menu-active" : "btn menu-inactive"}
+                className={location.pathname === path
+                    ? "btn menu-active" : "btn menu-inactive"}
             >
                 {text}
             </div>

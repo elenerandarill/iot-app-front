@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {Perm} from "../../../FakeBackend/getPerms";
+import UserViews from "../userViews";
 
 
 const EditMemberSensors = () => {
@@ -21,7 +22,7 @@ const EditMemberSensors = () => {
     const convert_to_perms = (slist) => {
         console.log("Lista sensorów: ", slist)
         let permList = []
-        for (const s of slist){
+        for (const s of slist) {
             permList.push(new Perm(s.id, "SENSOR", s.name, s.sn))
         }
         return permList
@@ -51,26 +52,28 @@ const EditMemberSensors = () => {
     }
 
 
-
-
     // upewniam sie, ze dane sa pobrane z serwera!
-    if (member && sensors && sgAssigned){
+    if (member && sensors && sgAssigned) {
         return (
-            <EditAssigned
-                headline={"edycja dostępnych grup"}
-                description={"Zaznacz grupy, do których udzielasz dostępu"}
-                linkTo={"team"}
-                object={member}
-                assigned={sgAssigned}
-                availableChoices={convert_to_perms(sensors)}
-                handleSend={sendChangeRequest}
-            />
+            <UserViews>
+                <EditAssigned
+                    headline={"edycja dostępnych grup"}
+                    description={"Zaznacz grupy, do których udzielasz dostępu"}
+                    linkTo={"team"}
+                    object={member}
+                    assigned={sgAssigned}
+                    availableChoices={convert_to_perms(sensors)}
+                    handleSend={sendChangeRequest}
+                />
+            </UserViews>
         )
     } else {
         return (
-            <div className="head-txt">
-                Pobieranie danych. Proszę czekać.
-            </div>
+            <UserViews>
+                <div className="head-txt">
+                    Pobieranie danych. Proszę czekać.
+                </div>
+            </UserViews>
         )
     }
 }

@@ -8,6 +8,7 @@ import {
     setSensorAssignedSgroups
 } from "../../../FakeFrontend/backendSensorConnector";
 import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
+import UserViews from "../userViews";
 
 const EditSensorGroups = () => {
     const [sGroups, setSgroups] = useState(undefined)
@@ -35,21 +36,25 @@ const EditSensorGroups = () => {
     // upewniam sie, ze dane sa pobrane z serwera!
     if (sensor && sGroups && sgAssigned) {
         return (
-            <EditAssigned
-                headline={"grup czujnika"}
-                description={"Zaznacz grupy, w których ma być czujnik"}
-                linkTo={"sensor"}
-                object={sensor}
-                assigned={sgAssigned}
-                availableChoices={sGroups}
-                handleSend={sendChangeRequest}
-            />
+            <UserViews>
+                <EditAssigned
+                    headline={"grup czujnika"}
+                    description={"Zaznacz grupy, w których ma być czujnik"}
+                    linkTo={"sensor"}
+                    object={sensor}
+                    assigned={sgAssigned}
+                    availableChoices={sGroups}
+                    handleSend={sendChangeRequest}
+                />
+            </UserViews>
         )
-    }else{
+    } else {
         return (
-            <div className="head-txt">
-                Pobieranie danych. Proszę czekać.
-            </div>
+            <UserViews>
+                <div className="head-txt">
+                    Pobieranie danych. Proszę czekać.
+                </div>
+            </UserViews>
         )
     }
 }

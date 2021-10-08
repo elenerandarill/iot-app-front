@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import {sendRequest} from "../../FakeFrontend/backendConnector";
-import {ROUTE_HOME, URL_LOGIN} from "../../iotConfig";
+import {sendLogin} from "../../FakeFrontend/backendConnector";
+import {ROUTE_HOME, URL_REGISTER} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
+import * as authService from "../../authService";
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const history = useHistory()
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-
+    const onLogin = () => {
         if (!email) {
             // TODO: toastify
             alert("Podaj email")
@@ -23,40 +23,24 @@ const Login = () => {
             return
         }
 
-        const handleSend = async () => {
-            return await sendRequest(
-                URL_LOGIN,
-                {email: email, password: password}
-            )
-        }
-
         if (email && password) {
-            const resp = handleSend()
+            sendLogin(email, password)
+                .then((body) => {
+                    setEmail("")
+                    setPassword("")
+                    authService.login(body["SESID"], body["UFNAME"], body["ULNAME"])
 
-            if (resp.status === 200) {
-                console.log("[ Logowanie ] udane")
-                // wyzerowanie wartosci pol
-                setEmail("")
-                setPassword("")
-                history.push(ROUTE_HOME)
-            } else {
-                // TODO: toastify
-                alert(`[ Logowanie ] nieudane, status: ${resp.status}`);
-            }
+                    history.push(ROUTE_HOME)
+                })
         }
     }
-
-
 
     return (
         <div className="overlay-bgd">
             <div className="login-area">
                 <div className="head-txt">Strona Logowania</div>
 
-                <form
-                    // onSubmit={onSubmit}
-                    className="white-login-area"
-                >
+                <div className="white-login-area">
                     <input
                         type="email"
                         placeholder="email"
@@ -73,13 +57,13 @@ const Login = () => {
                     />
                     <ButtonFunc
                         text="Zaloguj"
-                        onClick={(e) => onSubmit(e)}
+                        onClick={() => onLogin()}
                     />
                     <div>Nie pamiętasz hasła?</div>
-                </form>
+                </div>
 
                 <div className="mrg-tb txt-center">Nie posiadasz konta? <br/>
-                    <Link to="/register">Zarejestruj się!</Link>
+                    <Link to={URL_REGISTER}>Zarejestruj się!</Link>
                 </div>
             </div>
         </div>

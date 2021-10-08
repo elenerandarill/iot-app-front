@@ -7,7 +7,7 @@ import {
 } from "../iotConfig";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {jsonToSensors} from "./backendSensorConnector";
-import {BackendConnector, sendRequest} from "./backendConnector";
+import {sendRequest} from "./backendConnector";
 
 // Parsowanie JSONa
 

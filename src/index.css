@@ -124,7 +124,8 @@ body {
 }
 
 .burgermenu-icon {
-  margin: 0 40px;
+  height: 20px;
+  margin: 5px 5px 5px 15px;
   cursor: pointer;
 }
 
@@ -405,6 +406,7 @@ img.dot {
 
 .topbar-restore {
   display: flex;
+  align-items: baseline;
 }
 
 .sidebar-logo {

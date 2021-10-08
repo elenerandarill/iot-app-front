@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 // import SearchBox from "../../searchBox";
 import {ButtonFunc, ButtonLink} from "../../buttons";
 import {ROUTE_NOTIFS_NEW} from "../../../iotConfig";
+import UserViews from "../userViews";
 
 
 const Alerts = () => {
@@ -74,6 +75,7 @@ const Alerts = () => {
 
 
     return (
+        <UserViews>
         <div className="main">
             <div className="buttons-container">
                 <ButtonLink
@@ -117,6 +119,7 @@ const Alerts = () => {
                 </div>
             </div>
         </div>
+        </UserViews>
     )
 }
 

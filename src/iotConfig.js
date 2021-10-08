@@ -6,6 +6,7 @@ export const URL_CATFISH = URL_SERVER_BASE + "/dezd"
 
 // CREDENTIALS
 export const URL_LOGIN = URL_SERVER_BASE + "/login"
+export const URL_LOGOUT = URL_SERVER_BASE + "/logout"
 export const URL_REGISTER = URL_SERVER_BASE + "/register"
 
 // USER
@@ -56,6 +57,7 @@ export const URL_NOTIFICATION_DEL_ALL = URL_SERVER_BASE + "/NOTIF/del_all"
 
 export const ROUTE_HOME = "/"
 export const ROUTE_LOGIN = "/login"
+export const ROUTE_LOGOUT = "/logout"
 export const ROUTE_REGISTER = "/register"
 
 export const ROUTE_SENSOR_LIST = "/sensor/list"

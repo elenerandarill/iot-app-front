@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Homepage from "./components/views/homepage";
 import Alerts from "./components/views/alerts/alerts";
 import Sensors from "./components/views/sensors/sensors";
@@ -39,6 +39,8 @@ import {
 } from "./iotConfig";
 import RemoveTeamMember from "./components/views/team/removeTeamMember";
 import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
+import PrivateRoute from "./components/privateRoute";
+import NotFound from "./components/views/notFound";
 // import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
@@ -59,27 +61,27 @@ function App() {
                 <Route path={ROUTE_REGISTER} exact component={Register}/>
                 <Route path="/test" exact component={Test}/>
 
-                <UserViews>
-                    <Route path={ROUTE_HOME} exact component={Homepage}/>
-                    <Route path={ROUTE_NOTIFS_LIST} exact component={Alerts}/>
-                    <Route path={ROUTE_NOTIFS_NEW} exact component={NewAlert}/>
-                    <Route path={ROUTE_SENSOR_LIST} exact component={Sensors}/>
-                    <Route path={ROUTE_SENSOR_DETAILS(`:id`)} exact component={SensorDetails}/>
-                    <Route path={ROUTE_SENSOR_EDIT(`:id`)} exact component={EditSensorGroups}/>
-                    <Route path={ROUTE_SENSOR_EDIT_CHART(`:id`)} exact component={EditSensorChart}/>
-                    <Route path={ROUTE_SGROUP_LIST} exact component={SGroups}/>
-                    <Route path={ROUTE_SGROUP_NEW} exact component={NewSGroup}/>
-                    <Route path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
-                    <Route path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
-                    <Route path={ROUTE_SGROUP_DEL(`:id`)} exact component={DeleteSGroup}/>
-                    <Route path={ROUTE_TMEMBER_LIST} exact component={Team}/>
-                    <Route path={ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
-                    <Route path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
-                    <Route path={ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
-                    <Route path={ROUTE_TMEMBER_SENSORS_EDIT(`:id`)} exact component={EditMemberSensors}/>
-                    <Route path={ROUTE_TMEMBER_REM(`:id`)} exact component={RemoveTeamMember}/>
-                    <Route path={ROUTE_CONTACT} component={Contact}/>
-                </UserViews>
+                <PrivateRoute path={ROUTE_HOME} exact component={Homepage}/>
+                <PrivateRoute path={ROUTE_NOTIFS_LIST} exact component={Alerts}/>
+                <PrivateRoute path={ROUTE_NOTIFS_NEW} exact component={NewAlert}/>
+                <PrivateRoute path={ROUTE_SENSOR_LIST} exact component={Sensors}/>
+                <PrivateRoute path={ROUTE_SENSOR_DETAILS(`:id`)} exact component={SensorDetails}/>
+                <PrivateRoute path={ROUTE_SENSOR_EDIT(`:id`)} exact component={EditSensorGroups}/>
+                <PrivateRoute path={ROUTE_SENSOR_EDIT_CHART(`:id`)} exact component={EditSensorChart}/>
+                <PrivateRoute path={ROUTE_SGROUP_LIST} exact component={SGroups}/>
+                <PrivateRoute path={ROUTE_SGROUP_NEW} exact component={NewSGroup}/>
+                <PrivateRoute path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
+                <PrivateRoute path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
+                <PrivateRoute path={ROUTE_SGROUP_DEL(`:id`)} exact component={DeleteSGroup}/>
+                <PrivateRoute path={ROUTE_TMEMBER_LIST} exact component={Team}/>
+                <PrivateRoute path={ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
+                <PrivateRoute path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
+                <PrivateRoute path={ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
+                <PrivateRoute path={ROUTE_TMEMBER_SENSORS_EDIT(`:id`)} exact component={EditMemberSensors}/>
+                <PrivateRoute path={ROUTE_TMEMBER_REM(`:id`)} exact component={RemoveTeamMember}/>
+                <PrivateRoute path={ROUTE_CONTACT} component={Contact}/>
+
+                <Route component={NotFound}/>
             </Switch>
         </BrowserRouter>
     );

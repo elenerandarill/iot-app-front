@@ -1,10 +1,11 @@
-import { Member } from "../../../FakeBackend/getMembers";
+import {Member} from "../../../FakeBackend/getMembers";
 import ListObjects from "../../listObjects";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {ROUTE_SENSOR_DETAILS, ROUTE_SGROUP_DETAILS, ROUTE_TMEMBER_NEW, ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {ButtonLink} from "../../buttons";
 import {fetchTeam} from "../../../FakeFrontend/backendMemberConnector";
+import UserViews from "../userViews";
 
 /**
  * @param member {Member}
@@ -26,12 +27,12 @@ export const memberObjectRenderer = (member) => {
 
 export const permRenderer = (perm) => {
     // console.log("permRenderer dostaje: ", perm)
-    return(
+    return (
         <Link
             key={perm.type + perm.id}
             to={perm.type === "SENSOR"
-                    ? ROUTE_SENSOR_DETAILS(perm.id)
-                    : ROUTE_SGROUP_DETAILS(perm.id)}
+                ? ROUTE_SENSOR_DETAILS(perm.id)
+                : ROUTE_SGROUP_DETAILS(perm.id)}
         >
             <div className={"object shadow"}>
                 <div className="txt-semibold">{perm.getDisplayName()}</div>
@@ -51,30 +52,32 @@ const Team = () => {
 
 
     return (
-        <div className="main">
-            <div className="buttons-container">
-                <ButtonLink
-                    text="osoba"
-                    add={true}
-                    link={ROUTE_TMEMBER_NEW}
-                />
-            </div>
-
-            <div className="content-3x">
-                <div className="content-srodek">
-
-                    <div className="headline-color">Osoby w teamie</div>
-                    <div className="white-space top-contact">
-                        <ListObjects
-                            list={team}
-                            objectRenderer={memberObjectRenderer}
-                        />
-                    </div>
-
+        <UserViews>
+            <div className="main">
+                <div className="buttons-container">
+                    <ButtonLink
+                        text="osoba"
+                        add={true}
+                        link={ROUTE_TMEMBER_NEW}
+                    />
                 </div>
-            </div>
 
-        </div>
+                <div className="content-3x">
+                    <div className="content-srodek">
+
+                        <div className="headline-color">Osoby w teamie</div>
+                        <div className="white-space top-contact">
+                            <ListObjects
+                                list={team}
+                                objectRenderer={memberObjectRenderer}
+                            />
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </UserViews>
     )
 }
 
