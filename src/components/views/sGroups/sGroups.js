@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 import {ButtonLink} from "../../buttons";
-import {ROUTE_SGROUP_NEW, ROUTE_SGROUP_DEL, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
+import {ROUTE_SGROUP_NEW, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 
 /**
  * @param group {GroupOfSensors}

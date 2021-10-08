@@ -3,7 +3,7 @@ import {
     URL_SGROUP_GET,
     URL_SGROUP_LIST,
     URL_SGROUP_ASSIGNED_SET,
-    URL_SGROUP_NEW, ROUTE_SGROUP_LIST
+    URL_SGROUP_NEW, ROUTE_SGROUP_LIST, URL_SGROUP_DEL
 } from "../iotConfig";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {jsonToSensors} from "./backendSensorConnector";
@@ -48,6 +48,15 @@ export const newSgroup = async (name) => {
         {"SGNAME": name}
     )
     return res.body["SGRID"]
+}
+
+
+export const delSgroup = async (id) => {
+    const res = await sendRequest(
+        URL_SGROUP_DEL,
+        {"SGRID": parseInt(id)}
+    )
+    return res.status
 }
 
 export const setSgroupAssignedSensors = async (id, assigned) => {

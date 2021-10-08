@@ -35,9 +35,10 @@ import {
     ROUTE_SGROUP_EDIT,
     ROUTE_SGROUP_LIST,
     ROUTE_TMEMBER_NEW, ROUTE_TMEMBER_DETAILS,
-    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT, ROUTE_TMEMBER_REM
+    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT, ROUTE_TMEMBER_REM, ROUTE_SGROUP_DEL
 } from "./iotConfig";
 import RemoveTeamMember from "./components/views/team/removeTeamMember";
+import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
 // import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
@@ -70,6 +71,7 @@ function App() {
                     <Route path={ROUTE_SGROUP_NEW} exact component={NewSGroup}/>
                     <Route path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
                     <Route path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
+                    <Route path={ROUTE_SGROUP_DEL(`:id`)} exact component={DeleteSGroup}/>
                     <Route path={ROUTE_TMEMBER_LIST} exact component={Team}/>
                     <Route path={ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
                     <Route path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>

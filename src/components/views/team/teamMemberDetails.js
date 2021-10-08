@@ -4,7 +4,7 @@ import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
 import {useEffect, useState} from "react";
 import {
-    ROUTE_TMEMBER_LIST,
+    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_REM,
     ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT,
     URL_USER_SET
 } from "../../../iotConfig";
@@ -50,7 +50,7 @@ const TeamMemberDetails = () => {
                 />
                 <ButtonLink
                     text="usuń tę osobę"
-                    link={`/team/member/${id}/rem`}
+                    link={ROUTE_TMEMBER_REM(id)}
                 />
             </div>
 

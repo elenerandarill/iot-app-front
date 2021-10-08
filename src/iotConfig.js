@@ -67,7 +67,7 @@ export const ROUTE_SGROUP_LIST = "/sgroup/list"
 export const ROUTE_SGROUP_DETAILS = (id) => "/sgroup/" + id + "/details"
 export const ROUTE_SGROUP_EDIT = (id) => "/sgroup/" + id + "/edit"
 export const ROUTE_SGROUP_NEW = "/sgroup/new"
-export const ROUTE_SGROUP_DEL = "/sgroup/del"
+export const ROUTE_SGROUP_DEL = (id) => "/sgroup/" + id + "/del"
 
 export const ROUTE_TMEMBER_LIST = "/team/member/list"
 export const ROUTE_TMEMBER_DETAILS = (id) => "/team/member/" + id + "/details"

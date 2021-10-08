@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET, URL_USER_SET} from "../../../iotConfig";
+import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET, URL_USER_SET} from "../../../iotConfig";
 import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {ButtonFunc, ButtonLink} from "../../buttons";
@@ -37,9 +37,9 @@ const SGroupDetails = () => {
                     link={ROUTE_SGROUP_LIST}
                     text="powrót do listy"
                 />
-                <ButtonFunc
+                <ButtonLink
+                    link={ROUTE_SGROUP_DEL(id)}
                     text="usuń tę grupę"
-                    onClick={() => console.log("Usuwam tę grupę")}
                 />
             </div>
 

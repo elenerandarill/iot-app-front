@@ -1,24 +1,25 @@
 import React from 'react';
 import {ButtonFunc, ButtonLink} from "../../buttons";
-import {ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_LIST} from "../../../iotConfig";
+import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_DETAILS, ROUTE_SGROUP_LIST} from "../../../iotConfig";
 import {useHistory, useParams} from "react-router-dom";
-import {remMember} from "../../../FakeFrontend/backendMemberConnector";
+import {delSgroup} from "../../../FakeFrontend/backendSgroupConnector";
 
-const RemoveTeamMember = () => {
-    const {id} = useParams();
+const DeleteSGroup = () => {
+    const {id} = useParams()
     let history = useHistory();
 
     const handleSend = () => {
-        remMember(id)
-            .then(() => history.push(ROUTE_TMEMBER_LIST))
+        delSgroup(id)
+            .then(() => history.push(ROUTE_SGROUP_LIST))
     }
+
 
     return (
         <div className="main">
             <div className="buttons-container">
                 <ButtonLink
                     text="Anuluj"
-                    link={ROUTE_TMEMBER_DETAILS(id)}
+                    link={ROUTE_SGROUP_DETAILS(id)}
                 />
             </div>
 
@@ -26,14 +27,14 @@ const RemoveTeamMember = () => {
                 <div className="content-srodek">
 
                     <div className="headline-color">
-                        Usunięcie osoby z zespołu
+                        Trwałe zlikwidowanie grupy.
                     </div>
                     <div className="white-space top-contact">
 
                         <div className="shadow no-contact centered">
                             <div className="head-txt">
-                                Kliknięcie w&nbsp;"usuń" spowoduje odłączenie użytkownika od&nbsp;tego zespołu.
-                                Nie&nbsp;spowoduje to&nbsp;skasowania użytkownika.
+                                Kliknięcie w&nbsp;"usuń" spowoduje trwałe usunięcie tej grupy,
+                                a&nbsp;wszystkie należące do&nbsp;niej czujniki, zostaną z&nbsp;niej wypisane.
                             </div>
 
                         </div>
@@ -52,7 +53,7 @@ const RemoveTeamMember = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
-export default RemoveTeamMember;
+export default DeleteSGroup;
