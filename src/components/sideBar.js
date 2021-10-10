@@ -45,6 +45,7 @@ const SideBar = () => {
             <h6>Tymczasowe skróty:</h6>
             <MenuButton text="Logowanie" path="/login"/>
             <MenuButton text="Rejestracja" path="/register"/>
+            <MenuButton text="Restart" path="/restart"/>
 
         </div>
     )

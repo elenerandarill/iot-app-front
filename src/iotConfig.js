@@ -3,6 +3,7 @@
 export const URL_SERVER_BASE = "http://localhost:8000"
 
 export const URL_CATFISH = URL_SERVER_BASE + "/dezd"
+export const URL_RESTART = URL_SERVER_BASE + "/refresh_fake_db"
 
 // CREDENTIALS
 export const URL_LOGIN = URL_SERVER_BASE + "/login"
@@ -59,6 +60,7 @@ export const URL_NOTIFICATION_DEL_ALL = URL_SERVER_BASE + "/NOTIF/del_all"
 // ----- ROUTES -----
 
 export const ROUTE_HOME = "/"
+export const ROUTE_RESTART = "/restart"
 export const ROUTE_LOGIN = "/login"
 export const ROUTE_LOGOUT = "/logout"
 export const ROUTE_REGISTER = "/register"

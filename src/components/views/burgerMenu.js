@@ -69,6 +69,8 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
                                   onClick={() => activateBurgerMenu(false)}/>
                 <MenuBurgerButton text="Rejestracja" path="/register"
                                   onClick={() => activateBurgerMenu(false)}/>
+                <MenuBurgerButton text="Restart" path="/restart"
+                                  onClick={() => activateBurgerMenu(false)}/>
             </div>
             <div className="txt-right icon-close-bmenu txt-left">
                 <i

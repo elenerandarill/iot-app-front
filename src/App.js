@@ -7,7 +7,6 @@ import SGroups from "./components/views/sGroups/sGroups";
 import Team from "./components/views/team/team";
 import Contact from "./components/views/contact";
 import Login from "./components/views/login";
-import UserViews from "./components/views/userViews";
 import Register from "./components/views/register";
 import SensorDetails from "./components/views/sensors/sensorDetails";
 import SGroupDetails from "./components/views/sGroups/sGroupDetails";
@@ -23,9 +22,11 @@ import NewTeamMember from "./components/views/team/newTeamMember";
 import NewAlert from "./components/views/alerts/newAlert";
 import {
     ROUTE_CONTACT,
-    ROUTE_HOME, ROUTE_LOGIN,
+    ROUTE_HOME,
+    ROUTE_LOGIN,
     ROUTE_NOTIFS_LIST,
-    ROUTE_NOTIFS_NEW, ROUTE_REGISTER,
+    ROUTE_NOTIFS_NEW,
+    ROUTE_REGISTER,
     ROUTE_SENSOR_DETAILS,
     ROUTE_SENSOR_EDIT,
     ROUTE_SENSOR_EDIT_CHART,
@@ -34,13 +35,20 @@ import {
     ROUTE_SGROUP_DETAILS,
     ROUTE_SGROUP_EDIT,
     ROUTE_SGROUP_LIST,
-    ROUTE_TMEMBER_NEW, ROUTE_TMEMBER_DETAILS,
-    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT, ROUTE_TMEMBER_REM, ROUTE_SGROUP_DEL
+    ROUTE_TMEMBER_NEW,
+    ROUTE_TMEMBER_DETAILS,
+    ROUTE_TMEMBER_LIST,
+    ROUTE_TMEMBER_SENSORS_EDIT,
+    ROUTE_TMEMBER_SGROUPS_EDIT,
+    ROUTE_TMEMBER_REM,
+    ROUTE_SGROUP_DEL,
+    ROUTE_RESTART
 } from "./iotConfig";
 import RemoveTeamMember from "./components/views/team/removeTeamMember";
 import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
 import PrivateRoute from "./components/privateRoute";
 import NotFound from "./components/views/notFound";
+import Restart from "./components/views/restart";
 // import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
 // import PopAlerts from "./components/PopAlerts";
 // import {Notifications} from "react-push-notification";
@@ -57,6 +65,7 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
+                <Route path={ROUTE_RESTART} exact component={Restart}/>
                 <Route path={ROUTE_LOGIN} exact component={Login}/>
                 <Route path={ROUTE_REGISTER} exact component={Register}/>
                 <Route path="/test" exact component={Test}/>
