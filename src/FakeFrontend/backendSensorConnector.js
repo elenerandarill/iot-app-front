@@ -64,9 +64,9 @@ export const setSensorAssignedSgroups = async (id, assigned) => {
 export const updateSensorGps = async (position, id) => {
     await sendRequest(
         URL_SENSOR_SET,
-        {"id": id,
-            "latitude": position.latitude,
-            "longitude": position.longitude}
+        {"SENID": parseInt(id),
+            "SELAT": position.latitude,
+            "SELONG": position.longitude}
     )
     return position
 }
