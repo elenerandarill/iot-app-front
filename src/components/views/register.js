@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {sendRequest} from "../../FakeFrontend/backendConnector";
-import {ROUTE_HOME, URL_REGISTER} from "../../iotConfig";
+import {ROUTE_HOME, ROUTE_LOGIN, URL_REGISTER} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
+import {sendRegister} from "../../FakeFrontend/backendAuthConnector";
 
 const Register = () => {
     const [fname, setFname] = useState("");
-    const [mname, setMname] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [password2, setPassword2] = useState("")
-    const [company, setCompany] = useState("")
+    // const [company, setCompany] = useState("")
     const history = useHistory()
 
 
@@ -39,45 +39,29 @@ const Register = () => {
             alert("Podaj hasło")
             return
         }
-        if (!company) {
-            // TODO: toastify
-            alert("Podaj nazwę firmy")
-            return
-        }
+        // if (!company) {
+        //     // TODO: toastify
+        //     alert("Podaj nazwę firmy")
+        //     return
+        // }
 
         // czy password == password2
         if (password !== password2){
             alert("Oba hasła muszą być identyczne")
         }
 
-        const handleSend = async () => {
-            return await sendRequest(
-                URL_REGISTER,
-                {
-                    fname: fname,
-                    mname: mname,
-                    lname: lname,
-                    email: email,
-                    password: password,
-                    company:company
-                }
-            )
-        }
-
-        if (fname && lname && email && password && company && (password === password2)) {
-            const resp = await handleSend()
+        if (fname && lname && email && password && (password === password2)) {
+            const resp = await sendRegister(fname,  lname, email, password)
 
             if (resp){
                 if (resp.status === 200) {
                     console.log("[ Rejestracja ] udana")
                     // wyzerowanie wartosci pol
                     setFname("")
-                    setMname("")
                     setLname("")
                     setEmail("")
                     setPassword("")
-                    setCompany("")
-                    history.push(ROUTE_HOME)
+                    history.push(ROUTE_LOGIN)
                 } else {
                     // TODO: toastify
                     alert(`[ Rejestracja ] nieudana, status: ${resp.status}`);
@@ -90,23 +74,13 @@ const Register = () => {
         <div className="overlay-bgd">
             <div className="login-area">
                 <div className="head-txt">Strona Rejestracji</div>
-                <form
-                    // onSubmit={onSubmit}
-                    className="white-register-area"
-                >
+                <div className="white-register-area">
                     <input
                         type="text"
                         placeholder="imię"
                         className="input-login"
                         value={fname}
                         onChange={(e) => setFname(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="drugie imię*"
-                        className="input-login"
-                        value={mname}
-                        onChange={(e) => setMname(e.target.value)}
                     />
                     <input
                         type="text"
@@ -136,18 +110,11 @@ const Register = () => {
                         value={password2}
                         onChange={(e) => setPassword2(e.target.value)}
                     />
-                    <input
-                        type="company"
-                        placeholder="nazwa firmy"
-                        className="input-login"
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                    />
                     <ButtonFunc
                         text="Rejestruj"
                         onClick={(e) => onSubmit(e)}
                     />
-                </form>
+                </div>
                 <div className="mrg-tb txt-center">Masz już konto? <br/>
                     <Link to="/login">Zaloguj się!</Link>
                 </div>

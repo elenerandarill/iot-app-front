@@ -146,25 +146,25 @@ const SensorDetails = () => {
                                 </div>
                             </div>
 
-                            <div className="shadow listed-attribute">
-                                <div className="mrg-tb head-txt">
-                                    dodaj element dla tego czujnika
-                                </div>
-                                <div className="position-cent">
-                                    <ButtonLink
-                                        text="wykres"
-                                        add={true}
-                                    />
-                                    <ButtonLink
-                                        text="tabela"
-                                        add={true}
-                                    />
-                                    <ButtonLink
-                                        text="mapa"
-                                        add={true}
-                                    />
-                                </div>
-                            </div>
+                            {/*<div className="shadow listed-attribute">*/}
+                            {/*    <div className="mrg-tb head-txt">*/}
+                            {/*        dodaj element dla tego czujnika*/}
+                            {/*    </div>*/}
+                            {/*    <div className="position-cent">*/}
+                            {/*        <ButtonLink*/}
+                            {/*            text="wykres"*/}
+                            {/*            add={true}*/}
+                            {/*        />*/}
+                            {/*        <ButtonLink*/}
+                            {/*            text="tabela"*/}
+                            {/*            add={true}*/}
+                            {/*        />*/}
+                            {/*        <ButtonLink*/}
+                            {/*            text="mapa"*/}
+                            {/*            add={true}*/}
+                            {/*        />*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
 
                             {/* --- map --- */}
                             <div className="shadow listed-attribute">

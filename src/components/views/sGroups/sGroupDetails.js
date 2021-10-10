@@ -33,6 +33,10 @@ const SGroupDetails = () => {
      * @return {GpsCoordinate}
      */
     function getGeographicalCenter(assignedObjs) {
+        if(assignedObjs.length === 0) {
+            return new GpsCoordinate(52.237049, 21.017532)
+        }
+
         let lat = 0
         for(const obj of assignedObjs) {
             lat += obj.GPS.latitude

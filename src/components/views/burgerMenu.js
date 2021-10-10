@@ -8,7 +8,7 @@ import {
     ROUTE_SGROUP_LIST,
     ROUTE_TMEMBER_LIST
 } from "../../iotConfig";
-import {sendLogout} from "../../FakeFrontend/backendConnector";
+import {sendLogout} from "../../FakeFrontend/backendAuthConnector";
 import * as authService from "../../authService";
 import {useHistory} from "react-router-dom";
 
@@ -68,8 +68,6 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
                 <MenuBurgerButton text="Logowanie" path="/login"
                                   onClick={() => activateBurgerMenu(false)}/>
                 <MenuBurgerButton text="Rejestracja" path="/register"
-                                  onClick={() => activateBurgerMenu(false)}/>
-                <MenuBurgerButton text="Test Requesta" path="/text"
                                   onClick={() => activateBurgerMenu(false)}/>
             </div>
             <div className="txt-right icon-close-bmenu txt-left">

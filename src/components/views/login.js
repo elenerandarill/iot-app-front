@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import {sendLogin} from "../../FakeFrontend/backendConnector";
+import {sendLogin} from "../../FakeFrontend/backendAuthConnector";
 import {ROUTE_HOME, URL_REGISTER} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
 import * as authService from "../../authService";

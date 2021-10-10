@@ -9,7 +9,7 @@ import {
     ROUTE_SGROUP_LIST,
     ROUTE_TMEMBER_LIST
 } from "../iotConfig";
-import {sendLogout} from "../FakeFrontend/backendConnector";
+import {sendLogout} from "../FakeFrontend/backendAuthConnector";
 import {useHistory} from "react-router-dom";
 import LogoutButton from "./logoutButton";
 import * as authService from "../authService";
@@ -45,7 +45,6 @@ const SideBar = () => {
             <h6>Tymczasowe skróty:</h6>
             <MenuButton text="Logowanie" path="/login"/>
             <MenuButton text="Rejestracja" path="/register"/>
-            <MenuButton text="Test Requesta" path="/text"/>
 
         </div>
     )
