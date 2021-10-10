@@ -27,7 +27,11 @@ const ChartTypeBar = ({ height, msData }) => {
                 [...new Set((msData.map(m => m.SDATYPE)))]
                     .map((sdatype, index) => {
                     return (
-                        <Bar name={sdatype} dataKey={sdatype} fill={chartsColors[index]}/>
+                        <Bar
+                            key={sdatype}
+                            name={sdatype}
+                            dataKey={sdatype}
+                            fill={chartsColors[index]}/>
                     )
                 })
             }

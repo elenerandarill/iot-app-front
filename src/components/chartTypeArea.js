@@ -18,7 +18,7 @@ const ChartTypeArea = ({ height, msData }) => {
                 {
                     chartsColors.map((cc, index) => {
                         return (
-                            <linearGradient id={`colorTemp${index}`} x1="0" y1="0" x2="0" y2="1">
+                            <linearGradient key={index} id={`colorTemp${index}`} x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor={chartsColors[index]} stopOpacity={0.8}/>
                                 <stop offset="95%" stopColor={chartsColors[index]} stopOpacity={0}/>
                             </linearGradient>
@@ -35,12 +35,14 @@ const ChartTypeArea = ({ height, msData }) => {
                 [...new Set((msData.map(m => m.SDATYPE)))]
                     .map((sdatype, index) => {
                     return (
-                        <Area name={sdatype}
-                              type="monotone"
-                              dataKey={sdatype}
-                              stroke={chartsColors[index]}
-                              fillOpacity={1}
-                              fill={`url(#colorTemp${index})`}
+                        <Area
+                            key={sdatype}
+                            name={sdatype}
+                            type="monotone"
+                            dataKey={sdatype}
+                            stroke={chartsColors[index]}
+                            fillOpacity={1}
+                            fill={`url(#colorTemp${index})`}
                         />
                     )
                 })

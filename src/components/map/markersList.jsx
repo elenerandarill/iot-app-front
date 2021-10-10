@@ -1,5 +1,5 @@
 
-const markers = [
+const markersExample = [
     {
         key: "marker1",
         position: [52.24520451421007, 21.054133239408895],
@@ -22,4 +22,4 @@ const markers = [
     }
 ];
 
-export default markers;
+export default markersExample;

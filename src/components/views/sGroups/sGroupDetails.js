@@ -8,11 +8,15 @@ import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backe
 import {changeValue} from "../../../FakeFrontend/backendConnector";
 import {ButtonFunc, ButtonLink} from "../../buttons";
 import UserViews from "../userViews";
+import CustomMap from "../../map/customMap";
+import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
+import {MapMarker} from "../../map/MapMarker";
 
 
 const SGroupDetails = () => {
     const [sgroup, setSgroup] = useState(undefined)
-    const [assignedObjs, setAssignedObjs] = useState([])
+    const [assignedObjs, setAssignedObjs] = useState(
+        /** @type {Sensor[]} */ undefined)
     const {id} = useParams();
 
     useEffect(() => {
@@ -23,7 +27,38 @@ const SGroupDetails = () => {
             .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
-    if (!sgroup) {
+
+    /**
+     * @param assignedObjs {Sensor[]}
+     * @return {GpsCoordinate}
+     */
+    function getGeographicalCenter(assignedObjs) {
+        let lat = 0
+        for(const obj of assignedObjs) {
+            lat += obj.GPS.latitude
+        }
+        lat /= assignedObjs.length
+
+        let lon = 0
+        for(const obj of assignedObjs) {
+            lon += obj.GPS.longitude
+        }
+        lon /= assignedObjs.length
+
+        return new GpsCoordinate(lat, lon)
+    }
+
+    /**
+     * @param assignedObjs {Sensor[]}
+     * @return {MapMarker[]}
+     */
+    function getGpsMarkers(assignedObjs) {
+        return assignedObjs.map(s => {
+            return new MapMarker(s.id, s.getDisplayName(), s.GPS)
+        })
+    }
+
+    if (!sgroup || !assignedObjs) {
         return (
             <div className="main">
                 <div className="stats-title">nie znaleziono takiej grupy</div>
@@ -73,6 +108,20 @@ const SGroupDetails = () => {
                                         TU BĘDĄ JAKIEŚ DANE
 
                                     </div>
+                                </div>
+                            </div>
+
+                            {/* --- map --- */}
+                            <div className="shadow listed-attribute">
+
+                                <div className="head-txt">
+                                    położenie geograficzne
+                                </div>
+                                <div className="position-cent">
+                                    <CustomMap
+                                        center={getGeographicalCenter(assignedObjs)}
+                                        zoom={12}
+                                        markers={getGpsMarkers(assignedObjs)}/>
                                 </div>
                             </div>
 

@@ -21,6 +21,7 @@ import {ButtonFunc, ButtonLink} from "../../buttons";
 import CustomMap from "../../map/customMap";
 import UserViews from "../userViews";
 import {fetchMeasurements} from "../../../FakeFrontend/backendMesurementConnector";
+import {MapMarker} from "../../map/MapMarker";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(
@@ -42,22 +43,22 @@ const SensorDetails = () => {
             .then((sensor) => setSensor(sensor))
 
         // get battery charge lvl
-        // fetchMeasurements(id, ["BATT"], 1) //TODO wartosci nie na sztywno!!!!
-        //     .then((ms) => {
-        //         if (ms.length === 0) return "brak danych"
-        //         setBattery(ms[0].SDADATA)
-        //     })
+        fetchMeasurements(id, ["BATT"], 1) //TODO wartosci nie na sztywno!!!!
+            .then((ms) => {
+                if (ms.length === 0) return "brak danych"
+                setBattery(ms[0].SDADATA)
+            })
 
         // get latest measurements
-        // fetchMeasurements(id, undefined, 4) //TODO wartosci nie na sztywno!!!!
-        //     .then((ms) => {setLatestMeasurements(ms)})
+        fetchMeasurements(id, undefined, 4) //TODO wartosci nie na sztywno!!!!
+            .then((ms) => {setLatestMeasurements(ms)})
 
         // // get last 5 mrm for TEMP and HUMID, for chart!
         fetchMeasurements(id, ["TEMP", "RHUM"], 10) //TODO wartosci nie na sztywno!!!!
             .then((ms) => setChartMeasurements(ms))
 
-        // getSensorAssignedSgroups(id)
-        //     .then(listObjs => setAssignedObjs(listObjs))
+        getSensorAssignedSgroups(id)
+            .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
 
@@ -85,6 +86,10 @@ const SensorDetails = () => {
                 setForceRender(forceRender + 1)
             })
 
+    }
+
+    const getGpsMarkers = (sensor) => {
+        return [new MapMarker(sensor.id, sensor.getDisplayName(), sensor.GPS)]
     }
 
     return (
@@ -162,14 +167,16 @@ const SensorDetails = () => {
                             </div>
 
                             {/* --- map --- */}
-
                             <div className="shadow listed-attribute">
 
                                 <div className="head-txt">
                                     położenie geograficzne
                                 </div>
                                 <div className="position-cent">
-                                    <CustomMap/>
+                                    <CustomMap
+                                        center={sensor.GPS}
+                                        zoom={13}
+                                        markers={getGpsMarkers(sensor)}/>
                                 </div>
                             </div>
 
