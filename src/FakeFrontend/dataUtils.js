@@ -1,4 +1,12 @@
 
+
+// [...SDATYPEsSet]
+// list2 = [...list1]
+
+
+
+
+
 // {Object.entries(group.measurements).map(([key, value]) =>
 //     <div key={key.toString()} className="mrg-tb mrg-lr">
 //         {key === "avTemp" && "śr. temperatura"}

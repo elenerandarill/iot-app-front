@@ -12,7 +12,6 @@ import {
     ROUTE_SENSOR_EDIT_CHART,
     ROUTE_SENSOR_LIST,
     URL_SENSOR_SET,
-    URL_USER_SET
 } from "../../../iotConfig";
 import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
 import {changeValue} from "../../../FakeFrontend/backendConnector";
@@ -21,10 +20,17 @@ import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
 import {ButtonFunc, ButtonLink} from "../../buttons";
 import CustomMap from "../../map/customMap";
 import UserViews from "../userViews";
+import {fetchMeasurements} from "../../../FakeFrontend/backendMesurementConnector";
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(
         /** @type {Sensor} */ undefined)
+    const [battery, setBattery] = useState(
+        /** @type {Measurement} */ [])
+    const [latestMeasurements, setLatestMeasurements] = useState(
+        /** @type {Measurement} */ [])
+    const [chartMeasurements, setChartMeasurements] = useState(
+        /** @type {Measurement} */ [])
     const [assignedObjs, setAssignedObjs] = useState(
         /** @type {GroupOfSensors[]} */ [])
     const [forceRender, setForceRender] = useState(
@@ -35,8 +41,23 @@ const SensorDetails = () => {
         fetchSensor(id)
             .then((sensor) => setSensor(sensor))
 
-        getSensorAssignedSgroups(id)
-            .then(listObjs => setAssignedObjs(listObjs))
+        // get battery charge lvl
+        // fetchMeasurements(id, ["BATT"], 1) //TODO wartosci nie na sztywno!!!!
+        //     .then((ms) => {
+        //         if (ms.length === 0) return "brak danych"
+        //         setBattery(ms[0].SDADATA)
+        //     })
+
+        // get latest measurements
+        // fetchMeasurements(id, undefined, 4) //TODO wartosci nie na sztywno!!!!
+        //     .then((ms) => {setLatestMeasurements(ms)})
+
+        // // get last 5 mrm for TEMP and HUMID, for chart!
+        fetchMeasurements(id, ["TEMP", "RHUM"], 10) //TODO wartosci nie na sztywno!!!!
+            .then((ms) => setChartMeasurements(ms))
+
+        // getSensorAssignedSgroups(id)
+        //     .then(listObjs => setAssignedObjs(listObjs))
     }, [id])
 
 
@@ -98,7 +119,7 @@ const SensorDetails = () => {
                             />
 
                             <DisplayAttribute name="numer seryjny" value={sensor.sn}/>
-                            <DisplayAttribute name="bateria" value={sensor.battery + "%"}/>
+                            <DisplayAttribute name="bateria" value={battery + "%"}/>
 
                             <div className="shadow listed-attribute">
                                 <div className="head-txt">GPS</div>
@@ -116,7 +137,7 @@ const SensorDetails = () => {
                             <div className="shadow listed-attribute">
                                 <div className="mrg-tb head-txt">OSTATNI POMIAR</div>
                                 <div className="position-cent">
-                                    {/*<ListMeasurements sensorObj={sensor}/>*/}
+                                    <ListMeasurements measurements={latestMeasurements}/>
                                 </div>
                             </div>
 
@@ -172,7 +193,7 @@ const SensorDetails = () => {
                                     link={ROUTE_SENSOR_EDIT_CHART(id)}
                                 />
 
-                                <ChartTypeArea height={250} object={sensor}/>
+                                <ChartTypeArea height={250} msData={chartMeasurements}/>
                             </div>
 
                             {/* --- bar chart --- */}
@@ -180,7 +201,7 @@ const SensorDetails = () => {
                                 <div className="mrg-tb head-txt">
                                     wykres ostanich 5 pomiarów
                                 </div>
-                                <ChartTypeBar height={250} object={sensor}/>
+                                <ChartTypeBar height={250} msData={chartMeasurements}/>
                             </div>
 
                             {/* --- edit assigned --- */}

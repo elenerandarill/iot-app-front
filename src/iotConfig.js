@@ -22,6 +22,9 @@ export const URL_SENSOR_SET = URL_SERVER_BASE + "/SENSOR/set"
 export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/SGMEMB/set"
 export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 
+export const URL_SDATA_LIST = URL_SERVER_BASE + "/SDATA/list"
+
+
 //SGROUP
 export const URL_SGROUP_LIST = URL_SERVER_BASE + "/SGROUP/list"
 export const URL_SGROUP_NEW = URL_SERVER_BASE + "/SGROUP/new"

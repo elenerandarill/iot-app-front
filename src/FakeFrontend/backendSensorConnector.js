@@ -3,7 +3,7 @@ import {
     URL_SENSOR_GET,
     URL_SENSOR_LIST,
     URL_SENSOR_SET,
-    URL_SENSOR_ASSIGNED_SET
+    URL_SENSOR_ASSIGNED_SET,
 } from "../iotConfig";
 import {GpsCoordinate} from "../FakeBackend/gpsCoordinate";
 import {Sensor} from "../FakeBackend/getSensors";
@@ -38,6 +38,8 @@ export const fetchSensors = async () => {
     )
     return jsonToSensors(res.body)
 }
+//---------------------------------------------------------------
+
 
 export const getSensorAssignedSgroups = async (id) => {
     const res = await sendRequest(
