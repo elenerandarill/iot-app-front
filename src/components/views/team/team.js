@@ -1,11 +1,12 @@
 import {Member} from "../../../FakeBackend/getMembers";
 import ListObjects from "../../listObjects";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {ROUTE_SENSOR_DETAILS, ROUTE_SGROUP_DETAILS, ROUTE_TMEMBER_NEW, ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {ButtonLink} from "../../buttons";
 import {fetchTeam} from "../../../FakeFrontend/backendMemberConnector";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 /**
  * @param member {Member}
@@ -43,11 +44,13 @@ export const permRenderer = (perm) => {
 
 const Team = () => {
     const [team, setTeam] = useState([]);
+    const history = useHistory()
 
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
         fetchTeam(1)
-            .then(team => setTeam(team))
+            .then(setTeam)
+            .catch(error => handleUnauthorizedException(error, history))
     }, [])
 
 

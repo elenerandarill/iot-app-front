@@ -4,6 +4,7 @@ import {ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_LIST} from "../../../iotConfig";
 import {useHistory, useParams} from "react-router-dom";
 import {remMember} from "../../../FakeFrontend/backendMemberConnector";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 const RemoveTeamMember = () => {
     const {id} = useParams();
@@ -12,6 +13,7 @@ const RemoveTeamMember = () => {
     const handleSend = () => {
         remMember(id)
             .then(() => history.push(ROUTE_TMEMBER_LIST))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
     return (

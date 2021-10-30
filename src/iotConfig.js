@@ -1,6 +1,7 @@
 
 // export const CATFISH_URL = "/cgi-bin/dezd"
 export const URL_SERVER_BASE = "http://localhost:8000"
+// export const URL_SERVER_BASE = "http://kawinski.net:8000"
 
 export const URL_CATFISH = URL_SERVER_BASE + "/dezd"
 export const URL_RESTART = URL_SERVER_BASE + "/refresh_fake_db"

@@ -52,7 +52,7 @@ export const InputTextarea = ({label, placeholder, sendChange}) => {
             <div className="head-txt">{label}</div>
             <div className="position-cent">
                 <div
-                    className="txtarea"
+                    className="txtarea mrg-b"
                     contentEditable="true"
                     suppressContentEditableWarning={true}
                     onInput={(e) => setNewValue(e.target.textContent)}

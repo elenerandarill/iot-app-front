@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {InputString} from "../../attributes";
 import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
@@ -8,7 +8,7 @@ import {
     ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT,
     URL_USER_SET
 } from "../../../iotConfig";
-import {changeValue} from "../../../FakeFrontend/backendConnector";
+import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {fetchMember, getMemberAssigned} from "../../../FakeFrontend/backendMemberConnector";
 import {permRenderer} from "./team";
 import UserViews from "../userViews";
@@ -18,13 +18,16 @@ const TeamMemberDetails = () => {
     const [member, setMember] = useState(undefined)
     const [assignedObjs, setAssignedObjs] = useState([])
     const {id} = useParams();
+    const history = useHistory()
 
     useEffect(() => {
         fetchMember(id)
-            .then((member) => setMember(member))
+            .then(setMember)
+            .catch(error => handleUnauthorizedException(error, history))
 
         getMemberAssigned(id)
-            .then(listObjs => setAssignedObjs(listObjs))
+            .then(setAssignedObjs)
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
     const filterSgroups = (list) => {

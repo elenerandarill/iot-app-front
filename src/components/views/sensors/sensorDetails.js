@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {DisplayAttribute, InputString, InputTextarea} from "../../attributes";
 import ListMeasurements from "../../listMeasurements.js";
@@ -14,7 +14,7 @@ import {
     URL_SENSOR_SET,
 } from "../../../iotConfig";
 import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
-import {changeValue} from "../../../FakeFrontend/backendConnector";
+import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
 import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
 import {ButtonFunc, ButtonLink} from "../../buttons";
@@ -37,10 +37,13 @@ const SensorDetails = () => {
     const [forceRender, setForceRender] = useState(
         /** @type {number[]} */ 0)
     const {id} = useParams();
+    const history = useHistory()
+
 
     useEffect(() => {
         fetchSensor(id)
-            .then((sensor) => setSensor(sensor))
+            .then(setSensor)
+            .catch(error => handleUnauthorizedException(error, history))
 
         // get battery charge lvl
         fetchMeasurements(id, ["BATT"], 1) //TODO wartosci nie na sztywno!!!!
@@ -48,17 +51,21 @@ const SensorDetails = () => {
                 if (ms.length === 0) return "brak danych"
                 setBattery(ms[0].SDADATA)
             })
+            .catch(error => handleUnauthorizedException(error, history))
 
         // get latest measurements
         fetchMeasurements(id, undefined, 4) //TODO wartosci nie na sztywno!!!!
             .then((ms) => {setLatestMeasurements(ms)})
+            .catch(error => handleUnauthorizedException(error, history))
 
         // // get last 5 mrm for TEMP and HUMID, for chart!
         fetchMeasurements(id, ["TEMP", "RHUM"], 10) //TODO wartosci nie na sztywno!!!!
             .then((ms) => setChartMeasurements(ms))
+            .catch(error => handleUnauthorizedException(error, history))
 
         getSensorAssignedSgroups(id)
             .then(listObjs => setAssignedObjs(listObjs))
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
 
@@ -75,7 +82,7 @@ const SensorDetails = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            alert("Geolocation is not supported by this browser.")
+            alert("Geolocalizacja nie jest wspierana przez tą przeglądarkę.")
         }
     }
     const showPosition = (position) => {
@@ -91,6 +98,10 @@ const SensorDetails = () => {
     const getGpsMarkers = (sensor) => {
         return [new MapMarker(sensor.id, sensor.getDisplayName(), sensor.GPS)]
     }
+
+    console.log(">>>sensor.type : ", sensor.type)
+    console.log(">>>sensor.type is type : ", typeof(sensor.type))
+    console.log(">>>sensor.getSensorType : ", sensor.getSensorType())
 
     return (
         <UserViews>
@@ -108,7 +119,7 @@ const SensorDetails = () => {
                             {sensor.name.trim() === "" ? sensor.sn : sensor.name}
                         </div>
                         <div className="white-space top-contact">
-                            <DisplayAttribute name="typ urządzenia" value={sensor.type}/>
+                            <DisplayAttribute name="typ urządzenia" value={sensor.getSensorType()}/>
                             <InputString
                                 label="nazwa"
                                 placeholder={sensor.name === "" ? "podaj nazwę" : sensor.name}
@@ -146,25 +157,25 @@ const SensorDetails = () => {
                                 </div>
                             </div>
 
-                            {/*<div className="shadow listed-attribute">*/}
-                            {/*    <div className="mrg-tb head-txt">*/}
-                            {/*        dodaj element dla tego czujnika*/}
-                            {/*    </div>*/}
-                            {/*    <div className="position-cent">*/}
-                            {/*        <ButtonLink*/}
-                            {/*            text="wykres"*/}
-                            {/*            add={true}*/}
-                            {/*        />*/}
-                            {/*        <ButtonLink*/}
-                            {/*            text="tabela"*/}
-                            {/*            add={true}*/}
-                            {/*        />*/}
-                            {/*        <ButtonLink*/}
-                            {/*            text="mapa"*/}
-                            {/*            add={true}*/}
-                            {/*        />*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className="shadow listed-attribute">
+                                <div className="mrg-tb head-txt">
+                                    dodaj element dla tego czujnika
+                                </div>
+                                <div className="position-cent">
+                                    <ButtonLink
+                                        text="wykres"
+                                        add={true}
+                                    />
+                                    <ButtonLink
+                                        text="tabela"
+                                        add={true}
+                                    />
+                                    <ButtonLink
+                                        text="mapa"
+                                        add={true}
+                                    />
+                                </div>
+                            </div>
 
                             {/* --- map --- */}
                             <div className="shadow listed-attribute">

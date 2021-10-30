@@ -195,7 +195,7 @@ a {
   border-radius: 5px;
   background: var(--blue);
   /*background-image: linear-gradient(var(--blue), var(--water));*/
-  padding: 0 40px;
+  padding: 0 25px;
   text-align: center;
   min-height: 45px;
 
@@ -528,7 +528,7 @@ img.dot {
 }
 
 .object-choices{
-  min-width: 180px;
+  min-width: 100px;
   min-height: 50px;
   margin: 5px;
   padding: 5px 15px;

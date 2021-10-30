@@ -10,6 +10,7 @@ import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {Perm} from "../../../FakeBackend/getPerms";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 
 const EditMemberSensors = () => {
@@ -34,16 +35,15 @@ const EditMemberSensors = () => {
     useEffect(() => {
         fetchSensors()
             .then((sensors) => setSensors(sensors))
+            .catch(error => handleUnauthorizedException(error, history))
 
         fetchMember(id)
-            .then((member) => {
-                setMember(member)
-            })
+            .then(setMember)
+            .catch(error => handleUnauthorizedException(error, history))
 
         getMemberAssigned(id)
-            .then(
-                (sgFound) => setSgAssigned(filterSensors(sgFound))
-            )
+            .then(sgFound => setSgAssigned(filterSensors(sgFound)))
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
     const sendChangeRequest = async (assigned) => {

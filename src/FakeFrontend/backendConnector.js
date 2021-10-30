@@ -1,5 +1,6 @@
 import {BackendResponse} from "./backendResponse";
 import * as authService from "../authService";
+import {ROUTE_LOGIN} from "../iotConfig";
 
 /**
  * @param url {string}
@@ -28,9 +29,11 @@ export const sendRequest = async (url, data) => {
     )
 
     const resStatus = res.status
-    // Aby wyciagnac body! i tez zwraca Promise, stąd await
     const resJson = await res.json()
     console.log("[ Response ] STATUS: ", resStatus, ", BODY: ", resJson)
+
+    if(resStatus === 401)
+        throw new Error("Unauthorized exception")
 
     return new BackendResponse(resStatus, resJson)
 }
@@ -46,6 +49,15 @@ export const changeValue = async (url, idName, id, propName, propValue) => {
 
     // POST
     return await sendRequest(url, data)
+}
+
+export const handleUnauthorizedException = (error, history) => {
+    if(error.message === "Unauthorized exception") {
+        console.log(error)
+        history.push(ROUTE_LOGIN)
+    } else {
+        throw error
+    }
 }
 
 

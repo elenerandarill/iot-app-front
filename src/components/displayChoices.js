@@ -3,50 +3,41 @@ import SearchBox from "./searchBox";
 import SelectChoices from "./selectChoices";
 import {ButtonFunc} from "./buttons";
 
+/**
+ * @param availableChoices {Sensor[] | GroupOfSensors[]}
+ * @param alreadyAssigned {Sensor[] | GroupOfSensors[]}
+ * @param onNewSelection {Sensor[] | GroupOfSensors[]}
+ * @return {JSX.Element}
+ * @constructor
+ */
+const DisplayChoices = ({ availableChoices,
+                            alreadyAssigned,
+                            onNewSelection }) => {
 
-const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) => {
-
-    // availableChoices = [1, 2, 3, 4, 5]
-    // selected = [3, 4]
-    // 1. <SelectChoices availableChoices={[1, 2, 3, 4, 5]} selected={[3, 4]} onNewSelection={(newSelected) => onNewSelection(newSelected)}
-    // 2. User zaznacza element #2
-    // 3. Uruchamia sie SelectChoices.toggleChoices(), w ktorej powstaje nowa lista
-    // 4. toggleChoices() informuje rodzica o nowej liscie przez wywolanie onNewSelection() z nowa lista
-    // 5.
-    console.log("availableChoices: ", availableChoices)
-
-    let [selected, setSelected] = useState(alreadyAssigned);  //list
+    let [selected, setSelected] = useState(alreadyAssigned);
     let [searchQuery, setSearchQuery] = useState("");
-    //let [queryChoices, setQueryChoices] = useState(availableChoices);
 
+    // choices within searchQuery
     const getFilteredChoices = () => {
-        return availableChoices.filter(ch => ch.getDisplayName().toLowerCase().includes(searchQuery.toLowerCase()))
+        return availableChoices.filter(
+            ch => ch.getDisplayName().toLowerCase().includes(searchQuery.toLowerCase())
+        )
     }
-
-    console.log("DisplayChoices.getFilteredChoices: ", getFilteredChoices)
-
-    //availableChoices type: [{},{},{},...] lista obiektów
+    // console.log("DisplayChoices.getFilteredChoices: ", getFilteredChoices)
 
     const handleSearch = (query) => {
         setSearchQuery(query);
-        //
-        // // TODO: Filtrowanie po ID a nie displayName
-        // const filtered = availableChoices.filter(
-        //     choice => choice.getDisplayName().toLowerCase().includes(query.toLowerCase()))
-        //
-        // setQueryChoices(filtered);
     }
 
     const onSelectAllClick = () => {
         let newSelection = [...selected]
         let newSelectionIds = newSelection.map((o) => o.id)
 
-        for(const queryChoice of getFilteredChoices()) {
-            if(!newSelectionIds.includes(queryChoice.id)) {
-                newSelection.push(queryChoice)
+        for(const qc of getFilteredChoices()) {
+            if(!newSelectionIds.includes(qc.id)) {
+                newSelection.push(qc)
             }
         }
-
         setSelected(newSelection)
         onNewSelection(newSelection)
     };
@@ -60,7 +51,6 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
                 newSelection.push(s)
             }
         }
-
         setSelected(newSelection)
         onNewSelection(newSelection)
     }
@@ -85,7 +75,6 @@ const DisplayChoices = ({ availableChoices, alreadyAssigned, onNewSelection }) =
             <SelectChoices
                 availableChoices={getFilteredChoices()}
                 selected={selected}
-                // onNewSelection={(newSelected) => onNewSelection(newSelected)}
                 onNewSelection={(newSelection) => {
                     setSelected(newSelection)
                     onNewSelection(newSelection)

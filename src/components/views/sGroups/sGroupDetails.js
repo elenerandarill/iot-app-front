@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
 import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET, URL_USER_SET} from "../../../iotConfig";
 import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
-import {changeValue} from "../../../FakeFrontend/backendConnector";
+import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {ButtonFunc, ButtonLink} from "../../buttons";
 import UserViews from "../userViews";
 import CustomMap from "../../map/customMap";
@@ -18,13 +18,16 @@ const SGroupDetails = () => {
     const [assignedObjs, setAssignedObjs] = useState(
         /** @type {Sensor[]} */ undefined)
     const {id} = useParams();
+    const history = useHistory()
 
     useEffect(() => {
         fetchSgroup(id)
-            .then((sgroup) => setSgroup(sgroup))
+            .then(setSgroup)
+            .catch(error => handleUnauthorizedException(error, history))
 
         getSgroupAssignedSensors(id)
             .then(listObjs => setAssignedObjs(listObjs))
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
 

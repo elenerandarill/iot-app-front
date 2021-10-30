@@ -9,6 +9,7 @@ import {
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 const EditSGroup = () => {
     const [sgroup, setSgroup] = useState(undefined)
@@ -20,17 +21,21 @@ const EditSGroup = () => {
     useEffect(() => {
         fetchSgroup(id)
             .then((sgroup) => setSgroup(sgroup))
+            .catch(error => handleUnauthorizedException(error, history))
 
         fetchSensors()
             .then((sensors) => setSensors(sensors))
+            .catch(error => handleUnauthorizedException(error, history))
 
         getSgroupAssignedSensors(id)
             .then((sFound) => setSAssigned(sFound))
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
     const sendChangeRequest = async (assigned) => {
         setSgroupAssignedSensors(id, assigned)
             .then(res => history.push(ROUTE_SGROUP_DETAILS(id)))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
     // upewniam sie, ze dane sa pobrane z serwera!

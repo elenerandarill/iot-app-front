@@ -1,46 +1,65 @@
 import {useState} from 'react';
-import {groupObjectRenderer} from "../sGroups/sGroups";
-import {sensorObjectRenderer} from "../sensors/sensors";
-import ListObjects from "../../listObjects";
+import {useHistory} from "react-router-dom";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
-import {ButtonFunc} from "../../buttons";
-import DisplayChoices from "../../displayChoices";
+import {ButtonFunc, ButtonLink} from "../../buttons";
 import UserViews from "../userViews";
+import SelectObject from "../../selectObject";
+import SelectMeasurementType from "../../selectMeasurementType"
+import Condition from "../../../FakeBackend/Condition";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 
 const NewAlert = () => {
     const [selectCategory, setSelectCategory] = useState("")
     const [objectsList, setObjectsList] = useState(undefined)
-    const [selection, setSelection] = useState(undefined)
-    // const [renderer, setRenderer] = useState(undefined)
+    /** @type {Sensor | GroupOfSensors} */
+    const [selectedObj, setSelectedObj] = useState(undefined)
+    const [selectedCondition, setSelectedCondition] = useState(undefined)
+    const [value, setValue] = useState(undefined)
+    /** @type {MeasuremntType} */
+    const [mmentSelection, setMmentSelection] = useState("")
+    const history = useHistory()
+    const conditions = [
+        new Condition("EQUALS", "równy"),
+        new Condition("GREATERTHAN", "większy niż"),
+        new Condition("LESSTHAN", "mniejszy niż"),
+    ]
 
     const getSensors = () => {
         setSelectCategory("sensors")
         // setRenderer(sensorObjectRenderer)
         fetchSensors()
-            .then((sensors) => setObjectsList(sensors))
+            .then(setObjectsList)
+            .catch(error => handleUnauthorizedException(error, history))
     }
     const getSgroups = () => {
         setSelectCategory("sgroups")
         // setRenderer(groupObjectRenderer)
         fetchSgroups()
             .then((sgroup) => setObjectsList(sgroup))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
-    const setChoice = (choice) => {
-        if (selection === choice) {
-            setSelection(undefined)
-        } else {
-            setSelection(choice)
-        }
+
+    // TODO trzeba bedzie zlozyc do kupy wiadomosc do reqiesta
+    const sendNewCondition = () => {
+        // selectCategory === "sensors" ? SENID : SGRID
+        console.log("[ SENDING ] selectedObj = ", selectedObj.id)
+        console.log("[ SENDING ] mmentSelection = ", mmentSelection.name)
+        console.log("[ SENDING ] selectedCondition = ", selectedCondition)
+        console.log("[ SENDING ] value = ", value)
     }
 
     return (
         <UserViews>
             <div className="main">
-                <div className="buttons-container"/>
-
+                <div className="buttons-container">
+                    <ButtonLink
+                        link="/notification/list"
+                        text="anuluj"
+                    />
+                </div>
                 <div className="content-3x">
                     <div className="content-srodek">
                         <div className="headline-color">
@@ -55,80 +74,59 @@ const NewAlert = () => {
                                 <div className="position-cent">
                                     <ButtonFunc
                                         text="czujnik"
-                                        onClick={() => getSensors()}
+                                        onClick={getSensors}
                                     />
                                     <ButtonFunc
                                         text="grupa czujników"
-                                        onClick={() => getSgroups()}
+                                        onClick={getSgroups}
                                     />
                                 </div>
-                                <div className="object-container">
-                                    <div>
-                                        {selectCategory === "sensors" && "Zaznacz czujnik do monitorowania"}
-                                        {selectCategory === "sgroups" && "Zaznacz grupę do monitorowania"}
-
-                                        {objectsList
-                                            ? <div>
-                                                {objectsList.map((choice =>
-                                                        <div
-                                                            key={choice.id}
-                                                            className={`object-choices shadow ${selection === choice
-                                                                ? " choice-active" : ""}`}
-                                                            onClick={() => setChoice(choice)}
-                                                        >
-                                                            {choice.getDisplayName()}
-                                                        </div>
-                                                ))}
-                                            </div>
-
-                                            : <div>Pobieram dane, proszę czekać.</div>
-                                        }
-                                    </div>
-                                </div>
+                                <SelectObject
+                                    selectObjCategory={selectCategory}
+                                    listOfObjects={objectsList}
+                                    objSelected={setSelectedObj}
+                                />
                             </div>
 
                             <div className="shadow listed-attribute">
                                 <div className="head-txt">{"wybierz pomiar"}</div>
                                 <div className="position-cent">
-
+                                    <SelectMeasurementType
+                                        mmentSelection={setMmentSelection}
+                                    />
                                 </div>
                             </div>
+
                             <div className="shadow listed-attribute">
                                 <div className="head-txt">{"wybierz regułę"}</div>
                                 <div className="position-cent">
-                                    <div
-                                        className="btn btn-color"
-                                        onClick={() => console.log("wybrano równy")}
-                                    >
-                                        równy
-                                    </div>
-                                    <div
-                                        className="btn btn-color"
-                                        onClick={() => console.log("wybrano większy niż")}
-                                    >
-                                        większy niż
-                                    </div>
-                                    <div
-                                        className="btn btn-color"
-                                        onClick={() => console.log("wybrano mniejszy niż")}
-                                    >
-                                        mniejszy niż
-                                    </div>
-
+                                    {conditions.map((cond) =>
+                                        <div
+                                            className={`object-choices shadow ${selectedCondition === cond.value
+                                                ? " choice-active" : ""}`}
+                                            onClick={() => setSelectedCondition(cond.value)}
+                                        >
+                                            {cond.description}
+                                        </div>
+                                    )}
                                 </div>
                             </div>
+
                             <div className="shadow listed-attribute">
                                 <div className="head-txt">{"podaj wartość graniczną"}</div>
                                 <div className="position-cent">
                                     <input
+                                        type="text"
                                         className="input"
-                                    /> [jednostka]
+                                        onChange={e => setValue(e.target.value)}
+                                    /> [{mmentSelection.unit}]
                                 </div>
                             </div>
+
                             <div className="object-container">
                                 <div
                                     className="btn btn-color"
-                                    onClick={() => console.log("stworzono nowy alarm")}
+                                    onClick={sendNewCondition}
                                 >
                                     gotowe
                                 </div>

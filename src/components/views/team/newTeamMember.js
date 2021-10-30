@@ -4,6 +4,7 @@ import {ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_LIST} from "../../../iotConfig";
 import {ButtonFunc, ButtonLink} from "../../buttons";
 import {newMember} from "../../../FakeFrontend/backendMemberConnector";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 const NewTeamMember = () => {
     const [uid, setUid] = useState("");
@@ -12,6 +13,7 @@ const NewTeamMember = () => {
     const handleSend = () => {
         newMember(uid)
             .then(() => history.push(ROUTE_TMEMBER_DETAILS(uid)))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
     return (

@@ -4,6 +4,7 @@ import {ButtonFunc, ButtonLink} from "../../buttons";
 import {ROUTE_SGROUP_DETAILS, ROUTE_SGROUP_LIST} from "../../../iotConfig";
 import {newSgroup} from "../../../FakeFrontend/backendSgroupConnector";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 // import fakeMeasurements from "../../../FakeFrontend/getGroupMeasurements";
 
 
@@ -14,6 +15,7 @@ const NewSGroup = () => {
     const handleSend = () => {
         newSgroup(gname)
             .then((id) => history.push(ROUTE_SGROUP_DETAILS(id)))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
     return (

@@ -9,28 +9,36 @@ import {
 } from "../../../FakeFrontend/backendSensorConnector";
 import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 const EditSensorGroups = () => {
-    const [sGroups, setSgroups] = useState(undefined)
-    const [sgAssigned, setSgAssigned] = useState(undefined)
-    const [sensor, setSensor] = useState(undefined)
+    const [sGroups, setSgroups] = useState(
+        /** @type {GroupOfSensors[]} */ undefined)
+    const [sgAssigned, setSgAssigned] = useState(
+        /** @type {GroupOfSensors[]} */ undefined)
+    const [sensor, setSensor] = useState(
+        /** @type {Sensor} */ undefined)
     const history = useHistory()
     const {id} = useParams();
 
     useEffect(() => {
         fetchSgroups()
-            .then(sGroups => setSgroups(sGroups))
+            .then(setSgroups)
+            .catch(error => handleUnauthorizedException(error, history))
 
         fetchSensor(id)
             .then((sensor) => setSensor(sensor))
+            .catch(error => handleUnauthorizedException(error, history))
 
         getSensorAssignedSgroups(id)
             .then((sgFound) => setSgAssigned(sgFound))
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
     const sendChangeRequest = async (assigned) => {
         setSensorAssignedSgroups(id, assigned)
             .then(() => history.push(ROUTE_SENSOR_DETAILS(id)))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
     // upewniam sie, ze dane sa pobrane z serwera!

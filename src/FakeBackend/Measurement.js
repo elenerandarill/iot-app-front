@@ -1,7 +1,7 @@
 
 export class Measurement {
     /** @type {number} */
-    SDASID
+    SDAID
     /** @type {string} */
     SDATS
     /** @type {string} */
@@ -11,8 +11,8 @@ export class Measurement {
     /** @type {number} */
     SDADATA
 
-    constructor(SDASID, SDATS, SDATR, SDATYPE, SDADATA){
-        this.SDASID = SDASID
+    constructor(SDAID, SDATS, SDATR, SDATYPE, SDADATA){
+        this.SDAID = SDAID
         this.SDATS = SDATS
         this.SDATR = SDATR
         this.SDATYPE = SDATYPE

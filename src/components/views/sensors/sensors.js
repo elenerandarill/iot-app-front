@@ -1,10 +1,11 @@
 import ListObjects from "../../listObjects";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
 import {ButtonLink} from "../../buttons";
 import {ROUTE_SENSOR_DETAILS} from "../../../iotConfig";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 /**
  * @param sensor {Sensor}
@@ -28,11 +29,13 @@ export const sensorObjectRenderer = (sensor) => {
 
 const Sensors = () => {
     const [sensors, setSensors] = useState([]);
+    const history = useHistory()
 
-    // zaraz po zaladowaniu strony pobierz obiekty z backendu
+    // zaraz po wyrenderowaniu strony pobierz obiekty z backendu
     useEffect(() => {
         fetchSensors()
-            .then(sensors => setSensors(sensors))
+            .then(setSensors)
+            .catch(error => handleUnauthorizedException(error, history))
     }, [])
 
 

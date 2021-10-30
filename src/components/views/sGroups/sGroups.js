@@ -1,10 +1,11 @@
 import ListObjects from "../../listObjects";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {fetchSgroups} from "../../../FakeFrontend/backendSgroupConnector";
 import {useEffect, useState} from "react";
 import {ButtonLink} from "../../buttons";
 import {ROUTE_SGROUP_NEW, ROUTE_SGROUP_DETAILS} from "../../../iotConfig";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 /**
  * @param group {GroupOfSensors}
@@ -26,11 +27,13 @@ export const groupObjectRenderer = (group) => {
 
 const SGroups = () => {
     const [sGroups, setSgroups] = useState([]);
+    const history = useHistory()
 
     // zaraz po zaladowaniu strony pobierz obiekty z backendu
     useEffect(() => {
         fetchSgroups()
-            .then(sGroups => setSgroups(sGroups))
+            .then(setSgroups)
+            .catch(error => handleUnauthorizedException(error, history))
     }, [])
 
 

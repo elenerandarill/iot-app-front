@@ -4,6 +4,7 @@ import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_DETAILS, ROUTE_SGROUP_LIST} from "../../.
 import {useHistory, useParams} from "react-router-dom";
 import {delSgroup} from "../../../FakeFrontend/backendSgroupConnector";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 const DeleteSGroup = () => {
     const {id} = useParams()
@@ -12,6 +13,7 @@ const DeleteSGroup = () => {
     const handleSend = () => {
         delSgroup(id)
             .then(() => history.push(ROUTE_SGROUP_LIST))
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
 

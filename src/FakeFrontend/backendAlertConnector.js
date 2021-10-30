@@ -17,7 +17,7 @@ const important_flag = (notification) => {
 
 // Parsowanie JSONa
 
-const jsonToAlert = (list) => {
+export const jsonToAlert = (list) => {
     const list2 = list.map(a =>
         new Alert(
             a.CONID,
@@ -39,15 +39,8 @@ export const fetchAlerts = async () => {
     return jsonToAlert(res.body)
 }
 
-export const markReadAlert = async (id) => {
-    return await sendRequest(
-        URL_NOTIFICATION_SET,
-        {"NLINID": parseInt(id), "NLIFLAGS": ["+READ"]}
-    )
-}
-
 export const markImportanceAlert = async (id, value) => {
-    let user = undefined
+    let user
     if (value){
         user = "+USER"
     } else {
@@ -56,6 +49,13 @@ export const markImportanceAlert = async (id, value) => {
     return await sendRequest(
         URL_NOTIFICATION_SET,
         {"NLINID": parseInt(id), "NLIFLAGS": [user]}
+    )
+}
+
+export const markReadAlert = async (id) => {
+    return await sendRequest(
+        URL_NOTIFICATION_SET,
+        {"NLINID": parseInt(id), "NLIFLAGS": ["+READ"]}
     )
 }
 
@@ -82,7 +82,8 @@ export const handleDeleteAlertsAll = async () => {
 
 export const getUnreadAlertsCount = async () => {
     const res = await sendRequest(
-        URL_NOTIFICATION_UNREAD_COUNT_GET
+        URL_NOTIFICATION_UNREAD_COUNT_GET,
+
     )
     return res.body["NOTIF_UNREAD"]
 }

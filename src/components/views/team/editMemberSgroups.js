@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {Perm} from "../../../FakeBackend/getPerms";
 import UserViews from "../userViews";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 
 const EditMemberSgroups = () => {
@@ -34,14 +35,16 @@ const EditMemberSgroups = () => {
     useEffect(() => {
         fetchSgroups()
             .then((sgroups) => setSgroups(sgroups))
+            .catch(error => handleUnauthorizedException(error, history))
 
         fetchMember(id)
-            .then((member) => {
-                setMember(member)
-            })
+            .then(setMember)
+            .catch(error => handleUnauthorizedException(error, history))
+
 
         getMemberAssigned(id)
             .then((sgFound) => setSgAssigned(filterSgroups(sgFound)))
+            .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
     const sendChangeRequest = async (assigned) => {

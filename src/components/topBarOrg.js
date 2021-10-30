@@ -1,45 +1,37 @@
 import gear from "../media/gear.svg";
 import {useEffect, useState} from "react";
+import {getUnreadAlertsCount} from "../FakeFrontend/backendAlertConnector";
 import menu from "../media/menu.svg";
 import useWindowDimensions from "./useWindowDimensions";
 import * as authService from "../authService";
-import {useFetchAlertsQuery} from "../features/alerts/alertsApi";
-import {ROUTE_LOGIN} from "../iotConfig";
-import {useHistory} from "react-router-dom";
 
 const TopBar = ({ activateBurgerMenu }) => {
+    const [unreadAlerts, setUnreadAlerts] = useState(0)
     const { width, height } = useWindowDimensions()
     const loggedUser = authService.getLoggedUser()
-    const history = useHistory()
 
-    const { data, isError, isLoading, error } = useFetchAlertsQuery(undefined, {
-        pollingInterval: 60 * 1000,
-    })
-    if(isError && error.status === 401) {
-        history.push(ROUTE_LOGIN)
-    }
 
-    const unreadAlerts = data
-    console.log(">>>> unreadAlerts: ", unreadAlerts)
+    // Dostaje liczbe z gory, z App.
+    // unreadAlertsCount((count) => {
+    //     setUnreadAlerts(count)
+    // })
 
-    const getUnreadAlertMessage = (unreadAlerts) => {
-        if(!unreadAlerts) {
-            return "Wczytuję listę alertów..."
-        }
-        return unreadAlerts === 0
-            ? "Nie masz nowych alertów"
-            : "Nowe alerty: " + unreadAlerts
-    }
+    useEffect(() => {
+        getUnreadAlertsCount()
+            .then((count) => {setUnreadAlerts(count)})
+    }, [])
 
     return(
         <div className="topbar txt-semibold txt-blue">
-            <div className="mrg-l">
-                {getUnreadAlertMessage(unreadAlerts)}
+            <div className="mrg-l5">
+                {unreadAlerts === 0
+                    ? "Nie masz nowych alertów"
+                    : "Nowe alerty: " + unreadAlerts}
             </div>
             <div className="topbar-restore">
                 {/*<img src={gear} className="gear" alt="restore default layout"/>*/}
                 {loggedUser
-                    ? <div className="mrg-r">{loggedUser.ufname} {loggedUser.ulname}</div>
+                    ? <div>{loggedUser.ufname} {loggedUser.ulname}</div>
                     : ""}
                 {width <= 640 && <img
                     src={menu}

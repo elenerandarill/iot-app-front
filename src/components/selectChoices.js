@@ -4,7 +4,7 @@ const SelectChoices = ({ availableChoices, selected, onNewSelection }) => {
     const toggleChoices = (choice) => {
         console.log("list: ", selected)
         let newSelected = [...selected]
-        included_in_selection(choice)
+        includedInSelection(choice)
             ? newSelected = selected.filter(ch => ch.id !== choice.id)
             : newSelected.push(choice)
 
@@ -12,10 +12,10 @@ const SelectChoices = ({ availableChoices, selected, onNewSelection }) => {
         onNewSelection(newSelected);
     }
 
-    console.log("availChoices: ", availableChoices)
-    console.log("selected: ", selected)
+    // console.log("availChoices: ", availableChoices)
+    // console.log("selected: ", selected)
 
-    const included_in_selection = (ch) => {
+    const includedInSelection = (ch) => {
         const list = selected.filter(s => s.id === ch.id)
         return list.length > 0;
     }
@@ -26,7 +26,7 @@ const SelectChoices = ({ availableChoices, selected, onNewSelection }) => {
         {availableChoices.map(choice =>
                 <div
                     key={choice.id + choice.name}
-                    className={`object-choices shadow ${included_in_selection(choice)
+                    className={`object-choices shadow ${includedInSelection(choice)
                         ? " choice-active" : ""}`}
                     onClick={() => toggleChoices(choice)}
                 >

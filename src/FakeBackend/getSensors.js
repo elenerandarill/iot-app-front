@@ -2,9 +2,9 @@ import {Measurement} from "./Measurement";
 import {GpsCoordinate} from "./gpsCoordinate";
 
 export class Sensor {
-    /** @type {string} */
+    /** @type {number} */
     id
-    /** @type {string} */
+    /** @type {number} */
     type
     /** @type {string} */
     name
@@ -30,11 +30,17 @@ export class Sensor {
         this.sn = sn;
         this.battery = 13; //SDATA
         this.assigned = []; //SGMEMB
-        this.measurements = []; //SDATA
+        this.measurements = []; //SDATA List[Measurement]
         this.is_new = true // TODO zeby Krzysiek zrobil?
     }
 
     getDisplayName() {
         return this.name.trim() === "" ? this.sn.toString() : this.name
+    }
+
+    getSensorType() {
+        if (this.type === 1) return "AM123"
+        if (this.type === 2) return "BM123"
+        if (this.type === 3) return "CM123"
     }
 }

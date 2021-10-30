@@ -49,18 +49,9 @@ import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
 import PrivateRoute from "./components/privateRoute";
 import NotFound from "./components/views/notFound";
 import Restart from "./components/views/restart";
-// import {getUnreadAlertsCount} from "./FakeFrontend/backendAlertConnector";
-// import PopAlerts from "./components/PopAlerts";
-// import {Notifications} from "react-push-notification";
 
 
 function App() {
-    // const [unreadAlerts, setUnreadAlerts] = useState()
-    //
-    // const refreshAlertCount = () => {
-    //     getUnreadAlertsCount()
-    //             .then((count) => {setUnreadAlerts(count)})
-    // }
 
     return (
         <BrowserRouter>

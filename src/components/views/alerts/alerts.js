@@ -2,19 +2,23 @@ import ListAlerts from "./listAlerts";
 import {fetchAlerts, handleDeleteAlert, handleDeleteAlertsAll, handleReadAlertsAll} from "../../../FakeFrontend/backendAlertConnector"
 import {useEffect, useState} from "react";
 // import SearchBox from "../../searchBox";
-import {ButtonFunc, ButtonLink} from "../../buttons";
-import {ROUTE_NOTIFS_NEW} from "../../../iotConfig";
-import UserViews from "../userViews";
+import {ButtonFunc, ButtonLink} from "../../buttons"
+import {ROUTE_NOTIFS_NEW} from "../../../iotConfig"
+import UserViews from "../userViews"
+import {useHistory} from "react-router-dom";
+import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
 
 const Alerts = () => {
-    // const [showDetails, setShowDetails] = useState(undefined)
-    const [alerts, setAlerts] = useState([]);
+    const [alerts, setAlerts] = useState(
+        /** @type {Alerts[]} */[])
+    const history = useHistory()
 
-    // zaraz po zaladowaniu strony pobierz obiekty z backendu
+    // zaraz po wyrenderowaniu strony pobierz obiekty z backendu
     const refreshData = () => {
         fetchAlerts()
-            .then(alerts => {setAlerts(alerts)})
+            .then(setAlerts)
+            .catch(error => handleUnauthorizedException(error, history))
     }
 
     useEffect(() => {
@@ -24,6 +28,7 @@ const Alerts = () => {
 
     const handleOnAlertRead = (id) => {
         const list = [...alerts]
+        // TODO map?
         for (const alert of list) {
             if (alert.id === id) {
                 alert.read = true
@@ -48,6 +53,7 @@ const Alerts = () => {
         if (confirm === true)
             handleReadAlertsAll()
                 .then(() =>
+                    // TODO filter?
                     setAlerts(alerts.map(a => {
                         a.read = true
                         return a
