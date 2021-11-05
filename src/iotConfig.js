@@ -12,6 +12,7 @@ export const URL_LOGOUT = URL_SERVER_BASE + "/logout"
 export const URL_REGISTER = URL_SERVER_BASE + "/register"
 
 // USER
+export const URL_USER_LIST = URL_SERVER_BASE + "/USER/list"
 export const URL_USER_GET = URL_SERVER_BASE + "/USER/get"
 export const URL_USER_SET = URL_SERVER_BASE + "/USER/set"
 
@@ -21,7 +22,7 @@ export const URL_SENSOR_NEW = URL_SERVER_BASE + "/SENSOR/new"
 export const URL_SENSOR_GET = URL_SERVER_BASE + "/SENSOR/get"
 export const URL_SENSOR_SET = URL_SERVER_BASE + "/SENSOR/set"
 // ??????????
-export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/SGMEMB/set"
+// export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/SGMEMB/set"
 export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 
 export const URL_SDATA_LIST = URL_SERVER_BASE + "/SDATA/list"
@@ -29,19 +30,27 @@ export const URL_SDATA_LIST = URL_SERVER_BASE + "/SDATA/list"
 
 //SGROUP
 export const URL_SGROUP_LIST = URL_SERVER_BASE + "/SGROUP/list"
-export const URL_SGROUP_NEW = URL_SERVER_BASE + "/SGROUP/new"
-export const URL_SGROUP_DEL = URL_SERVER_BASE + "/SGROUP/del"
 export const URL_SGROUP_GET = URL_SERVER_BASE + "/SGROUP/get"
 export const URL_SGROUP_SET = URL_SERVER_BASE + "/SGROUP/set"
+export const URL_SGROUP_DEL = URL_SERVER_BASE + "/SGROUP/del"
+export const URL_SGROUP_NEW = URL_SERVER_BASE + "/SGROUP/new"
 // ?????????????
-export const URL_SGROUP_ASSIGNED_SET = URL_SERVER_BASE + "/SGMEMB/set"
+export const URL_SGROUP_ASSIGNED_ADD = URL_SERVER_BASE + "/SGMEMB/add"
+export const URL_SGROUP_ASSIGNED_REM = URL_SERVER_BASE + "/SGMEMB/rem"
 export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 
+// TEAMS
+export const URL_TEAMS_LIST = URL_SERVER_BASE + "/UGRP/list"
 // TEAM
-export const URL_TEAM_LIST = URL_SERVER_BASE + "/UGRM/list"
-export const URL_TEAM_MEMBER_NEW = URL_SERVER_BASE + "/UGRM/add"
-export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/UGRM/set"
+export const URL_TEAM_GET = URL_SERVER_BASE + "/UGRP/get"
+export const URL_TEAM_SET = URL_SERVER_BASE + "/UGRP/set"
+export const URL_TEAM_DEL = URL_SERVER_BASE + "/UGRP/del"
+export const URL_TEAM_NEW = URL_SERVER_BASE + "/UGRP/new"
+// MEMBERS
+export const URL_TEAM_MEMBER_LIST = URL_SERVER_BASE + "/UGRM/list"
+// export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/UGRM/set"
 export const URL_TEAM_MEMBER_REM = URL_SERVER_BASE + "/UGRM/rem"
+export const URL_TEAM_MEMBER_NEW = URL_SERVER_BASE + "/UGRM/add"
 // ?????????????
 export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/PERM/set"
 export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/PERM/list"
@@ -77,6 +86,11 @@ export const ROUTE_SGROUP_EDIT = (id) => "/sgroup/" + id + "/edit"
 export const ROUTE_SGROUP_NEW = "/sgroup/new"
 export const ROUTE_SGROUP_DEL = (id) => "/sgroup/" + id + "/del"
 
+export const ROUTE_TEAMS_LIST = "/team/list"
+export const ROUTE_TEAM_DETAILS = (id) => "/team/" + id + "/details"
+export const ROUTE_TEAM_EDIT = (id) => "/team/" + id + "/edit"
+export const ROUTE_TEAM_NEW = "/team/new"
+export const ROUTE_TEAM_DEL = (id) => "/team/" + id + "/del"
 export const ROUTE_TMEMBER_LIST = "/team/member/list"
 export const ROUTE_TMEMBER_DETAILS = (id) => "/team/member/" + id + "/details"
 // export const ROUTE_TMEMBER_EDIT = (id) => "/team/member/" + id + "/edit"

@@ -1,6 +1,3 @@
-import {Measurement} from "./Measurement";
-import {GpsCoordinate} from "./gpsCoordinate";
-
 export class Sensor {
     /** @type {number} */
     id
@@ -31,7 +28,7 @@ export class Sensor {
         this.battery = 13; //SDATA
         this.assigned = []; //SGMEMB
         this.measurements = []; //SDATA List[Measurement]
-        this.is_new = true // TODO zeby Krzysiek zrobil?
+        this.is_new = true // TODO ?
     }
 
     getDisplayName() {

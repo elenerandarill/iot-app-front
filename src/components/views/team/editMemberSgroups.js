@@ -52,8 +52,17 @@ const EditMemberSgroups = () => {
             .then(() => history.push(ROUTE_TMEMBER_DETAILS(id)))
     }
 
-    // upewniam sie, ze dane sa pobrane z serwera!
-    if (member && sgroups && sgAssigned) {
+
+    if (!member || !sgroups || !sgAssigned) {
+        return (
+            <UserViews>
+                <div className="head-txt">
+                    Pobieranie danych. Proszę czekać.
+                </div>
+            </UserViews>
+
+        )
+    } else {
         return (
             <UserViews>
                 <EditAssigned
@@ -65,14 +74,6 @@ const EditMemberSgroups = () => {
                     availableChoices={convert_to_perms(sgroups)}
                     handleSend={sendChangeRequest}
                 />
-            </UserViews>
-        )
-    } else {
-        return (
-            <UserViews>
-                <div className="head-txt">
-                    Pobieranie danych. Proszę czekać.
-                </div>
             </UserViews>
         )
     }

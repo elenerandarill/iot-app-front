@@ -3,7 +3,7 @@ import {
     URL_SENSOR_GET,
     URL_SENSOR_LIST,
     URL_SENSOR_SET,
-    URL_SENSOR_ASSIGNED_SET,
+    URL_SENSOR_ASSIGNED_SET, URL_SGROUP_ASSIGNED_ADD, URL_SGROUP_ASSIGNED_REM,
 } from "../iotConfig";
 import {GpsCoordinate} from "../FakeBackend/gpsCoordinate";
 import {Sensor} from "../FakeBackend/getSensors";
@@ -40,25 +40,12 @@ export const fetchSensors = async () => {
 }
 //---------------------------------------------------------------
 
-
 export const getSensorAssignedSgroups = async (id) => {
     const res = await sendRequest(
         URL_SENSOR_ASSIGNED_GET,
         {"SGMSID": parseInt(id)}
     )
     return jsonToSgroups(res.body)
-}
-
-export const setSensorAssignedSgroups = async (id, assigned) => {
-    const list = assignedIds(assigned)
-    const res = await sendRequest(
-        URL_SENSOR_ASSIGNED_SET,
-        {
-            "SGMSID": parseInt(id),
-            "ASS_SGROUPS": list
-        }
-    )
-    return res.status
 }
 
 export const updateSensorGps = async (position, id) => {

@@ -1,31 +1,29 @@
+import React, {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+// import ChartDataChoices from "../../chartDataChoices";
+import {groupObjectRenderer} from "../sGroups/sGroups";
+import {
+    ROUTE_SENSOR_EDIT, ROUTE_SENSOR_EDIT_CHART, ROUTE_SENSOR_LIST, URL_SENSOR_SET,
+} from "../../../iotConfig";
+import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
+import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
+import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
+import {fetchMeasurements} from "../../../FakeFrontend/backendMesurementConnector";
+import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
+import {ButtonFunc, ButtonLink} from "../../buttons";
 import {DisplayAttribute, InputString, InputTextarea} from "../../attributes";
 import ListMeasurements from "../../listMeasurements.js";
 import ListObjects from "../../listObjects";
 import ChartTypeArea from "../../chartTypeArea";
 import ChartTypeBar from "../../chartTypeBar";
-// import ChartDataChoices from "../../chartDataChoices";
-import {groupObjectRenderer} from "../sGroups/sGroups";
-import {
-    ROUTE_SENSOR_EDIT,
-    ROUTE_SENSOR_EDIT_CHART,
-    ROUTE_SENSOR_LIST,
-    URL_SENSOR_SET,
-} from "../../../iotConfig";
-import {getSensorAssignedSgroups} from "../../../FakeFrontend/backendSensorConnector";
-import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
-import {fetchSensor, updateSensorGps} from "../../../FakeFrontend/backendSensorConnector";
-import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
-import {ButtonFunc, ButtonLink} from "../../buttons";
 import CustomMap from "../../map/customMap";
-import UserViews from "../userViews";
-import {fetchMeasurements} from "../../../FakeFrontend/backendMesurementConnector";
 import {MapMarker} from "../../map/MapMarker";
+import UserViews from "../userViews";
+
 
 const SensorDetails = () => {
     const [sensor, setSensor] = useState(
-        /** @type {Sensor} */ undefined)
+        /** @type {Sensor | undefined} */ undefined)
     const [battery, setBattery] = useState(
         /** @type {Measurement} */ [])
     const [latestMeasurements, setLatestMeasurements] = useState(
@@ -46,20 +44,19 @@ const SensorDetails = () => {
             .catch(error => handleUnauthorizedException(error, history))
 
         // get battery charge lvl
-        fetchMeasurements(id, ["BATT"], 1) //TODO wartosci nie na sztywno!!!!
+        fetchMeasurements(id, ["BATT"], 1)
             .then((ms) => {
-                if (ms.length === 0) return "brak danych"
-                setBattery(ms[0].SDADATA)
+                if (ms.length !== 0) setBattery(ms[0].SDADATA)
             })
             .catch(error => handleUnauthorizedException(error, history))
 
         // get latest measurements
-        fetchMeasurements(id, undefined, 4) //TODO wartosci nie na sztywno!!!!
+        fetchMeasurements(id, undefined, 4)
             .then((ms) => {setLatestMeasurements(ms)})
             .catch(error => handleUnauthorizedException(error, history))
 
-        // // get last 5 mrm for TEMP and HUMID, for chart!
-        fetchMeasurements(id, ["TEMP", "RHUM"], 10) //TODO wartosci nie na sztywno!!!!
+        // get last 5 mrm for TEMP and HUMID, for chart!
+        fetchMeasurements(id, ["TEMP", "RHUM"], 10)
             .then((ms) => setChartMeasurements(ms))
             .catch(error => handleUnauthorizedException(error, history))
 
@@ -68,14 +65,6 @@ const SensorDetails = () => {
             .catch(error => handleUnauthorizedException(error, history))
     }, [id])
 
-
-    if (!sensor) {
-        return (
-            <div className="main">
-                <div className="stats-title">nie znaleziono takiego czujnika</div>
-            </div>
-        )
-    }
 
     // Geolocation
     const getLocation = () => {
@@ -92,20 +81,31 @@ const SensorDetails = () => {
                 sensor.GPS = newLocation
                 setForceRender(forceRender + 1)
             })
-
     }
 
     const getGpsMarkers = (sensor) => {
         return [new MapMarker(sensor.id, sensor.getDisplayName(), sensor.GPS)]
     }
 
-    console.log(">>>sensor.type : ", sensor.type)
-    console.log(">>>sensor.type is type : ", typeof(sensor.type))
-    console.log(">>>sensor.getSensorType : ", sensor.getSensorType())
+    if(!sensor) {
+        return (
+            <UserViews>
+                <div className="main">
+                    <div className="position-cent centered">
+                        <div className="head-txt">
+                            nie znaleziono takiego czujnika
+                        </div>
+                    </div>
+                </div>
+            </UserViews>
+        )
+    }
 
     return (
         <UserViews>
+
             <div className="main">
+
                 <div className="buttons-container">
                     <ButtonLink
                         text="powrót do listy"
@@ -116,9 +116,10 @@ const SensorDetails = () => {
                 <div className="content-3x">
                     <div className="content-srodek">
                         <div className="headline-color">
-                            {sensor.name.trim() === "" ? sensor.sn : sensor.name}
+                            {sensor.getDisplayName()}
                         </div>
                         <div className="white-space top-contact">
+
                             <DisplayAttribute name="typ urządzenia" value={sensor.getSensorType()}/>
                             <InputString
                                 label="nazwa"
@@ -250,6 +251,7 @@ const SensorDetails = () => {
                     </div>
                 </div>
             </div>
+
         </UserViews>
     )
 }

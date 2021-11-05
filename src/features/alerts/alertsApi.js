@@ -26,7 +26,7 @@ export const alertsApiSlice = createApi({
                     //         .then(json => json.NOTIF_UNREAD)
                     // },
                     responseHandler: async (response) => {
-                        return (await response.json()).NOTIF_UNREAD
+                        return (await response.json()).NOTIF_UNREAD  // < {'NOTIF_UNREAD': 6}
                     },
                 })
             })

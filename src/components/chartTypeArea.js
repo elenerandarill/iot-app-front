@@ -1,5 +1,5 @@
 import {CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area, ResponsiveContainer} from 'recharts';
-import {getChartData, chartsColors, chartsColorsByName} from "./chartUtils";
+import {getChartData, chartsColors} from "./chartUtils";
 
 /**
  * @param height {number}

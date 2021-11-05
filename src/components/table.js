@@ -16,7 +16,7 @@ const Element = ({title, stats}) => {
             {title && <img src={gear} className="gear edit" alt="edit"/>}
             {stats &&
                 <div className="element-stats stats-complex">
-                    <div className="stats-title">ostatni pomiar</div>
+                    <div>ostatni pomiar</div>
                     <div>{stats}</div>
                 </div>
             }

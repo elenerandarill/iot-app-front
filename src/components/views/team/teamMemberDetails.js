@@ -2,15 +2,16 @@ import {useHistory, useParams} from "react-router-dom";
 import {InputString} from "../../attributes";
 import {ButtonLink} from "../../buttons";
 import ListObjects from "../../listObjects";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
-    ROUTE_TMEMBER_LIST, ROUTE_TMEMBER_REM,
+    ROUTE_TEAM_DETAILS,
+    ROUTE_TMEMBER_REM,
     ROUTE_TMEMBER_SENSORS_EDIT, ROUTE_TMEMBER_SGROUPS_EDIT,
     URL_USER_SET
 } from "../../../iotConfig";
 import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {fetchMember, getMemberAssigned} from "../../../FakeFrontend/backendMemberConnector";
-import {permRenderer} from "./team";
+import {permRenderer} from "./teamDetails";
 import UserViews from "../userViews";
 
 
@@ -39,9 +40,15 @@ const TeamMemberDetails = () => {
 
     if (!member) {
         return (
-            <div className="main">
-                <div className="stats-title">nie znaleziono takiej osoby</div>
-            </div>
+            <UserViews>
+                <div className="main">
+                    <div className="position-cent centered">
+                        <div className="head-txt">
+                            nie znaleziono takiej osoby
+                        </div>
+                    </div>
+                </div>
+            </UserViews>
         )
     }
 
@@ -50,8 +57,8 @@ const TeamMemberDetails = () => {
             <div className="main">
                 <div className="buttons-container">
                     <ButtonLink
-                        text="powrót do listy"
-                        link={ROUTE_TMEMBER_LIST}
+                        text="powrót"
+                        link={ROUTE_TEAM_DETAILS(id)}
                     />
                     <ButtonLink
                         text="usuń tę osobę"

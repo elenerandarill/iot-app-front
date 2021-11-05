@@ -3,18 +3,22 @@ import {useHistory, useParams} from "react-router-dom";
 import ListObjects from "../../listObjects";
 import {InputString, InputTextarea} from "../../attributes";
 import {sensorObjectRenderer} from "../sensors/sensors";
-import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET, URL_USER_SET} from "../../../iotConfig";
+import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_EDIT, ROUTE_SGROUP_LIST, URL_SGROUP_SET} from "../../../iotConfig";
 import {fetchSgroup, getSgroupAssignedSensors} from "../../../FakeFrontend/backendSgroupConnector";
 import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
-import {ButtonFunc, ButtonLink} from "../../buttons";
+import {ButtonLink} from "../../buttons";
 import UserViews from "../userViews";
 import CustomMap from "../../map/customMap";
 import {GpsCoordinate} from "../../../FakeBackend/gpsCoordinate";
 import {MapMarker} from "../../map/MapMarker";
+import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
 
 
 const SGroupDetails = () => {
-    const [sgroup, setSgroup] = useState(undefined)
+    const [sgroup, setSgroup] = useState(
+        /** @type {GroupOfSensors} */ new GroupOfSensors(
+            undefined, undefined, undefined
+        ))
     const [assignedObjs, setAssignedObjs] = useState(
         /** @type {Sensor[]} */ undefined)
     const {id} = useParams();
@@ -65,11 +69,17 @@ const SGroupDetails = () => {
         })
     }
 
-    if (!sgroup || !assignedObjs) {
+    if(!sgroup.name || !assignedObjs) {
         return (
-            <div className="main">
-                <div className="stats-title">nie znaleziono takiej grupy</div>
-            </div>
+            <UserViews>
+                <div className="main">
+                    <div className="position-cent centered">
+                        <div className="head-txt">
+                            nie znaleziono takiej grupy
+                        </div>
+                    </div>
+                </div>
+            </UserViews>
         )
     }
 
@@ -83,12 +93,13 @@ const SGroupDetails = () => {
                     />
                     <ButtonLink
                         link={ROUTE_SGROUP_DEL(id)}
-                        text="usuń tę grupę"
+                        text="usuń"
                     />
                 </div>
 
                 <div className="content-3x">
                     <div className="content-srodek">
+
                         <div className="headline-color">
                             {sgroup.name}
                         </div>
@@ -137,12 +148,14 @@ const SGroupDetails = () => {
                                 <div className="head-txt ">CZUJNIKI</div>
                                 <div className="position-cent">
                                     <div className="object-container-grid">
+
                                         <div className="edit-objs-btn centered">
                                             <ButtonLink
                                                 text="edytuj"
                                                 link={ROUTE_SGROUP_EDIT(id)}
                                             />
                                         </div>
+
                                         <div className="object-container txt-violet txt-semibold">
                                             {assignedObjs.length === 0
                                                 ? <div className="centered">nie przypisano żadnych czujników</div>
@@ -151,6 +164,7 @@ const SGroupDetails = () => {
                                                     objectRenderer={sensorObjectRenderer}
                                                 />}
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

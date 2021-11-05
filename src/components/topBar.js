@@ -1,5 +1,3 @@
-import gear from "../media/gear.svg";
-import {useEffect, useState} from "react";
 import menu from "../media/menu.svg";
 import useWindowDimensions from "./useWindowDimensions";
 import * as authService from "../authService";
@@ -12,7 +10,7 @@ const TopBar = ({ activateBurgerMenu }) => {
     const loggedUser = authService.getLoggedUser()
     const history = useHistory()
 
-    const { data, isError, isLoading, error } = useFetchAlertsQuery(undefined, {
+    const { data, isError, error } = useFetchAlertsQuery(undefined, {
         pollingInterval: 60 * 1000,
     })
     if(isError && error.status === 401) {

@@ -6,8 +6,8 @@ import {
     ROUTE_HOME, ROUTE_LOGIN,
     ROUTE_NOTIFS_LIST,
     ROUTE_SENSOR_LIST,
-    ROUTE_SGROUP_LIST,
-    ROUTE_TMEMBER_LIST
+    ROUTE_SGROUP_LIST, ROUTE_TEAMS_LIST,
+    ROUTE_TMEMBER_LIST, URL_TEAMS_LIST
 } from "../iotConfig";
 import {sendLogout} from "../FakeFrontend/backendAuthConnector";
 import {useHistory} from "react-router-dom";
@@ -37,7 +37,7 @@ const SideBar = () => {
             <MenuButton text="Alerty" path={ROUTE_NOTIFS_LIST}/>
             <MenuButton text="Czujniki" path={ROUTE_SENSOR_LIST}/>
             <MenuButton text="Grupy" path={ROUTE_SGROUP_LIST}/>
-            <MenuButton text="Zespół" path={ROUTE_TMEMBER_LIST}/>
+            <MenuButton text="Zespoły" path={ROUTE_TEAMS_LIST}/>
             <MenuButton text="Kontakt" path={ROUTE_CONTACT}/>
 
             <LogoutButton text="Wyloguj" onClick={onLogout}/>

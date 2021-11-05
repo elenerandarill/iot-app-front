@@ -10,7 +10,7 @@ import {ButtonFunc, ButtonLink} from "./buttons";
 const EditAssigned = ({headline, description, linkTo, object, assigned, availableChoices, handleSend}) => {
     const [selection, setSelection] = useState(assigned)
 
-    console.log("dostał obiekt: ", object)
+    // console.log("[ EditAssigned ] dostał obiekt: ", object)
 
     return (
         <div className="main">
@@ -41,8 +41,7 @@ const EditAssigned = ({headline, description, linkTo, object, assigned, availabl
                         <div className="object-container">
                             <ButtonFunc
                                 text="gotowe"
-                                onClick={(e) => {
-                                    e.preventDefault()
+                                onClick={() => {
                                     handleSend(selection)
                                 }}
                             />

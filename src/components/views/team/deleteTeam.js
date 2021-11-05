@@ -1,19 +1,20 @@
 import React from 'react';
 import {ButtonFunc, ButtonLink} from "../../buttons";
-import {ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_LIST} from "../../../iotConfig";
+import {ROUTE_TEAM_DETAILS, ROUTE_TEAMS_LIST} from "../../../iotConfig";
 import {useHistory, useParams} from "react-router-dom";
-import {remMember} from "../../../FakeFrontend/backendMemberConnector";
 import UserViews from "../userViews";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
+import {delTeam} from "../../../FakeFrontend/backendMemberConnector";
 
-const RemoveTeamMember = () => {
-    const {id} = useParams();
+const DeleteTeam = () => {
+    const {id} = useParams()
     let history = useHistory();
 
     const handleSend = () => {
-        remMember(id)
-            .then(() => history.push(ROUTE_TMEMBER_LIST))
+        delTeam(id)
+            .then(() => history.push(ROUTE_TEAMS_LIST))
             .catch(error => handleUnauthorizedException(error, history))
+
     }
 
     return (
@@ -22,7 +23,7 @@ const RemoveTeamMember = () => {
                 <div className="buttons-container">
                     <ButtonLink
                         text="Anuluj"
-                        link={ROUTE_TMEMBER_DETAILS(id)}
+                        link={ROUTE_TEAM_DETAILS(id)}
                     />
                 </div>
 
@@ -30,23 +31,21 @@ const RemoveTeamMember = () => {
                     <div className="content-srodek">
 
                         <div className="headline-color">
-                            Usunięcie osoby z zespołu
+                            Trwałe zlikwidowanie zespołu.
                         </div>
                         <div className="white-space top-contact">
 
                             <div className="shadow no-contact centered">
                                 <div className="head-txt">
-                                    Kliknięcie w&nbsp;"usuń" spowoduje odłączenie użytkownika od&nbsp;tego zespołu.
-                                    Nie&nbsp;spowoduje to&nbsp;skasowania użytkownika.
+                                    Kliknięcie w&nbsp;"usuń" spowoduje trwałe usunięcie tego zespołu,
+                                    a&nbsp;wszystkie należące do&nbsp;niego osoby, zostaną z&nbsp;niego wypisane.
                                 </div>
 
                             </div>
                             <div className="object-container">
                                 <ButtonFunc
                                     text="usuń"
-                                    onClick={() => {
-                                        handleSend()
-                                    }}
+                                    onClick={handleSend}
                                 />
                             </div>
 
@@ -56,7 +55,7 @@ const RemoveTeamMember = () => {
                 </div>
             </div>
         </UserViews>
-    )
+    );
 };
 
-export default RemoveTeamMember;
+export default DeleteTeam;

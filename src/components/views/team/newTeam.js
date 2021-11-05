@@ -1,47 +1,52 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
+import {ROUTE_TEAM_DETAILS, ROUTE_TEAMS_LIST, ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_LIST} from "../../../iotConfig";
 import {ButtonFunc, ButtonLink} from "../../buttons";
-import {ROUTE_SGROUP_DETAILS, ROUTE_SGROUP_LIST} from "../../../iotConfig";
-import {newSgroup} from "../../../FakeFrontend/backendSgroupConnector";
+import {newTeam} from "../../../FakeFrontend/backendMemberConnector";
 import UserViews from "../userViews";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
-
-const NewSGroup = () => {
-    const [gname, setGname] = useState(
-        /** @type {String} */"");
-    const history = useHistory();
+const NewTeam = () => {
+    const [teamName, setTeamName] = useState("");
+    let history = useHistory();
 
     const handleSend = () => {
-        newSgroup(gname)
-            .then((id) => history.push(ROUTE_SGROUP_DETAILS(id)))
-            .catch(error => handleUnauthorizedException(error, history))
+        if(teamName.length > 0) {
+            newTeam(teamName)
+                .then((id) => history.push(ROUTE_TEAM_DETAILS(id)))
+                .catch(error => handleUnauthorizedException(error, history))
+        } else {
+            alert("Nazwa zespołu musi być dłuższa niż 0 znaków.")
+        }
     }
 
     return (
         <UserViews>
             <div className="main">
                 <div className="buttons-container">
-                    <ButtonLink text={"powrót do listy"} link={ROUTE_SGROUP_LIST}/>
+                    <ButtonLink
+                        text="powrót"
+                        link={ROUTE_TEAMS_LIST}
+                    />
                 </div>
 
                 <div className="content-3x">
                     <div className="content-srodek">
 
                         <div className="headline-color">
-                            Tworzenie nowej grupy czujników
+                            Tworzenie nowego zespołu
                         </div>
                         <div className="white-space top-contact">
 
                             <div className="shadow no-contact centered">
-                                <div className="head-txt">NAZWA</div>
+                                <div className="head-txt">nazwa</div>
                                 <div className="position-cent">
                                     <input
                                         type="text"
-                                        placeholder="nazwa"
+                                        placeholder="nazwa grupy"
                                         className="input"
-                                        value={gname}
-                                        onChange={(e) => setGname(e.target.value)}
+                                        value={teamName}
+                                        onChange={(e) => setTeamName(e.target.value)}
                                     />
                                 </div>
                             </div>
@@ -53,12 +58,14 @@ const NewSGroup = () => {
                                     }}
                                 />
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </UserViews>
-    )
-}
+    );
+};
 
-export default NewSGroup;
+export default NewTeam;

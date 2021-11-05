@@ -1,6 +1,6 @@
 import React from 'react';
 import {ButtonFunc, ButtonLink} from "../../buttons";
-import {ROUTE_SGROUP_DEL, ROUTE_SGROUP_DETAILS, ROUTE_SGROUP_LIST} from "../../../iotConfig";
+import {ROUTE_SGROUP_DETAILS, ROUTE_SGROUP_LIST} from "../../../iotConfig";
 import {useHistory, useParams} from "react-router-dom";
 import {delSgroup} from "../../../FakeFrontend/backendSgroupConnector";
 import UserViews from "../userViews";
@@ -45,8 +45,7 @@ const DeleteSGroup = () => {
                             <div className="object-container">
                                 <ButtonFunc
                                     text="usuń"
-                                    onClick={(e) => {
-                                        e.preventDefault()
+                                    onClick={() => {
                                         handleSend()
                                     }}
                                 />

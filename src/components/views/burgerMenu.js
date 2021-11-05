@@ -5,8 +5,8 @@ import {
     ROUTE_HOME, ROUTE_LOGIN,
     ROUTE_NOTIFS_LIST,
     ROUTE_SENSOR_LIST,
-    ROUTE_SGROUP_LIST,
-    ROUTE_TMEMBER_LIST
+    ROUTE_SGROUP_LIST, ROUTE_TEAMS_LIST,
+    ROUTE_TMEMBER_LIST, URL_TEAMS_LIST
 } from "../../iotConfig";
 import {sendLogout} from "../../FakeFrontend/backendAuthConnector";
 import * as authService from "../../authService";
@@ -48,8 +48,8 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton
-                    text="Zespół"
-                    path={ROUTE_TMEMBER_LIST}
+                    text="Zespoły"
+                    path={ROUTE_TEAMS_LIST}
                     onClick={() => activateBurgerMenu(false)}
                 />
                 <MenuBurgerButton

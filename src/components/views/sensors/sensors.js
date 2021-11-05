@@ -31,7 +31,6 @@ const Sensors = () => {
     const [sensors, setSensors] = useState([]);
     const history = useHistory()
 
-    // zaraz po wyrenderowaniu strony pobierz obiekty z backendu
     useEffect(() => {
         fetchSensors()
             .then(setSensors)

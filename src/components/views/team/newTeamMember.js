@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {ROUTE_TMEMBER_DETAILS, ROUTE_TMEMBER_LIST} from "../../../iotConfig";
 import {ButtonFunc, ButtonLink} from "../../buttons";
-import {newMember} from "../../../FakeFrontend/backendMemberConnector";
+import {addMember} from "../../../FakeFrontend/backendMemberConnector";
 import UserViews from "../userViews";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
@@ -11,7 +11,7 @@ const NewTeamMember = () => {
     let history = useHistory();
 
     const handleSend = () => {
-        newMember(uid)
+        addMember(uid)
             .then(() => history.push(ROUTE_TMEMBER_DETAILS(uid)))
             .catch(error => handleUnauthorizedException(error, history))
     }
@@ -21,7 +21,7 @@ const NewTeamMember = () => {
             <div className="main">
                 <div className="buttons-container">
                     <ButtonLink
-                        text="powrót do listy"
+                        text="powrót"
                         link={ROUTE_TMEMBER_LIST}
                     />
                 </div>
@@ -49,8 +49,7 @@ const NewTeamMember = () => {
                             <div className="object-container">
                                 <ButtonFunc
                                     text="utwórz"
-                                    onClick={(e) => {
-                                        e.preventDefault()
+                                    onClick={() => {
                                         handleSend()
                                     }}
                                 />

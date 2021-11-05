@@ -2,8 +2,7 @@ import {
     URL_SGROUP_ASSIGNED_GET,
     URL_SGROUP_GET,
     URL_SGROUP_LIST,
-    URL_SGROUP_ASSIGNED_SET,
-    URL_SGROUP_NEW, ROUTE_SGROUP_LIST, URL_SGROUP_DEL
+    URL_SGROUP_NEW, URL_SGROUP_DEL, URL_SGROUP_ASSIGNED_ADD, URL_SGROUP_ASSIGNED_REM
 } from "../iotConfig";
 import {GroupOfSensors} from "../FakeBackend/getSGroups";
 import {jsonToSensors} from "./backendSensorConnector";
@@ -59,13 +58,23 @@ export const delSgroup = async (id) => {
     return res.status
 }
 
-export const setSgroupAssignedSensors = async (id, assigned) => {
-    const list = assignedIds(assigned)
+export const addSgroupMemb = async (gId, sId) => {
     const res = await sendRequest(
-        URL_SGROUP_ASSIGNED_SET,
+        URL_SGROUP_ASSIGNED_ADD,
         {
-            "SGMGID": parseInt(id),
-            "ASS_SENSORS": list
+            "SGMGID": parseInt(gId),
+            "SGMSID": parseInt(sId)
+        }
+    )
+    return res.status
+}
+
+export const remSgroupMemb = async (gId, sId) => {
+    const res = await sendRequest(
+        URL_SGROUP_ASSIGNED_REM,
+        {
+            "SGMGID": parseInt(gId),
+            "SGMSID": parseInt(sId)
         }
     )
     return res.status

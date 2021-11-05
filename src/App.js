@@ -1,10 +1,10 @@
 import React from "react";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Homepage from "./components/views/homepage";
 import Alerts from "./components/views/alerts/alerts";
 import Sensors from "./components/views/sensors/sensors";
 import SGroups from "./components/views/sGroups/sGroups";
-import Team from "./components/views/team/team";
+import TeamDetails from "./components/views/team/teamDetails";
 import Contact from "./components/views/contact";
 import Login from "./components/views/login";
 import Register from "./components/views/register";
@@ -37,18 +37,21 @@ import {
     ROUTE_SGROUP_LIST,
     ROUTE_TMEMBER_NEW,
     ROUTE_TMEMBER_DETAILS,
-    ROUTE_TMEMBER_LIST,
     ROUTE_TMEMBER_SENSORS_EDIT,
     ROUTE_TMEMBER_SGROUPS_EDIT,
     ROUTE_TMEMBER_REM,
     ROUTE_SGROUP_DEL,
-    ROUTE_RESTART
+    ROUTE_RESTART, ROUTE_TEAMS_LIST, ROUTE_TEAM_DETAILS, ROUTE_TEAM_NEW, ROUTE_TEAM_EDIT, ROUTE_TEAM_DEL
 } from "./iotConfig";
 import RemoveTeamMember from "./components/views/team/removeTeamMember";
 import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
 import PrivateRoute from "./components/privateRoute";
 import NotFound from "./components/views/notFound";
 import Restart from "./components/views/restart";
+import Teams from "./components/views/team/teams";
+import NewTeam from "./components/views/team/newTeam";
+import EditTeam from "./components/views/team/editTeam";
+import DeleteTeam from "./components/views/team/deleteTeam";
 
 
 function App() {
@@ -73,7 +76,11 @@ function App() {
                 <PrivateRoute path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
                 <PrivateRoute path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
                 <PrivateRoute path={ROUTE_SGROUP_DEL(`:id`)} exact component={DeleteSGroup}/>
-                <PrivateRoute path={ROUTE_TMEMBER_LIST} exact component={Team}/>
+                <PrivateRoute path={ROUTE_TEAMS_LIST} exact component={Teams}/>
+                <PrivateRoute path={ROUTE_TEAM_DETAILS(`:id`)} exact component={TeamDetails}/>
+                <PrivateRoute path={ROUTE_TEAM_EDIT(`:id`)} exact component={EditTeam}/>
+                <PrivateRoute path={ROUTE_TEAM_DEL(`:id`)} exact component={DeleteTeam}/>
+                <PrivateRoute path={ROUTE_TEAM_NEW} exact component={NewTeam}/>
                 <PrivateRoute path={ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
                 <PrivateRoute path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
                 <PrivateRoute path={ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
