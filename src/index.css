@@ -26,17 +26,18 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
   background-color: var(--gray01);
 }
 
 .container {
   display: grid;
-  grid-template-columns: 200px auto 30px;
-  grid-template-rows: 50px auto 50px;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 45px auto 50px;
   grid-template-areas:
-    "sidebar topbar topbar"
-    "sidebar main main"
-    "sidebar footer footer";
+    "sidebar topbar"
+    "sidebar main"
+    "sidebar footer";
 
   width: 100%;
 }
@@ -44,9 +45,12 @@ body {
 .topbar {
   grid-area: topbar;
   border-bottom: var(--gray02) solid 1px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: auto 10% auto;
+  grid-template-rows: auto;
+  grid-template-areas: "top-alerts top-middle top-name";
+  align-items: end;
+  min-height: 45px;
 }
 
 .main {
@@ -82,10 +86,10 @@ body {
 .sidebar {
   grid-area: sidebar;
   font-family: "Segoe UI Semibold", sans-serif;
-  font-size: 20px;
-  line-height: 50px;
+  font-size: 1.2rem;
+  line-height: 2.5rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
   padding: 20px 0 50px 0;
 
   display: flex;
@@ -103,18 +107,19 @@ body {
   background-color: var(--darkblue);
   /*overflow-x: hidden;*/
   display: grid;
+  grid-template-columns: 35px auto 35px;
+  grid-template-rows: auto;
   grid-template-areas: "void1 menu void2";
-  /*grid-template: 1fr 2fr 1fr / 1fr 2fr 1fr;*/
   border: #00AFD9 solid 1px;
 }
 
 .burgermenu {
   grid-area: menu;
   font-family: "Segoe UI Semibold", sans-serif;
-  font-size: 30px;
-  line-height: 60px;
+  font-size: 1.3rem;
+  line-height: 2.5rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 0.15rem;
   padding: 20px 0 50px 0;
 
   display: flex;
@@ -125,12 +130,13 @@ body {
 
 .burgermenu-icon {
   height: 20px;
-  margin: 5px 5px 5px 15px;
+  margin: 5px 5px 0 0;
   cursor: pointer;
 }
 
 .icon-close-bmenu {
   grid-area: void2;
+  padding: 20%;
 }
 
 .footer {
@@ -163,7 +169,7 @@ a {
 .btn-small {
   font-family: "Segoe UI Semibold", sans-serif;
   color: var(--gray02);
-  font-size: 14px;
+  font-size: 0.9rem;
   text-transform: lowercase;
   cursor: pointer;
 }
@@ -188,10 +194,10 @@ a {
 .btn-color {
   color: var(--gray01);
   font-family: "Segoe UI", sans-serif;
-  font-size: 12px;
-  line-height: 14px;
+  font-size: 0.75rem;
+  line-height: 1rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08rem;
   border-radius: 5px;
   background: var(--blue);
   /*background-image: linear-gradient(var(--blue), var(--water));*/
@@ -324,7 +330,7 @@ a {
 .input {
   max-width: 700px;
   width: 70%;
-  font-size: 16px;
+  font-size: 1rem;
   text-rendering: auto;
   text-align: center;
   background: none;
@@ -336,7 +342,7 @@ a {
 .input-login {
   max-width: 700px;
   width: 90%;
-  font-size: 16px;
+  font-size: 1rem;
   text-rendering: auto;
   text-align: center;
   background: none;
@@ -394,20 +400,19 @@ img.dot {
 /*********************************************/
 
 
-.topbar-alert {
-  /*grid-area: alerts;*/
-  font-family: "Segoe UI Semibold", "Segoe UI", sans-serif;
-  background: yellow;
-
+.topbar__alerts {
+  grid-area: top-alerts;
+  justify-self: start;
+  padding-left: 10px;
+}
+.topbar__name {
+  grid-area: top-name;
   display: flex;
-  flex-direction: column;
-  justify-self: right;
+  align-items: flex-end;
+  justify-self: end;
+  padding-right: 10px;
 }
 
-.topbar-restore {
-  display: flex;
-  align-items: baseline;
-}
 
 .sidebar-logo {
   margin: 10px 0 30px 0;
@@ -452,7 +457,7 @@ img.dot {
 .element-type {
   font-family: "Segoe UI Regular", "Segoe UI", serif;
   color: var(--dark);
-  font-size: 12px;
+  font-size: 0.7rem;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -465,7 +470,7 @@ img.dot {
 
 .element-stats {
   grid-area: stats;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .stats-simple {
@@ -480,7 +485,7 @@ img.dot {
 
 .stats-title {
   font-family: "Segoe UI Regular", "Segoe UI", sans-serif;
-  font-size: 10px;
+  font-size: 0.6rem;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -563,8 +568,8 @@ img.dot {
 
 .obj-sn {
   font-family: "Segoe UI Regular", sans-serif;
-  font-size: 14px;
-  line-height: 15px;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
   color: var(--gray02);
 }
 
@@ -689,7 +694,6 @@ img.dot {
   background: white;
   box-shadow: 0 0 4px 0 var(--gray02);
 }
-
 
 /* ---- Test --- */
 .test-btn {

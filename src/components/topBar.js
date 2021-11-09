@@ -31,13 +31,15 @@ const TopBar = ({ activateBurgerMenu }) => {
 
     return(
         <div className="topbar txt-semibold txt-blue">
-            <div className="mrg-l">
+            <div className="topbar__alerts">
                 {getUnreadAlertMessage(unreadAlerts)}
             </div>
-            <div className="topbar-restore">
+            <div className="topbar__name">
                 {/*<img src={gear} className="gear" alt="restore default layout"/>*/}
                 {loggedUser
-                    ? <div className="mrg-r">{loggedUser.ufname} {loggedUser.ulname}</div>
+                    ? <div className="mrg-r">
+                        {loggedUser.ufname} {loggedUser.ulname}
+                    </div>
                     : ""}
                 {width <= 640 && <img
                     src={menu}

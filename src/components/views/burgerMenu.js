@@ -3,10 +3,9 @@ import LogoutButton from "../logoutButton";
 import {
     ROUTE_CONTACT,
     ROUTE_HOME, ROUTE_LOGIN,
-    ROUTE_NOTIFS_LIST,
+    ROUTE_NOTIFS_LIST, ROUTE_PROFILE, ROUTE_REGISTER, ROUTE_RESTART,
     ROUTE_SENSOR_LIST,
     ROUTE_SGROUP_LIST, ROUTE_TEAMS_LIST,
-    ROUTE_TMEMBER_LIST, URL_TEAMS_LIST
 } from "../../iotConfig";
 import {sendLogout} from "../../FakeFrontend/backendAuthConnector";
 import * as authService from "../../authService";
@@ -58,6 +57,11 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
                     onClick={() => activateBurgerMenu(false)}
                 />
 
+                <MenuBurgerButton
+                    text="Profil"
+                    path={ROUTE_PROFILE}
+                    onClick={() => activateBurgerMenu(false)}
+                />
                 <LogoutButton
                     text="Wyloguj"
                     onClick={onLogout}
@@ -65,11 +69,11 @@ const BurgerMenu = ({ activateBurgerMenu }) => {
                 <br/>
 
                 <h6>Tymczasowe skróty:</h6>
-                <MenuBurgerButton text="Logowanie" path="/login"
+                <MenuBurgerButton text="Logowanie" path={ROUTE_LOGIN}
                                   onClick={() => activateBurgerMenu(false)}/>
-                <MenuBurgerButton text="Rejestracja" path="/register"
+                <MenuBurgerButton text="Rejestracja" path={ROUTE_REGISTER}
                                   onClick={() => activateBurgerMenu(false)}/>
-                <MenuBurgerButton text="Restart" path="/restart"
+                <MenuBurgerButton text="Restart" path={ROUTE_RESTART}
                                   onClick={() => activateBurgerMenu(false)}/>
             </div>
             <div className="txt-right icon-close-bmenu txt-left">

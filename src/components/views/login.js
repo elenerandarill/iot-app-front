@@ -28,7 +28,9 @@ const Login = () => {
                 .then((body) => {
                     setEmail("")
                     setPassword("")
-                    authService.login(body["SESID"], body["UFNAME"], body["ULNAME"])
+                    authService.login(
+                        body["USRID"], body["SESID"], body["UFNAME"], body["ULNAME"]
+                    )
 
                     history.push(ROUTE_HOME)
                 })

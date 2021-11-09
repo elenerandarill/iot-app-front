@@ -52,6 +52,14 @@ export const fetchUsers = async () => {
     return jsonToMembers(res.body)
 }
 
+export const fetchUser = async (id) => {
+    const res = await sendRequest(
+        URL_USER_GET,
+        {"USRID": parseInt(id)}
+    )
+    return jsonToMember(res.body)
+}
+
 
 export const fetchTeams = async (id) => {
     const res = await sendRequest(

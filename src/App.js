@@ -41,7 +41,7 @@ import {
     ROUTE_TMEMBER_SGROUPS_EDIT,
     ROUTE_TMEMBER_REM,
     ROUTE_SGROUP_DEL,
-    ROUTE_RESTART, ROUTE_TEAMS_LIST, ROUTE_TEAM_DETAILS, ROUTE_TEAM_NEW, ROUTE_TEAM_EDIT, ROUTE_TEAM_DEL
+    ROUTE_RESTART, ROUTE_TEAMS_LIST, ROUTE_TEAM_DETAILS, ROUTE_TEAM_NEW, ROUTE_TEAM_EDIT, ROUTE_TEAM_DEL, ROUTE_PROFILE
 } from "./iotConfig";
 import RemoveTeamMember from "./components/views/team/removeTeamMember";
 import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
@@ -52,6 +52,7 @@ import Teams from "./components/views/team/teams";
 import NewTeam from "./components/views/team/newTeam";
 import EditTeam from "./components/views/team/editTeam";
 import DeleteTeam from "./components/views/team/deleteTeam";
+import UserProfile from "./components/views/userProfile";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
                 <Route path={ROUTE_RESTART} exact component={Restart}/>
                 <Route path={ROUTE_LOGIN} exact component={Login}/>
                 <Route path={ROUTE_REGISTER} exact component={Register}/>
+                <Route path={ROUTE_PROFILE(`:id`)} exact component={UserProfile}/>
                 <Route path="/test" exact component={Test}/>
 
                 <PrivateRoute path={ROUTE_HOME} exact component={Homepage}/>

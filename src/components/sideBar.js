@@ -4,10 +4,9 @@ import useWindowDimensions from "./useWindowDimensions";
 import {
     ROUTE_CONTACT,
     ROUTE_HOME, ROUTE_LOGIN,
-    ROUTE_NOTIFS_LIST,
+    ROUTE_NOTIFS_LIST, ROUTE_PROFILE, ROUTE_REGISTER, ROUTE_RESTART,
     ROUTE_SENSOR_LIST,
     ROUTE_SGROUP_LIST, ROUTE_TEAMS_LIST,
-    ROUTE_TMEMBER_LIST, URL_TEAMS_LIST
 } from "../iotConfig";
 import {sendLogout} from "../FakeFrontend/backendAuthConnector";
 import {useHistory} from "react-router-dom";
@@ -18,6 +17,7 @@ import * as authService from "../authService";
 const SideBar = () => {
     const { width, height } = useWindowDimensions()
     const history = useHistory()
+    const loggedUser = authService.getLoggedUser()
 
     const onLogout = () => {
         // Info do backendu
@@ -39,13 +39,15 @@ const SideBar = () => {
             <MenuButton text="Grupy" path={ROUTE_SGROUP_LIST}/>
             <MenuButton text="Zespoły" path={ROUTE_TEAMS_LIST}/>
             <MenuButton text="Kontakt" path={ROUTE_CONTACT}/>
-
+            {loggedUser &&
+            <MenuButton text="Profil" path={() => ROUTE_PROFILE(loggedUser.id)}/>
+            }
             <LogoutButton text="Wyloguj" onClick={onLogout}/>
             <br/>
             <h6>Tymczasowe skróty:</h6>
-            <MenuButton text="Logowanie" path="/login"/>
-            <MenuButton text="Rejestracja" path="/register"/>
-            <MenuButton text="Restart" path="/restart"/>
+            <MenuButton text="Logowanie" path={ROUTE_LOGIN}/>
+            <MenuButton text="Rejestracja" path={ROUTE_REGISTER}/>
+            <MenuButton text="Restart" path={ROUTE_RESTART}/>
 
         </div>
     )

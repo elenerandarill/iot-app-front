@@ -17,7 +17,8 @@ const UserViews = ({children}) => {
     if (width <= 640){
         return (
             <div>
-                {burgerActive && <BurgerMenu activateBurgerMenu={activateBurgerMenu}/>}
+                {burgerActive
+                && <BurgerMenu activateBurgerMenu={activateBurgerMenu}/>}
                 <Notifications/>
                 <TopBar activateBurgerMenu={activateBurgerMenu}/>
                 {children}

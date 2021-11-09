@@ -74,6 +74,7 @@ export const ROUTE_RESTART = "/restart"
 export const ROUTE_LOGIN = "/login"
 export const ROUTE_LOGOUT = "/logout"
 export const ROUTE_REGISTER = "/register"
+export const ROUTE_PROFILE = (id) => "/profile/" + id
 
 export const ROUTE_SENSOR_LIST = "/sensor/list"
 export const ROUTE_SENSOR_DETAILS = (id) => "/sensor/" + id + "/details"
