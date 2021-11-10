@@ -20,29 +20,7 @@ import EditMemberSensors from "./components/views/team/editMemberSensors";
 import EditSensorChart from "./components/views/sensors/editSensorChart";
 import NewTeamMember from "./components/views/team/newTeamMember";
 import NewAlert from "./components/views/alerts/newAlert";
-import {
-    ROUTE_CONTACT,
-    ROUTE_HOME,
-    ROUTE_LOGIN,
-    ROUTE_NOTIFS_LIST,
-    ROUTE_NOTIFS_NEW,
-    ROUTE_REGISTER,
-    ROUTE_SENSOR_DETAILS,
-    ROUTE_SENSOR_EDIT,
-    ROUTE_SENSOR_EDIT_CHART,
-    ROUTE_SENSOR_LIST,
-    ROUTE_SGROUP_NEW,
-    ROUTE_SGROUP_DETAILS,
-    ROUTE_SGROUP_EDIT,
-    ROUTE_SGROUP_LIST,
-    ROUTE_TMEMBER_NEW,
-    ROUTE_TMEMBER_DETAILS,
-    ROUTE_TMEMBER_SENSORS_EDIT,
-    ROUTE_TMEMBER_SGROUPS_EDIT,
-    ROUTE_TMEMBER_REM,
-    ROUTE_SGROUP_DEL,
-    ROUTE_RESTART, ROUTE_TEAMS_LIST, ROUTE_TEAM_DETAILS, ROUTE_TEAM_NEW, ROUTE_TEAM_EDIT, ROUTE_TEAM_DEL, ROUTE_PROFILE
-} from "./iotConfig";
+import * as config from "./iotConfig";
 import RemoveTeamMember from "./components/views/team/removeTeamMember";
 import DeleteSGroup from "./components/views/sGroups/deleteSgroup";
 import PrivateRoute from "./components/privateRoute";
@@ -52,7 +30,9 @@ import Teams from "./components/views/team/teams";
 import NewTeam from "./components/views/team/newTeam";
 import EditTeam from "./components/views/team/editTeam";
 import DeleteTeam from "./components/views/team/deleteTeam";
-import UserProfile from "./components/views/userProfile";
+import UserProfile from "./components/views/profile/userProfile";
+import AdminPanel from "./components/views/admin/adminPanel";
+import DeleteProfile from "./components/views/profile/deleteProfile";
 
 
 function App() {
@@ -60,35 +40,39 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path={ROUTE_RESTART} exact component={Restart}/>
-                <Route path={ROUTE_LOGIN} exact component={Login}/>
-                <Route path={ROUTE_REGISTER} exact component={Register}/>
-                <Route path={ROUTE_PROFILE(`:id`)} exact component={UserProfile}/>
+
+                <Route path={config.ROUTE_RESTART} exact component={Restart}/>
+                <Route path={config.ROUTE_LOGIN} exact component={Login}/>
+                <Route path={config.ROUTE_REGISTER} exact component={Register}/>
+                <Route path={config.ROUTE_PROFILE(`:id`)} exact component={UserProfile}/>
+                <Route path={config.ROUTE_PROFILE_DEL(`:id`)} exact component={DeleteProfile}/>
                 <Route path="/test" exact component={Test}/>
 
-                <PrivateRoute path={ROUTE_HOME} exact component={Homepage}/>
-                <PrivateRoute path={ROUTE_NOTIFS_LIST} exact component={Alerts}/>
-                <PrivateRoute path={ROUTE_NOTIFS_NEW} exact component={NewAlert}/>
-                <PrivateRoute path={ROUTE_SENSOR_LIST} exact component={Sensors}/>
-                <PrivateRoute path={ROUTE_SENSOR_DETAILS(`:id`)} exact component={SensorDetails}/>
-                <PrivateRoute path={ROUTE_SENSOR_EDIT(`:id`)} exact component={EditSensorGroups}/>
-                <PrivateRoute path={ROUTE_SENSOR_EDIT_CHART(`:id`)} exact component={EditSensorChart}/>
-                <PrivateRoute path={ROUTE_SGROUP_LIST} exact component={SGroups}/>
-                <PrivateRoute path={ROUTE_SGROUP_NEW} exact component={NewSGroup}/>
-                <PrivateRoute path={ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
-                <PrivateRoute path={ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
-                <PrivateRoute path={ROUTE_SGROUP_DEL(`:id`)} exact component={DeleteSGroup}/>
-                <PrivateRoute path={ROUTE_TEAMS_LIST} exact component={Teams}/>
-                <PrivateRoute path={ROUTE_TEAM_DETAILS(`:id`)} exact component={TeamDetails}/>
-                <PrivateRoute path={ROUTE_TEAM_EDIT(`:id`)} exact component={EditTeam}/>
-                <PrivateRoute path={ROUTE_TEAM_DEL(`:id`)} exact component={DeleteTeam}/>
-                <PrivateRoute path={ROUTE_TEAM_NEW} exact component={NewTeam}/>
-                <PrivateRoute path={ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
-                <PrivateRoute path={ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
-                <PrivateRoute path={ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
-                <PrivateRoute path={ROUTE_TMEMBER_SENSORS_EDIT(`:id`)} exact component={EditMemberSensors}/>
-                <PrivateRoute path={ROUTE_TMEMBER_REM(`:id`)} exact component={RemoveTeamMember}/>
-                <PrivateRoute path={ROUTE_CONTACT} component={Contact}/>
+                <PrivateRoute path={config.ROUTE_ADMIN} component={AdminPanel}/>
+
+                <PrivateRoute path={config.ROUTE_HOME} exact component={Homepage}/>
+                <PrivateRoute path={config.ROUTE_NOTIFS_LIST} exact component={Alerts}/>
+                <PrivateRoute path={config.ROUTE_NOTIFS_NEW} exact component={NewAlert}/>
+                <PrivateRoute path={config.ROUTE_SENSOR_LIST} exact component={Sensors}/>
+                <PrivateRoute path={config.ROUTE_SENSOR_DETAILS(`:id`)} exact component={SensorDetails}/>
+                <PrivateRoute path={config.ROUTE_SENSOR_EDIT(`:id`)} exact component={EditSensorGroups}/>
+                <PrivateRoute path={config.ROUTE_SENSOR_EDIT_CHART(`:id`)} exact component={EditSensorChart}/>
+                <PrivateRoute path={config.ROUTE_SGROUP_LIST} exact component={SGroups}/>
+                <PrivateRoute path={config.ROUTE_SGROUP_NEW} exact component={NewSGroup}/>
+                <PrivateRoute path={config.ROUTE_SGROUP_DETAILS(`:id`)} exact component={SGroupDetails}/>
+                <PrivateRoute path={config.ROUTE_SGROUP_EDIT(`:id`)} exact component={EditSGroup}/>
+                <PrivateRoute path={config.ROUTE_SGROUP_DEL(`:id`)} exact component={DeleteSGroup}/>
+                <PrivateRoute path={config.ROUTE_TEAMS_LIST} exact component={Teams}/>
+                <PrivateRoute path={config.ROUTE_TEAM_DETAILS(`:id`)} exact component={TeamDetails}/>
+                <PrivateRoute path={config.ROUTE_TEAM_EDIT(`:id`)} exact component={EditTeam}/>
+                <PrivateRoute path={config.ROUTE_TEAM_DEL(`:id`)} exact component={DeleteTeam}/>
+                <PrivateRoute path={config.ROUTE_TEAM_NEW} exact component={NewTeam}/>
+                <PrivateRoute path={config.ROUTE_TMEMBER_NEW} exact component={NewTeamMember}/>
+                <PrivateRoute path={config.ROUTE_TMEMBER_DETAILS(`:id`)} exact component={TeamMemberDetails}/>
+                <PrivateRoute path={config.ROUTE_TMEMBER_SGROUPS_EDIT(`:id`)} exact component={EditMemberSgroups}/>
+                <PrivateRoute path={config.ROUTE_TMEMBER_SENSORS_EDIT(`:id`)} exact component={EditMemberSensors}/>
+                <PrivateRoute path={config.ROUTE_TMEMBER_REM(`:id`)} exact component={RemoveTeamMember}/>
+                <PrivateRoute path={config.ROUTE_CONTACT} component={Contact}/>
 
                 <Route component={NotFound}/>
             </Switch>

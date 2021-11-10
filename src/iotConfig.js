@@ -15,6 +15,7 @@ export const URL_REGISTER = URL_SERVER_BASE + "/register"
 export const URL_USER_LIST = URL_SERVER_BASE + "/USER/list"
 export const URL_USER_GET = URL_SERVER_BASE + "/USER/get"
 export const URL_USER_SET = URL_SERVER_BASE + "/USER/set"
+export const URL_USER_DEL = URL_SERVER_BASE + "/USER/del"
 
 // SENSOR
 export const URL_SENSOR_LIST = URL_SERVER_BASE + "/SENSOR/list"
@@ -75,6 +76,7 @@ export const ROUTE_LOGIN = "/login"
 export const ROUTE_LOGOUT = "/logout"
 export const ROUTE_REGISTER = "/register"
 export const ROUTE_PROFILE = (id) => "/profile/" + id
+export const ROUTE_PROFILE_DEL = (id) => "/profile/" + id + "/del"
 
 export const ROUTE_SENSOR_LIST = "/sensor/list"
 export const ROUTE_SENSOR_DETAILS = (id) => "/sensor/" + id + "/details"
@@ -104,4 +106,6 @@ export const ROUTE_NOTIFS_LIST = "/notification/list"
 export const ROUTE_NOTIFS_NEW = "/notification/new"
 
 export const ROUTE_CONTACT = "/contact"
+
+export const ROUTE_ADMIN = "/admin"
 

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import UserViews from "./userViews";
-import * as authService from "../../authService" ;
-import {InputString} from "../attributes";
-import {changeValue, handleUnauthorizedException} from "../../FakeFrontend/backendConnector";
+import UserViews from "../userViews";
+import * as authService from "../../../authService" ;
+import {InputString} from "../../attributes";
+import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {useHistory, useParams} from "react-router-dom";
-import {fetchUser} from "../../FakeFrontend/backendMemberConnector";
-import {URL_USER_SET} from "../../iotConfig";
+import {fetchUser} from "../../../FakeFrontend/backendMemberConnector";
+import {ROUTE_PROFILE_DEL, ROUTE_SGROUP_DEL, ROUTE_SGROUP_LIST, URL_USER_SET} from "../../../iotConfig";
+import {ButtonLink} from "../../buttons";
 
 const UserProfile = () => {
     /** @type {LoggedUser|null} */
@@ -50,6 +51,10 @@ const UserProfile = () => {
         <UserViews>
             <div className="main">
                 <div className="buttons-container">
+                        <ButtonLink
+                            link={ROUTE_PROFILE_DEL(id)}
+                            text="usuń"
+                        />
                 </div>
 
                     <div className="content-3x">
@@ -79,11 +84,11 @@ const UserProfile = () => {
                                         URL_USER_SET, "USRID", user.id, "UEMAIL", newValue)}
                                 />
 
-                                <div className="head-txt">dane rozliczeniowe</div>
+                                <div className="head-txt">dane rozliczeniowe????</div>
 
                                 <InputString
                                     label="numer VAT"
-                                    placeholder="numer VAT" // TODO
+                                    placeholder="numer VAT?????" // TODO
                                     sendChange={(newValue) => changeValue(
                                         URL_USER_SET, "USRID", user.id, "UVATID", newValue)}
                                 />
@@ -132,7 +137,6 @@ const UserProfile = () => {
                                     sendChange={(newValue) => changeValue(
                                         URL_USER_SET, "USRID", user.id, "UACOUNTRY", newValue)}
                                 />
-
 
                             </div>
                         </div>

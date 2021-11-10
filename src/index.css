@@ -1,6 +1,7 @@
 @import "styling/contact.css";
 @import "styling/formatting.css";
 @import "styling/coloring.css";
+@import "styling/admin.css";
 
 /* ------ colors ------ */
 :root {
@@ -141,6 +142,7 @@ body {
 
 .footer {
   grid-area: footer;
+  font-size: 0.9rem;
   text-align: center;
   border-top: var(--gray02) solid 1px;
 }

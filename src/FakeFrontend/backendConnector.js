@@ -60,4 +60,12 @@ export const handleUnauthorizedException = (error, history) => {
     }
 }
 
+export const handleBadRequestException = (error, history) => {
+    if(error.status === 400) {
+        console.log(error)
+        history.push(ROUTE_LOGIN)
+    } else {
+        throw error
+    }
+}
 

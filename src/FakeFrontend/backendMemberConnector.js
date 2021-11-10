@@ -8,7 +8,7 @@ import {
     URL_TEAM_GET,
     URL_TEAM_MEMBER_LIST,
     URL_TEAM_NEW,
-    URL_USER_LIST, URL_TEAM_DEL
+    URL_USER_LIST, URL_TEAM_DEL, URL_USER_DEL
 } from "../iotConfig";
 import {Member} from "../FakeBackend/getMembers";
 import {sendRequest} from "./backendConnector";
@@ -52,12 +52,20 @@ export const fetchUsers = async () => {
     return jsonToMembers(res.body)
 }
 
-export const fetchUser = async (id) => {
+export const fetchUser = async (uId) => {
     const res = await sendRequest(
         URL_USER_GET,
-        {"USRID": parseInt(id)}
+        {"USRID": parseInt(uId)}
     )
     return jsonToMember(res.body)
+}
+
+export const delUser = async (uID) => {
+    const res = await sendRequest(
+        URL_USER_DEL,
+        {"USRID": parseInt(uID)}
+    )
+    return res.body
 }
 
 
@@ -110,15 +118,6 @@ export const delTeam = async (grID) => {
     )
     return res.body
 }
-
-// export const setTeamMembers = async (id, assigned) => {
-//     const list = assignedIds(assigned)
-//     const res = await sendRequest(
-//         URL_TEAM_MEMBER_ASSIGNED_SET,
-//         {}
-//     )
-//     return res.body
-// }
 
 
 export const addMember = async (userId, grID) => {
@@ -178,5 +177,6 @@ export const setMemberAssigned = async (id, assigned, assType) => {
     )
     return res.status
 }
+
 
 
