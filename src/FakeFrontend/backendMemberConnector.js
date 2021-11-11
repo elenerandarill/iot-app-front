@@ -69,7 +69,7 @@ export const delUser = async (uID) => {
 }
 
 
-export const fetchTeams = async (id) => {
+export const fetchTeams = async () => {
     const res = await sendRequest(
         URL_TEAMS_LIST,
         {}

@@ -9,11 +9,11 @@ import {ROUTE_LOGIN} from "../iotConfig";
  */
 export const sendRequest = async (url, data) => {
     console.log("[ Connector ] sending URL: ", url, ", data: ", data)
-    if (data === undefined){
+    if (data === undefined) {
         data = {}
     }
     const loggedUser = authService.getLoggedUser()
-    if (loggedUser){
+    if (loggedUser) {
         data["SESID"] = loggedUser.sessionId
     }
 
@@ -32,8 +32,13 @@ export const sendRequest = async (url, data) => {
     const resJson = await res.json()
     console.log("[ Response ] STATUS: ", resStatus, ", BODY: ", resJson)
 
-    if(resStatus === 401)
+    if (resStatus === 401) {
         throw new Error("Unauthorized exception")
+    } else if (resStatus >= 400 && resStatus < 500) {
+        throw new Error("Client exception")
+    } else if (resStatus >= 500 && resStatus < 600) {
+        throw new Error("Server exception")
+    }
 
     return new BackendResponse(resStatus, resJson)
 }
@@ -52,7 +57,7 @@ export const changeValue = async (url, idName, id, propName, propValue) => {
 }
 
 export const handleUnauthorizedException = (error, history) => {
-    if(error.message === "Unauthorized exception") {
+    if (error.message === "Unauthorized exception") {
         console.log(error)
         history.push(ROUTE_LOGIN)
     } else {
@@ -60,12 +65,4 @@ export const handleUnauthorizedException = (error, history) => {
     }
 }
 
-export const handleBadRequestException = (error, history) => {
-    if(error.status === 400) {
-        console.log(error)
-        history.push(ROUTE_LOGIN)
-    } else {
-        throw error
-    }
-}
 

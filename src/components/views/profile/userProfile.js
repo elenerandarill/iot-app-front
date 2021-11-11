@@ -5,7 +5,7 @@ import {InputString} from "../../attributes";
 import {changeValue, handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {useHistory, useParams} from "react-router-dom";
 import {fetchUser} from "../../../FakeFrontend/backendMemberConnector";
-import {ROUTE_PROFILE_DEL, ROUTE_SGROUP_DEL, ROUTE_SGROUP_LIST, URL_USER_SET} from "../../../iotConfig";
+import {ROUTE_PROFILE_DEL, URL_USER_SET} from "../../../iotConfig";
 import {ButtonLink} from "../../buttons";
 
 const UserProfile = () => {

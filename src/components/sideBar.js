@@ -2,6 +2,7 @@ import MenuButton from "./menuButton";
 import logo_iot from "../media/logo.svg";
 import useWindowDimensions from "./useWindowDimensions";
 import {
+    ROUTE_ADMIN,
     ROUTE_CONTACT,
     ROUTE_HOME, ROUTE_LOGIN,
     ROUTE_NOTIFS_LIST, ROUTE_PROFILE, ROUTE_REGISTER, ROUTE_RESTART,
@@ -42,6 +43,8 @@ const SideBar = () => {
             {loggedUser &&
             <MenuButton text="Profil" path={() => ROUTE_PROFILE(loggedUser.id)}/>
             }
+            <MenuButton text="Admin" path={ROUTE_ADMIN}/>
+
             <LogoutButton text="Wyloguj" onClick={onLogout}/>
             <br/>
             <h6>Tymczasowe skróty:</h6>

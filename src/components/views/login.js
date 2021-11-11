@@ -4,7 +4,7 @@ import {sendLogin} from "../../FakeFrontend/backendAuthConnector";
 import {ROUTE_HOME, URL_REGISTER} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
 import * as authService from "../../authService";
-import {handleBadRequestException, handleUnauthorizedException} from "../../FakeFrontend/backendConnector";
+import {handleUnauthorizedException} from "../../FakeFrontend/backendConnector";
 
 
 const Login = () => {
@@ -35,7 +35,9 @@ const Login = () => {
 
                     history.push(ROUTE_HOME)
                 })
-                .catch(error => handleBadRequestException(error, history))
+                .catch(error => {
+                    console.log(error)
+                })
         }
     }
 

@@ -29,9 +29,11 @@
     color: var(--blue);
 }
 
-
 .txt-gray02 {
     color: var(--gray02);
+}
+.txt-dark {
+    color: var(--dark);
 }
 
 .bgd-gray {

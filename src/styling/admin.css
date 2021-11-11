@@ -1,0 +1,72 @@
+.admin__main {
+    background-color: var(--water);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: max-content auto;
+    grid-template-areas:
+          "sidebar forms";
+}
+
+.admin__main--sidebar {
+    grid-area: sidebar;;
+    padding: 10px;
+    border-right: 1px solid var(--dark);
+}
+
+.admin__main--forms {
+    grid-area: forms;
+    padding: 10px;
+}
+.admin__txt {
+    font-family: "Segoe UI Semibold", sans-serif;
+    font-size: 1rem;
+    color: var(--dark2);
+}
+
+.admin__uptxt {
+    text-transform: uppercase;
+}
+
+.admin__sidebar--btn {
+    font-family: "Segoe UI Semibold", sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    background-color: var(--water);
+    color: var(--dark);
+    width: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.btn--active {
+    background-color: var(--blue);
+    color: white;
+}
+
+ul {
+    list-style-type:none;
+}
+
+th, tr, td {
+    border-collapse: collapse;
+    border: 1px solid var(--dark);
+}
+
+.tb {
+    margin: 20px 5px;
+}
+
+.tb__name {
+    background-color: #9faebf;
+    width: 150px;
+}
+.tb__value {
+    background-color: #a9bfd9;
+    width: 200px;
+}
+.tb__btn {
+    background-color: white;
+    text-align: center;
+    width: 60px;
+}
