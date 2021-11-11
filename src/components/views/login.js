@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {sendLogin} from "../../FakeFrontend/backendAuthConnector";
-import {ROUTE_HOME, URL_REGISTER} from "../../iotConfig";
+import {ROUTE_HOME, ROUTE_REGISTER} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
 import * as authService from "../../authService";
-import {handleUnauthorizedException} from "../../FakeFrontend/backendConnector";
+import {toast} from "react-toastify";
 
 
 const Login = () => {
@@ -14,13 +14,11 @@ const Login = () => {
 
     const onLogin = () => {
         if (!email) {
-            // TODO: toastify
-            alert("Podaj email")
+            toast.error("Podaj email")
             return
         }
         if (!password) {
-            // TODO: toastify
-            alert("Podaj hasło")
+            toast.error("Podaj hasło")
             return
         }
 
@@ -35,9 +33,7 @@ const Login = () => {
 
                     history.push(ROUTE_HOME)
                 })
-                .catch(error => {
-                    console.log(error)
-                })
+                .catch(error => toast.error("Nie udało się zalogować"))
         }
     }
 
@@ -69,7 +65,7 @@ const Login = () => {
                 </div>
 
                 <div className="mrg-tb txt-center">Nie posiadasz konta? <br/>
-                    <Link to={URL_REGISTER}>Zarejestruj się!</Link>
+                    <Link to={ROUTE_REGISTER}>Zarejestruj się!</Link>
                 </div>
             </div>
         </div>

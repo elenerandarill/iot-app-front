@@ -1,5 +1,7 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Homepage from "./components/views/homepage";
 import Alerts from "./components/views/alerts/alerts";
 import Sensors from "./components/views/sensors/sensors";
@@ -39,8 +41,8 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ToastContainer/>
             <Switch>
-
                 <Route path={config.ROUTE_RESTART} exact component={Restart}/>
                 <Route path={config.ROUTE_LOGIN} exact component={Login}/>
                 <Route path={config.ROUTE_REGISTER} exact component={Register}/>

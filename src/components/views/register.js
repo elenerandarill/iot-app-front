@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import {sendRequest} from "../../FakeFrontend/backendConnector";
-import {ROUTE_HOME, ROUTE_LOGIN, URL_REGISTER} from "../../iotConfig";
+import {ROUTE_LOGIN} from "../../iotConfig";
 import {ButtonFunc} from "../buttons";
 import {sendRegister} from "../../FakeFrontend/backendAuthConnector";
+import {toast} from "react-toastify";
 
 const Register = () => {
     const [fname, setFname] = useState("");
@@ -20,34 +20,25 @@ const Register = () => {
 
         // sprawdzenie pól obowiązkowych
         if (!fname) {
-            // TODO: toastify
-            alert("Podaj imię")
+            toast.error("Podaj imię")
             return
         }
         if (!lname) {
-            // TODO: toastify
-            alert("Podaj nazwisko")
+            toast.error("Podaj nazwisko")
             return
         }
         if (!email) {
-            // TODO: toastify
-            alert("Podaj email")
+            toast.error("Podaj email")
             return
         }
         if (!password) {
-            // TODO: toastify
-            alert("Podaj hasło")
+            toast.error("Podaj hasło")
             return
         }
-        // if (!company) {
-        //     // TODO: toastify
-        //     alert("Podaj nazwę firmy")
-        //     return
-        // }
 
         // czy password == password2
         if (password !== password2){
-            alert("Oba hasła muszą być identyczne")
+            toast.error("Oba hasła muszą być identyczne")
         }
 
         if (fname && lname && email && password && (password === password2)) {
@@ -63,8 +54,7 @@ const Register = () => {
                     setPassword("")
                     history.push(ROUTE_LOGIN)
                 } else {
-                    // TODO: toastify
-                    alert(`[ Rejestracja ] nieudana, status: ${resp.status}`);
+                    toast.error(`[ Rejestracja ] nieudana, status: ${resp.status}`);
                 }
             }
         }
