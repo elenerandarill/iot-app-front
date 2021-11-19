@@ -10,14 +10,19 @@ const TopBar = ({ activateBurgerMenu }) => {
     const loggedUser = authService.getLoggedUser()
     const history = useHistory()
 
-    const { data, isError, error } = useFetchAlertsQuery(undefined, {
+    const { data, isError, error, isFetching } = useFetchAlertsQuery(undefined, {
         pollingInterval: 60 * 1000,
     })
-    if(isError && error.status === 401) {
-        history.push(ROUTE_LOGIN)
+    console.log(
+        "isFetching: ", isFetching,
+        ", isError: ", isError
+    )
+    if(!isFetching && isError && error.status === 401) {
+        console.log("topbar 401 -> redirecting to login page")
+        window.location = ROUTE_LOGIN // Use window.location instead of history.push to force restarting all react/redux state
     }
 
-    const unreadAlerts = data
+    const unreadAlerts = isFetching ? undefined : data
     console.log(">>>> unreadAlerts: ", unreadAlerts)
 
     const getUnreadAlertMessage = (unreadAlerts) => {

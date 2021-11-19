@@ -31,6 +31,7 @@ const Login = () => {
                         body["USRID"], body["SESID"], body["UFNAME"], body["ULNAME"]
                     )
 
+                    console.log("Login successfull. Redirecting to home page")
                     history.push(ROUTE_HOME)
                 })
                 .catch(error => toast.error("Nie udało się zalogować"))
