@@ -1,15 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import * as authService from "../../../authService";
-import {ROUTE_HOME, ROUTE_LOGIN, URL_USER_LIST} from "../../../iotConfig";
+import {ROUTE_HOME, ROUTE_LOGIN} from "../../../iotConfig";
 import {sendLogout} from "../../../FakeFrontend/backendAuthConnector";
 import {Link, useHistory} from "react-router-dom";
 import AdminUsers from "./adminUsers";
+import AdminTeams from "./adminTeams";
+import AdminSensors from "./adminSensors";
+import AdminSgroups from "./adminSgroups";
+import AdminURGMs from "./adminURGMs";
+import AdminSensorTypes from "./adminSensorTypes";
 
 
 const AdminPanel = () => {
     const user = authService.getLoggedUser(
         /** @type {LoggedUser}*/ undefined)
     const [menuActive, setMenuActive] = useState(undefined)
+    const [status, setStatus] = useState()
+    const [msg, setMsg] = useState()
     const history = useHistory()
 
     const onLogout = () => {
@@ -23,30 +30,33 @@ const AdminPanel = () => {
     /** @param name {string} */
     const isBtnActive = (name) => {
         return name === menuActive
-            ? "admin__sidebar--btn btn--active"
-            : "admin__sidebar--btn"
+            ? "admin__menu--btn btn--active"
+            : "admin__menu--btn"
     }
 
+    const alertMsg = (status, msg) => <div className={`admin__msg ${status}`}>{msg}</div>
 
-    // useEffect(() => {
-    //     if (menuActive === "users") {
-    //         fetchData(URL_USER_LIST)
-    //     } else if (menuActive === "teams") {
-    //         fetchTeams()
-    //             .then(setObjectList)
-    //             .catch(error => handleUnauthorizedException(error, history))
-    //     } else if (menuActive === "sensors") {
-    //         fetchSensors()
-    //             .then(setObjectList)
-    //             .catch(error => handleUnauthorizedException(error, history))
-    //     } else if (menuActive === "sgroups") {
-    //         fetchSgroups()
-    //             .then(setObjectList)
-    //             .catch(error => handleUnauthorizedException(error, history))
-    //     }
-    //
-    // }, [menuActive])
+    const showAlert = (cls, msg) => {
+        setStatus(cls)
+        setMsg(msg)
+        setTimeout(() => {
+            setStatus(undefined)
+            setMsg(undefined)
+        }, 10000)
+    }
 
+    const BtnAdminMenu = ({descPl, descEng, dbName}) => {
+        return (
+            <button
+                type="button"
+                className={isBtnActive(descEng)}
+                onClick={() => setMenuActive(descEng)}
+            >
+                <span className="admin__uptxt">{dbName}</span>
+                <br/> ({descPl})
+            </button>
+        )
+    }
 
     if (!user) {
         return (
@@ -59,83 +69,52 @@ const AdminPanel = () => {
         )
     }
     return (
-        // <div style={{"backgroundColor": "red"}}>
-        //     background-colorbackground-colorbackground-color
-        //     background-color
-        //     background-color
-        //     background-color
-        //     background-color
-        //     background-color
-        //     background-color
-        // </div>
         <div className="admin__main">
-            <div className="admin__main--sidebar">
-                <ul>
-                    <li>
-                        <button
-                            type="button"
-                            className={isBtnActive("users")}
-                            onClick={() => setMenuActive("users")}
-                        >
-                            użytkownicy
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            className={isBtnActive("teams")}
-                            onClick={() => setMenuActive("teams")}
-                        >
-                            zespoły
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            className={isBtnActive("sensors")}
-                            onClick={() => setMenuActive("sensors")}
-                        >
-                            czujniki
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            type="button"
-                            className={isBtnActive("sgroups")}
-                            onClick={() => setMenuActive("sgroups")}
-                        >
-                            grupy czujników
-                        </button>
-                    </li>
+            <div className="admin__main--menu">
+                <BtnAdminMenu descPl="użytkownicy" descEng="users" dbName="USER"/>
+                <BtnAdminMenu descPl="zespoły" descEng="teams" dbName="UGRP"/>
+                <BtnAdminMenu descPl="ugrupa:user" descEng="ugrm" dbName="UGRM"/>
+                <BtnAdminMenu descPl="czujniki" descEng="sensors" dbName="SENSOR"/>
+                <BtnAdminMenu descPl="rodzaje czujników" descEng="sentypes" dbName="SETYPE"/>
+                <BtnAdminMenu descPl="grupy czujników" descEng="sgroups" dbName="SGROUP"/>
+                <BtnAdminMenu descPl="sgrupa:sensor" descEng="sgrsen" dbName="SGMEMB"/>
+                <BtnAdminMenu descPl="czujnik DN" descEng="sendispname" dbName="SDDN"/>
+                <BtnAdminMenu descPl="zbierane dane" descEng="sensordata" dbName="SDATA"/>
+                <BtnAdminMenu descPl="pozwolenia" descEng="perms" dbName="PERM"/>
+                <BtnAdminMenu descPl="perm-maska" descEng="pemask" dbName="PEMASK"/>
+                <BtnAdminMenu descPl="warunek-reguła" descEng="condition" dbName="COND"/>
+                <BtnAdminMenu descPl="notyfikacja" descEng="notifs" dbName="NOTIF"/>
+                <BtnAdminMenu descPl="lista notyfikacji" descEng="notiflist" dbName="NLIST"/>
 
-                    <br/>
-
-                    <li>
-                        <button className="admin__sidebar--btn"
-                                onClick={() => history.push(ROUTE_HOME)}
-                        >
-                            to app
-                        </button>
-                    </li>
-                    <li>
-                        <button className="admin__sidebar--btn"
-                                onClick={onLogout}
-                        >
-                            logout
-                        </button>
-                    </li>
-                </ul>
+                <button className="admin__menu--btn btn--special"
+                        onClick={() => history.push(ROUTE_HOME)}
+                >
+                    back to app
+                </button>
+                <button className="admin__menu--btn btn--special"
+                        onClick={onLogout}
+                >
+                    logout
+                </button>
             </div>
+
             <div className="admin__main--forms">
-                <p className="admin__txt admin__uptxt">Panel administratora</p>
-                <p className="mrg-tb">zalogowano: {user.ufname} {user.ulname}</p>
                 <div>
-                    {menuActive === "users" && <AdminUsers/>}
+                    <span className="admin__txt admin__uptxt">Panel administratora </span>
+                    >>> zalogowano: {user.ufname} {user.ulname}
+                </div>
+                {alertMsg(status, msg)}
+                <div>
+                    {menuActive === "users" && <AdminUsers alertMsg={showAlert}/>}
+                    {menuActive === "teams" && <AdminTeams alertMsg={showAlert}/>}
+                    {menuActive === "sensors" && <AdminSensors alertMsg={showAlert}/>}
+                    {menuActive === "sgroups" && <AdminSgroups alertMsg={showAlert}/>}
+                    {menuActive === "ugrm" && <AdminURGMs alertMsg={showAlert}/>}
+                    {menuActive === "sentypes" && <AdminSensorTypes alertMsg={showAlert}/>}
                 </div>
             </div>
         </div>
     )
-        ;
 };
 
 export default AdminPanel;

@@ -54,7 +54,7 @@ const AdminURGMs = ({alertMsg}) => {
 
 
     if (!ugrms) {
-        return (<div> Pobieram dane...</div>)
+        return <div> Pobieram dane...</div>
     }
     return (
         <table>

@@ -5,20 +5,28 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: max-content auto;
+    grid-template-rows: auto auto;
+    grid-template-columns:  auto;
     grid-template-areas:
-          "sidebar forms";
+          "menu"
+          "forms";
 }
 
-.admin__main--sidebar {
-    grid-area: sidebar;
+.admin__main--menu {
+    grid-area: menu;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 10px;
-    border-right: 1px solid var(--dark);
+    border-bottom: 1px solid var(--dark);
 }
 
 .admin__main--forms {
     grid-area: forms;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
     padding: 10px;
 }
 .admin__txt {
@@ -31,23 +39,38 @@
     text-transform: uppercase;
 }
 
-.admin__sidebar--btn {
+.admin__menu--btn {
     font-family: "Segoe UI Semibold", sans-serif;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 1rem;
     background-color: var(--water);
     color: var(--dark);
-    width: 100%;
     padding: 5px 10px;
     cursor: pointer;
 }
 .btn--active {
     color: white;
 }
-
-ul {
-    list-style-type:none;
+.btn--special {
+    background-color: #a9bfd9;
 }
+
+.admin__msg {
+    min-height: 33px;
+    /*border: solid 1px;*/
+}
+
+.admin__msg--success {
+    border: solid 1px lawngreen;
+    color: lawngreen;
+    padding: 5px;
+}
+.admin__msg--error {
+    border: solid 1px darkred;
+    color: darkred;
+    padding: 5px;
+}
+
 
 th, tr, td {
     border-collapse: collapse;
@@ -65,14 +88,4 @@ td {
 
 .tb {
     margin: 20px 5px;
-}
-
-.tb__btn {
-    background-color: white;
-    text-align: center;
-    width: 60px;
-}
-
-.tb__form {
-    width: 50px;
 }
