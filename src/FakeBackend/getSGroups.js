@@ -1,20 +1,23 @@
 
 export class GroupOfSensors {
-    /** @type {string} */
+    /** @type {number} */
     id
+    /** @type {number} */
+    owner
     /** @type {string} */
     name
-    /** @type {string[]} */
-    assigned
-    /** @type {Measurement[]} */
-    measurements
     /** @type {string} */
     notes
     /** @type {boolean} */
     is_new
+    // /** @type {string[]} */
+    // assigned
+    // /** @type {Measurement[]} */
+    // measurements
 
-    constructor(id, name, notes) {
+    constructor(id, owner, name, notes) {
         this.id = id;
+        this.owner = owner;
         this.name = name;
         this.notes = notes;
         this.is_new = true; // TODO zeby Krzysiek zrobil?

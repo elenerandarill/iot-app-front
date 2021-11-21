@@ -18,15 +18,14 @@ import {assignedIds} from "./backendSgroupConnector";
 
 // Parsowanie JSONa
 const jsonToTeam = (t) => {
-    return new Team(t.UGRID, t.UGNAME, t.UGOWN, t.members)
+    return new Team(t.UGRID, t.UGNAME, t.UGOWN)
 }
 
 const jsonToTeams = (list) => list.map(jsonToTeam)
 
 const jsonToMember = (m) => {
     return new Member(
-        m.USRID, m.UFNAME, m.ULNAME, m.UEMAIL, m.UASTREET, m.UANUMBER,
-        m.UAAPRTMNT, m.UALOCALITY, m.UAPOSTCODE, m.UAPROVINCE, m.UACOUNTY
+        m.USRID, m.UFNAME, m.ULNAME, m.UEMAIL
     )
 }
 const jsonToMembers = (list) => {

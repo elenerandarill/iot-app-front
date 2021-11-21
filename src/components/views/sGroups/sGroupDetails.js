@@ -17,7 +17,7 @@ import {GroupOfSensors} from "../../../FakeBackend/getSGroups";
 const SGroupDetails = () => {
     const [sgroup, setSgroup] = useState(
         /** @type {GroupOfSensors} */ new GroupOfSensors(
-            undefined, undefined, undefined
+            undefined, undefined, undefined, undefined
         ))
     const [assignedObjs, setAssignedObjs] = useState(
         /** @type {Sensor[]} */ undefined)

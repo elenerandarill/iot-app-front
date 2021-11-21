@@ -52,7 +52,7 @@ export const permRenderer = (perm) => {
 
 const TeamDetails = () => {
     const [team, setTeam] = useState(
-        /** @type {Team} */ new Team(undefined, undefined, undefined, undefined));
+        /** @type {Team} */ new Team(undefined, undefined, undefined));
     const [members, setMembers] = useState(
         /** @type {Member[]} */[])
     const history = useHistory()

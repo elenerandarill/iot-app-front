@@ -5,14 +5,15 @@ export class Team {
     name
     /** @type {number} */
     owner // User Group OWNer id -> USRID
-    /** @type {Member[]} */
-    members
+    /** @type {boolean} */
+    is_new
 
-    constructor(id, name, owner, members = []) {
+
+    constructor(id, name, owner) {
         this.id = id
         this.name = name
         this.owner = owner
-        this.members = members
+        this.is_new = true
     }
 
     getDisplayName = () => this.name

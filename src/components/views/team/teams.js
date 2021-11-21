@@ -18,7 +18,7 @@ export const teamObjectRenderer = (team) => {
             key={team.id}
             to={ROUTE_TEAM_DETAILS(team.id)}
         >
-            <div className={"object shadow" + (team.members.length === 0 ? " mark-as-new" : "")}>
+            <div className={"object shadow" + (team.is_new ? " mark-as-new" : "")}>
                 <div>
                     <div className="txt-semibold">{team.name}</div>
                 </div>

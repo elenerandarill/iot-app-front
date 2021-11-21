@@ -26,6 +26,11 @@ export const URL_SENSOR_SET = URL_SERVER_BASE + "/SENSOR/set"
 // export const URL_SENSOR_ASSIGNED_SET = URL_SERVER_BASE + "/SGMEMB/set"
 export const URL_SENSOR_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 
+// SETYPE
+export const URL_SETYPE_LIST = URL_SERVER_BASE + "/SETYPE/list"
+export const URL_SETYPE_NEW = URL_SERVER_BASE + "/SETYPE/new"
+export const URL_SETYPE_DEL = URL_SERVER_BASE + "/SETYPE/del"
+
 export const URL_SDATA_LIST = URL_SERVER_BASE + "/SDATA/list"
 
 
@@ -49,9 +54,9 @@ export const URL_TEAM_DEL = URL_SERVER_BASE + "/UGRP/del"
 export const URL_TEAM_NEW = URL_SERVER_BASE + "/UGRP/new"
 // MEMBERS
 export const URL_TEAM_MEMBER_LIST = URL_SERVER_BASE + "/UGRM/list"
-// export const URL_TEAM_MEMBER_SET = URL_SERVER_BASE + "/UGRM/set"
 export const URL_TEAM_MEMBER_REM = URL_SERVER_BASE + "/UGRM/rem"
 export const URL_TEAM_MEMBER_NEW = URL_SERVER_BASE + "/UGRM/add"
+export const URL_TEAM_MEMBER_ADMIN_LIST = URL_SERVER_BASE + "/UGRM/admin/list"
 // ?????????????
 export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/PERM/set"
 export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/PERM/list"

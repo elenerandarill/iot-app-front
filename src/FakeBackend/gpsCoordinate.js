@@ -1,7 +1,7 @@
 export class GpsCoordinate {
-    /** @type {string} */
+    /** @type {number} */
     latitude
-    /** @type {string} */
+    /** @type {number} */
     longitude
 
     constructor(latitude, longitude) {

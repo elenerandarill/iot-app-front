@@ -8,39 +8,26 @@ export class Member {
     lname
     /** @type {string} */
     email
-    /** @type {string} */
-    astreet
-    /** @type {string} */
-    anumber
-    /** @type {string} */
-    aaprtmnt
-    /** @type {string} */
-    alocality
-    /** @type {string} */
-    apostcode
-    /** @type {string} */
-    aprovince
-    /** @type {string} */
-    acountry
-    /**
-     * Assigned group IDs
-     * @type {string[]}
-     */
-    assigned
+    /** @type {boolean} */
+    is_new
+    // /**
+    //  * Assigned group IDs
+    //  * @type {string[]}
+    //  */
+    // assigned
 
-    constructor(id, fname, lname, email, astreet, anumber,
-                aaprtmnt, alocality, apostcode, aprovince, acountry) {
+    constructor(id, fname, lname, email) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
-        this.astreet = astreet;
-        this.anumber = anumber;
-        this.aaprtmnt = aaprtmnt;
-        this.alocality = alocality;
-        this.apostcode = apostcode;
-        this.aprovince = aprovince;
-        this.acountry = acountry;
+        // this.astreet = astreet;
+        // this.anumber = anumber;
+        // this.aaprtmnt = aaprtmnt;
+        // this.alocality = alocality;
+        // this.apostcode = apostcode;
+        // this.aprovince = aprovince;
+        // this.acountry = acountry;
         this.is_new = true;  // TODO zeby Krzysiek zrobil?
     }
 

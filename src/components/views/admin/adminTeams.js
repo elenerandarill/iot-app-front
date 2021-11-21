@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {fetchUsers} from "../../../FakeFrontend/backendMemberConnector";
+import {fetchTeams} from "../../../FakeFrontend/backendMemberConnector";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {useHistory} from "react-router-dom";
-import AdminUser from "./adminUser";
+import AdminTeam from "./adminTeam";
 
 
-const AdminUsers = ({alertMsg}) => {
-    const [users, setUsers] = useState(
-        /** @type {Member[]} */undefined)
+const AdminTeams = ({alertMsg}) => {
+    const [teams, setTeams] = useState(
+        /** @type {Team[]} */undefined)
     const history = useHistory()
 
     useEffect(() => {
-        fetchUsers()
-            .then(setUsers)
+        fetchTeams()
+            .then(setTeams)
             .catch(error => handleUnauthorizedException(error, history))
     }, [])
 
 
-    if (!users) {
+    if (!teams) {
         return (<div> Pobieram dane...</div>)
     }
     return (
@@ -25,19 +25,18 @@ const AdminUsers = ({alertMsg}) => {
             <thead>
                 <tr>
                     <th>ZAPISZ</th>
-                    <th>USRID</th>
-                    <th>UFNAME</th>
-                    <th>ULNAME</th>
-                    <th>UEMAIL</th>
+                    <th>UGRID</th>
+                    <th>UGNAME</th>
+                    <th>UGOWN</th>
                 </tr>
             </thead>
             <tbody>
-                {users.map(user =>
-                    <AdminUser key={user.id} user={user} alertMsg={alertMsg}/>
+                {teams.map(team =>
+                    <AdminTeam key={team.id} team={team} alertMsg={alertMsg}/>
                 )}
             </tbody>
         </table>
     )
 };
 
-export default AdminUsers;
+export default AdminTeams;

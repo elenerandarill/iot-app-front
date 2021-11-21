@@ -11,7 +11,7 @@ import {sendRequest} from "./backendConnector";
 // Parsowanie JSONa
 
 export const jsonToSgroup = (g) => {
-    return new GroupOfSensors(g.SGRID , g.SGNAME , g.SGDESC )
+    return new GroupOfSensors(g.SGRID , g.SGOWN, g.SGNAME , g.SGDESC )
 }
 
 export const jsonToSgroups = (list) => {

@@ -2,12 +2,11 @@ import {
     URL_SENSOR_ASSIGNED_GET,
     URL_SENSOR_GET,
     URL_SENSOR_LIST,
-    URL_SENSOR_SET,
-    URL_SENSOR_ASSIGNED_SET, URL_SGROUP_ASSIGNED_ADD, URL_SGROUP_ASSIGNED_REM,
+    URL_SENSOR_SET
 } from "../iotConfig";
 import {GpsCoordinate} from "../FakeBackend/gpsCoordinate";
 import {Sensor} from "../FakeBackend/getSensors";
-import {assignedIds, jsonToSgroups} from "./backendSgroupConnector";
+import {jsonToSgroups} from "./backendSgroupConnector";
 import {sendRequest} from "./backendConnector";
 
 
@@ -15,7 +14,7 @@ import {sendRequest} from "./backendConnector";
 // Parsowanie JSONa
 export const jsonToSensor = (s) => {
     const location = new GpsCoordinate(s.SELAT, s.SELONG)
-    return new Sensor(s.SENID, s.SETYPE , s.SENAME , s.SEDID , location, s.SEDES )
+    return new Sensor(s.SENID, s.SEOWN, s.SETYPE , s.SENAME , s.SEDID , s.SEDES, location)
 }
 
 export const jsonToSensors = (list) => {

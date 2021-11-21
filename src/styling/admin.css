@@ -1,5 +1,7 @@
+
 .admin__main {
     background-color: var(--water);
+    overflow: auto;
     width: 100%;
     height: 100%;
     display: grid;
@@ -10,7 +12,7 @@
 }
 
 .admin__main--sidebar {
-    grid-area: sidebar;;
+    grid-area: sidebar;
     padding: 10px;
     border-right: 1px solid var(--dark);
 }
@@ -40,7 +42,6 @@
     cursor: pointer;
 }
 .btn--active {
-    background-color: var(--blue);
     color: white;
 }
 
@@ -53,20 +54,25 @@ th, tr, td {
     border: 1px solid var(--dark);
 }
 
+tr {
+    background-color: #a9bfd9;
+}
+
+td {
+    background-color: #9faebf;
+    padding: 5px;
+}
+
 .tb {
     margin: 20px 5px;
 }
 
-.tb__name {
-    background-color: #9faebf;
-    width: 150px;
-}
-.tb__value {
-    background-color: #a9bfd9;
-    width: 200px;
-}
 .tb__btn {
     background-color: white;
     text-align: center;
     width: 60px;
+}
+
+.tb__form {
+    width: 50px;
 }
