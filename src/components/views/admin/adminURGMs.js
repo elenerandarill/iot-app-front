@@ -28,6 +28,8 @@ const AdminURGMs = ({alertMsg}) => {
 
 
     const removePair = (urgm) => {
+        const decision = window.confirm("Czy na pewno chcesz usunąć?")
+        if(!decision){return}
         remMember(urgm.UGMUID, urgm.UGMGID)
             .then(() => {
                 setUgrms([...ugrms].filter(o => o !== urgm))

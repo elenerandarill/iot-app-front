@@ -48,6 +48,12 @@ export const URL_SGROUP_ASSIGNED_GET = URL_SERVER_BASE + "/SGMEMB/list"
 //SGMEMB TODO
 export const URL_SGMEMB_LIST = URL_SERVER_BASE + "/SGMEMB/admin/list"
 
+//SDDN - Sensor Data Display Name
+export const URL_SDDN_LIST = URL_SERVER_BASE + "/SDDN/list"
+export const URL_SDDN_GET = URL_SERVER_BASE + "/SDDN/get"
+export const URL_SDDN_SET = URL_SERVER_BASE + "/SDDN/set"
+export const URL_SDDN_DEL = URL_SERVER_BASE + "/SDDN/del"
+
 
 // TEAMS
 export const URL_TEAMS_LIST = URL_SERVER_BASE + "/UGRP/list"

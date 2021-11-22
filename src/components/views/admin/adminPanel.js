@@ -10,6 +10,7 @@ import AdminSgroups from "./adminSgroups";
 import AdminURGMs from "./adminURGMs";
 import AdminSensorTypes from "./adminSensorTypes";
 import AdminSGMEMBs from "./adminSGMEMBs";
+import AdminSDDNs from "./adminSDDNs";
 
 
 const AdminPanel = () => {
@@ -79,8 +80,8 @@ const AdminPanel = () => {
                 <BtnAdminMenu descPl="rodzaje czujników" descEng="sentypes" dbName="SETYPE"/>
                 <BtnAdminMenu descPl="grupy czujników" descEng="sgroups" dbName="SGROUP"/>
                 <BtnAdminMenu descPl="sgrupa:sensor" descEng="sgrsen" dbName="SGMEMB"/>
-
                 <BtnAdminMenu descPl="czujnik DN" descEng="sendispname" dbName="SDDN"/>
+
                 <BtnAdminMenu descPl="zbierane dane" descEng="sensordata" dbName="SDATA"/>
                 <BtnAdminMenu descPl="pozwolenia" descEng="perms" dbName="PERM"/>
                 <BtnAdminMenu descPl="perm-maska" descEng="pemask" dbName="PEMASK"/>
@@ -114,6 +115,7 @@ const AdminPanel = () => {
                     {menuActive === "ugrm" && <AdminURGMs alertMsg={showAlert}/>}
                     {menuActive === "sentypes" && <AdminSensorTypes alertMsg={showAlert}/>}
                     {menuActive === "sgrsen" && <AdminSGMEMBs alertMsg={showAlert}/>}
+                    {menuActive === "sendispname" && <AdminSDDNs alertMsg={showAlert}/>}
                 </div>
             </div>
         </div>

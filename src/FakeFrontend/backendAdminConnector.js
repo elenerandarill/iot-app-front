@@ -1,5 +1,7 @@
 import {sendRequest} from "./backendConnector";
 import {
+    URL_SDDN_DEL,
+    URL_SDDN_LIST, URL_SDDN_SET,
     URL_SETYPE_DEL,
     URL_SETYPE_LIST,
     URL_SETYPE_NEW,
@@ -55,6 +57,41 @@ export const fetchSGMEMB = async () => {
     const res = await sendRequest(
         URL_SGMEMB_LIST,
         {}
+    )
+    return res.body
+}
+
+// SDDN = Sensor Data Display Name
+/** @return {Promise<*>} */
+export const fetchSDDN = async () => {
+    const res = await sendRequest(
+        URL_SDDN_LIST,
+        {}
+    )
+    return res.body
+}
+
+/** @return {Promise<*>} */
+export const setSDDN = async (id, name, alias) => {
+    const res = await sendRequest(
+        URL_SDDN_SET,
+        {
+            "SDDSID": id,
+            "SDDPN": name,
+            "SDDPA": alias
+        }
+    )
+    return res.body
+}
+
+
+/** @return {Promise<*>} */
+export const delSDDN = async (id) => {
+    const res = await sendRequest(
+        URL_SDDN_DEL,
+        {
+            "SDDSID": id
+        }
     )
     return res.body
 }

@@ -36,6 +36,8 @@ const AdminSensorTypes = ({alertMsg}) => {
     }
 
     const onRemove = (id) => {
+        const decision = window.confirm("Czy na pewno chcesz usunąć?")
+        if(!decision){return}
         delSETYPE(id)
             .then(() => {
                 setSeTypes([...seTypes].filter(o => o.STYID !== id))

@@ -43,6 +43,8 @@ const AdminSGMEMBs = ({alertMsg}) => {
     }
 
     const removePair = (pair) => {
+        const decision = window.confirm("Czy na pewno chcesz usunąć?")
+        if(!decision){return}
         remSgroupMemb(pair.SGMGID, pair.SGMSID)
             .then(() => {
                 setSgMembs([...sgMembs].filter(o => o !== pair))
