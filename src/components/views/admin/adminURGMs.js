@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 import {fetchUGRM} from "../../../FakeFrontend/backendAdminConnector";
-import AdminUgrm from "./adminUgrm";
-import {addMember} from "../../../FakeFrontend/backendMemberConnector";
+import {addMember, remMember} from "../../../FakeFrontend/backendMemberConnector";
 import {UGRM} from "../../../FakeBackend/UGRM";
+import AdminUGRM from "./adminUGRM";
 
 /**
  * @param alertMsg {function(status: string, msg: string)}
@@ -26,23 +26,25 @@ const AdminURGMs = ({alertMsg}) => {
             .catch(error => handleUnauthorizedException(error, history))
     }, [])
 
-    const addPair = () => {
-        setUgrms([...ugrms, new UGRM(newUgmGid, newUgmUid)])
+
+    const removePair = (urgm) => {
+        remMember(urgm.UGMUID, urgm.UGMGID)
+            .then(() => {
+                setUgrms([...ugrms].filter(o => o !== urgm))
+                alertMsg('admin__msg--success', 'Usunięto.')
+            })
+            .catch(error => handleUnauthorizedException(error, history))
+            .catch(error => alertMsg('admin__msg--error', `Wystąpił błąd: ${error.message}`))
     }
 
-    const removePair = (pair) => {
-        setUgrms([...ugrms]
-            .filter(o => o !== pair)
-        )
-    }
 
-    const onSend = () => {
+    const addNewPair = () => {
         if (!newUgmGid || !newUgmUid) {
             alertMsg('admin__msg--error', "Należy wypełnić oba pola.")
         } else {
             addMember(newUgmUid, newUgmGid)
                 .then(() => {
-                    addPair()
+                    setUgrms([...ugrms, new UGRM(newUgmGid, newUgmUid)])
                     alertMsg('admin__msg--success', 'Zapisano.')
                 })
                 .catch(error => handleUnauthorizedException(error, history))
@@ -68,7 +70,7 @@ const AdminURGMs = ({alertMsg}) => {
             <tbody>
                 <tr>
                     <td>
-                        <button onClick={onSend}>Dodaj</button>
+                        <button onClick={addNewPair}>Dodaj</button>
                     </td>
                     <td>
                         <input type="number" value={newUgmGid}
@@ -80,11 +82,10 @@ const AdminURGMs = ({alertMsg}) => {
                     </td>
                 </tr>
                 {ugrms.map(urgm =>
-                    <AdminUgrm
+                    <AdminUGRM
                         key={`${urgm.UGMGID}_${urgm.UGMUID}`}
                         urgm={urgm}
-                        alertMsg={alertMsg}
-                        removePair={removePair}/>
+                        remove={removePair}/>
                 )}
             </tbody>
         </table>
