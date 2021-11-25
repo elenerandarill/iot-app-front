@@ -12,7 +12,7 @@ import {
 } from "../iotConfig";
 import {Member} from "../FakeBackend/getMembers";
 import {sendRequest} from "./backendConnector";
-import {Perm} from "../FakeBackend/getPerms";
+import {Permissible} from "../FakeBackend/getPermssible";
 import {Team} from "../FakeBackend/team";
 import {assignedIds} from "./backendSgroupConnector";
 
@@ -39,7 +39,7 @@ const jsonToPerm = (p) => {
     } else {
         name = p.SENAME
     }
-    return new Perm(p.PEOBJ, p.PEOBJT, name, p.SEDID)
+    return new Permissible(p.PEOBJ, p.PEOBJT, name, p.SEDID)
 }
 
 // ---------------------------------------

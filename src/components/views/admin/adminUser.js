@@ -42,16 +42,19 @@ const AdminUser = ({user, alertMsg}) => {
                 {user.id}
             </td>
             <td>
-                <input type="text" value={fname}
+                <input type="text"
+                       value={fname}
                        onChange={e => setFname(e.target.value)}/>
             </td>
             <td>
-                <input type="text" value={lname}
-                    onChange={e => setLname(e.target.value)}/>
+                <input type="text"
+                       value={lname}
+                       onChange={e => setLname(e.target.value)}/>
             </td>
             <td>
-                <input type="email" value={email}
-                    onChange={e => setEmail(e.target.value)}/>
+                <input type="email"
+                       value={email}
+                       onChange={e => setEmail(e.target.value)}/>
             </td>
             {/*<td>*/}
             {/*    <input*/}

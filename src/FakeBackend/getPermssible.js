@@ -1,5 +1,5 @@
 
-export class Perm {
+export class Permissible {
     /** @type {number} */
     id
     /** @type {string} */
@@ -20,3 +20,4 @@ export class Perm {
         return this.name.trim() === "" ? this.sn.toString() : this.name
     }
 }
+

@@ -8,7 +8,7 @@ import {
 } from "../../../FakeFrontend/backendMemberConnector";
 import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
-import {Perm} from "../../../FakeBackend/getPerms";
+import {Permissible} from "../../../FakeBackend/getPermssible";
 import UserViews from "../userViews";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
@@ -24,7 +24,7 @@ const EditMemberSgroups = () => {
         console.log("Lista sgrup: ", sglist)
         let permList = []
         for (const sg of sglist) {
-            permList.push(new Perm(sg.id, "SGROUP", sg.name))
+            permList.push(new Permissible(sg.id, "SGROUP", sg.name))
         }
         return permList
     }

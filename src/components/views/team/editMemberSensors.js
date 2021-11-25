@@ -8,7 +8,7 @@ import {
 import {useEffect, useState} from "react";
 import {ROUTE_TMEMBER_DETAILS} from "../../../iotConfig";
 import {fetchSensors} from "../../../FakeFrontend/backendSensorConnector";
-import {Perm} from "../../../FakeBackend/getPerms";
+import {Permissible} from "../../../FakeBackend/getPermssible";
 import UserViews from "../userViews";
 import {handleUnauthorizedException} from "../../../FakeFrontend/backendConnector";
 
@@ -24,7 +24,7 @@ const EditMemberSensors = () => {
         console.log("Lista sensorów: ", slist)
         let permList = []
         for (const s of slist) {
-            permList.push(new Perm(s.id, "SENSOR", s.name, s.sn))
+            permList.push(new Permissible(s.id, "SENSOR", s.name, s.sn))
         }
         return permList
     }

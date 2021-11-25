@@ -14,3 +14,13 @@ export const findDifferenceInLists = (list1, list2) => {
 
     return [addedList, removedList]
 }
+
+/**
+ * Removes element from list
+ * @param list {any[]}
+ * @param elem {any}
+ * @return {any[]}
+ */
+export const removeFromList = (list, elem) => {
+    return list.filter(l => l !== elem)
+}

@@ -60,16 +60,22 @@ export const URL_TEAMS_LIST = URL_SERVER_BASE + "/UGRP/list"
 // TEAM
 export const URL_TEAM_GET = URL_SERVER_BASE + "/UGRP/get"
 export const URL_TEAM_SET = URL_SERVER_BASE + "/UGRP/set"
-export const URL_TEAM_DEL = URL_SERVER_BASE + "/UGRP/del"
 export const URL_TEAM_NEW = URL_SERVER_BASE + "/UGRP/new"
+export const URL_TEAM_DEL = URL_SERVER_BASE + "/UGRP/del"
 // MEMBERS
 export const URL_TEAM_MEMBER_LIST = URL_SERVER_BASE + "/UGRM/list"
-export const URL_TEAM_MEMBER_REM = URL_SERVER_BASE + "/UGRM/rem"
 export const URL_TEAM_MEMBER_NEW = URL_SERVER_BASE + "/UGRM/add"
+export const URL_TEAM_MEMBER_REM = URL_SERVER_BASE + "/UGRM/rem"
 export const URL_TEAM_MEMBER_ADMIN_LIST = URL_SERVER_BASE + "/UGRM/admin/list"
 // ?????????????
-export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/PERM/set"
 export const URL_TEAM_MEMBER_ASSIGNED_GET = URL_SERVER_BASE + "/PERM/list"
+export const URL_TEAM_MEMBER_ASSIGNED_SET = URL_SERVER_BASE + "/PERM/set"
+
+// PERM
+export const URL_PERM_LIST = URL_SERVER_BASE + "/PERM/admin/list"
+export const URL_PERM_SET = URL_SERVER_BASE + "/PERM/admin/set" //PEMASK
+export const URL_PERM_NEW = URL_SERVER_BASE + "/PERM/admin/new"
+export const URL_PERM_DEL = URL_SERVER_BASE + "/PERM/admin/del"
 
 // NOTIFICATION
 export const URL_NOTIFICATION_LIST = URL_SERVER_BASE + "/NOTIF/list"

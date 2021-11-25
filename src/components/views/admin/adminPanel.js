@@ -11,6 +11,7 @@ import AdminURGMs from "./adminURGMs";
 import AdminSensorTypes from "./adminSensorTypes";
 import AdminSGMEMBs from "./adminSGMEMBs";
 import AdminSDDNs from "./adminSDDNs";
+import AdminPERMs from "./adminPERMs";
 
 
 const AdminPanel = () => {
@@ -116,6 +117,7 @@ const AdminPanel = () => {
                     {menuActive === "sentypes" && <AdminSensorTypes alertMsg={showAlert}/>}
                     {menuActive === "sgrsen" && <AdminSGMEMBs alertMsg={showAlert}/>}
                     {menuActive === "sendispname" && <AdminSDDNs alertMsg={showAlert}/>}
+                    {menuActive === "perms" && <AdminPERMs alertMsg={showAlert}/>}
                 </div>
             </div>
         </div>

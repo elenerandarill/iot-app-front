@@ -1,5 +1,7 @@
 import {sendRequest} from "./backendConnector";
 import {
+    URL_PERM_DEL,
+    URL_PERM_LIST, URL_PERM_NEW, URL_PERM_SET,
     URL_SDDN_DEL,
     URL_SDDN_LIST, URL_SDDN_SET,
     URL_SETYPE_DEL,
@@ -91,6 +93,74 @@ export const delSDDN = async (id) => {
         URL_SDDN_DEL,
         {
             "SDDSID": id
+        }
+    )
+    return res.body
+}
+
+// PERM
+/** @return {Promise<*>} */
+export const fetchPERM = async () => {
+    const res = await sendRequest(
+        URL_PERM_LIST,
+        {}
+    )
+    return res.body
+}
+
+/**
+ *
+ * @param perm {PERM}
+ * @return {Promise<*>}
+ */
+export const newPERM = async (perm) => {
+    const res = await sendRequest(
+        URL_PERM_NEW,
+        {
+            "PEOID": perm.PEOID,
+            "PEOBJ": perm.PEOBJ,
+            "PEOIDT": perm.PEOIDT,
+            "PEOBJT": perm.PEOBJT,
+            "PEMASK": perm.PEMASK
+        }
+    )
+    return res.body
+}
+
+
+/**
+ *
+ * @param perm {PERM}
+ * @return {Promise<*>}
+ */
+export const delPERM = async (perm) => {
+    const res = await sendRequest(
+        URL_PERM_DEL,
+        {
+            "PEOID": perm.PEOID,
+            "PEOBJ": perm.PEOBJ,
+            "PEOIDT": perm.PEOIDT,
+            "PEOBJT": perm.PEOBJT,
+            "PEMASK": perm.PEMASK
+        }
+    )
+    return res.body
+}
+
+/**
+ *
+ * @param perm {PERM}
+ * @return {Promise<*>}
+ */
+export const setPEMASK = async (perm) => {
+    const res = await sendRequest(
+        URL_PERM_SET,
+        {
+            "PEOID": perm.PEOID,
+            "PEOBJ": perm.PEOBJ,
+            "PEOIDT": perm.PEOIDT,
+            "PEOBJT": perm.PEOBJT,
+            "PEMASK": perm.PEMASK
         }
     )
     return res.body
